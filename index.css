@@ -69,6 +69,13 @@ body {
 .update-body p {
   margin-bottom: 1em;
 }
+.update-body h3 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  margin-top: 2em;
+  margin-bottom: 0.75em;
+  color: var(--theme-fg);
+}
 .update-body a {
   color: var(--theme-fg);
   text-decoration: underline;

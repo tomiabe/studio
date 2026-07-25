@@ -689,7 +689,7 @@ export default function App() {
                         className="text-left group cursor-pointer">
                         <p className="text-[13px] text-[var(--theme-muted)] mb-1">{update.date}</p>
                         <h3 className="text-lg font-[family-name:var(--font-heading)] text-[var(--theme-fg)] group-hover:underline underline-offset-4">{update.title}</h3>
-                        <p className="text-[14px] text-[var(--theme-muted)] mt-1">{update.description}</p>
+                        <p className="text-[14px] font-[500] text-[var(--theme-muted)] mt-1">{update.description}</p>
                       </button>
                     ))}
                   </div>
@@ -887,7 +887,7 @@ export default function App() {
                           <img src={selectedItem.image} alt={selectedItem.title} className="w-full h-auto rounded-lg" referrerPolicy="no-referrer" />
                         </div>
                       )}
-                      <p className="text-[16px] leading-relaxed text-[var(--theme-muted)] mb-6">{selectedItem.description}</p>
+                      <p className="text-[16px] leading-relaxed font-[500] text-[var(--theme-muted)] mb-6">{selectedItem.description}</p>
                       {selectedItem.content && (
                         <div className="update-body text-[16px] leading-relaxed text-[var(--theme-muted)] mb-6" dangerouslySetInnerHTML={{ __html: selectedItem.content }} />
                       )}
