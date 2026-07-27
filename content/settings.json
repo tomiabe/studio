@@ -153,6 +153,7 @@
     "operatingModel": true,
     "focusAreas": true,
     "speaking": true,
+    "testimonials": true,
     "contact": true
   },
   "footer": {

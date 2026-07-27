@@ -162,6 +162,9 @@ content:
           - name: workSectionHeading
             label: Work Heading
             type: string
+          - name: testimonialsSectionHeading
+            label: Testimonials Heading
+            type: string
           - name: updatesSectionHeading
             label: Updates Heading
             type: string
@@ -303,6 +306,41 @@ content:
           - name: speakingHeading
             label: Speaking Title
             type: string
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # TESTIMONIALS — What people say
+  # ─────────────────────────────────────────────────────────────────────────────
+  - name: testimonials
+    label: Testimonials
+    type: file
+    path: content/testimonials.json
+    format: json
+    fields:
+      - name: testimonials
+        label: Testimonials
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{name}"
+        fields:
+          - name: quote
+            label: Quote
+            type: rich-text
+            options:
+              format: html
+          - name: name
+            label: Person Name
+            type: string
+          - name: role
+            label: Role / Title
+            type: string
+          - name: company
+            label: Company
+            type: string
+          - name: avatar
+            label: Avatar Photo
+            type: image
 
   # ─────────────────────────────────────────────────────────────────────────────
   # SETTINGS
@@ -698,6 +736,9 @@ content:
             type: boolean
           - name: speaking
             label: "Info: Show Speaking & Mentorship"
+            type: boolean
+          - name: testimonials
+            label: "Info: Show Testimonials"
             type: boolean
           - name: contact
             label: Show Contact Section

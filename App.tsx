@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { playClickSound } from './lib/audio';
 import { ArrowUpRight, ArrowRight, Sun, Moon, Sunrise, Monitor, Copy, Check, ChevronRight, Linkedin, Instagram, Github, Menu, X } from 'lucide-react';
@@ -23,6 +23,7 @@ type ThemeMode = 'morning' | 'noon' | 'evening' | 'system';
 interface ProjectDetail { heading: string; text: string; image?: string; images?: string[]; type?: 'brand-identity' | 'creative-feed' | 'design-system'; }
 interface Project { id: string; title: string; role?: string; description: string; categories: string[]; link?: string; useDrawer?: boolean; image: string; details?: ProjectDetail[]; order?: number; visible?: boolean; }
 interface Update { id: string; date: string; title: string; description: string; image: string; link?: string; directLink?: boolean; content?: string; order?: number; visible?: boolean; }
+interface Testimonial { quote: string; name: string; role: string; company: string; avatar?: string; }
 interface SocialLink { name: string; url: string; }
 
 function ImageFader({ images, alt, className }: { images: string[]; alt: string; className?: string }) {
@@ -166,6 +167,7 @@ export default function App() {
   const [clientWork, setClientWork] = useState<Project[]>([]);
   const [personalProjects, setPersonalProjects] = useState<Project[]>([]);
   const [updates, setUpdates] = useState<Update[]>([]);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [siteData, setSiteData] = useState<any>({});
 
   // URL routing
@@ -201,6 +203,7 @@ export default function App() {
         'operating-model': 'Operating Model',
         'focus-areas': 'Focus Areas',
         'speaking': 'Speaking & Mentorship',
+        'testimonials': 'Testimonials',
         'elsewhere': 'Elsewhere'
       };
       return { section, filter: 'All', itemId: null, infoSection: infoSectionMap[parts[1]] || '' };
@@ -234,6 +237,7 @@ export default function App() {
         'Operating Model': 'operating-model',
         'Focus Areas': 'focus-areas',
         'Speaking & Mentorship': 'speaking',
+        'Testimonials': 'testimonials',
         'Elsewhere': 'elsewhere'
       };
       if (infoSection && infoSection !== 'About') {
@@ -347,6 +351,7 @@ export default function App() {
       const workMods = import.meta.glob('./content/work/*.json', { eager: true });
       const projectMods = import.meta.glob('./content/projects/*.json', { eager: true });
       const updatesMods = import.meta.glob('./content/updates/*.json', { eager: true });
+      const testimonialsMod = import.meta.glob('./content/testimonials.json', { eager: true });
 
       const sd = (Object.values(settingsMod)[0] as any)?.default || {};
       const hd = (Object.values(homeMod)[0] as any)?.default || {};
@@ -367,10 +372,14 @@ export default function App() {
         .filter((u: Update) => u.visible !== false)
         .sort((a: Update, b: Update) => (a.order ?? 99) - (b.order ?? 99));
 
+      const testiMod = Object.values(testimonialsMod)[0] as any;
+      const testi: Testimonial[] = (testiMod?.default?.testimonials || testiMod?.testimonials || []) as Testimonial[];
+
       setSiteData({ settings: sd, home: hd, info: id });
       setClientWork(work);
       setPersonalProjects(projects);
       setUpdates(upds);
+      setTestimonials(testi);
       setLoading(false);
 
       // Apply theme colors from CMS
@@ -458,7 +467,11 @@ export default function App() {
     return db - da;
   });
 
-  const infoSections = ['About', 'Operating Model', 'Focus Areas', 'Speaking & Mentorship'];
+  const featuredTestimonials = useMemo(() => {
+    return [...testimonials].sort(() => Math.random() - 0.5).slice(0, 2);
+  }, [testimonials]);
+
+  const infoSections = ['About', 'Operating Model', 'Focus Areas', 'Speaking & Mentorship', 'Testimonials'];
 
   const isHome = activeSection === 'home';
 
@@ -677,6 +690,38 @@ export default function App() {
                   </button>
                 </div>
               </div>
+
+              {siteData.settings?.visibility?.testimonials !== false && featuredTestimonials.length > 0 && (
+                <div className="px-6 md:px-10 lg:px-14 pb-16 border-t border-[var(--theme-border)]">
+                  <div className="pt-10 pb-8">
+                    <h2 className="text-[15px] font-[family-name:var(--font-heading)] text-[var(--theme-muted)] mb-8">
+                      {labels?.testimonialsSectionHeading || 'What People Say'}
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {featuredTestimonials.map((t, i) => (
+                        <div key={i} className="border border-[var(--theme-border)] rounded-lg p-6 flex flex-col gap-4">
+                          <p className="text-[16px] leading-relaxed text-[var(--theme-fg)] italic">"{t.quote}"</p>
+                          <div className="flex items-center gap-3 mt-auto pt-2">
+                            {t.avatar ? (
+                              <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover" referrerPolicy="no-referrer" />
+                            ) : (
+                              <div className="w-10 h-10 rounded-full bg-[var(--theme-border)] flex items-center justify-center">
+                                <span className="text-[14px] font-[family-name:var(--font-heading)] text-[var(--theme-muted)]">
+                                  {t.name.split(' ').map(n => n[0]).join('')}
+                                </span>
+                              </div>
+                            )}
+                            <div>
+                              <p className="text-[14px] font-[family-name:var(--font-heading)] text-[var(--theme-fg)]">{t.name}</p>
+                              <p className="text-[13px] text-[var(--theme-muted)]">{t.role}, {t.company}</p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
 
               <div className="px-6 md:px-10 lg:px-14 pb-16 border-t border-[var(--theme-border)]">
                 <div className="pt-10">
@@ -1001,6 +1046,34 @@ export default function App() {
                                 {e.ctaLabel || 'Learn more'} <ArrowUpRight className="w-4 h-4" />
                               </a>
                             )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {activeInfoSection === 'Testimonials' && (
+                    <div>
+                      <h2 className="text-2xl font-[family-name:var(--font-heading)] text-[var(--theme-fg)] mb-8">Testimonials</h2>
+                      <div className="flex flex-col gap-6">
+                        {testimonials.map((t, i) => (
+                          <div key={i} className="py-4 border-b border-[var(--theme-border)] last:border-0 last:pb-8">
+                            <p className="text-[16px] leading-relaxed text-[var(--theme-fg)] italic mb-4">"{t.quote}"</p>
+                            <div className="flex items-center gap-3">
+                              {t.avatar ? (
+                                <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover" referrerPolicy="no-referrer" />
+                              ) : (
+                                <div className="w-10 h-10 rounded-full bg-[var(--theme-border)] flex items-center justify-center">
+                                  <span className="text-[14px] font-[family-name:var(--font-heading)] text-[var(--theme-muted)]">
+                                    {t.name.split(' ').map(n => n[0]).join('')}
+                                  </span>
+                                </div>
+                              )}
+                              <div>
+                                <p className="text-[14px] font-[family-name:var(--font-heading)] text-[var(--theme-fg)]">{t.name}</p>
+                                <p className="text-[13px] text-[var(--theme-muted)]">{t.role}, {t.company}</p>
+                              </div>
+                            </div>
                           </div>
                         ))}
                       </div>
