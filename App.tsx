@@ -298,9 +298,10 @@ export default function App() {
 
   // Clock
   useEffect(() => {
+    if (activeSection !== 'home') return;
     const iv = setInterval(() => setCurrentTime(new Date()), 1000);
     return () => clearInterval(iv);
-  }, []);
+  }, [activeSection]);
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
