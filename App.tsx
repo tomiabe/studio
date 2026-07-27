@@ -59,7 +59,7 @@ function BrandIdentityContent({ images }: { images?: string[] }) {
     <div className="border border-[var(--theme-border)] rounded-xl p-4 space-y-5 mb-3">
       {images && images.length >= 2 && (
         <div className="space-y-2">
-          <div className="p-4 rounded-lg bg-[var(--theme-bg)] border border-[var(--theme-border)] flex items-center justify-center min-h-[60px]">
+          <div className="p-4 rounded-lg flex items-center justify-center min-h-[60px]" style={{ backgroundColor: '#FFFFFF' }}>
             <img src={images[0]} alt="Susinsight logo (light background)" className="h-6 md:h-7 w-auto object-contain" referrerPolicy="no-referrer" />
           </div>
           <div className="p-4 rounded-lg flex items-center justify-center min-h-[60px]" style={{ backgroundColor: '#2E6F5B' }}>
