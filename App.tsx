@@ -1090,6 +1090,10 @@ export default function App() {
                     </div>
                   )}
 
+                  {!activeInfoSection && (
+                    <p className="text-[15px] text-[var(--theme-muted)]">Select an item to view details</p>
+                  )}
+
                 </div>
               </div>
             </motion.div>
