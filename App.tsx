@@ -98,23 +98,33 @@ function BrandIdentityContent({ images }: { images?: string[] }) {
   );
 }
 
-function CreativeFeed({ images }: { images: string[] }) {
+function CreativeFeed({ images, link, linkLabel }: { images: string[]; link?: string; linkLabel?: string }) {
   return (
     <div className="mb-3">
       {images.length > 0 && (
-        <div className="feed-mask-vertical overflow-hidden rounded-lg" style={{ maxHeight: '420px' }}>
-          <div className="animate-scroll-up">
-            <div className="grid grid-cols-3 gap-2 p-2">
-              {images.map((src, i) => (
-                <img key={`v-${i}`} src={src} alt="" className="w-full rounded-md" referrerPolicy="no-referrer" loading="lazy" />
-              ))}
-            </div>
-            <div className="grid grid-cols-3 gap-2 p-2">
-              {images.map((src, i) => (
-                <img key={`v-dup-${i}`} src={src} alt="" className="w-full rounded-md" referrerPolicy="no-referrer" loading="lazy" />
-              ))}
+        <div className="border border-[var(--theme-border)] rounded-xl overflow-hidden">
+          <div className="feed-mask-vertical overflow-hidden" style={{ maxHeight: '420px' }}>
+            <div className="animate-scroll-up">
+              <div className="grid grid-cols-3 gap-2 p-2">
+                {images.map((src, i) => (
+                  <img key={`v-${i}`} src={src} alt="" className="w-full rounded-md" referrerPolicy="no-referrer" loading="lazy" />
+                ))}
+              </div>
+              <div className="grid grid-cols-3 gap-2 p-2">
+                {images.map((src, i) => (
+                  <img key={`v-dup-${i}`} src={src} alt="" className="w-full rounded-md" referrerPolicy="no-referrer" loading="lazy" />
+                ))}
+              </div>
             </div>
           </div>
+          {link && (
+            <div className="p-2.5 border-t border-[var(--theme-border)] bg-[var(--theme-bg)] text-center">
+              <a href={link} target="_blank" rel="noopener noreferrer"
+                className="text-[12px] font-[500] text-[var(--theme-fg)] hover:underline underline-offset-4 inline-flex items-center gap-1">
+                {linkLabel || 'Visit'} <ArrowUpRight className="w-3 h-3" />
+              </a>
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -826,7 +836,7 @@ export default function App() {
                           {d.type === 'brand-identity' ? (
                             <BrandIdentityContent images={d.images} />
                           ) : d.type === 'creative-feed' ? (
-                            <CreativeFeed images={d.images || []} />
+                            <CreativeFeed images={d.images || []} link={d.link} linkLabel={d.linkLabel} />
                           ) : d.type === 'design-system' ? (
                             <DesignSystemContent />
                           ) : d.images ? (
