@@ -1091,7 +1091,9 @@ export default function App() {
                   )}
 
                   {!activeInfoSection && (
-                    <p className="text-[15px] text-[var(--theme-muted)]">Select an item to view details</p>
+                    <div className="hidden md:flex items-center justify-center min-h-[50vh] w-full">
+                      <p className="text-[15px] text-[var(--theme-muted)]">Select an item to view details</p>
+                    </div>
                   )}
 
                 </div>
