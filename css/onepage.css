@@ -606,7 +606,7 @@ body.fx-grad-cloud {
   justify-content: center;
   padding: 0;
   border: 1px solid var(--theme-border);
-  border-radius: 9999px;
+  border-radius: 8px;
   background: color-mix(in srgb, var(--theme-bg) 88%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
