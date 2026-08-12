@@ -637,6 +637,7 @@ body.fx-grad-cloud {
 @media (min-width: 1024px) { .footer { padding: 48px 56px 56px; } }
 .footer-tagline { font-size: 13px; font-family: var(--font-heading); color: var(--theme-muted); letter-spacing: 0.05em; margin: 0; }
 .footer-copyright { font-size: 13px; color: var(--theme-muted); margin: 0; }
+@media (max-width: 767px) { .footer .theme-buttons { display: none; } }
 
 /* ── Drawer ── */
 .drawer-wrap { display: none; }
@@ -671,6 +672,7 @@ body.fx-grad-cloud {
   transition: transform 0.35s ease-in-out;
 }
 @media (min-width: 1024px) { .drawer { width: 50vw; max-width: none; } }
+@media (max-width: 767px) { .drawer { min-width: 0; width: 100%; } }
 .drawer-wrap.open .drawer { transform: translateX(0); }
 
 .drawer-head {

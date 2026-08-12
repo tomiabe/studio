@@ -11,7 +11,7 @@ const ROOT = __dirname;
 const MANIFEST = {
   work: ['culerson', 'eze', 'fairbnb', 'susinsight', 'translayte', 'wecollect', 'zeproc'],
   projects: ['acquario', 'jtf23', 'nairawatch', 'nigeria-embassy', 'smart-expense', 'sound-atlas', 'urban-climate-signals', 'webhunt', 'zonify'],
-  updates: ['ask-susinsight-ai', 'loblaw-ai', 'substack-direct-subscribe-wp', 'substack-direct-subscribe', 'u1', 'u2', 'u3', 'u4', 'u5', 'u6', 'u7', 'wp-snippets'],
+  updates: ['ask-susinsight-ai', 'loblaw-ai', 'polish', 'substack-direct-subscribe-wp', 'substack-direct-subscribe', 'u1', 'u2', 'u3', 'u4', 'u5', 'u6', 'u7', 'wp-snippets'],
 };
 
 function readJSON(file) {

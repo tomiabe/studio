@@ -229,32 +229,26 @@ window.SITE_DATA = {
     "focusAreas": [
       {
         "title": "Brand & Digital Strategy",
-        "icon": "compass",
         "description": "Defining the narrative, structure, and digital foundation that helps organizations communicate clearly, differentiate meaningfully, and scale with coherence across platforms and touchpoints."
       },
       {
         "title": "Product & UX Design Engineering",
-        "icon": "layout",
         "description": "Designing and building intuitive, scalable digital products and interfaces that align user needs, business goals, and technical systems into usable, effective, and enduring experiences."
       },
       {
         "title": "Data Visualization & Storytelling",
-        "icon": "chartColumn",
         "description": "Transforming complex data, research, and information into clear visual and interactive narratives that improve understanding, support decision-making, and communicate insight effectively."
       },
       {
         "title": "Media Systems & Content Platforms",
-        "icon": "layers",
         "description": "Designing the systems, workflows, and digital environments that enable organizations to publish, manage, and evolve content as structured, scalable knowledge over time."
       },
       {
         "title": "Creative Technology & Interactive Media",
-        "icon": "sparkles",
         "description": "Exploring and building experimental, emerging, and interactive digital experiences that extend how people engage with information, systems, and ideas beyond conventional interfaces."
       },
       {
         "title": "Applied AI & Workflow Systems",
-        "icon": "bot",
         "description": "Building AI-powered tools, assistants, and workflows on top of existing products, data, and operations that turn manual, ad‑hoc work into intelligent, repeatable pipelines for faster, more confident decisions."
       }
     ],
@@ -731,6 +725,17 @@ window.SITE_DATA = {
       "image": "images/updates/loblaw-ai.jpg",
       "directLink": false,
       "content": "<p>In a webinar hosted by Loblaw Digital's AI Committee, I shared my strategies for using generative AI tools and prompting techniques to create superior creative and design work.</p><p>The session covered advanced prompting frameworks, practical generative workflow techniques, and how to integrate AI tools into real professional practice without losing craft or judgment.</p><p style=\"margin-bottom:2rem\"><a target=\"_blank\" rel=\"noreferrer\" href=\"https://drive.google.com/file/d/19Dnit0-O3oby2g_uE2JaOKr53Etykn85/view\">Watch session <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"display:inline;vertical-align:middle;margin-left:4px\"><path d=\"M7 17 17 7\"/><path d=\"M7 7h10v10\"/></svg></a></p>"
+    },
+    {
+      "title": "Polish: A Self-Hosted Design Audit Tool",
+      "id": "polish",
+      "order": 0,
+      "visible": true,
+      "date": "August 2026",
+      "description": "Built polish, a self-hosted design-review tool for UI code — Nielsen's usability heuristics, Rams-style scoring, your own API key. CLI + MCP, no subscription.",
+      "image": "https://picsum.photos/seed/polish/800/600",
+      "directLink": false,
+      "content": "<p>I had been leaning on a hosted design-review service that scores UI code against a rubric and flags accessibility and usability problems. It was genuinely useful — and then I hit the monthly limit. Rather than subscribe, I built my own, tailored to how I actually work.</p><p>The result is <strong>polish</strong>: a command-line tool that sends your UI files (React, Vue, Svelte, CSS) to an LLM and reviews them against Nielsen's 10 usability heuristics plus an accessibility pass. It returns a 0–100 score — critical issues cap the ceiling — with each finding tagged by severity, heuristic, file:line, and a concrete fix. A verify mode re-checks reported issues against your updated code at a fraction of the cost of a full review.</p><p>Building it came down to a few clean layers: the rubric is plain data (so the whole philosophy can be swapped out), a thin provider layer talks to Groq, OpenAI, Anthropic, or OpenRouter with your own key, and a scorer reproduces the Rams-style critical caps. The CLI is zero-dependency and installs globally, and the same engine is wrapped as an MCP server so AI agents can call it directly in any project.</p><p>For anyone who wants something similar: install it once, set one API key, and run <code>polish</code> in any project. That's it. Audit the screens you touch before committing, fix the criticals it flags, then re-verify. It also exits non-zero on critical findings, so it works as a CI gate.</p>"
     },
     {
       "title": "Substack Direct Subscribe for WordPress",
