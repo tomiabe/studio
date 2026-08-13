@@ -1,4 +1,4 @@
-/* Tomi Abe Studio — one-pager (top nav, 3-col sections, side drawer). */
+/* Tomi Abe Studio one-pager (top nav, 3-col sections, side drawer). */
 'use strict';
 
 /* ── Helpers ── */
@@ -190,7 +190,7 @@ function brandIdentityHTML(images) {
           <div class="bi-type-card">
             <p class="bi-type-label">Headings</p>
             <p class="bi-type-sample" style="font-family:'Bricolage Grotesque', serif">Bricolage Grotesque</p>
-            <p class="bi-type-note">Semibold · 48px–20px scale</p>
+            <p class="bi-type-note">Semibold · 48px-20px scale</p>
           </div>
           <div class="bi-type-card">
             <p class="bi-type-label">Body</p>
@@ -444,7 +444,7 @@ function renderContact() {
   $('#contact-grid').innerHTML = `
     <div class="contact-head">
       <h2 class="contact-title">Contact</h2>
-      <p class="contact-desc">Typically responds within 1–3 business days. Reach out for any of the following.</p>
+      <p class="contact-desc">Typically responds within 1-3 business days. Reach out for any of the following.</p>
     </div>
     <div class="contact-left">
       <button class="email-btn" data-copy-email>${esc(email)} <span id="contact-email-icon">${icon('copy', 16)}</span></button>

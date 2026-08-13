@@ -442,7 +442,7 @@ window.SITE_DATA = {
       "link": "https://susinsight.com",
       "isFullBleed": false,
       "shortDescription": "Sustainability media insight platform",
-      "year": "2023–present",
+      "year": "2023-present",
       "details": [
         {
           "heading": "Brand Identity",
@@ -732,12 +732,12 @@ window.SITE_DATA = {
       "order": 0,
       "visible": true,
       "date": "August 2026",
-      "description": "Built polish, a self-hosted design-review tool for UI code — Nielsen's usability heuristics, Rams-style scoring, your own API key. CLI + MCP, no subscription.",
+      "description": "Built polish, a self-hosted design review tool for UI code, with Nielsen's usability heuristics, Rams-style scoring, your own API key, CLI, and MCP support.",
       "image": "https://picsum.photos/seed/polish/800/600",
       "link": "https://github.com/tomiabe/polish",
       "ctaLabel": "View GitHub repo",
       "directLink": false,
-      "content": "<p>I had been leaning on a hosted design-review service that scores UI code against a rubric and flags accessibility and usability problems. It was genuinely useful — and then I hit the monthly limit. Rather than subscribe, I built my own, tailored to how I actually work.</p><p>The result is <strong>polish</strong>: a command-line tool that sends your UI files (React, Vue, Svelte, CSS) to an LLM and reviews them against Nielsen's 10 usability heuristics plus an accessibility pass. It returns a 0–100 score — critical issues cap the ceiling — with each finding tagged by severity, heuristic, file:line, and a concrete fix. A verify mode re-checks reported issues against your updated code at a fraction of the cost of a full review.</p><p>Building it came down to a few clean layers: the rubric is plain data (so the whole philosophy can be swapped out), a thin provider layer talks to Groq, OpenAI, Anthropic, or OpenRouter with your own key, and a scorer reproduces the Rams-style critical caps. The CLI is zero-dependency and installs globally, and the same engine is wrapped as an MCP server so AI agents can call it directly in any project.</p><p>For anyone who wants something similar: install it once, set one API key, and run <code>polish</code> in any project. That's it. Audit the screens you touch before committing, fix the criticals it flags, then re-verify. It also exits non-zero on critical findings, so it works as a CI gate.</p>"
+      "content": "<p>I built <strong>polish</strong> because I wanted design review to sit closer to the code. The best feedback usually arrives while a screen is still being shaped, not after it has already been polished, shipped, or handed off for review.</p><p>The tool reviews UI files such as React, Vue, Svelte, and CSS against Nielsen's 10 usability heuristics, with an accessibility pass layered in. It returns a 0 to 100 score, applies Rams-style caps for critical issues, and reports each finding with severity, heuristic, file location, and a concrete fix.</p><p>The architecture is intentionally small. The rubric is plain data, so the review philosophy can change without rewriting the tool. A provider layer connects to Groq, OpenAI, Anthropic, or OpenRouter with your own API key. The same review engine runs through a CLI and an MCP server, which means it can be used directly by developers or called by AI agents inside a project.</p><p>The workflow is simple: run <code>polish</code> on the UI files you touched, fix the high-severity issues, then run verify mode to check the changes. It can also fail CI when critical findings appear, turning design quality into something teams can review before merge rather than after launch.</p>"
     },
     {
       "title": "Substack Direct Subscribe for WordPress",
@@ -745,10 +745,10 @@ window.SITE_DATA = {
       "order": 1,
       "visible": true,
       "date": "July 2026",
-      "description": "A WordPress plugin that brings direct Substack subscription collection to WP — with a shortcode, Gutenberg block, and timed popup modal.",
+      "description": "A WordPress plugin that brings direct Substack subscription collection to WP, with a shortcode, Gutenberg block, and timed popup modal.",
       "image": "https://picsum.photos/seed/substack-wp/800/600",
       "directLink": false,
-      "content": "<p>After shipping the vanilla React version, I ported the same approach to WordPress — a full plugin with a shortcode, a Gutenberg block with sidebar settings, a timed popup modal with admin configuration, and two layout variants (card and banner). All vanilla JavaScript, no build step, zero dependencies.</p><p>The plugin sends subscribe requests directly from the visitor's browser to Substack, bypassing cloud-IP blocks without touching your server. No email data is stored in WordPress — fully GDPR-friendly out of the box.</p><p><a target=\"_blank\" rel=\"noreferrer\" href=\"https://github.com/tomiabe/substack-direct-subscribe-wp\">View on GitHub</a> →</p>"
+      "content": "<p>After shipping the vanilla React version, I ported the same approach to WordPress: a full plugin with a shortcode, a Gutenberg block with sidebar settings, a timed popup modal with admin configuration, and two layout variants (card and banner). All vanilla JavaScript, no build step, zero dependencies.</p><p>The plugin sends subscribe requests directly from the visitor's browser to Substack, bypassing cloud-IP blocks without touching your server. No email data is stored in WordPress, and it is GDPR-friendly out of the box.</p><p><a target=\"_blank\" rel=\"noreferrer\" href=\"https://github.com/tomiabe/substack-direct-subscribe-wp\">View on GitHub</a> →</p>"
     },
     {
       "title": "Substack Direct Subscribe",
@@ -756,10 +756,10 @@ window.SITE_DATA = {
       "order": 2,
       "visible": true,
       "date": "June 2026",
-      "description": "A lightweight, client-side React package for collecting Substack email subscriptions directly from your site — no server, no proxy, no backend.",
+      "description": "A lightweight, client-side React package for collecting Substack email subscriptions directly from your site, with no server, proxy, or backend.",
       "image": "https://picsum.photos/seed/substack-direct/800/600",
       "directLink": false,
-      "content": "<p>Substack blocks API requests from cloud and datacenter IPs — Vercel, Netlify, AWS — which means standard server-side subscription forms fail silently. The workaround is sending the request from the visitor's browser using <code>fetch</code> with <code>mode: 'no-cors'</code>, bypassing the block entirely.</p><p>I packaged this approach into a lightweight React component — <code>SubstackForm</code> and <code>SubstackPopup</code> — with proper idle, submitting, success, and error states. It works anywhere: Next.js, static sites, plain HTML. No backend, no webhooks, no proxy. Just the visitor's browser talking directly to Substack.</p><p><a target=\"_blank\" rel=\"noreferrer\" href=\"https://github.com/tomiabe/substack-direct-subscribe\">View on GitHub</a> →</p>"
+      "content": "<p>Substack blocks API requests from cloud and datacenter IPs such as Vercel, Netlify, and AWS, which means standard server-side subscription forms fail silently. The workaround is sending the request from the visitor's browser using <code>fetch</code> with <code>mode: 'no-cors'</code>, bypassing the block entirely.</p><p>I packaged this approach into a lightweight React component: <code>SubstackForm</code> and <code>SubstackPopup</code>, with proper idle, submitting, success, and error states. It works anywhere: Next.js, static sites, plain HTML. No backend, no webhooks, no proxy. Just the visitor's browser talking directly to Substack.</p><p><a target=\"_blank\" rel=\"noreferrer\" href=\"https://github.com/tomiabe/substack-direct-subscribe\">View on GitHub</a> →</p>"
     },
     {
       "id": "u1",
@@ -767,7 +767,7 @@ window.SITE_DATA = {
       "title": "New Studio Website Launched",
       "description": "Transitioned the digital practice portfolio from a category-based structure to a unified systems-based feed.",
       "image": "https://picsum.photos/seed/u1/400/300",
-      "content": "<p>After several months of iterative design and systems engineering, we have officially launched the new studio digital presence. This shift represents a transition away from traditional portfolio structures towards a more modular, fluid feed of ongoing work and insight.</p><p>By stripping away static categorizations and embracing a timeline-based architectural approach, the site mirrors how digital products actually evolve—incrementally, systematically, and continuously.</p><p>The underlying stack relies primarily on React via Vite, using extremely tight Tailwind configuration for a custom 'environment' theme system that adjusts based on the local time of day.</p>",
+      "content": "<p>After several months of iterative design and systems engineering, we have officially launched the new studio digital presence. This shift represents a transition away from traditional portfolio structures towards a more modular, fluid feed of ongoing work and insight.</p><p>By stripping away static categorizations and embracing a timeline-based architectural approach, the site mirrors how digital products actually evolve: incrementally, systematically, and continuously.</p><p>The underlying stack relies primarily on React via Vite, using extremely tight Tailwind configuration for a custom 'environment' theme system that adjusts based on the local time of day.</p>",
       "order": 6,
       "visible": false
     },
@@ -840,7 +840,7 @@ window.SITE_DATA = {
       "description": "Curated, production-ready WordPress PHP snippets for admin, performance, security, and block theme development.",
       "image": "images/updates/wp-snippets.jpg",
       "directLink": false,
-      "content": "<p>I started pulling together a library of WordPress PHP snippets extracted from real client work — admin dashboard tweaks, performance optimisations, security hardening, block theme utilities. Each one is a standalone file solving a concrete problem: cloning posts with custom fields, stripping /category/ from taxonomy URLs, switching block theme style variations based on time of day, and lightweight cache control without a plugin.</p><p>The collection grew out of frustration with reaching for the same solutions across projects and finding them scattered across different repos, gists, and local files. Now they live in one place, tested on WordPress 6.x, ready to drop into any project.</p>",
+      "content": "<p>I started pulling together a library of WordPress PHP snippets extracted from real client work: admin dashboard tweaks, performance optimisations, security hardening, and block theme utilities. Each one is a standalone file solving a concrete problem: cloning posts with custom fields, stripping /category/ from taxonomy URLs, switching block theme style variations based on time of day, and lightweight cache control without a plugin.</p><p>The collection grew out of frustration with reaching for the same solutions across projects and finding them scattered across different repos, gists, and local files. Now they live in one place, tested on WordPress 6.x, ready to drop into any project.</p>",
       "ctaLink": "https://github.com/tomiabe/wp-snippets",
       "ctaLabel": "Browse the Snippets"
     }
