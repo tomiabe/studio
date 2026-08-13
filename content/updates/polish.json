@@ -6,6 +6,7 @@
   "date": "August 2026",
   "description": "Built polish, a self-hosted design review tool for UI code, with Nielsen's usability heuristics, Rams-style scoring, your own API key, CLI, and MCP support.",
   "image": "https://picsum.photos/seed/polish/800/600",
+  "cssCover": "polish",
   "link": "https://github.com/tomiabe/polish",
   "ctaLabel": "View GitHub repo",
   "directLink": false,

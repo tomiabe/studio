@@ -4,8 +4,11 @@
   "order": 2,
   "visible": true,
   "date": "June 2026",
-  "description": "A lightweight, client-side React package for collecting Substack email subscriptions directly from your site, with no server, proxy, or backend.",
+  "description": "A lightweight React package for collecting Substack email subscriptions directly from a site, without a server, proxy, or backend.",
   "image": "https://picsum.photos/seed/substack-direct/800/600",
   "directLink": false,
-  "content": "<p>Substack blocks API requests from cloud and datacenter IPs such as Vercel, Netlify, and AWS, which means standard server-side subscription forms fail silently. The workaround is sending the request from the visitor's browser using <code>fetch</code> with <code>mode: 'no-cors'</code>, bypassing the block entirely.</p><p>I packaged this approach into a lightweight React component: <code>SubstackForm</code> and <code>SubstackPopup</code>, with proper idle, submitting, success, and error states. It works anywhere: Next.js, static sites, plain HTML. No backend, no webhooks, no proxy. Just the visitor's browser talking directly to Substack.</p><p><a target=\"_blank\" rel=\"noreferrer\" href=\"https://github.com/tomiabe/substack-direct-subscribe\">View on GitHub</a> →</p>"
+  "content": "<p>This started as a practical fix for Substack forms on static and server-rendered sites. Standard server-side requests can fail on cloud hosting, so the package sends the subscription request from the visitor's browser instead.</p><p>I wrapped that approach into two small React components: <code>SubstackForm</code> for inline forms and <code>SubstackPopup</code> for timed prompts. Both include idle, submitting, success, and error states, with minimal styling assumptions.</p><p>The goal was to keep the integration boring in the best way. Add the component, pass in the Substack publication details, and let the user's browser handle the request. No backend route, no proxy service, no stored email data.</p>",
+  "cssCover": "substack-direct",
+  "link": "https://github.com/tomiabe/substack-direct-subscribe",
+  "ctaLabel": "View React package"
 }

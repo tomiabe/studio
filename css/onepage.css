@@ -433,6 +433,309 @@ body.fx-grad-cloud {
 .update-card:hover .update-card-title { text-decoration: underline; text-underline-offset: 4px; }
 .update-card-desc { font-size: 14px; font-weight: 400; color: var(--theme-muted); margin: 6px 0 0; line-height: 1.5; }
 
+.css-cover {
+  --cover-bg: #101112;
+  --cover-ink: #f6f1e8;
+  --cover-a: #35d07f;
+  --cover-b: #f8c541;
+  --cover-c: #ef5b42;
+  --cover-line: rgba(246, 241, 232, 0.18);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 78% 18%, color-mix(in srgb, var(--cover-b) 35%, transparent), transparent 24%),
+    radial-gradient(circle at 16% 82%, color-mix(in srgb, var(--cover-a) 42%, transparent), transparent 28%),
+    linear-gradient(135deg, var(--cover-bg), #211f1a 52%, #0a0c0f);
+  border: 1px solid color-mix(in srgb, var(--cover-ink) 18%, transparent);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.update-card-image { margin-bottom: 14px; }
+
+.css-cover-card {
+  aspect-ratio: 16 / 10;
+  margin-bottom: 14px;
+}
+
+.css-cover-detail {
+  aspect-ratio: 16 / 9;
+  margin-bottom: 24px;
+}
+
+.css-cover-grid {
+  position: absolute;
+  inset: -20%;
+  opacity: 0.4;
+  transform: rotate(-10deg);
+  background-image:
+    linear-gradient(var(--cover-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--cover-line) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.css-cover::before,
+.css-cover::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+}
+
+.css-cover::before {
+  width: 32%;
+  aspect-ratio: 1;
+  right: 12%;
+  top: 12%;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--cover-a) 34%, transparent);
+  transform: rotate(22deg);
+}
+
+.css-cover::after {
+  width: 44%;
+  height: 18%;
+  left: 7%;
+  bottom: 15%;
+  border: 1px solid color-mix(in srgb, var(--cover-ink) 30%, transparent);
+  transform: skewX(-18deg) rotate(-6deg);
+}
+
+.css-cover-band {
+  position: absolute;
+  height: 34%;
+  width: 125%;
+  left: -12%;
+  transform-origin: center;
+  mix-blend-mode: screen;
+}
+
+.css-cover-band-a {
+  top: 18%;
+  transform: rotate(-17deg);
+  background: linear-gradient(90deg, transparent, var(--cover-a), var(--cover-b), transparent);
+}
+
+.css-cover-band-b {
+  bottom: 10%;
+  transform: rotate(13deg);
+  background: linear-gradient(90deg, transparent, var(--cover-c), #7fdfff, transparent);
+  opacity: 0.72;
+}
+
+.css-cover-orbit {
+  position: absolute;
+  border: 1px solid color-mix(in srgb, var(--cover-ink) 40%, transparent);
+  border-radius: 999px;
+  transform: rotate(-20deg);
+}
+
+.css-cover-orbit-a {
+  width: 46%;
+  aspect-ratio: 1;
+  right: 8%;
+  top: 14%;
+}
+
+.css-cover-orbit-b {
+  width: 26%;
+  aspect-ratio: 1;
+  left: 10%;
+  bottom: 12%;
+  border-color: color-mix(in srgb, var(--cover-a) 55%, transparent);
+}
+
+.css-cover-symbol {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  right: 9%;
+  top: 11%;
+  width: 56px;
+  height: 56px;
+  border: 1px solid color-mix(in srgb, var(--cover-ink) 34%, transparent);
+  border-radius: 8px;
+  color: var(--cover-ink);
+  background: rgba(0, 0, 0, 0.18);
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.css-cover-mark {
+  position: absolute;
+  left: 7%;
+  top: 9%;
+  display: grid;
+  gap: 4px;
+  color: var(--cover-ink);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.css-cover-word {
+  position: absolute;
+  right: 6%;
+  bottom: 7%;
+  color: var(--cover-ink);
+  font-family: var(--font-heading);
+  font-size: 52px;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 0.9;
+}
+
+.css-cover-card .css-cover-word { font-size: 34px; }
+.css-cover-detail .css-cover-word { font-size: 72px; }
+@media (max-width: 767px) { .css-cover-detail .css-cover-word { font-size: 44px; } }
+
+.css-cover-polish {
+  --cover-bg: #11120f;
+  --cover-ink: #fff7e6;
+  --cover-a: #19d17f;
+  --cover-b: #ffce3d;
+  --cover-c: #ff4f3e;
+}
+
+.css-cover-substack-direct {
+  --cover-bg: #24160f;
+  --cover-ink: #fff4dc;
+  --cover-a: #ff6b2b;
+  --cover-b: #ffd56a;
+  --cover-c: #31c6a6;
+}
+
+.css-cover-substack-direct .css-cover-grid {
+  opacity: 0.26;
+  transform: rotate(8deg);
+  background-size: 42px 18px;
+}
+
+.css-cover-substack-direct .css-cover-band-a {
+  top: 24%;
+  transform: rotate(0deg);
+  height: 14%;
+}
+
+.css-cover-substack-direct .css-cover-band-b {
+  bottom: 24%;
+  transform: rotate(0deg);
+  height: 14%;
+}
+
+.css-cover-substack-direct .css-cover-orbit-a,
+.css-cover-substack-direct .css-cover-orbit-b {
+  border-radius: 8px;
+  transform: rotate(0deg);
+}
+
+.css-cover-substack-direct::after {
+  width: 30%;
+  height: 22%;
+  left: 11%;
+  bottom: 22%;
+  border-radius: 6px;
+  transform: rotate(-8deg);
+}
+
+.css-cover-substack-wp {
+  --cover-bg: #071923;
+  --cover-ink: #e7f6ff;
+  --cover-a: #1b93c9;
+  --cover-b: #8fd7ff;
+  --cover-c: #f06449;
+}
+
+.css-cover-substack-wp .css-cover-grid {
+  opacity: 0.32;
+  transform: rotate(0deg);
+  background-size: 36px 36px;
+}
+
+.css-cover-substack-wp .css-cover-band {
+  width: 76%;
+  left: 12%;
+  height: 22%;
+  border-radius: 8px;
+}
+
+.css-cover-substack-wp .css-cover-band-a {
+  top: 22%;
+  transform: rotate(0deg);
+}
+
+.css-cover-substack-wp .css-cover-band-b {
+  bottom: 20%;
+  transform: rotate(0deg);
+}
+
+.css-cover-substack-wp .css-cover-orbit-a {
+  width: 30%;
+  right: 12%;
+  top: 18%;
+  border-radius: 8px;
+  transform: rotate(12deg);
+}
+
+.css-cover-substack-wp .css-cover-orbit-b {
+  width: 18%;
+  left: 13%;
+  bottom: 18%;
+  border-radius: 8px;
+  transform: rotate(-12deg);
+}
+
+.css-cover-wp-snippets {
+  --cover-bg: #0c1014;
+  --cover-ink: #eafff4;
+  --cover-a: #41f09a;
+  --cover-b: #6aa8ff;
+  --cover-c: #eec76a;
+}
+
+.css-cover-wp-snippets .css-cover-grid {
+  opacity: 0.22;
+  transform: rotate(0deg);
+  background-size: 18px 18px;
+}
+
+.css-cover-wp-snippets .css-cover-band {
+  width: 54%;
+  left: 10%;
+  height: 8%;
+  border-radius: 999px;
+}
+
+.css-cover-wp-snippets .css-cover-band-a {
+  top: 30%;
+  transform: rotate(0deg);
+}
+
+.css-cover-wp-snippets .css-cover-band-b {
+  bottom: 34%;
+  transform: rotate(0deg);
+}
+
+.css-cover-wp-snippets .css-cover-orbit-a {
+  width: 52%;
+  right: -4%;
+  top: 18%;
+  border-radius: 8px;
+  transform: rotate(8deg);
+}
+
+.css-cover-wp-snippets .css-cover-orbit-b {
+  width: 28%;
+  left: 10%;
+  bottom: 12%;
+  border-radius: 8px;
+  transform: rotate(-8deg);
+}
+
 /* ── Info ── */
 .info-grid {
   display: flex;

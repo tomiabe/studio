@@ -62,7 +62,7 @@ const data = { settings: {}, home: {}, info: {}, work: [], projects: [], updates
 
 if (new URLSearchParams(location.search).get('fx') === 'grid') document.body.classList.add('fx-grid');
 
-/* ── Data (embedded bundle from build-data.js → js/data.js) ── */
+/* ── Data (embedded bundle from build-data.js into js/data.js) ── */
 function loadData() {
   const raw = window.SITE_DATA || {};
   data.settings = raw.settings || {};
@@ -317,9 +317,43 @@ function workCardHTML(p) {
     </button>`;
 }
 
+function cssCoverHTML(item, context) {
+  if (!item.cssCover) return '';
+  const coverMeta = {
+    polish: { mark: ['UI', 'Score'], word: 'polish', symbol: '95' },
+    'substack-direct': { mark: ['Email', 'Browser'], word: 'Direct', symbol: '@' },
+    'substack-wp': { mark: ['WP', 'Block'], word: 'Plugin', symbol: 'WP' },
+    'wp-snippets': { mark: ['PHP', 'Snippets'], word: 'Library', symbol: '{}' },
+  };
+  const meta = coverMeta[item.cssCover] || { mark: ['Studio', 'Update'], word: item.id, symbol: '*' };
+  return `
+    <div class="css-cover css-cover-${esc(item.cssCover)} ${context === 'card' ? 'css-cover-card' : 'css-cover-detail'}" aria-label="${esc(item.title)} featured cover">
+      <div class="css-cover-grid"></div>
+      <div class="css-cover-band css-cover-band-a"></div>
+      <div class="css-cover-band css-cover-band-b"></div>
+      <div class="css-cover-orbit css-cover-orbit-a"></div>
+      <div class="css-cover-orbit css-cover-orbit-b"></div>
+      <div class="css-cover-symbol">${esc(meta.symbol)}</div>
+      <div class="css-cover-mark">
+        <span>${esc(meta.mark[0])}</span>
+        <span>${esc(meta.mark[1])}</span>
+      </div>
+      <div class="css-cover-word">${esc(meta.word)}</div>
+    </div>`;
+}
+
+function updateCoverHTML(u, context) {
+  if (u.cssCover) return cssCoverHTML(u, context);
+  if (!u.image) return '';
+  const cardClass = context === 'card' ? 'card-image update-card-image' : 'detail-image-wrap';
+  const imgClass = context === 'card' ? '' : 'detail-image';
+  return `<div class="${cardClass}"><img class="${imgClass}" src="${esc(img(u.image))}" alt="${esc(u.title)}" referrerpolicy="no-referrer" loading="lazy" /></div>`;
+}
+
 function updateCardHTML(u) {
   return `
     <button class="update-card" data-open="${esc(u.id)}">
+      ${updateCoverHTML(u, 'card')}
       <p class="update-card-date">${esc(u.date)}</p>
       <h3 class="update-card-title">${esc(u.title)}</h3>
       <p class="update-card-desc">${esc(u.description)}</p>
@@ -509,16 +543,16 @@ function itemDetailHTML(item) {
 }
 
 function updateDetailHTML(u) {
+  const updateLink = u.link || u.ctaLink;
   return `
     <div class="drawer-inner">
       <p class="update-detail-date">${esc(u.date)}</p>
       <h2 class="detail-title">${esc(u.title)}</h2>
-      ${u.image ? `
-        <div class="detail-image-wrap"><img class="detail-image" src="${esc(img(u.image))}" alt="${esc(u.title)}" referrerpolicy="no-referrer" /></div>` : ''}
+      ${updateCoverHTML(u, 'detail')}
       <p class="detail-desc">${esc(u.description)}</p>
       ${u.content ? `<div class="update-body">${u.content}</div>` : ''}
-      ${u.link ? `
-        <a class="detail-link" href="${esc(u.link)}" target="_blank" rel="noopener noreferrer">${esc(u.ctaLabel || 'Read more')} ${icon('arrowUpRight', 16)}</a>` : ''}
+      ${updateLink ? `
+        <a class="detail-link" href="${esc(updateLink)}" target="_blank" rel="noopener noreferrer">${esc(u.ctaLabel || 'Read more')} ${icon('arrowUpRight', 16)}</a>` : ''}
     </div>`;
 }
 
