@@ -518,7 +518,7 @@ function updateDetailHTML(u) {
       <p class="detail-desc">${esc(u.description)}</p>
       ${u.content ? `<div class="update-body">${u.content}</div>` : ''}
       ${u.link ? `
-        <a class="detail-link" href="${esc(u.link)}" target="_blank" rel="noopener noreferrer">Read more ${icon('arrowUpRight', 16)}</a>` : ''}
+        <a class="detail-link" href="${esc(u.link)}" target="_blank" rel="noopener noreferrer">${esc(u.ctaLabel || 'Read more')} ${icon('arrowUpRight', 16)}</a>` : ''}
     </div>`;
 }
 
