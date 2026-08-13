@@ -14,10 +14,10 @@
   --color-noon-muted: #71717a;
   --color-noon-border: #e4e4e7;
 
-  --color-evening-bg: #09090b;
-  --color-evening-fg: #fafafa;
-  --color-evening-muted: #a1a1aa;
-  --color-evening-border: #27272a;
+  --color-night-bg: #09090b;
+  --color-night-fg: #fafafa;
+  --color-night-muted: #a1a1aa;
+  --color-night-border: #27272a;
 
   --theme-bg: var(--color-noon-bg);
   --theme-fg: var(--color-noon-fg);
@@ -42,11 +42,11 @@
   --theme-border: var(--color-noon-border);
 }
 
-.theme-evening {
-  --theme-bg: var(--color-evening-bg);
-  --theme-fg: var(--color-evening-fg);
-  --theme-muted: var(--color-evening-muted);
-  --theme-border: var(--color-evening-border);
+.theme-night {
+  --theme-bg: var(--color-night-bg);
+  --theme-fg: var(--color-night-fg);
+  --theme-muted: var(--color-night-muted);
+  --theme-border: var(--color-night-border);
 }
 
 /* ── Base ── */
@@ -1157,4 +1157,64 @@ body.fx-grad-cloud {
   .card-image img { transition: none; }
   .fader img.fader-layer { transition: none; }
   .drawer, .drawer-backdrop, .menu-panel, .menu-backdrop { transition: none; }
+}
+
+/* ── Dither Background Effect ── */
+.has-dither {
+  position: relative;
+  isolation: isolate;
+}
+
+.dither-canvas,
+.dither-scrim {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.dither-canvas {
+  z-index: 0;
+  height: 100%;
+  opacity: 1;
+}
+
+.dither-canvas-info { opacity: 0.74; }
+.dither-canvas-contact { opacity: 0.82; }
+.dither-canvas-footer { opacity: 0.72; }
+
+.dither-scrim {
+  z-index: 1;
+  background:
+    linear-gradient(to bottom, color-mix(in srgb, var(--theme-bg) 10%, transparent), color-mix(in srgb, var(--theme-bg) 62%, transparent) 92%),
+    radial-gradient(circle at 18% 16%, color-mix(in srgb, var(--theme-bg) 34%, transparent), transparent 34rem),
+    radial-gradient(circle at 82% 28%, color-mix(in srgb, var(--theme-bg) 42%, transparent), transparent 38rem);
+}
+
+#hero-content,
+#info > .section-title,
+.info-grid,
+.contact-grid,
+.footer > :not(.dither-canvas):not(.dither-scrim) {
+  position: relative;
+  z-index: 2;
+}
+
+.info-section,
+.contact-section {
+  border-radius: 0;
+}
+
+@media (max-width: 767px) {
+  .dither-canvas { opacity: 0.7; }
+  .dither-canvas-info,
+  .dither-canvas-contact,
+  .dither-canvas-footer { opacity: 0.54; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dither-canvas { opacity: 0.42; }
 }

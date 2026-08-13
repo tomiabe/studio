@@ -87,7 +87,7 @@
             <div class="theme-buttons">
               <button class="theme-btn" data-theme="morning" title="Morning"></button>
               <button class="theme-btn" data-theme="noon" title="Noon"></button>
-              <button class="theme-btn" data-theme="evening" title="Evening"></button>
+              <button class="theme-btn" data-theme="night" title="Night"></button>
               <button class="theme-btn" data-theme="system" title="System"></button>
             </div>
           </div>
@@ -97,7 +97,9 @@
 
     <main class="site">
       <!-- HERO -->
-      <section id="home" class="hero">
+      <section id="home" class="hero has-dither">
+        <canvas class="dither-canvas dither-canvas-hero" data-dither-field aria-hidden="true"></canvas>
+        <div class="dither-scrim" aria-hidden="true"></div>
         <div id="hero-content"></div>
       </section>
 
@@ -129,22 +131,28 @@
       </section>
 
       <!-- INFO -->
-      <section id="info" class="section">
+      <section id="info" class="section info-section has-dither">
+        <canvas class="dither-canvas dither-canvas-info" data-dither-field aria-hidden="true"></canvas>
+        <div class="dither-scrim" aria-hidden="true"></div>
         <h2 class="section-title">Info</h2>
         <div class="info-grid" id="info-grid"></div>
       </section>
 
       <!-- CONTACT -->
-      <section id="contact" class="section">
+      <section id="contact" class="section contact-section has-dither">
+        <canvas class="dither-canvas dither-canvas-contact" data-dither-field aria-hidden="true"></canvas>
+        <div class="dither-scrim" aria-hidden="true"></div>
         <div class="contact-grid" id="contact-grid"></div>
       </section>
 
-      <footer class="footer">
+      <footer class="footer has-dither">
+        <canvas class="dither-canvas dither-canvas-footer" data-dither-field aria-hidden="true"></canvas>
+        <div class="dither-scrim" aria-hidden="true"></div>
         <p class="footer-tagline">Objectivity · Clarity · Precision</p>
         <div class="theme-buttons">
           <button class="theme-btn" data-theme="morning" title="Morning"></button>
           <button class="theme-btn" data-theme="noon" title="Noon"></button>
-          <button class="theme-btn" data-theme="evening" title="Evening"></button>
+          <button class="theme-btn" data-theme="night" title="Night"></button>
           <button class="theme-btn" data-theme="system" title="System"></button>
         </div>
         <p class="footer-copyright">© 2026 Tomi Abe Studio</p>

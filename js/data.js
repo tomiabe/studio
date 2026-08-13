@@ -81,7 +81,7 @@ window.SITE_DATA = {
         "muted": "#71717a",
         "border": "#e4e4e7"
       },
-      "evening": {
+      "night": {
         "bg": "#09090b",
         "fg": "#fafafa",
         "muted": "#a1a1aa",

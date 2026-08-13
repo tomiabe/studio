@@ -90,7 +90,7 @@ function applyCmsTheme() {
       :root { --theme-bg: ${themeData.noon.bg}; --theme-fg: ${themeData.noon.fg}; --theme-muted: ${themeData.noon.muted}; --theme-border: ${themeData.noon.border}; }
       .theme-morning { --theme-bg: ${themeData.morning.bg}; --theme-fg: ${themeData.morning.fg}; --theme-muted: ${themeData.morning.muted}; --theme-border: ${themeData.morning.border}; }
       .theme-noon { --theme-bg: ${themeData.noon.bg}; --theme-fg: ${themeData.noon.fg}; --theme-muted: ${themeData.noon.muted}; --theme-border: ${themeData.noon.border}; }
-      .theme-evening { --theme-bg: ${themeData.evening.bg}; --theme-fg: ${themeData.evening.fg}; --theme-muted: ${themeData.evening.muted}; --theme-border: ${themeData.evening.border}; }
+      .theme-night { --theme-bg: ${themeData.night?.bg || '#09090b'}; --theme-fg: ${themeData.night?.fg || '#fafafa'}; --theme-muted: ${themeData.night?.muted || '#a1a1aa'}; --theme-border: ${themeData.night?.border || '#27272a'}; }
     `;
     document.head.appendChild(style);
   }
@@ -102,18 +102,19 @@ function applyTheme(mode) {
   let resolved;
   if (mode === 'system') {
     const h = new Date().getHours();
-    resolved = (h >= 18 || h < 6) ? 'evening' : (h < 12 ? 'morning' : 'noon');
+    resolved = (h >= 18 || h < 6) ? 'night' : (h < 12 ? 'morning' : 'noon');
   } else {
     resolved = mode;
   }
   state.activeTheme = resolved;
   const root = document.documentElement;
-  root.classList.remove('theme-morning', 'theme-noon', 'theme-evening');
+  root.classList.remove('theme-morning', 'theme-noon', 'theme-night');
   root.classList.add('theme-' + resolved);
 
   if (themeInterval) { clearInterval(themeInterval); themeInterval = null; }
   if (mode === 'system') themeInterval = setInterval(() => applyTheme('system'), 60000);
   updateChrome();
+  window.dispatchEvent(new CustomEvent('tomi-theme-change'));
 }
 
 function setTheme(mode) {
@@ -778,6 +779,116 @@ window.addEventListener('hashchange', () => {
   }
 });
 
+
+/* ── Dither background ── */
+function parseCanvasColor(value) {
+  const probe = document.createElement('span');
+  probe.style.color = value;
+  document.body.appendChild(probe);
+  const rgb = getComputedStyle(probe).color.match(/\d+(?:\.\d+)?/g).map(Number).slice(0, 3);
+  probe.remove();
+  return rgb;
+}
+
+function rgba(rgb, alpha) {
+  return 'rgba(' + rgb.join(',') + ',' + alpha + ')';
+}
+
+function cssVar(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
+function initDitherFields() {
+  const canvases = $$('[data-dither-field]');
+  if (!canvases.length) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  canvases.forEach((canvas) => {
+    const ctx = canvas.getContext('2d');
+    const parent = canvas.closest('.has-dither') || canvas.parentElement;
+    const isHero = canvas.classList.contains('dither-canvas-hero');
+    const isInfo = canvas.classList.contains('dither-canvas-info');
+    const isFooter = canvas.classList.contains('dither-canvas-footer');
+    const pointer = { x: 0.5, y: 0.35, tx: 0.5, ty: 0.35, active: false };
+    let time = 0;
+    let lastFrame = 0;
+
+    function fit() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = Math.max(1, Math.floor(rect.width * dpr));
+      canvas.height = Math.max(1, Math.floor(rect.height * dpr));
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      return rect;
+    }
+
+    function updatePointer(event) {
+      const rect = parent.getBoundingClientRect();
+      pointer.tx = Math.min(1, Math.max(0, (event.clientX - rect.left) / rect.width));
+      pointer.ty = Math.min(1, Math.max(0, (event.clientY - rect.top) / rect.height));
+      pointer.active = true;
+    }
+
+    function leavePointer() {
+      pointer.tx = 0.5;
+      pointer.ty = 0.35;
+      pointer.active = false;
+    }
+
+    function draw(now) {
+      if (now && now - lastFrame < 42) {
+        requestAnimationFrame(draw);
+        return;
+      }
+      lastFrame = now || 0;
+
+      const rect = fit();
+      const fg = parseCanvasColor(cssVar('--theme-fg'));
+      const muted = parseCanvasColor(cssVar('--theme-muted'));
+      const gap = window.innerWidth < 768 ? 7 : (isHero ? 5 : 6);
+      const strength = isHero ? 0.42 : (isInfo ? 0.3 : (isFooter ? 0.28 : 0.34));
+      const size = isHero ? 1.95 : (isInfo ? 1.55 : 1.65);
+
+      pointer.x += (pointer.tx - pointer.x) * 0.07;
+      pointer.y += (pointer.ty - pointer.y) * 0.07;
+      if (!reduceMotion) time += 0.008;
+
+      ctx.clearRect(0, 0, rect.width, rect.height);
+
+      const glow = ctx.createRadialGradient(rect.width * pointer.x, rect.height * pointer.y, 0, rect.width * pointer.x, rect.height * pointer.y, rect.width * 0.45);
+      glow.addColorStop(0, rgba(muted, pointer.active ? 0.08 : 0.045));
+      glow.addColorStop(1, rgba(muted, 0));
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, rect.width, rect.height);
+
+      for (let y = 0; y < rect.height; y += gap) {
+        for (let x = 0; x < rect.width; x += gap) {
+          const nx = x / rect.width - pointer.x;
+          const ny = y / rect.height - pointer.y;
+          const wave = Math.sin(nx * 13 + time) + Math.cos(ny * 17 - time * 1.15);
+          const falloff = Math.max(0, 1 - Math.sqrt(nx * nx + ny * ny) * 1.5);
+          const alpha = Math.max(0, (wave * 0.5 + 0.5) * falloff * strength);
+          if (alpha > 0.012) {
+            ctx.fillStyle = rgba(fg, alpha);
+            ctx.fillRect(x, y, size, size);
+          }
+        }
+      }
+
+      if (!reduceMotion) requestAnimationFrame(draw);
+    }
+
+    if (!reduceMotion) {
+      parent.addEventListener('pointermove', updatePointer, { passive: true });
+      parent.addEventListener('pointerleave', leavePointer);
+    }
+    window.addEventListener('resize', () => draw(performance.now()), { passive: true });
+    window.addEventListener('tomi-theme-change', () => draw(performance.now()));
+    draw(0);
+  });
+}
+
 /* ── Init ── */
 function init() {
   loadData();
@@ -801,13 +912,17 @@ function init() {
   const closeBtns = $$('.menu-close, .drawer-close');
   closeBtns.forEach((btn) => { btn.innerHTML = icon('x', 20); });
   updateDrawerLinkIcon();
-  const themeIcons = { morning: 'sunrise', noon: 'sun', evening: 'moon', system: 'monitor' };
+  const themeIcons = { morning: 'sunrise', noon: 'sun', night: 'moon', system: 'monitor' };
   $$('.theme-btn').forEach((btn) => { btn.innerHTML = icon(themeIcons[btn.dataset.theme] || 'sun', 16); });
 
-  applyTheme(state.theme);
+  const previewTheme = new URLSearchParams(location.search).get('theme');
+  const initialTheme = ['morning', 'noon', 'night', 'system'].includes(previewTheme) ? previewTheme : state.theme;
+  state.theme = initialTheme;
+  applyTheme(initialTheme);
   startClock();
   initScrollSpy();
   initBackToTop();
+  initDitherFields();
 
   const deepId = itemIdFromHash(location.hash);
   if (deepId) openDrawer(deepId);
