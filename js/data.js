@@ -2,10 +2,15 @@ window.SITE_DATA = {
   "settings": {
     "metadata": {
       "siteTitle": "Tomi Abe Studio",
-      "faviconImage": "images/og-image.jpg",
+      "faviconImage": "/favicon.png",
       "seoDescription": "Tomi Abe Studio is an independent, systems-driven creative and digital practice turning complex systems into clear products, brands, and stories.",
-      "seoKeywords": "design strategy, brand identity, product design, design engineering, creative technology",
-      "headScripts": "<!-- Google tag (gtag.js) -->\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-QQNXSYX8TP\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'G-QQNXSYX8TP');\n</script>"
+      "seoKeywords": "brand strategy, digital strategy, product engineering, UX engineering, design engineering, UX design engineering, data visualization, storytelling, media systems, content platforms, creative technology, interactive media, applied AI, AI workflows",
+      "headScripts": "<!-- Google tag (gtag.js) -->\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-QQNXSYX8TP\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'G-QQNXSYX8TP');\n</script>",
+      "canonicalUrl": "https://studio.tomiabe.com/",
+      "ogImage": "images/og-image.jpg",
+      "ogImageAlt": "Tomi Abe Studio",
+      "twitterSite": "@tomiabestudio",
+      "twitterCreator": "@tomiabe"
     },
     "navigation": {
       "logoText": "TOMI ABE STUDIO",
