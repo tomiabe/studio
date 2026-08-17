@@ -321,7 +321,7 @@ function workCardHTML(p) {
 function cssCoverHTML(item, context) {
   if (!item.cssCover) return '';
   const coverMeta = {
-    polish: { mark: ['UI', 'Score'], word: 'polish', symbol: '95' },
+    polish: { mark: ['UI', 'Score'], word: 'polish', symbol: '_' },
     'substack-direct': { mark: ['Email', 'Browser'], word: 'Direct', symbol: '@' },
     'substack-wp': { mark: ['WP', 'Block'], word: 'Plugin', symbol: 'WP' },
     'wp-snippets': { mark: ['PHP', 'Snippets'], word: 'Library', symbol: '{}' },
