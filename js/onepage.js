@@ -500,15 +500,15 @@ function renderContact() {
 /* ── Drawer ── */
 function drawerURLFor(item) {
   let kind = null;
-  if (data.work.some((i) => i.id === item.id)) kind = 'work';
-  else if (data.projects.some((i) => i.id === item.id)) kind = 'projects';
-  else if (data.updates.some((i) => i.id === item.id)) kind = 'updates';
+  if (data.work.includes(item)) kind = 'work';
+  else if (data.projects.includes(item)) kind = 'projects';
+  else if (data.updates.includes(item)) kind = 'updates';
   return kind ? '#/' + kind + '/' + item.id : null;
 }
 
 function itemIdFromHash(h) {
-  const m = String(h || '').match(/^#\/(?:work|projects|updates)\/([^/?#]+)/);
-  return m ? decodeURIComponent(m[1]) : null;
+  const m = String(h || '').match(/^#\/(work|projects|updates)\/([^/?#]+)/);
+  return m ? { section: m[1], id: decodeURIComponent(m[2]) } : null;
 }
 
 function setDrawerHash(url) {
@@ -575,11 +575,15 @@ function initFaders() {
   });
 }
 
-function openDrawer(id) {
+function openDrawer(id, section) {
   const pool = [...data.work, ...data.projects, ...data.updates];
-  const item = pool.find((i) => i.id === id);
+  let item = null;
+  if (section === 'work') item = data.work.find((i) => i.id === id);
+  else if (section === 'projects') item = data.projects.find((i) => i.id === id);
+  else if (section === 'updates') item = data.updates.find((i) => i.id === id);
+  if (!item) item = pool.find((i) => i.id === id);
   if (!item) return;
-  const isUpdate = data.updates.some((u) => u.id === id);
+  const isUpdate = data.updates.includes(item);
   $('#drawer-body').innerHTML = isUpdate ? updateDetailHTML(item) : itemDetailHTML(item);
   $('#drawer').classList.add('open');
   $('#drawer').setAttribute('aria-hidden', 'false');
@@ -714,7 +718,9 @@ document.addEventListener('click', (e) => {
 
   const openBtn = e.target.closest('[data-open]');
   if (openBtn) {
-    openDrawer(openBtn.dataset.open);
+    const grid = openBtn.closest('[id$="-grid"]');
+    const section = grid ? grid.id.replace('-grid', '') : null;
+    openDrawer(openBtn.dataset.open, section);
     return;
   }
 
@@ -770,10 +776,17 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
+function sectionForItem(item) {
+  if (data.work.includes(item)) return 'work';
+  if (data.projects.includes(item)) return 'projects';
+  if (data.updates.includes(item)) return 'updates';
+  return null;
+}
+
 window.addEventListener('hashchange', () => {
-  const id = itemIdFromHash(location.hash);
-  if (id) {
-    if (!(state.drawerOpen && state.currentItem && state.currentItem.id === id)) openDrawer(id);
+  const hit = itemIdFromHash(location.hash);
+  if (hit) {
+    if (!(state.drawerOpen && state.currentItem && state.currentItem.id === hit.id && sectionForItem(state.currentItem) === hit.section)) openDrawer(hit.id, hit.section);
   } else if (state.drawerOpen) {
     closeDrawer();
   }
@@ -924,8 +937,8 @@ function init() {
   initBackToTop();
   initDitherFields();
 
-  const deepId = itemIdFromHash(location.hash);
-  if (deepId) openDrawer(deepId);
+  const deep = itemIdFromHash(location.hash);
+  if (deep) openDrawer(deep.id, deep.section);
 
   const loading = $('#loading');
   if (loading) loading.classList.add('hidden');

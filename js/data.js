@@ -583,6 +583,42 @@ window.SITE_DATA = {
   ],
   "projects": [
     {
+      "id": "polish",
+      "title": "Polish",
+      "categories": [
+        "Product"
+      ],
+      "shortDescription": "Self-hosted design audit CLI",
+      "role": "",
+      "order": 1,
+      "year": "2026",
+      "image": "images/projects/Polish.png",
+      "description": "polish audits your UI code for usability, design craft, and accessibility, and returns a 0-100 score with severity, category, exact file and line, plus a concrete fix. One self-hosted Node script, your own API key, no bots in your repo, no quotas.",
+      "link": "https://tomiabe.github.io/polish/",
+      "details": [
+        {
+          "heading": "Why It Exists",
+          "text": "Design feedback usually arrives after a screen ships, during a review call, or not at all. polish moves that review into the codebase: it reads the UI files you touched and returns findings before merge. No design handoff, no review queue, no waiting for someone to be free."
+        },
+        {
+          "heading": "What It Checks",
+          "text": "polish reviews React, Vue, Svelte, and CSS files against a layered rubric: usability heuristics, design craft (typography, color, spacing, motion, components, writing), and accessibility (contrast, keyboard support, semantics, touch targets, reduced motion). All three layers are on by default, and you can switch any of them off to cut token cost on large reviews."
+        },
+        {
+          "heading": "How Scoring Works",
+          "text": "Each run returns a 0-100 score plus findings. Every finding reports severity, category, exact file and line, and a concrete fix. Critical findings cap the ceiling: one caps at 59, two at 49, three or more at 39. On a real run, the demo card scored 62 before the fix and 78 after, and the same file can score a few points differently across models. Treat any single number as a signal, not a grade."
+        },
+        {
+          "heading": "Install and Run",
+          "text": "Clone the repo, link the command once, and set one API key. git clone https://github.com/tomiabe/polish, run npm link inside it, then export GROQ_API_KEY (or OPENAI, ANTHROPIC, or OPENROUTER) in your shell profile. From there, polish audits the files matched by your config, or the specific paths you pass it."
+        },
+        {
+          "heading": "Built for Teams and Agents",
+          "text": "The same review engine runs as a CLI for developers and an MCP server for AI agents inside a project, so both get identical results. Verify mode re-checks only previous findings after you fix them, at a fraction of the cost of a full review. polish exits with code 1 when critical findings exist, so it works as a pre-commit or CI gate. The rubric is plain data, so you can swap in your own design philosophy without rewriting the tool."
+        }
+      ]
+    },
+    {
       "id": "acquario",
       "title": "Acquario",
       "categories": [
