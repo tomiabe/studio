@@ -5,7 +5,7 @@
   "shortDescription": "Urban climate data dashboard",
   "role": "",
   "order": 1,
-  "year": "2022",
+  "year": "2026",
   "image": "/images/projects/urbanclimate.jpg",
   "description": "Turning live urban heat and air quality data into a decision-ready dashboard that shows how infrastructure, pollution, and policy shape city conditions.",
   "link": "https://susbridge.github.io/urbanclimate/"

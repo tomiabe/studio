@@ -366,7 +366,7 @@ window.SITE_DATA = {
       "link": "https://culerson.susbridge.xyz",
       "isFullBleed": false,
       "shortDescription": "Energy advisory firm",
-      "year": "2025",
+      "year": "2024-2025",
       "details": [
         {
           "heading": "Context & Challenge",
@@ -417,7 +417,7 @@ window.SITE_DATA = {
       "shortDescription": "Global B2B electronics marketplace",
       "role": "Brand & Product Design Lead",
       "order": 6,
-      "year": "2022",
+      "year": "2020-2021",
       "image": "images/work/Eze.jpg",
       "description": "Building and leading an in-house design function for a YC-backed B2B marketplace, unifying interfaces, journeys, and brand for global electronics trade.",
       "link": "https://ezewholesale.com"
@@ -432,7 +432,7 @@ window.SITE_DATA = {
       "shortDescription": "Cooperative sustainable travel marketplace",
       "role": "Brand & Product Consultant",
       "order": 5,
-      "year": "2022",
+      "year": "2022-2023",
       "image": "images/work/Fairbnb.jpg",
       "description": "Clarifying a cooperative travel marketplace's story so sustainable tourism, local impact, and booking flows feel transparent, intuitive, and trustworthy for all stakeholders.",
       "link": "https://fairbnb.coop"
@@ -546,7 +546,7 @@ window.SITE_DATA = {
       "shortDescription": "Cross-border translation platform",
       "role": "Growth Design Consultant",
       "order": 4,
-      "year": "2022",
+      "year": "2023-2024",
       "image": "images/work/Translayte.jpg",
       "description": "Scaling a certified translation platform across borders by aligning UX, conversion, and trust signals in documentation‑heavy, regulation‑sensitive customer journeys.",
       "link": "https://translayte.com"
@@ -561,7 +561,7 @@ window.SITE_DATA = {
       "shortDescription": "Offline-first data infrastructure platform",
       "role": "Brand & Digital Consultant",
       "order": 2,
-      "year": "2022",
+      "year": "2024-2025",
       "image": "images/work/WeCollect.jpg",
       "description": "Translating complex data infrastructure into a clear narrative, brand, and product story for offline capture and real‑time analytics across African markets.",
       "link": "https://wecollect.tech"
@@ -575,7 +575,7 @@ window.SITE_DATA = {
       "shortDescription": "Industrial procurement marketplace",
       "role": "Product Design Consultant",
       "order": 3,
-      "year": "2022",
+      "year": "2023-2024",
       "image": "images/work/Zeproc.jpg",
       "description": "Strengthening a B2B marketplace for industrial procurement by refining core workflows, clarifying complex journeys, and increasing buyer confidence in high-value transactions.",
       "link": "https://zeproc.com"
@@ -628,7 +628,7 @@ window.SITE_DATA = {
       "shortDescription": "Data-driven virtual aquarium",
       "role": "",
       "order": 14,
-      "year": "2022",
+      "year": "2028",
       "image": "images/projects/Acquario.jpg",
       "description": "Visualizing aquatic migration through a multisensory, data-driven virtual aquarium that turns abstract movement patterns into tangible, exploratory simulations.",
       "link": "https://editor.p5js.org/tomiabe/full/0iDmkljF2"
@@ -642,7 +642,7 @@ window.SITE_DATA = {
       "shortDescription": "Interactive wedding story website",
       "role": "",
       "order": 13,
-      "year": "2022",
+      "year": "2023",
       "image": "images/projects/JTF.jpg",
       "description": "Designing an intimate wedding website where interactive storytelling, photography, and micro-interactions trace a couple's journey as a living, personal archive.",
       "link": "https://jtf.persona.co"
@@ -657,7 +657,7 @@ window.SITE_DATA = {
       "shortDescription": "Nigeria FX tracking dashboard",
       "role": "",
       "order": 7,
-      "year": "2022",
+      "year": "2025",
       "image": "images/projects/NairaWatch.jpg",
       "description": "Tracking Nigeria's parallel market in real time by blending official rates with AI-interpreted signals into a clear, decision-ready FX dashboard.",
       "link": "https://tomiabe.github.io/nairawatch/"
@@ -672,7 +672,7 @@ window.SITE_DATA = {
       "shortDescription": "Nigeria consular search directory",
       "role": "",
       "order": 9,
-      "year": "2022",
+      "year": "2026",
       "image": "images/projects/NigeriaEmbassy.png",
       "description": "Turning scattered consular information into a single, searchable directory for Nigerian embassies, missions, and visa centers at home and abroad.",
       "link": "https://tomiabe.github.io/nigeria-embassy/"
@@ -687,7 +687,7 @@ window.SITE_DATA = {
       "shortDescription": "AI expense analysis assistant",
       "role": "",
       "order": 11,
-      "year": "2022",
+      "year": "2026",
       "image": "images/projects/SmartExpense.jpg",
       "description": "Using AI to read messy bank statements, surface hidden fees, and visualize everyday spending patterns as clear, actionable financial insight.",
       "link": "https://smart-expense-agent.vercel.app/"
@@ -701,7 +701,7 @@ window.SITE_DATA = {
       "shortDescription": "Location-aware music discovery",
       "role": "",
       "order": 12,
-      "year": "2022",
+      "year": "2026",
       "image": "images/projects/SoundAtlas.png",
       "description": "Mapping global music cultures through dynamic, city-aware playlists that reveal how location, movement, and listening habits shape evolving soundscapes.",
       "link": "https://tomiabe.github.io/soundatlas/"
@@ -716,7 +716,7 @@ window.SITE_DATA = {
       "shortDescription": "Urban climate data dashboard",
       "role": "",
       "order": 1,
-      "year": "2022",
+      "year": "2026",
       "image": "images/projects/urbanclimate.jpg",
       "description": "Turning live urban heat and air quality data into a decision-ready dashboard that shows how infrastructure, pollution, and policy shape city conditions.",
       "link": "https://susbridge.github.io/urbanclimate/"
@@ -730,7 +730,7 @@ window.SITE_DATA = {
       "shortDescription": "Curated web inspiration gallery",
       "role": "",
       "order": 10,
-      "year": "2022",
+      "year": "2016",
       "image": "images/projects/WebHunt.jpg",
       "description": "Curating and systematizing standout web experiences into a digital gallery that showcases experimental interfaces, interaction patterns, and narrative-driven design.",
       "link": "https://tomiabe.github.io/webhunt/"
@@ -744,7 +744,7 @@ window.SITE_DATA = {
       "shortDescription": "Global time coordination tool",
       "role": "",
       "order": 8,
-      "year": "2022",
+      "year": "2026",
       "image": "images/projects/zonify.png",
       "description": "Turning global time differences into a clear, interactive world clock for planning, coordination, and decision-making across regions.",
       "link": "https://tomiabe.github.io/zonify/"
