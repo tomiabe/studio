@@ -2,12 +2,12 @@
   "id": "polish",
   "title": "Polish",
   "categories": ["Product"],
-  "shortDescription": "Self-hosted design audit CLI",
+  "shortDescription": "Self-hosted UI review for code and copy",
   "role": "",
   "order": 1,
   "year": "2026",
   "image": "/images/projects/Polish.png",
-  "description": "polish audits your UI code for usability, design craft, and accessibility, and returns a 0-100 score with severity, category, exact file and line, plus a concrete fix. One self-hosted Node script, your own API key, no bots in your repo, no quotas.",
+  "description": "polish reviews UI code, interface writing, and accessibility, and returns a weighted 0-100 score with severity, category, exact file and line, plus a concrete fix. Self-hosted CLI and MCP server, your own API key, no bots in your repo, no quotas.",
   "link": "https://tomiabe.github.io/polish/",
   "details": [
     {
@@ -16,11 +16,11 @@
     },
     {
       "heading": "What It Checks",
-      "text": "polish reviews React, Vue, Svelte, and CSS files against a layered rubric: usability heuristics, design craft (typography, color, spacing, motion, components, writing), and accessibility (contrast, keyboard support, semantics, touch targets, reduced motion). All three layers are on by default, and you can switch any of them off to cut token cost on large reviews."
+      "text": "polish reviews React, Vue, Svelte, and CSS files against a layered rubric: usability heuristics, design craft (typography, color, spacing, motion, components, writing), and accessibility (contrast, keyboard support, semantics, touch targets, reduced motion). The craft layer also covers interface writing: headings, descriptions, labels, helper text, and common AI-writing signals like filler words and padded conclusions. All three layers are on by default, and you can switch any of them off to cut token cost on large reviews."
     },
     {
       "heading": "How Scoring Works",
-      "text": "Each run returns a 0-100 score plus findings. Every finding reports severity, category, exact file and line, and a concrete fix. Critical findings cap the ceiling: one caps at 59, two at 49, three or more at 39. On a real run, the demo card scored 62 before the fix and 78 after, and the same file can score a few points differently across models. Treat any single number as a signal, not a grade."
+      "text": "Each run returns a weighted 0-100 score. Critical findings deduct 22, serious findings deduct 9, and moderate findings deduct 3. There is no severity ceiling. On a real run, the demo card scored 62 before the fix and 78 after, and the same file can score a few points differently across models. Treat any single number as a signal, not a grade."
     },
     {
       "heading": "Install and Run",
@@ -28,7 +28,7 @@
     },
     {
       "heading": "Built for Teams and Agents",
-      "text": "The same review engine runs as a CLI for developers and an MCP server for AI agents inside a project, so both get identical results. Verify mode re-checks only previous findings after you fix them, at a fraction of the cost of a full review. polish exits with code 1 when critical findings exist, so it works as a pre-commit or CI gate. The rubric is plain data, so you can swap in your own design philosophy without rewriting the tool. Provider fallback chains mean you can set multiple API keys and polish tries them in order, so a rate limit on one provider does not block your review."
+      "text": "The same review engine runs as a CLI for developers and an MCP server for AI agents inside a project, so both get identical results. Every run emits a machine-readable receipt with polishApplied: true, a run ID, score, and files reviewed. Verify mode re-checks only previous findings after you fix them, returning a fresh score and receipt at a fraction of the cost of a full review. Run polish init-agent to write AGENTS.md into your repo, giving coding agents a repeatable review loop: run Polish, read the receipt, apply fixes, then verify. polish exits with code 1 when critical findings exist, so it works as a pre-commit or CI gate. The rubric is plain data, so you can swap in your own design philosophy without rewriting the tool."
     }
   ]
 }
