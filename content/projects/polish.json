@@ -29,6 +29,10 @@
     {
       "heading": "Built for Teams and Agents",
       "text": "The same review engine runs as a CLI for developers and an MCP server for AI agents inside a project, so both get identical results. Every run emits a machine-readable receipt with polishApplied: true, a run ID, score, and files reviewed. Verify mode re-checks only previous findings after you fix them, returning a fresh score and receipt at a fraction of the cost of a full review. Run polish init-agent to write AGENTS.md into your repo, giving coding agents a repeatable review loop: run Polish, read the receipt, apply fixes, then verify. polish exits with code 1 when critical findings exist, so it works as a pre-commit or CI gate. The rubric is plain data, so you can swap in your own design philosophy without rewriting the tool."
+    },
+    {
+      "heading": "Public Preview",
+      "text": "Anyone can try Polish on a public GitHub repository without installing anything. Paste a repo URL at tomiabe.github.io/polish/preview, and Polish clones it, selects representative source files (skipping build output), runs the full review engine, and returns a score with up to 5 findings and a machine-readable receipt. The preview reviews the same rubric layers as the local tool, so the score reflects real issues. It is a discovery funnel: the preview shows what Polish finds, then guides users toward the full self-hosted experience."
     }
   ]
 }
