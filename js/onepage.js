@@ -310,9 +310,10 @@ function filteredFor(section) {
 }
 
 function workCardHTML(p) {
+  const media = p.cssCover ? cssCoverHTML(p, 'card') : (p.image ? `<div class="card-image"><img src="${esc(img(p.image))}" alt="${esc(p.title)}" referrerpolicy="no-referrer" loading="lazy" /></div>` : '');
   return `
     <button class="card" data-open="${esc(p.id)}">
-      ${p.image ? `<div class="card-image"><img src="${esc(img(p.image))}" alt="${esc(p.title)}" referrerpolicy="no-referrer" loading="lazy" /></div>` : ''}
+      ${media}
       <h3 class="card-title">${esc(p.title)}</h3>
       <p class="card-desc">${esc(p.shortDescription || p.description)}</p>
     </button>`;
@@ -522,6 +523,9 @@ function itemDetailHTML(item) {
   if (item.year) meta.push(esc(item.year));
   const metaHTML = meta.length ? `<p class="detail-meta">${meta.join(' · ')}</p>` : '';
   const visitLabel = data.settings.uiLabels?.visitProject || 'Visit';
+  const visual = item.cssCover
+    ? cssCoverHTML(item, 'detail')
+    : (item.image ? `<div class="detail-image-wrap"><img class="detail-image" src="${esc(img(item.image))}" alt="${esc(item.title)}" referrerpolicy="no-referrer" /></div>` : '');
   return `
     <div class="drawer-inner">
       <h2 class="detail-title">${esc(item.title)}</h2>
@@ -529,8 +533,7 @@ function itemDetailHTML(item) {
       ${metaHTML}
       ${(item.categories || []).length ? `
         <div class="cat-row">${item.categories.map((c) => `<span class="category-pill">${esc(c)}</span>`).join('')}</div>` : ''}
-      ${item.image ? `
-        <div class="detail-image-wrap"><img class="detail-image" src="${esc(img(item.image))}" alt="${esc(item.title)}" referrerpolicy="no-referrer" /></div>` : ''}
+      ${visual}
       <p class="detail-desc">${esc(item.description)}</p>
       ${(item.details || []).map((d) => `
         <div class="detail-block">

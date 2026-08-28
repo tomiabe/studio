@@ -2,7 +2,7 @@
   "title": "Substack Direct Subscribe for WordPress",
   "id": "substack-direct-subscribe-wp",
   "order": 1,
-  "visible": true,
+  "visible": false,
   "date": "July 2026",
   "description": "A WordPress plugin for collecting Substack subscribers directly from a site, with a shortcode, Gutenberg block, and timed popup modal.",
   "image": "https://picsum.photos/seed/substack-wp/800/600",

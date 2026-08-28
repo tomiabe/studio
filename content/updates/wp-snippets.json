@@ -2,7 +2,7 @@
   "title": "Production WordPress Snippets Library",
   "id": "wp-snippets",
   "order": 4,
-  "visible": true,
+  "visible": false,
   "date": "February 2026",
   "description": "A curated WordPress PHP snippet library for admin tooling, performance, security, and block theme development.",
   "image": "/images/updates/wp-snippets.jpg",

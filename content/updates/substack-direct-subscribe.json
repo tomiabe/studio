@@ -2,7 +2,7 @@
   "title": "Substack Direct Subscribe",
   "id": "substack-direct-subscribe",
   "order": 2,
-  "visible": true,
+  "visible": false,
   "date": "June 2026",
   "description": "A lightweight React package for collecting Substack email subscriptions directly from a site, without a server, proxy, or backend.",
   "image": "https://picsum.photos/seed/substack-direct/800/600",

@@ -20,7 +20,7 @@ window.SITE_DATA = {
           "url": "#work"
         },
         {
-          "label": "Updates",
+          "label": "Signals",
           "url": "#updates"
         },
         {
@@ -205,7 +205,7 @@ window.SITE_DATA = {
       "heroCta": "Let's Work",
       "workSectionHeading": "Selected Work",
       "testimonialsSectionHeading": "What People Say",
-      "updatesSectionHeading": "News & Updates",
+      "updatesSectionHeading": "Signals",
       "infoSectionHeading": "Info"
     }
   },
@@ -619,6 +619,93 @@ window.SITE_DATA = {
       ]
     },
     {
+      "id": "substack-direct-subscribe",
+      "title": "Substack Direct Subscribe",
+      "categories": [
+        "Product",
+        "Content"
+      ],
+      "shortDescription": "React package for direct Substack signup",
+      "role": "",
+      "order": 2,
+      "year": "2026",
+      "cssCover": "substack-direct",
+      "description": "A lightweight React package for collecting Substack email subscriptions directly from a site, without a server, proxy, or backend.",
+      "link": "https://github.com/tomiabe/substack-direct-subscribe",
+      "details": [
+        {
+          "heading": "Why I Built It",
+          "text": "This started as a practical fix for static and server-rendered sites that needed a Substack signup flow without introducing backend routes or proxy infrastructure. I wanted the integration to stay simple enough for editorial and marketing sites that do not need another moving part."
+        },
+        {
+          "heading": "What It Includes",
+          "text": "The package wraps the pattern into two focused React components: SubstackForm for inline embeds and SubstackPopup for timed prompts. Both handle the idle, submitting, success, and error states with minimal styling assumptions, so they can drop into an existing design system without fighting it."
+        },
+        {
+          "heading": "How It Works",
+          "text": "Instead of routing the subscription request through your own server, the request is sent from the visitor's browser directly to Substack. That removes a whole layer of hosting complexity, avoids storing email data yourself, and makes the package easy to use across static, Jamstack, and traditional React projects."
+        }
+      ]
+    },
+    {
+      "id": "substack-direct-subscribe-wp",
+      "title": "Substack Direct Subscribe for WordPress",
+      "categories": [
+        "Product",
+        "Content"
+      ],
+      "shortDescription": "WordPress plugin for direct Substack signup",
+      "role": "",
+      "order": 3,
+      "year": "2026",
+      "cssCover": "substack-wp",
+      "description": "A WordPress plugin for collecting Substack subscribers directly from a site, with a shortcode, Gutenberg block, and timed popup modal.",
+      "link": "https://github.com/tomiabe/substack-direct-subscribe-wp",
+      "details": [
+        {
+          "heading": "Why It Exists",
+          "text": "After building the standalone React version, I wanted the same pattern to work on older marketing sites, editorial platforms, and client WordPress installs without adding a build step or custom backend flow."
+        },
+        {
+          "heading": "What It Ships With",
+          "text": "The plugin includes a shortcode, a Gutenberg block with sidebar controls, a timed popup modal, and two layout styles: card and banner. Everything runs in vanilla JavaScript so the footprint stays light and the plugin can slot into an existing theme without a heavy front-end stack."
+        },
+        {
+          "heading": "Operational Approach",
+          "text": "Subscriptions are sent from the visitor's browser straight to Substack rather than being stored in WordPress first. That keeps the plugin simple to maintain, reduces hosting edge cases, and makes it easier to use across very different WordPress setups."
+        }
+      ]
+    },
+    {
+      "id": "wp-snippets",
+      "title": "Production WordPress Snippets Library",
+      "categories": [
+        "Content",
+        "Product"
+      ],
+      "shortDescription": "Practical WordPress PHP snippet library",
+      "role": "",
+      "order": 4,
+      "year": "2026",
+      "cssCover": "wp-snippets",
+      "description": "A curated WordPress PHP snippet library for admin tooling, performance, security, and block theme development.",
+      "link": "https://github.com/tomiabe/wp-snippets",
+      "details": [
+        {
+          "heading": "Why I Keep It",
+          "text": "I started collecting WordPress snippets from real production work because the useful bits were always scattered across old projects, gists, and notes. Pulling them into one library made the practice easier to extend and reuse."
+        },
+        {
+          "heading": "What It Covers",
+          "text": "The library focuses on small, drop-in PHP files that solve specific problems: cloning posts with custom fields, cleaning taxonomy URLs, switching block theme style variations by time of day, and adding lightweight cache control without another plugin."
+        },
+        {
+          "heading": "How It Is Written",
+          "text": "Each snippet is written to be readable first. The goal is not to create a framework, but to keep practical WordPress fixes close at hand when a site needs one focused adjustment rather than a full plugin or an abstract architecture."
+        }
+      ]
+    },
+    {
       "id": "acquario",
       "title": "Acquario",
       "categories": [
@@ -794,7 +881,7 @@ window.SITE_DATA = {
       "title": "Substack Direct Subscribe for WordPress",
       "id": "substack-direct-subscribe-wp",
       "order": 1,
-      "visible": true,
+      "visible": false,
       "date": "July 2026",
       "description": "A WordPress plugin for collecting Substack subscribers directly from a site, with a shortcode, Gutenberg block, and timed popup modal.",
       "image": "https://picsum.photos/seed/substack-wp/800/600",
@@ -808,7 +895,7 @@ window.SITE_DATA = {
       "title": "Substack Direct Subscribe",
       "id": "substack-direct-subscribe",
       "order": 2,
-      "visible": true,
+      "visible": false,
       "date": "June 2026",
       "description": "A lightweight React package for collecting Substack email subscriptions directly from a site, without a server, proxy, or backend.",
       "image": "https://picsum.photos/seed/substack-direct/800/600",
@@ -892,7 +979,7 @@ window.SITE_DATA = {
       "title": "Production WordPress Snippets Library",
       "id": "wp-snippets",
       "order": 4,
-      "visible": true,
+      "visible": false,
       "date": "February 2026",
       "description": "A curated WordPress PHP snippet library for admin tooling, performance, security, and block theme development.",
       "image": "images/updates/wp-snippets.jpg",
