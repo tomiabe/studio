@@ -1,0 +1,13 @@
+{
+  "title": "AI Prompting Power with Tomi Abe",
+  "id": "loblaw-ai",
+  "order": 3,
+  "visible": true,
+  "date": "March 2024",
+  "description": "A practical prompting and generative workflow session for Loblaw Digital's AI Committee.",
+  "image": "/images/updates/loblaw-ai.jpg",
+  "directLink": false,
+  "content": "<p>I joined Loblaw Digital's AI Committee for a focused session on using generative AI in creative and design work.</p><p>The talk covered prompt structure, iteration habits, critique loops, and ways to bring AI tools into real production workflows without flattening craft or judgment.</p><p>I kept the session practical: how to brief the model, how to pressure-test outputs, when to change direction, and how to use generated material as working material rather than finished thinking.</p>",
+  "link": "https://drive.google.com/file/d/19Dnit0-O3oby2g_uE2JaOKr53Etykn85/view",
+  "ctaLabel": "Watch session"
+}

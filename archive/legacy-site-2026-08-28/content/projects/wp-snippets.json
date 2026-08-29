@@ -1,0 +1,26 @@
+{
+  "id": "wp-snippets",
+  "title": "Production WordPress Snippets Library",
+  "categories": ["Content", "Product"],
+  "shortDescription": "Practical WordPress PHP snippet library",
+  "role": "",
+  "order": 4,
+  "year": "2026",
+  "cssCover": "wp-snippets",
+  "description": "A curated WordPress PHP snippet library for admin tooling, performance, security, and block theme development.",
+  "link": "https://github.com/tomiabe/wp-snippets",
+  "details": [
+    {
+      "heading": "Why I Keep It",
+      "text": "I started collecting WordPress snippets from real production work because the useful bits were always scattered across old projects, gists, and notes. Pulling them into one library made the practice easier to extend and reuse."
+    },
+    {
+      "heading": "What It Covers",
+      "text": "The library focuses on small, drop-in PHP files that solve specific problems: cloning posts with custom fields, cleaning taxonomy URLs, switching block theme style variations by time of day, and adding lightweight cache control without another plugin."
+    },
+    {
+      "heading": "How It Is Written",
+      "text": "Each snippet is written to be readable first. The goal is not to create a framework, but to keep practical WordPress fixes close at hand when a site needs one focused adjustment rather than a full plugin or an abstract architecture."
+    }
+  ]
+}

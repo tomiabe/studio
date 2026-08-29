@@ -1,0 +1,13 @@
+{
+  "title": "Building Susinsight's AI Research Assistant",
+  "id": "ask-susinsight-ai",
+  "order": 0,
+  "visible": true,
+  "date": "July 2026",
+  "description": "Designing and shipping an AI research assistant for Susinsight that answers sustainability questions using the platform's own published reporting.",
+  "image": "/images/updates/ask-susinsight.png",
+  "directLink": false,
+  "content": "<p>Susinsight needed a way for readers to ask questions and get answers grounded in its own reporting. The assistant had to feel useful without pretending to know more than the publication had actually covered.</p><p>I led the design and implementation of Ask Susinsight across the dedicated <a target=\"_blank\" rel=\"noreferrer\" href=\"https://susinsight.com/ask\">/ask page</a> and the floating site modal. A reader asks a question, the system retrieves relevant article chunks, and the answer includes links back to the original stories.</p><p>The backend uses retrieval-augmented generation. Articles are chunked, embedded, and searched by similarity. The matched passages are then passed into the language model with strict instructions to answer only from the retrieved material.</p><p>The most useful work happened around edge cases. We tightened source handling so article titles could not be invented, added query expansion for broader questions, and improved the prompt rules when the assistant tried to stretch thin evidence too far.</p><p>The lesson was straightforward: retrieval quality matters more than model theatre. Better metadata, clearer prompts, and honest fallback behavior made the assistant more trustworthy than simply swapping in a larger model.</p>",
+  "link": "https://susinsight.com/ask",
+  "ctaLabel": "Try Ask Susinsight"
+}

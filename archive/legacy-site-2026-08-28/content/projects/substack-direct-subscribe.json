@@ -1,0 +1,26 @@
+{
+  "id": "substack-direct-subscribe",
+  "title": "Substack Direct Subscribe",
+  "categories": ["Product", "Content"],
+  "shortDescription": "React package for direct Substack signup",
+  "role": "",
+  "order": 2,
+  "year": "2026",
+  "cssCover": "substack-direct",
+  "description": "A lightweight React package for collecting Substack email subscriptions directly from a site, without a server, proxy, or backend.",
+  "link": "https://github.com/tomiabe/substack-direct-subscribe",
+  "details": [
+    {
+      "heading": "Why I Built It",
+      "text": "This started as a practical fix for static and server-rendered sites that needed a Substack signup flow without introducing backend routes or proxy infrastructure. I wanted the integration to stay simple enough for editorial and marketing sites that do not need another moving part."
+    },
+    {
+      "heading": "What It Includes",
+      "text": "The package wraps the pattern into two focused React components: SubstackForm for inline embeds and SubstackPopup for timed prompts. Both handle the idle, submitting, success, and error states with minimal styling assumptions, so they can drop into an existing design system without fighting it."
+    },
+    {
+      "heading": "How It Works",
+      "text": "Instead of routing the subscription request through your own server, the request is sent from the visitor's browser directly to Substack. That removes a whole layer of hosting complexity, avoids storing email data yourself, and makes the package easy to use across static, Jamstack, and traditional React projects."
+    }
+  ]
+}

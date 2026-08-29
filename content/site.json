@@ -1,0 +1,204 @@
+{
+  "metadata": {
+    "title": "Tomi Abe Studio | Builder and Strategist",
+    "description": "Tomi Abe Studio is an independent practice for turning complex systems into clear products, brands, stories, and useful experiences.",
+    "keywords": "brand strategy, digital strategy, product engineering, UX engineering, design engineering, data visualization, storytelling, media systems, content platforms, creative technology, interactive media, applied AI, AI workflows",
+    "canonicalUrl": "https://studio.tomiabe.com/",
+    "ogImage": "https://studio.tomiabe.com/assets/media/og-image.jpg"
+  },
+  "identity": {
+    "name": "Tomi Abe Studio",
+    "founder": "Tomi Abe",
+    "role": "Builder and Strategist"
+  },
+  "navigation": [
+    { "label": "Work", "href": "#work" },
+    { "label": "Projects", "href": "#projects" },
+    { "label": "Signals", "href": "#signals" },
+    { "label": "Practice", "href": "#practice" },
+    { "label": "Contact", "href": "#contact" }
+  ],
+  "hero": {
+    "title": "Tomi Abe is a builder and strategist.",
+    "description": "I work with organizations to turn complex systems into clear products, brands, stories, and useful experiences.",
+    "primaryCta": { "label": "Explore the work", "href": "#work" },
+    "secondaryCta": { "label": "Start a conversation", "href": "#contact" }
+  },
+  "introduction": {
+    "title": "A one-person practice with a wide operating range.",
+    "text": "Tomi Abe Studio brings strategy, design, technology, and communication into the same room. The work can begin with a product, a brand, a data problem, or a stuck decision. It ends with a clearer system that people can use, understand, and carry forward."
+  },
+  "sections": {
+    "work": {
+      "title": "Selected engagements",
+      "description": "Commercial work made with companies, institutions, and teams navigating change, growth, or complexity."
+    },
+    "projects": {
+      "title": "Independent projects",
+      "description": "Tools, experiments, and systems built to test ideas, extend the practice, and keep learning in public."
+    },
+    "signals": {
+      "title": "Signals from the practice",
+      "description": "Writing, launches, public engagements, and notes from work in motion."
+    },
+    "approach": {
+      "title": "How the practice moves",
+      "description": "The shape of the work changes. The underlying approach stays deliberate, collaborative, and close to the real problem."
+    },
+    "practice": {
+      "title": "Built for useful change.",
+      "description": "The studio is independent by design. You work directly with Tomi from the first conversation through the work that follows."
+    }
+  },
+  "process": [
+    {
+      "title": "Frame the real problem",
+      "description": "Find the constraints, the missing context, and the decision that will make the rest of the work move.",
+      "icon": "scan-search"
+    },
+    {
+      "title": "Shape the system",
+      "description": "Give the product, brand, platform, or story a structure that people can understand and use.",
+      "icon": "blocks"
+    },
+    {
+      "title": "Make it real",
+      "description": "Move from direction into working design, content, prototypes, code, and the details that make it hold.",
+      "icon": "code-2"
+    },
+    {
+      "title": "Leave it stronger",
+      "description": "Build enough clarity, documentation, and confidence for the work to continue without unnecessary dependence.",
+      "icon": "arrow-up-right"
+    }
+  ],
+  "operatingModels": {
+    "title": "Ways to work together.",
+    "description": "The relationship can be advisory, hands-on, or embedded. The useful part is choosing the shape that matches the problem and the team.",
+    "items": [
+      {
+        "title": "Strategic advisory",
+        "description": "Direction, systems thinking, and decision frameworks for organizations navigating complexity, growth, or transformation.",
+        "icon": "route"
+      },
+      {
+        "title": "Independent execution",
+        "description": "Leading the strategy, design, and build of a product, brand, or digital system from concept through launch.",
+        "icon": "hammer"
+      },
+      {
+        "title": "Embedded collaboration",
+        "description": "Working closely with an internal team as an integrated partner to create clarity, alignment, and momentum.",
+        "icon": "users-round"
+      }
+    ]
+  },
+  "focusAreas": [
+    { "title": "Brand and digital strategy", "description": "Positioning, narrative, and digital foundations that help organizations communicate clearly and scale coherently.", "icon": "compass" },
+    { "title": "Product and UX design engineering", "description": "Designing and building useful products where user needs, business goals, and technical systems meet.", "icon": "panels-top-left" },
+    { "title": "Data visualization and storytelling", "description": "Turning research and complex information into visual narratives that support understanding and decisions.", "icon": "chart-no-axes-combined" },
+    { "title": "Media systems and content platforms", "description": "Structuring the tools, workflows, and platforms that help teams publish and grow knowledge.", "icon": "layers-3" },
+    { "title": "Creative technology and interactive media", "description": "Making experimental digital experiences that give ideas new forms and invite deeper engagement.", "icon": "sparkles" },
+    { "title": "Applied AI and workflow systems", "description": "Building practical AI tools and workflows that turn repetitive work into clearer, repeatable systems.", "icon": "bot" }
+  ],
+  "profile": {
+    "image": "assets/media/tomi-profile-1.jpg",
+    "title": "Tomi works where ideas need both direction and form.",
+    "body": "His work spans strategy, product design, brand systems, creative technology, data storytelling, and implementation. That range is intentional. Complex problems rarely arrive in a single discipline, so the practice is designed to connect the parts that are usually separated.\n\nAlongside client work, Tomi speaks, trains, and mentors on design, emerging technology, systems thinking, and responsible innovation."
+  },
+  "publicEngagements": {
+    "title": "Beyond client work.",
+    "description": "Tomi also shares practical knowledge through mentorship, talks, workshops, panels, and training for people and teams working through change.",
+    "items": [
+      {
+        "title": "MentorCruise",
+        "year": "Since 2022",
+        "role": "Mentor",
+        "description": "Ongoing global mentorship for designers moving toward senior and leadership roles.",
+        "icon": "graduation-cap",
+        "link": "https://mentorcruise.com/mentor/tomiabe/",
+        "ctaLabel": "Book a mentoring session"
+      },
+      {
+        "title": "Loblaw Digital",
+        "year": "2024",
+        "role": "Trainer",
+        "description": "Advanced prompting and generative workflow training for an internal AI committee.",
+        "icon": "presentation"
+      },
+      {
+        "title": "African Climate Stories",
+        "year": "2024",
+        "role": "Facilitator",
+        "description": "An AI-driven infographic workshop for sustainability advocates translating research into visual narratives.",
+        "icon": "lightbulb"
+      },
+      {
+        "title": "FITC E3 Conference",
+        "year": "2024",
+        "role": "Panelist",
+        "description": "A panel on ethical AI, responsible automation, and the future of work.",
+        "icon": "messages-square"
+      },
+      {
+        "title": "Nairametrics",
+        "year": "2020",
+        "role": "Speaker",
+        "description": "A strategy session for creative entrepreneurs navigating financial uncertainty.",
+        "icon": "mic-vocal"
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "What collaborators say.",
+    "description": "A few reflections from people who have worked with Tomi across product, brand, strategy, and mentorship.",
+    "initialCount": 3,
+    "showAllLabel": "Read all reflections",
+    "showLessLabel": "Show fewer reflections",
+    "items": [
+      {
+        "quote": "Brought clarity and integrity to our platform, turning complex ethical goals into a cohesive, engaging product experience.",
+        "name": "Emanuele Dal Carlo",
+        "role": "Former President and Co-Founder",
+        "company": "Fairbnb"
+      },
+      {
+        "quote": "His mentorship blended sharp product thinking with empathy, helping professionals land roles, lead projects, and grow with confidence.",
+        "name": "Dominic Monn",
+        "role": "Founder and CEO",
+        "company": "MentorCruise"
+      },
+      {
+        "quote": "Helped us sharpen our positioning, improve journeys, and turn scattered interest into real engagement across markets.",
+        "name": "Oreoluwa Adebayo",
+        "role": "Founder and CEO",
+        "company": "WeCollect"
+      },
+      {
+        "quote": "Consistently turned ambiguous product challenges into clear, high-impact design decisions that moved key business metrics.",
+        "name": "Grady Gardner",
+        "role": "Founder and CEO",
+        "company": "Distributed Labs"
+      },
+      {
+        "quote": "Redesigned complex procurement flows into a simple, high-performing experience that lifted conversions and set us apart.",
+        "name": "Saurabh Paramveer",
+        "role": "Former Co-Founder and Chief Product Officer",
+        "company": "Zeproc"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Have something complex to make clearer?",
+    "description": "For projects, collaborations, workshops, speaking engagements, or a thoughtful first conversation.",
+    "email": "studio@tomiabe.com",
+    "location": "GMT+1. Working globally."
+  },
+  "social": [
+    { "label": "LinkedIn", "url": "https://linkedin.com/in/tomiabe" },
+    { "label": "X", "url": "https://x.com/tomiabestudio" },
+    { "label": "Instagram", "url": "https://instagram.com/tomiabestudio" },
+    { "label": "GitHub", "url": "https://github.com/tomiabe" }
+  ],
+  "footer": "Tomi Abe Studio."
+}

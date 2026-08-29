@@ -1,0 +1,14 @@
+{
+  "title": "Substack Direct Subscribe for WordPress",
+  "id": "substack-direct-subscribe-wp",
+  "order": 1,
+  "visible": false,
+  "date": "July 2026",
+  "description": "A WordPress plugin for collecting Substack subscribers directly from a site, with a shortcode, Gutenberg block, and timed popup modal.",
+  "image": "https://picsum.photos/seed/substack-wp/800/600",
+  "directLink": false,
+  "content": "<p>After building the standalone React version, I ported the pattern into WordPress so it could be used on older marketing sites, editorial sites, and client installs without adding a build step.</p><p>The plugin includes a shortcode, a Gutenberg block with sidebar settings, a timed popup modal, and two layouts: card and banner. Everything runs in vanilla JavaScript, so the plugin stays light and easy to drop into an existing theme.</p><p>The form sends subscribe requests from the visitor's browser to Substack. That keeps the implementation simple, avoids storing email data in WordPress, and makes the plugin easier to maintain across different hosting setups.</p>",
+  "cssCover": "substack-wp",
+  "link": "https://github.com/tomiabe/substack-direct-subscribe-wp",
+  "ctaLabel": "View WordPress plugin"
+}

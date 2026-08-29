@@ -1,0 +1,103 @@
+{
+  "about": {
+    "name": "Tomi Abe",
+    "role": "Principal Consultant",
+    "imageUrl": "/images/tomi-profile-1.jpg",
+    "lead": "Using strategy, creativity, and technology to turn complex systems into clear products, brands, and stories.",
+    "bio": "Tomi Abe is a strategic creative and digital leader working at the intersection of design, technology, media, and research. Over the past decade, he has partnered with early-stage ventures, growth-stage companies, and established institutions, including YC-backed startups, Fortune 500 ecosystems, and impact-driven organizations across emerging and established markets, building systems that help teams communicate clearly, ship confidently, and scale with coherence.\n\nHe works across the full arc of a problem, from strategy and direction through to implementation and launch, and stays with the work until it holds. Beyond client engagements, he speaks, trains, and mentors on emerging technologies, systems thinking, and responsible innovation.\n\nWith foundations in computer science, design, and creative technology, and experience spanning in-house, agency, and consulting environments, he believes knowledge should empower, not overwhelm."
+  },
+  "operatingModels": [
+    {
+      "title": "Strategic Advisory",
+      "description": "Providing direction, systems thinking, and decision frameworks for organizations navigating complexity, growth, or transformation."
+    },
+    {
+      "title": "Independent Execution",
+      "description": "Leading the design and development of product, brand, or digital systems from concept through implementation and launch."
+    },
+    {
+      "title": "Embedded Collaboration",
+      "description": "Working closely with internal teams as an integrated partner to accelerate clarity, alignment, and execution."
+    }
+  ],
+  "focusAreas": [
+    {
+      "title": "Brand & Digital Strategy",
+      "description": "Defining the narrative, structure, and digital foundation that helps organizations communicate clearly, differentiate meaningfully, and scale with coherence across platforms and touchpoints.",
+      "icon": "compass"
+    },
+    {
+      "title": "Product & UX Design Engineering",
+      "description": "Designing and building intuitive, scalable digital products and interfaces that align user needs, business goals, and technical systems into usable, effective, and enduring experiences.",
+      "icon": "layout"
+    },
+    {
+      "title": "Data Visualization & Storytelling",
+      "description": "Transforming complex data, research, and information into clear visual and interactive narratives that improve understanding, support decision-making, and communicate insight effectively.",
+      "icon": "chartColumn"
+    },
+    {
+      "title": "Media Systems & Content Platforms",
+      "description": "Designing the systems, workflows, and digital environments that enable organizations to publish, manage, and evolve content as structured, scalable knowledge over time.",
+      "icon": "layers"
+    },
+    {
+      "title": "Creative Technology & Interactive Media",
+      "description": "Exploring and building experimental, emerging, and interactive digital experiences that extend how people engage with information, systems, and ideas beyond conventional interfaces.",
+      "icon": "sparkles"
+    },
+    {
+      "title": "Applied AI & Workflow Systems",
+      "description": "Building AI-powered tools, assistants, and workflows on top of existing products, data, and operations that turn manual, ad‑hoc work into intelligent, repeatable pipelines for faster, more confident decisions.",
+      "icon": "bot"
+    }
+  ],
+  "speaking": {
+    "description": "Tomi designs and delivers talks, workshops, and mentorship programs at the intersection of design, emerging technologies, systems thinking, and creative entrepreneurship, helping teams and individuals apply these tools in practical, responsible, and strategically meaningful ways. His audiences span early-stage founders, creative professionals, corporate teams, and global organizations across Africa and beyond.",
+    "engagements": [
+      {
+        "title": "MentorCruise",
+        "year": "Since 2022",
+        "role": "Mentor",
+        "description": "Ongoing global design mentorship through MentorCruise, supporting designers in advancing toward senior and leadership roles.",
+        "link": "https://mentorcruise.com/mentor/tomiabe/",
+        "ctaLabel": "Book me on MentorCruise"
+      },
+      {
+        "title": "Loblaw Digital",
+        "year": "2024",
+        "role": "Trainer",
+        "description": "Advanced prompting and generative workflow training for internal AI committee."
+      },
+      {
+        "title": "African Climate Stories",
+        "year": "2024",
+        "role": "Facilitator",
+        "description": "AI-driven infographic design workshop helping sustainability advocates translate complex research into visual narratives."
+      },
+      {
+        "title": "FITC E3 Conference",
+        "year": "2024",
+        "role": "Panelist",
+        "description": "Ethical AI panel contributing to discussions on responsible automation and the future of work."
+      },
+      {
+        "title": "Nairametrics",
+        "year": "2020",
+        "role": "Speaker",
+        "description": "Strategy session for creative entrepreneurs on navigating financial uncertainty."
+      }
+    ]
+  },
+  "contact": {
+    "headline": "Let's create something coherent.",
+    "description": "For project inquiries, collaborations, or speaking engagements.",
+    "email": "studio@tomiabe.com",
+    "location": "Lagos, NG / Remote"
+  },
+  "labels": {
+    "operatingModelHeading": "Operating Model",
+    "focusAreasHeading": "Focus Areas",
+    "speakingHeading": "Speaking, Workshops & Mentorship"
+  }
+}
