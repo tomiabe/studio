@@ -14,15 +14,25 @@
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#039;');
 
-  const workPalette = [
-    { bg: '#153c37', accent: '#7de2d1', text: '#fffafb', line: 'rgba(255,250,251,.22)' },
-    { bg: '#2b2c28', accent: '#339989', text: '#fffafb', line: 'rgba(255,250,251,.18)' },
-    { bg: '#123d47', accent: '#7de2d1', text: '#fffafb', line: 'rgba(255,250,251,.2)' },
-    { bg: '#5e5434', accent: '#d8e879', text: '#fffafb', line: 'rgba(255,250,251,.22)' },
-    { bg: '#274a43', accent: '#b6f2e8', text: '#fffafb', line: 'rgba(255,250,251,.2)' },
-    { bg: '#164a5a', accent: '#8de7d8', text: '#fffafb', line: 'rgba(255,250,251,.2)' },
-    { bg: '#46583e', accent: '#d7ee8f', text: '#fffafb', line: 'rgba(255,250,251,.2)' }
-  ];
+  const workPalette = {
+    susinsight: { bg: '#2e6f5b', accent: '#f9ffe3', secondary: '#3a8b72', icon: '#f9ffe3', text: '#ffffff', line: 'rgba(255,255,255,.2)' },
+    wecollect: { bg: '#4747d6', accent: '#a7c7ff', secondary: '#101a52', icon: '#a7c7ff', text: '#ffffff', line: 'rgba(255,255,255,.22)' },
+    zeproc: { bg: '#1a37a6', accent: '#ffd400', secondary: '#e8f3ff', icon: '#ffd400', text: '#ffffff', line: 'rgba(255,255,255,.22)' },
+    translayte: { bg: '#00303f', accent: '#dcae1d', secondary: '#d9dede', icon: '#dcae1d', text: '#ffffff', line: 'rgba(255,255,255,.22)' },
+    fairbnb: { bg: '#3aaa35', accent: '#257f25', secondary: '#d6d6d6', icon: '#d6d6d6', text: '#ffffff', line: 'rgba(255,255,255,.24)' },
+    eze: { bg: '#1676f3', accent: '#ffeee3', secondary: '#001a3b', icon: '#ffeee3', text: '#ffffff', line: 'rgba(255,255,255,.3)' },
+    culerson: { bg: '#000000', accent: '#f2c94c', secondary: '#2b2c28', icon: '#f2c94c', text: '#f7f7f7', line: 'rgba(247,247,247,.22)' }
+  };
+
+  const workSectorIcons = {
+    susinsight: ['newspaper', 'rss'],
+    wecollect: ['database', 'map-pinned'],
+    zeproc: ['factory', 'package-check'],
+    translayte: ['languages', 'file-check-2'],
+    fairbnb: ['house', 'leaf'],
+    eze: ['cpu', 'shopping-bag'],
+    culerson: ['zap', 'building-2']
+  };
 
   const projectSymbols = {
     polish: 'P',
@@ -107,22 +117,22 @@
   }
 
   function workVisual(item) {
-    const image = item.image
-      ? `<img src="${escapeHTML(item.image)}" alt="" loading="lazy" decoding="async">`
-      : '';
-    return `<div class="work-visual" aria-hidden="true">${image}<span class="work-image-overlay"></span></div>`;
+    const icons = (workSectorIcons[item.id] || ['sparkles'])
+      .map((name) => `<span class="work-icon">${icon(name)}</span>`)
+      .join('');
+    return `<div class="work-visual" data-work-shader="${escapeHTML(item.id)}" aria-hidden="true"><canvas data-work-shader-canvas></canvas><span class="work-icon-stack">${icons}</span></div>`;
   }
 
   function workCard(item, index) {
-    const palette = workPalette[index % workPalette.length];
-    const style = `--card-bg:${palette.bg};--card-accent:${palette.accent};--card-text:${palette.text};--card-line:${palette.line};`;
+    const palette = workPalette[item.id] || workPalette.susinsight;
+    const style = `--card-bg:${palette.bg};--card-accent:${palette.accent};--card-secondary:${palette.secondary};--work-icon:${palette.icon};--work-shader-one:${palette.accent};--work-shader-two:${palette.secondary};--card-text:${palette.text};--card-line:${palette.line};`;
     const drawer = isDrawerItem(item, 'work');
     const attributes = drawer
       ? `href="#${escapeHTML(item.id)}" data-open-item="${escapeHTML(item.id)}" data-item-type="work"`
       : `href="${escapeHTML(item.link)}" target="_blank" rel="noreferrer"`;
     const action = drawer ? 'Read the engagement' : 'Visit project';
     return `
-      <a class="work-card ${index === 0 || index === 4 ? 'work-card--large' : ''} work-card--variant-${index % 5}" style="${style}" ${attributes}>
+      <a class="work-card work-card--${escapeHTML(item.id)} ${index === 0 || index === 4 ? 'work-card--large' : ''} work-card--variant-${index % 5}" style="${style}" ${attributes}>
         ${workVisual(item)}
         <span class="work-card-content">
           <span class="work-card-meta"><span>${escapeHTML(item.year || '')}</span><span>${escapeHTML(item.role || itemCategories(item))}</span></span>
@@ -467,10 +477,20 @@
     sections.forEach((section) => observer.observe(section));
   }
 
-  function drawSignalField(canvas) {
+  function hexToRgb(hex) {
+    const value = hex.replace('#', '');
+    return {
+      r: parseInt(value.slice(0, 2), 16),
+      g: parseInt(value.slice(2, 4), 16),
+      b: parseInt(value.slice(4, 6), 16)
+    };
+  }
+
+  function drawSignalField(canvas, colors = ['#7de2d1']) {
     const context = canvas.getContext('2d');
     const container = canvas.parentElement;
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const shaderColors = colors.map(hexToRgb);
     const pointer = { x: -1000, y: -1000, active: false };
     let frame = 0;
     let width = 0;
@@ -503,7 +523,8 @@
           if (!active) continue;
           const size = 1.3 + influence * 3.6 + Math.max(0, noise - 0.7) * 1.4;
           const alpha = 0.2 + influence * 0.68;
-          context.fillStyle = `rgba(125, 226, 209, ${alpha})`;
+          const color = shaderColors[Math.abs(Math.floor((x + y) / spacing)) % shaderColors.length];
+          context.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
           context.fillRect(x - size / 2, y - size / 2, size, size);
         }
       }
@@ -528,7 +549,15 @@
   }
 
   function initSignalFields() {
-    $$('[data-signal-canvas]').forEach(drawSignalField);
+    $$('[data-signal-canvas]').forEach((canvas) => drawSignalField(canvas));
+  }
+
+  function initWorkShaders() {
+    $$('[data-work-shader-canvas]').forEach((canvas) => {
+      const id = canvas.parentElement.dataset.workShader;
+      const palette = workPalette[id] || workPalette.susinsight;
+      drawSignalField(canvas, [palette.accent, palette.secondary]);
+    });
   }
 
   function render() {
@@ -550,6 +579,7 @@
     bindInteractions();
     observeNavigation();
     initSignalFields();
+    initWorkShaders();
   }
 
   render();
