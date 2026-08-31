@@ -144,7 +144,8 @@
   }
 
   function renderFilters() {
-    const categories = [...new Set(data.work.flatMap((item) => item.categories || []))];
+    const categories = [...new Set(data.work.flatMap((item) => item.categories || []))]
+      .sort((a, b) => a.localeCompare(b));
     $('[data-work-filters]').innerHTML = ['All', ...categories].map((category) => (
       `<button class="filter-button" type="button" data-filter="${escapeHTML(category)}" aria-pressed="${category === state.filter}">${escapeHTML(category)}</button>`
     )).join('');

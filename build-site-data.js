@@ -5,8 +5,8 @@ const path = require('path');
 
 const ROOT = __dirname;
 const MANIFEST = {
-  work: ['susinsight', 'wecollect', 'zeproc', 'translayte', 'fairbnb', 'eze', 'culerson'],
-  projects: ['polish', 'substack-direct-subscribe', 'substack-direct-subscribe-wp', 'wp-snippets', 'acquario', 'jtf23', 'nairawatch', 'nigeria-embassy', 'smart-expense', 'sound-atlas', 'urban-climate-signals', 'webhunt', 'zonify'],
+  work: ['susinsight', 'culerson', 'wecollect', 'zeproc', 'translayte', 'fairbnb', 'eze'],
+  projects: ['polish', 'substack-direct-subscribe', 'substack-direct-subscribe-wp', 'wp-snippets', 'nigeria-embassy', 'smart-expense', 'sound-atlas', 'urban-climate-signals', 'zonify', 'nairawatch', 'jtf23', 'acquario', 'webhunt'],
   updates: ['polish', 'ask-susinsight-ai', 'loblaw-ai', 'substack-direct-subscribe-wp', 'substack-direct-subscribe', 'u1', 'u2', 'u3', 'u4', 'u5', 'u6', 'u7', 'wp-snippets']
 };
 

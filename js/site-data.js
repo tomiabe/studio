@@ -362,6 +362,63 @@ window.STUDIO_DATA = {
       ]
     },
     {
+      "title": "Culerson",
+      "id": "culerson",
+      "order": 1,
+      "visible": true,
+      "role": "Brand & Digital Consultant",
+      "description": "Transforming advanced energy systems expertise into a clear, decision-ready advisory and digital presence for modern power transitions.",
+      "categories": [
+        "Brand",
+        "Content",
+        "Product"
+      ],
+      "image": "/images/work/Culerson/culerson-web1.jpg",
+      "link": "https://culerson.susbridge.xyz",
+      "isFullBleed": false,
+      "shortDescription": "Energy advisory firm",
+      "year": "2024-2025",
+      "details": [
+        {
+          "heading": "Context & Challenge",
+          "text": "Culerson is a renewable energy advisory firm helping businesses, developers, and public institutions navigate the shift to distributed energy systems. Founded in 2024 as a minority-owned consultancy, the team brought deep technical experience in AI-driven energy analytics, microgrid design, and renewable integration, but had no way to show that expertise to the people making decisions about projects, procurement, and investment. There was no cohesive narrative, no digital home, and no channel for publishing analysis on energy transitions. The core question: how do you move from 'we understand complex energy systems' to 'decision-makers understand what we do and trust us enough to act on it' without a large internal team?"
+        },
+        {
+          "heading": "Lean Identity & Narrative",
+          "text": "I developed a simple identity and messaging layer focused less on aesthetics and more on how Culerson shows up in rooms where decisions are made. This included a clear articulation of who they serve, the types of problems they work on across DERMS, predictive analytics, and energy storage optimisation, and language that connects energy systems thinking to business and policy choices. The aim wasn't an elaborate brand universe; it was to give Culerson enough structure that their expertise could breathe and be understood.",
+          "image": "/images/work/Culerson/culerson.jpg",
+          "link": "/images/work/Culerson/Culerson.pdf",
+          "linkLabel": "View Full Identity"
+        },
+        {
+          "heading": "Digital Platform",
+          "text": "I designed and built a WordPress-based website as the primary container for that narrative. The architecture includes a service structure that makes complex technical offerings understandable to non-engineers, project-ready slots where future engagements can be documented without a full redesign, an Insights section as a home for analysis and commentary, and a layout that works for low-maintenance updates without dependence on bespoke components. I configured the CMS so the team could edit copy, adjust navigation, and publish new articles without developer support. A light analytics layer covering SEO, search console, and email integration was set up to give them observability without a full marketing stack.",
+          "images": [
+            "/images/work/Culerson/culerson-web1.jpg",
+            "/images/work/Culerson/culerson-web2.jpg",
+            "/images/work/Culerson/culerson-web3.jpg"
+          ]
+        },
+        {
+          "heading": "Content & Thought Leadership",
+          "text": "The team's technical articles gave Culerson a voice, but those ideas needed to travel beyond the page. I translated complex energy concepts into I translated complex energy concepts into visual narratives spanning illustrations, social media assets, and design collateral that made technical information feel accessible technical information feel accessible and worth engaging with. Every visual asset was built to communicate across digital channels while reinforcing the brand's authority. The work helped turn analytical depth into something people could see, share, and act on, driving inbound interest and positioning Culerson as a firm that communicates as clearly as it engineers.",
+          "image": "/images/work/Culerson/culerson-article.jpg",
+          "link": "https://culerson.susbridge.xyz/insights/",
+          "linkLabel": "Read Insights"
+        },
+        {
+          "heading": "Embedded Engagement",
+          "text": "I worked as an extension of Culerson's team rather than as a distant vendor, joining regular check-ins and strategic discussions, iterating language in response to how they were pitching in real conversations, and making trade-offs transparently when time or budget required simplification. This embedded model kept the communications work aligned with the realities of building an early-stage advisory practice, not a hypothetical brand exercise. Throughout the engagement, I treated every asset as part of a single system: narrative informed how services were grouped and named, website structure reflected the kinds of conversations Culerson wanted to have with clients, and initial articles tested how well the positioning held up when applied to real issues.",
+          "image": "/images/work/Culerson/culerson-post.jpg",
+          "link": ""
+        },
+        {
+          "heading": "Outcome",
+          "text": "At the end of the engagement, Culerson had a coherent, credible public presence that reflected the depth of their technical work, a content-managed website they could update without ongoing external support, an initial layer of thought leadership showing how they think about energy transitions, and a clearer internal story about who they are, what they offer, and how to talk about it with potential clients and partners."
+        }
+      ]
+    },
+    {
       "id": "wecollect",
       "title": "WeCollect",
       "categories": [
@@ -433,63 +490,6 @@ window.STUDIO_DATA = {
       "image": "/images/work/Eze.jpg",
       "description": "Building and leading an in-house design function for a YC-backed B2B marketplace, unifying interfaces, journeys, and brand for global electronics trade.",
       "link": "https://ezewholesale.com"
-    },
-    {
-      "title": "Culerson",
-      "id": "culerson",
-      "order": 1,
-      "visible": true,
-      "role": "Brand & Digital Consultant",
-      "description": "Transforming advanced energy systems expertise into a clear, decision-ready advisory and digital presence for modern power transitions.",
-      "categories": [
-        "Brand",
-        "Content",
-        "Product"
-      ],
-      "image": "/images/work/Culerson/culerson-web1.jpg",
-      "link": "https://culerson.susbridge.xyz",
-      "isFullBleed": false,
-      "shortDescription": "Energy advisory firm",
-      "year": "2024-2025",
-      "details": [
-        {
-          "heading": "Context & Challenge",
-          "text": "Culerson is a renewable energy advisory firm helping businesses, developers, and public institutions navigate the shift to distributed energy systems. Founded in 2024 as a minority-owned consultancy, the team brought deep technical experience in AI-driven energy analytics, microgrid design, and renewable integration, but had no way to show that expertise to the people making decisions about projects, procurement, and investment. There was no cohesive narrative, no digital home, and no channel for publishing analysis on energy transitions. The core question: how do you move from 'we understand complex energy systems' to 'decision-makers understand what we do and trust us enough to act on it' without a large internal team?"
-        },
-        {
-          "heading": "Lean Identity & Narrative",
-          "text": "I developed a simple identity and messaging layer focused less on aesthetics and more on how Culerson shows up in rooms where decisions are made. This included a clear articulation of who they serve, the types of problems they work on across DERMS, predictive analytics, and energy storage optimisation, and language that connects energy systems thinking to business and policy choices. The aim wasn't an elaborate brand universe; it was to give Culerson enough structure that their expertise could breathe and be understood.",
-          "image": "/images/work/Culerson/culerson.jpg",
-          "link": "/images/work/Culerson/Culerson.pdf",
-          "linkLabel": "View Full Identity"
-        },
-        {
-          "heading": "Digital Platform",
-          "text": "I designed and built a WordPress-based website as the primary container for that narrative. The architecture includes a service structure that makes complex technical offerings understandable to non-engineers, project-ready slots where future engagements can be documented without a full redesign, an Insights section as a home for analysis and commentary, and a layout that works for low-maintenance updates without dependence on bespoke components. I configured the CMS so the team could edit copy, adjust navigation, and publish new articles without developer support. A light analytics layer covering SEO, search console, and email integration was set up to give them observability without a full marketing stack.",
-          "images": [
-            "/images/work/Culerson/culerson-web1.jpg",
-            "/images/work/Culerson/culerson-web2.jpg",
-            "/images/work/Culerson/culerson-web3.jpg"
-          ]
-        },
-        {
-          "heading": "Content & Thought Leadership",
-          "text": "The team's technical articles gave Culerson a voice, but those ideas needed to travel beyond the page. I translated complex energy concepts into I translated complex energy concepts into visual narratives spanning illustrations, social media assets, and design collateral that made technical information feel accessible technical information feel accessible and worth engaging with. Every visual asset was built to communicate across digital channels while reinforcing the brand's authority. The work helped turn analytical depth into something people could see, share, and act on, driving inbound interest and positioning Culerson as a firm that communicates as clearly as it engineers.",
-          "image": "/images/work/Culerson/culerson-article.jpg",
-          "link": "https://culerson.susbridge.xyz/insights/",
-          "linkLabel": "Read Insights"
-        },
-        {
-          "heading": "Embedded Engagement",
-          "text": "I worked as an extension of Culerson's team rather than as a distant vendor, joining regular check-ins and strategic discussions, iterating language in response to how they were pitching in real conversations, and making trade-offs transparently when time or budget required simplification. This embedded model kept the communications work aligned with the realities of building an early-stage advisory practice, not a hypothetical brand exercise. Throughout the engagement, I treated every asset as part of a single system: narrative informed how services were grouped and named, website structure reflected the kinds of conversations Culerson wanted to have with clients, and initial articles tested how well the positioning held up when applied to real issues.",
-          "image": "/images/work/Culerson/culerson-post.jpg",
-          "link": ""
-        },
-        {
-          "heading": "Outcome",
-          "text": "At the end of the engagement, Culerson had a coherent, credible public presence that reflected the depth of their technical work, a content-managed website they could update without ongoing external support, an initial layer of thought leadership showing how they think about energy transitions, and a clearer internal story about who they are, what they offer, and how to talk about it with potential clients and partners."
-        }
-      ]
     }
   ],
   "projects": [
@@ -621,50 +621,6 @@ window.STUDIO_DATA = {
       ]
     },
     {
-      "id": "acquario",
-      "title": "Acquario",
-      "categories": [
-        "Art",
-        "Data"
-      ],
-      "shortDescription": "Data-driven virtual aquarium",
-      "role": "",
-      "order": 14,
-      "year": "2028",
-      "image": "/images/projects/Acquario.jpg",
-      "description": "Visualizing aquatic migration through a multisensory, data-driven virtual aquarium that turns abstract movement patterns into tangible, exploratory simulations.",
-      "link": "https://editor.p5js.org/tomiabe/full/0iDmkljF2"
-    },
-    {
-      "id": "jtf23",
-      "title": "JTF23",
-      "categories": [
-        "Content"
-      ],
-      "shortDescription": "Interactive wedding story website",
-      "role": "",
-      "order": 13,
-      "year": "2023",
-      "image": "/images/projects/JTF.jpg",
-      "description": "Designing an intimate wedding website where interactive storytelling, photography, and micro-interactions trace a couple's journey as a living, personal archive.",
-      "link": "https://jtf.persona.co"
-    },
-    {
-      "id": "nairawatch",
-      "title": "NairaWatch",
-      "categories": [
-        "Product",
-        "Data"
-      ],
-      "shortDescription": "Nigeria FX tracking dashboard",
-      "role": "",
-      "order": 7,
-      "year": "2025",
-      "image": "/images/projects/NairaWatch.jpg",
-      "description": "Tracking Nigeria's parallel market in real time by blending official rates with AI-interpreted signals into a clear, decision-ready FX dashboard.",
-      "link": "https://tomiabe.github.io/nairawatch/"
-    },
-    {
       "id": "nigeria-embassy",
       "title": "Nigeria Embassy Finder",
       "categories": [
@@ -724,20 +680,6 @@ window.STUDIO_DATA = {
       "link": "https://susbridge.github.io/urbanclimate/"
     },
     {
-      "id": "webhunt",
-      "title": "WebHunt",
-      "categories": [
-        "Content"
-      ],
-      "shortDescription": "Curated web inspiration gallery",
-      "role": "",
-      "order": 10,
-      "year": "2016",
-      "image": "/images/projects/WebHunt.jpg",
-      "description": "Curating and systematizing standout web experiences into a digital gallery that showcases experimental interfaces, interaction patterns, and narrative-driven design.",
-      "link": "https://tomiabe.github.io/webhunt/"
-    },
-    {
       "id": "zonify",
       "title": "Zonify",
       "categories": [
@@ -750,6 +692,64 @@ window.STUDIO_DATA = {
       "image": "/images/projects/zonify.png",
       "description": "Turning global time differences into a clear, interactive world clock for planning, coordination, and decision-making across regions.",
       "link": "https://tomiabe.github.io/zonify/"
+    },
+    {
+      "id": "nairawatch",
+      "title": "NairaWatch",
+      "categories": [
+        "Product",
+        "Data"
+      ],
+      "shortDescription": "Nigeria FX tracking dashboard",
+      "role": "",
+      "order": 7,
+      "year": "2025",
+      "image": "/images/projects/NairaWatch.jpg",
+      "description": "Tracking Nigeria's parallel market in real time by blending official rates with AI-interpreted signals into a clear, decision-ready FX dashboard.",
+      "link": "https://tomiabe.github.io/nairawatch/"
+    },
+    {
+      "id": "jtf23",
+      "title": "JTF23",
+      "categories": [
+        "Content"
+      ],
+      "shortDescription": "Interactive wedding story website",
+      "role": "",
+      "order": 13,
+      "year": "2023",
+      "image": "/images/projects/JTF.jpg",
+      "description": "Designing an intimate wedding website where interactive storytelling, photography, and micro-interactions trace a couple's journey as a living, personal archive.",
+      "link": "https://jtf.persona.co"
+    },
+    {
+      "id": "acquario",
+      "title": "Acquario",
+      "categories": [
+        "Art",
+        "Data"
+      ],
+      "shortDescription": "Data-driven virtual aquarium",
+      "role": "",
+      "order": 14,
+      "year": "2018",
+      "image": "/images/projects/Acquario.jpg",
+      "description": "Visualizing aquatic migration through a multisensory, data-driven virtual aquarium that turns abstract movement patterns into tangible, exploratory simulations.",
+      "link": "https://editor.p5js.org/tomiabe/full/0iDmkljF2"
+    },
+    {
+      "id": "webhunt",
+      "title": "WebHunt",
+      "categories": [
+        "Content"
+      ],
+      "shortDescription": "Curated web inspiration gallery",
+      "role": "",
+      "order": 10,
+      "year": "2016",
+      "image": "/images/projects/WebHunt.jpg",
+      "description": "Curating and systematizing standout web experiences into a digital gallery that showcases experimental interfaces, interaction patterns, and narrative-driven design.",
+      "link": "https://tomiabe.github.io/webhunt/"
     }
   ],
   "updates": [
