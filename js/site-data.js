@@ -275,6 +275,8 @@ window.STUDIO_DATA = {
       ],
       "image": "/images/work/Susinsight.jpg",
       "link": "https://susinsight.com",
+      "drawer": true,
+      "ctaLabel": "Visit Susinsight",
       "isFullBleed": false,
       "shortDescription": "Sustainability media insight platform",
       "year": "2023-present",

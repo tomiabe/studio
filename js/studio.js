@@ -111,7 +111,7 @@
   }
 
   function isDrawerItem(item, type) {
-    if (type === 'work') return !item.link;
+    if (type === 'work') return item.drawer === true || (item.directLink !== true && !item.link);
     if (type === 'signal') return item.directLink !== true;
     return Boolean(item.details?.length || item.content) && item.directLink !== true;
   }
@@ -335,11 +335,85 @@
     return collection.find((item) => item.id === id);
   }
 
+  function drawerLink(href, label) {
+    if (!href || !label) return '';
+    return `<a class="drawer-media-link" href="${escapeHTML(href)}" target="_blank" rel="noreferrer">${escapeHTML(label)} ${icon('arrow-up-right')}</a>`;
+  }
+
+  function drawerMediaMarkup(detail, item) {
+    if (detail.type === 'brand-identity') {
+      const palette = [
+        { name: 'brand-primary', hex: '#3A8B72' },
+        { name: 'brand-dark', hex: '#2E6F5B' },
+        { name: 'brand-light', hex: '#F9FFE3' },
+        { name: 'brand-soft', hex: '#91C3B3' }
+      ];
+      return `
+        <div class="drawer-brand-system">
+          ${Array.isArray(detail.images) ? `
+            <div class="drawer-media drawer-logo-grid">
+              ${detail.images.slice(0, 2).map((src, index) => `<div class="drawer-logo-tile drawer-logo-tile-${index + 1}"><img src="${escapeHTML(src)}" alt="${escapeHTML(item.title)} logo variant ${index + 1}" loading="lazy" referrerpolicy="no-referrer" /></div>`).join('')}
+            </div>` : ''}
+          <div class="drawer-token-block">
+            <p class="drawer-token-label">Color palette</p>
+            <div class="drawer-palette">
+              ${palette.map((color) => `<div class="drawer-swatch"><span style="background:${escapeHTML(color.hex)}"></span><code>${escapeHTML(color.hex)}</code><small>${escapeHTML(color.name)}</small></div>`).join('')}
+            </div>
+          </div>
+          <div class="drawer-token-block">
+            <p class="drawer-token-label">Typography</p>
+            <div class="drawer-type-grid">
+              <div class="drawer-type-card"><small>Headings</small><strong class="drawer-type-heading">Bricolage Grotesque</strong><span>Semibold, 48px to 20px scale</span></div>
+              <div class="drawer-type-card"><small>Body</small><strong class="drawer-type-body">Manrope</strong><span>Regular, 16px, 14px, and 12px</span></div>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    if (detail.type === 'creative-feed' && Array.isArray(detail.images)) {
+      const feed = detail.images.map((src, index) => `<img src="${escapeHTML(src)}" alt="" loading="lazy" referrerpolicy="no-referrer" data-feed-item="${index + 1}" />`).join('');
+      return `
+        <div class="drawer-media drawer-feed-window">
+          <div class="drawer-feed-track">
+            <div class="drawer-feed-grid">${feed}</div>
+            <div class="drawer-feed-grid" aria-hidden="true">${feed}</div>
+          </div>
+        </div>
+        ${drawerLink(detail.link, detail.linkLabel || 'Explore the creative feed')}`;
+    }
+
+    if (detail.type === 'design-system') {
+      return `
+        <div class="drawer-media drawer-system-preview">
+          <img src="/images/work/Susinsight/design-system.png" alt="Susinsight design system preview" loading="lazy" />
+        </div>
+        ${drawerLink('https://susinsight.com/design-system', 'Open the design system')}`;
+    }
+
+    if (detail.image) {
+      const mediaClass = detail.scroll ? ' drawer-scroll-window' : '';
+      const imageMarkup = detail.scroll
+        ? `<div class="drawer-scroll-track"><img src="${escapeHTML(detail.image)}" alt="${escapeHTML(detail.heading)}" loading="lazy" referrerpolicy="no-referrer" /><img src="${escapeHTML(detail.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" /></div>`
+        : `<img src="${escapeHTML(detail.image)}" alt="${escapeHTML(detail.heading)}" loading="lazy" referrerpolicy="no-referrer" />`;
+      return `
+        <div class="drawer-media${mediaClass}">
+          ${imageMarkup}
+        </div>
+        ${drawerLink(detail.link, detail.linkLabel || 'Open reference')}`;
+    }
+
+    return '';
+  }
+
   function drawerMarkup(item) {
     const meta = [item.year || item.date, item.role || itemCategories(item)].filter(Boolean);
+    const categories = Array.isArray(item.categories) && item.categories.length
+      ? `<div class="drawer-categories">${item.categories.map((category) => `<span>${escapeHTML(category)}</span>`).join('')}</div>`
+      : '';
     const details = Array.isArray(item.details) ? item.details.map((detail) => `
       <article class="drawer-detail">
         <h3>${escapeHTML(detail.heading)}</h3>
+        ${drawerMediaMarkup(detail, item)}
         <p>${escapeHTML(detail.text || '')}</p>
       </article>`).join('') : '';
     const content = item.content ? `<div class="drawer-rich-content">${item.content}</div>` : '';
@@ -348,6 +422,7 @@
       <div class="drawer-meta">${meta.map((entry) => `<span>${escapeHTML(entry)}</span>`).join('')}</div>
       <h2 id="drawer-title">${escapeHTML(item.title)}</h2>
       <p class="drawer-lead">${escapeHTML(item.description || item.shortDescription || '')}</p>
+      ${categories}
       ${details ? `<div class="drawer-details">${details}</div>` : ''}
       ${content}
       ${cta}`;
