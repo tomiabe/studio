@@ -410,6 +410,9 @@
     const categories = Array.isArray(item.categories) && item.categories.length
       ? `<div class="drawer-categories">${item.categories.map((category) => `<span>${escapeHTML(category)}</span>`).join('')}</div>`
       : '';
+    const cover = item.image
+      ? `<div class="drawer-cover-image"><img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}" loading="lazy" referrerpolicy="no-referrer" /></div>`
+      : '';
     const details = Array.isArray(item.details) ? item.details.map((detail) => `
       <article class="drawer-detail">
         <h3>${escapeHTML(detail.heading)}</h3>
@@ -423,6 +426,7 @@
       <h2 id="drawer-title">${escapeHTML(item.title)}</h2>
       <p class="drawer-lead">${escapeHTML(item.description || item.shortDescription || '')}</p>
       ${categories}
+      ${cover}
       ${details ? `<div class="drawer-details">${details}</div>` : ''}
       ${content}
       ${cta}`;
