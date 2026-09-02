@@ -1520,6 +1520,20 @@ a {
   height: auto;
 }
 
+.drawer-image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+}
+
+.drawer-image-grid img {
+  height: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  background: var(--surface);
+}
+
 .drawer-cover-image {
   margin: 0 0 2.5rem;
   overflow: hidden;

@@ -431,6 +431,14 @@
         ${drawerLink('https://susinsight.com/design-system', 'Open the design system')}`;
     }
 
+    if (Array.isArray(detail.images) && detail.images.length) {
+      return `
+        <div class="drawer-media drawer-image-grid">
+          ${detail.images.map((src, index) => `<img src="${escapeHTML(src)}" alt="${escapeHTML(detail.heading || item.title)} preview ${index + 1}" loading="lazy" referrerpolicy="no-referrer" />`).join('')}
+        </div>
+        ${drawerLink(detail.link, detail.linkLabel || 'Open reference')}`;
+    }
+
     if (detail.image) {
       const mediaClass = detail.scroll ? ' drawer-scroll-window' : '';
       const imageMarkup = detail.scroll
