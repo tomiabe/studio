@@ -54,7 +54,8 @@
     filter: 'All',
     drawerItem: null,
     lastFocusedElement: null,
-    testimonialsExpanded: false
+    testimonialsExpanded: false,
+    manualTheme: false
   };
 
   function mountIcons() {
@@ -67,7 +68,8 @@
   }
 
   function anchor(link, className, label, extra = '') {
-    return `<a class="${className}" href="${escapeHTML(link)}" ${extra}>${escapeHTML(label)} ${icon('arrow-up-right')}</a>`;
+    const iconName = link.startsWith('#') && link !== '#top' ? 'arrow-down' : 'arrow-up-right';
+    return `<a class="${className}" href="${escapeHTML(link)}" ${extra}>${escapeHTML(label)} ${icon(iconName)}</a>`;
   }
 
   function renderNavigation() {
@@ -321,8 +323,9 @@
     setText('[data-contact-title]', data.site.contact.title);
     setText('[data-contact-description]', data.site.contact.description);
     const email = $('[data-contact-email]');
-    email.href = `mailto:${data.site.contact.email}`;
-    email.innerHTML = `${escapeHTML(data.site.contact.email)} ${icon('arrow-up-right')}`;
+    email.dataset.copyEmail = data.site.contact.email;
+    email.setAttribute('aria-label', `Copy ${data.site.contact.email}`);
+    email.innerHTML = `${escapeHTML(data.site.contact.email)} ${icon('copy')}`;
     setText('[data-contact-location]', data.site.contact.location);
     setText('[data-footer]', data.site.footer);
     $('[data-social-links]').innerHTML = data.site.social.map((social) => (
@@ -480,6 +483,12 @@
         mountIcons();
       }
 
+      const copyEmail = event.target.closest('[data-copy-email]');
+      if (copyEmail) {
+        copyEmailToClipboard(copyEmail);
+        return;
+      }
+
       const navTarget = event.target.closest('.mobile-menu a[href^="#"]');
       if (navTarget) closeMenu();
     });
@@ -499,6 +508,46 @@
     });
 
     $('[data-theme-toggle]').addEventListener('click', toggleTheme);
+    window.setInterval(applyAutomaticTheme, 60 * 1000);
+  }
+
+  async function copyEmailToClipboard(button) {
+    const email = button.dataset.copyEmail;
+    if (!email) return;
+    let copied = false;
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(email);
+        copied = true;
+      }
+    } catch (_) {
+      copied = false;
+    }
+
+    if (!copied) {
+      const fallback = document.createElement('textarea');
+      fallback.value = email;
+      fallback.setAttribute('readonly', '');
+      fallback.style.position = 'fixed';
+      fallback.style.top = '-1000px';
+      document.body.appendChild(fallback);
+      fallback.select();
+      try { copied = document.execCommand('copy'); } catch (_) { copied = false; }
+      fallback.remove();
+    }
+
+    if (copied) {
+      button.innerHTML = `Email copied ${icon('check')}`;
+      button.classList.add('is-copied');
+      button.setAttribute('aria-label', 'Email copied');
+      mountIcons();
+      window.setTimeout(() => {
+        button.innerHTML = `${escapeHTML(email)} ${icon('copy')}`;
+        button.classList.remove('is-copied');
+        button.setAttribute('aria-label', `Copy ${email}`);
+        mountIcons();
+      }, 1800);
+    }
   }
 
   function openMenu() {
@@ -522,6 +571,11 @@
     mountIcons();
   }
 
+  function getAutomaticTheme() {
+    const hour = new Date().getHours();
+    return hour >= 7 && hour < 19 ? 'light' : 'dark';
+  }
+
   function applyTheme(theme) {
     document.body.dataset.theme = theme;
     const next = theme === 'dark' ? 'light' : 'dark';
@@ -529,18 +583,16 @@
     toggle.setAttribute('aria-label', `Switch to ${next} theme`);
     toggle.setAttribute('title', `Switch to ${next} theme`);
     toggle.innerHTML = icon(theme === 'dark' ? 'sun-medium' : 'moon');
-    try { localStorage.setItem('tomiabe-studio-theme', theme); } catch (_) { /* Storage can be unavailable. */ }
     mountIcons();
   }
 
   function toggleTheme() {
+    state.manualTheme = true;
     applyTheme(document.body.dataset.theme === 'dark' ? 'light' : 'dark');
   }
 
-  function restoreTheme() {
-    let saved = 'dark';
-    try { saved = localStorage.getItem('tomiabe-studio-theme') || saved; } catch (_) { /* Use the default theme. */ }
-    applyTheme(saved === 'light' ? 'light' : 'dark');
+  function applyAutomaticTheme() {
+    if (!state.manualTheme) applyTheme(getAutomaticTheme());
   }
 
   function observeNavigation() {
@@ -654,7 +706,7 @@
     renderPublicEngagements();
     renderTestimonials();
     renderContactAndFooter();
-    restoreTheme();
+    applyAutomaticTheme();
     mountIcons();
     bindInteractions();
     observeNavigation();

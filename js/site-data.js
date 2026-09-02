@@ -258,7 +258,7 @@ window.STUDIO_DATA = {
         "url": "https://github.com/tomiabe"
       }
     ],
-    "footer": "Tomi Abe Studio."
+    "footer": "Tomi Abe Studio"
   },
   "work": [
     {
