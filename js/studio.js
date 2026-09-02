@@ -113,9 +113,51 @@
   }
 
   function isDrawerItem(item, type) {
-    if (type === 'work') return item.drawer === true || (item.directLink !== true && !item.link);
+    if (type === 'work' || type === 'project') return true;
     if (type === 'signal') return item.directLink !== true;
     return Boolean(item.details?.length || item.content) && item.directLink !== true;
+  }
+
+  function itemDescription(item) {
+    return item.description || item.shortDescription || '';
+  }
+
+  function itemDestination(item) {
+    return item.link || item.destination || item.url || '';
+  }
+
+  function featuredImage(item) {
+    return item.featuredImage || item.image || '';
+  }
+
+  function cssCoverMarkup(item) {
+    if (!item.cssCover) return '';
+    const coverMeta = {
+      polish: { mark: ['UI', 'Score'], word: 'polish', symbol: '_' },
+      'substack-direct': { mark: ['Email', 'Browser'], word: 'Direct', symbol: '@' },
+      'substack-wp': { mark: ['WP', 'Block'], word: 'Plugin', symbol: 'WP' },
+      'wp-snippets': { mark: ['PHP', 'Snippets'], word: 'Library', symbol: '{}' }
+    };
+    const meta = coverMeta[item.cssCover] || { mark: ['Studio', 'Project'], word: item.id, symbol: '*' };
+    return `
+      <div class="drawer-cover-css css-cover-${escapeHTML(item.cssCover)}" role="img" aria-label="${escapeHTML(item.title)} featured image">
+        <div class="css-cover-grid" aria-hidden="true"></div>
+        <div class="css-cover-band css-cover-band-a" aria-hidden="true"></div>
+        <div class="css-cover-band css-cover-band-b" aria-hidden="true"></div>
+        <div class="css-cover-orbit css-cover-orbit-a" aria-hidden="true"></div>
+        <div class="css-cover-orbit css-cover-orbit-b" aria-hidden="true"></div>
+        <div class="css-cover-symbol" aria-hidden="true">${escapeHTML(meta.symbol)}</div>
+        <div class="css-cover-mark" aria-hidden="true"><span>${escapeHTML(meta.mark[0])}</span><span>${escapeHTML(meta.mark[1])}</span></div>
+        <div class="css-cover-word" aria-hidden="true">${escapeHTML(meta.word)}</div>
+      </div>`;
+  }
+
+  function featuredMediaMarkup(item) {
+    const image = featuredImage(item);
+    if (image) {
+      return `<div class="drawer-cover-image"><img src="${escapeHTML(image)}" alt="${escapeHTML(item.title)}" loading="lazy" referrerpolicy="no-referrer" /></div>`;
+    }
+    return cssCoverMarkup(item);
   }
 
   function workVisual(item) {
@@ -128,19 +170,15 @@
   function workCard(item, index) {
     const palette = workPalette[item.id] || workPalette.susinsight;
     const style = `--card-bg:${palette.bg};--card-accent:${palette.accent};--card-secondary:${palette.secondary};--work-icon:${palette.icon};--work-shader-one:${palette.accent};--work-shader-two:${palette.secondary};--card-text:${palette.text};--card-line:${palette.line};`;
-    const drawer = isDrawerItem(item, 'work');
-    const attributes = drawer
-      ? `href="#${escapeHTML(item.id)}" data-open-item="${escapeHTML(item.id)}" data-item-type="work"`
-      : `href="${escapeHTML(item.link)}" target="_blank" rel="noreferrer"`;
-    const action = drawer ? 'Read the engagement' : 'Visit project';
+    const attributes = `href="#${escapeHTML(item.id)}" data-open-item="${escapeHTML(item.id)}" data-item-type="work"`;
     return `
       <a class="work-card work-card--${escapeHTML(item.id)} ${index === 0 || index === 4 ? 'work-card--large' : ''} work-card--variant-${index % 5}" style="${style}" ${attributes}>
         ${workVisual(item)}
         <span class="work-card-content">
           <span class="work-card-meta"><span>${escapeHTML(item.year || '')}</span><span>${escapeHTML(item.role || itemCategories(item))}</span></span>
           <h3>${escapeHTML(item.title)}</h3>
-          <p>${escapeHTML(item.description || item.shortDescription || '')}</p>
-          <span class="card-action">${action} ${icon(drawer ? 'move-right' : 'arrow-up-right')}</span>
+          <p>${escapeHTML(itemDescription(item))}</p>
+          <span class="card-action">Open details ${icon('move-right')}</span>
         </span>
       </a>`;
   }
@@ -162,19 +200,15 @@
   }
 
   function projectCard(item) {
-    const drawer = isDrawerItem(item, 'project');
-    const attributes = drawer
-      ? `href="#${escapeHTML(item.id)}" data-open-item="${escapeHTML(item.id)}" data-item-type="project"`
-      : `href="${escapeHTML(item.link || '#')}" target="_blank" rel="noreferrer"`;
-    const action = drawer ? 'Open notes' : 'Visit project';
+    const attributes = `href="#${escapeHTML(item.id)}" data-open-item="${escapeHTML(item.id)}" data-item-type="project"`;
     return `
       <a class="project-card" ${attributes}>
         <span class="project-symbol" aria-hidden="true">${escapeHTML(projectSymbols[item.id] || item.title.slice(0, 1))}</span>
         <span>
           <h3>${escapeHTML(item.title)}</h3>
-          <p>${escapeHTML(item.description || item.shortDescription || '')}</p>
+          <p>${escapeHTML(itemDescription(item))}</p>
         </span>
-        <span class="project-card-footer"><span>${escapeHTML(item.year || itemCategories(item))}</span>${icon(drawer ? 'move-right' : 'arrow-up-right')}<span class="sr-only">${action}</span></span>
+        <span class="project-card-footer"><span>${escapeHTML(item.year || itemCategories(item))}</span>${icon('move-right')}<span class="sr-only">Open details</span></span>
       </a>`;
   }
 
@@ -417,9 +451,7 @@
     const categories = Array.isArray(item.categories) && item.categories.length
       ? `<div class="drawer-categories">${item.categories.map((category) => `<span>${escapeHTML(category)}</span>`).join('')}</div>`
       : '';
-    const cover = item.image
-      ? `<div class="drawer-cover-image"><img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}" loading="lazy" referrerpolicy="no-referrer" /></div>`
-      : '';
+    const cover = featuredMediaMarkup(item);
     const details = Array.isArray(item.details) ? item.details.map((detail) => `
       <article class="drawer-detail">
         <h3>${escapeHTML(detail.heading)}</h3>
@@ -427,11 +459,12 @@
         <p>${escapeHTML(detail.text || '')}</p>
       </article>`).join('') : '';
     const content = item.content ? `<div class="drawer-rich-content">${item.content}</div>` : '';
-    const cta = item.link ? `<a class="drawer-cta" href="${escapeHTML(item.link)}" target="_blank" rel="noreferrer">${escapeHTML(item.ctaLabel || 'Visit project')} ${icon('arrow-up-right')}</a>` : '';
+    const destination = itemDestination(item);
+    const cta = destination ? `<a class="drawer-cta" href="${escapeHTML(destination)}" target="_blank" rel="noreferrer">${escapeHTML(item.ctaLabel || 'Visit project')} ${icon('arrow-up-right')}</a>` : '';
     return `
       <div class="drawer-meta">${meta.map((entry) => `<span>${escapeHTML(entry)}</span>`).join('')}</div>
       <h2 id="drawer-title">${escapeHTML(item.title)}</h2>
-      <p class="drawer-lead">${escapeHTML(item.description || item.shortDescription || '')}</p>
+      <p class="drawer-lead">${escapeHTML(itemDescription(item))}</p>
       ${categories}
       ${cover}
       ${details ? `<div class="drawer-details">${details}</div>` : ''}
