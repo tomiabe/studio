@@ -242,6 +242,10 @@
       </article>`).join('');
     $('[data-profile-image]').src = data.site.profile.image;
     setText('[data-profile-title]', data.site.profile.title);
+    $('[data-profile-role]').innerHTML = [
+      data.site.identity?.founder,
+      data.site.profile.role
+    ].filter(Boolean).map(escapeHTML).join(' <span>/</span> ');
     $('[data-profile-body]').innerHTML = data.site.profile.body
       .split('\n\n')
       .map((paragraph) => `<p>${escapeHTML(paragraph)}</p>`)

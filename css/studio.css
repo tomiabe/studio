@@ -989,6 +989,11 @@ a {
   align-items: start;
 }
 
+.profile-identity {
+  display: grid;
+  gap: 1rem;
+}
+
 .profile-image-wrap {
   position: relative;
   overflow: hidden;
@@ -1019,9 +1024,20 @@ a {
 
 .profile-copy h3 {
   max-width: 14ch;
-  margin-bottom: 1.8rem;
+  margin-bottom: 0.9rem;
   font-size: var(--title-section);
   line-height: 0.98;
+}
+
+.profile-role {
+  margin-bottom: 0;
+  color: var(--text);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.profile-role span {
+  color: var(--muted);
 }
 
 .profile-copy div {

@@ -150,11 +150,12 @@ window.STUDIO_DATA = {
     "profile": {
       "image": "assets/media/tomi-profile-1.jpg",
       "title": "Tomi works where ideas need both direction and form.",
-      "body": "His work spans strategy, product design, brand systems, creative technology, data storytelling, and implementation. That range is intentional. Complex problems rarely arrive in a single discipline, so the practice is designed to connect the parts that are usually separated.\n\nAlongside client work, Tomi speaks, trains, and mentors on design, emerging technology, systems thinking, and responsible innovation."
+      "role": "Principal Consultant",
+      "body": "Tomi is a strategic creative and digital leader working across design, technology, media, research, and implementation. Over the past decade, he has worked with early-stage ventures, growth-stage companies, YC-backed startups, established institutions, and impact-driven organizations across emerging and established markets.\n\nThe range is intentional. Complex problems rarely arrive in one discipline, so the practice is built to connect strategy, product, brand, content, data, and code into systems people can understand, use, and carry forward.\n\nWith foundations in computer science, design, and creative technology, Tomi works across the full arc of a problem, from direction and framing through to execution and launch. Alongside client work, he speaks, trains, and mentors on emerging technology, systems thinking, creative practice, and responsible innovation."
     },
     "publicEngagements": {
-      "title": "Beyond client work.",
-      "description": "Tomi also shares practical knowledge through mentorship, talks, workshops, panels, and training for people and teams working through change.",
+      "title": "Speaking, workshops and mentorship.",
+      "description": "Tomi shares practical knowledge through talks, workshops, panels, training, and mentorship for people and teams working through change.",
       "items": [
         {
           "title": "MentorCruise",
@@ -163,7 +164,7 @@ window.STUDIO_DATA = {
           "description": "Ongoing global mentorship for designers moving toward senior and leadership roles.",
           "icon": "graduation-cap",
           "link": "https://mentorcruise.com/mentor/tomiabe/",
-          "ctaLabel": "Book a mentoring session"
+          "ctaLabel": "Book me on MentorCruise"
         },
         {
           "title": "Loblaw Digital",
