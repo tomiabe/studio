@@ -170,7 +170,11 @@
   function workCard(item, index) {
     const palette = workPalette[item.id] || workPalette.susinsight;
     const style = `--card-bg:${palette.bg};--card-accent:${palette.accent};--card-secondary:${palette.secondary};--work-icon:${palette.icon};--work-shader-one:${palette.accent};--work-shader-two:${palette.secondary};--card-text:${palette.text};--card-line:${palette.line};`;
-    const attributes = `href="#${escapeHTML(item.id)}" data-open-item="${escapeHTML(item.id)}" data-item-type="work"`;
+    const direct = Boolean(item.page);
+    const attributes = direct
+      ? `href="${escapeHTML(item.page)}"`
+      : `href="#${escapeHTML(item.id)}" data-open-item="${escapeHTML(item.id)}" data-item-type="work"`;
+    const action = direct ? 'Read case study' : 'Open details';
     return `
       <a class="work-card work-card--${escapeHTML(item.id)} ${index === 0 || index === 4 ? 'work-card--large' : ''} work-card--variant-${index % 5}" style="${style}" ${attributes}>
         ${workVisual(item)}
@@ -178,7 +182,7 @@
           <span class="work-card-meta"><span>${escapeHTML(item.year || '')}</span><span>${escapeHTML(item.role || itemCategories(item))}</span></span>
           <h3>${escapeHTML(item.title)}</h3>
           <p>${escapeHTML(itemDescription(item))}</p>
-          <span class="card-action">Open details ${icon('move-right')}</span>
+          <span class="card-action">${action} ${icon('move-right')}</span>
         </span>
       </a>`;
   }
