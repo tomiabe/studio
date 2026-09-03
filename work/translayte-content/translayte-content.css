@@ -320,10 +320,6 @@
   line-height: 0.8;
 }
 
-.type-specimen span {
-  white-space: nowrap;
-}
-
 .system-card-colour {
   grid-column: span 3;
 }
