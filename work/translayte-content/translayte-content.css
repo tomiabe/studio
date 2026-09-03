@@ -277,6 +277,10 @@
   color: #4d5c5d;
 }
 
+.creative-light .creative-section-heading h2 {
+  color: var(--translayte-ink);
+}
+
 .system-grid {
   grid-template-columns: repeat(6, minmax(0, 1fr));
   background: rgba(0, 48, 63, 0.22);
@@ -293,6 +297,31 @@
 .system-card .creative-icon {
   border-color: rgba(0, 48, 63, 0.45);
   color: var(--translayte-ink);
+}
+
+.type-specimen {
+  display: grid;
+  gap: 0.3rem;
+  margin-top: 1.8rem;
+  color: var(--translayte-ink);
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  overflow: hidden;
+}
+
+.type-specimen strong {
+  margin-bottom: 0.25rem;
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 400;
+  letter-spacing: -0.08em;
+  line-height: 0.8;
+}
+
+.type-specimen span {
+  white-space: nowrap;
 }
 
 .system-card-colour {

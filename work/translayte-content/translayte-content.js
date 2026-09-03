@@ -4,13 +4,34 @@
   const $ = (selector, scope = document) => scope.querySelector(selector);
   const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
 
+  const sequence = (round, day, files) => files.map((file) => ({ file, round, day }));
   const assets = [
-    ...Array.from({ length: 12 }, (_, index) => ({ file: `friday-${String(index + 1).padStart(2, "0")}.jpg`, round: "round-1", day: "friday" })),
-    ...Array.from({ length: 19 }, (_, index) => ({ file: `monday-${String(index + 13).padStart(2, "0")}.jpg`, round: "round-1", day: "monday" })),
-    ...Array.from({ length: 7 }, (_, index) => ({ file: `wednesday-video-designs-${String(index + 32).padStart(2, "0")}.jpg`, round: "round-1", day: "wednesday" })),
-    ...Array.from({ length: 5 }, (_, index) => ({ file: `friday-${String(index + 1).padStart(2, "0")}.jpg`, round: "round-2", day: "friday" })),
-    ...Array.from({ length: 7 }, (_, index) => ({ file: `monday-${String(index + 6).padStart(2, "0")}.jpg`, round: "round-2", day: "monday" })),
-    ...Array.from({ length: 4 }, (_, index) => ({ file: `wednesday-${String(index + 13).padStart(2, "0")}.jpg`, round: "round-2", day: "wednesday" }))
+    ...sequence("round-1", "monday", [
+      "monday-13.jpg", "monday-24.jpg", "monday-25.jpg", "monday-26.jpg", "monday-27.jpg",
+      "monday-28.jpg", "monday-29.jpg", "monday-30.jpg", "monday-31.jpg", "monday-14.jpg",
+      "monday-15.jpg", "monday-16.jpg", "monday-17.jpg", "monday-18.jpg", "monday-19.jpg",
+      "monday-20.jpg", "monday-21.jpg", "monday-22.jpg", "monday-23.jpg"
+    ]),
+    ...sequence("round-1", "wednesday", [
+      "wednesday-video-designs-32.jpg", "wednesday-video-designs-33.jpg", "wednesday-video-designs-34.jpg",
+      "wednesday-video-designs-35.jpg", "wednesday-video-designs-36.jpg", "wednesday-video-designs-37.jpg",
+      "wednesday-video-designs-38.jpg"
+    ]),
+    ...sequence("round-1", "friday", [
+      "friday-01.jpg", "friday-05.jpg", "friday-02.jpg", "friday-06.jpg", "friday-07.jpg",
+      "friday-08.jpg", "friday-09.jpg", "friday-10.jpg", "friday-11.jpg", "friday-12.jpg",
+      "friday-04.jpg", "friday-03.jpg"
+    ]),
+    ...sequence("round-2", "monday", [
+      "monday-06.jpg", "monday-07.jpg", "monday-08.jpg", "monday-09.jpg", "monday-10.jpg",
+      "monday-11.jpg", "monday-12.jpg"
+    ]),
+    ...sequence("round-2", "wednesday", [
+      "wednesday-15.jpg", "wednesday-16.jpg", "wednesday-13.jpg", "wednesday-14.jpg"
+    ]),
+    ...sequence("round-2", "friday", [
+      "friday-04.jpg", "friday-01.jpg", "friday-05.jpg", "friday-02.jpg", "friday-03.jpg"
+    ])
   ];
 
   const gallery = $("[data-asset-gallery]");
