@@ -1,5 +1,7 @@
 :root {
   --translayte-ink: #00303f;
+  --translayte-blue: #277b9c;
+  --translayte-coral: #d87860;
   --translayte-gold: #dcae1d;
   --translayte-silver: #d9dede;
   --translayte-paper: #f8f8f8;
@@ -482,20 +484,20 @@
 }
 
 .measurement-section {
-  background: var(--translayte-paper);
-  color: var(--translayte-ink);
+  background: var(--surface);
+  color: var(--text);
 }
 
 .measurement-section .case-section-heading > p {
-  color: #636b6f;
+  color: var(--muted);
 }
 
 .measurement-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
-  border: 1px solid rgba(0, 48, 63, 0.25);
-  background: rgba(0, 48, 63, 0.25);
+  border: 1px solid var(--line);
+  background: var(--line);
 }
 
 .measurement-grid article {
@@ -503,7 +505,7 @@
   padding: clamp(1.4rem, 3vw, 2.3rem);
   display: flex;
   flex-direction: column;
-  background: var(--translayte-paper);
+  background: var(--page);
 }
 
 .measurement-grid article + article {
@@ -524,7 +526,7 @@
   height: 2.6rem;
   flex: 0 0 auto;
   place-items: center;
-  border: 1px solid rgba(0, 48, 63, 0.3);
+  border: 1px solid var(--line-strong);
   color: var(--translayte-gold);
 }
 
@@ -546,9 +548,17 @@
 .measurement-grid p {
   margin: auto 0 0;
   padding-top: 2.5rem;
-  color: #636b6f;
+  color: var(--muted);
   font-size: var(--text-base);
   line-height: 1.6;
+}
+
+.measurement-grid article:nth-child(2) .measurement-icon {
+  color: var(--translayte-blue);
+}
+
+.measurement-grid article:nth-child(4) .measurement-icon {
+  color: var(--translayte-coral);
 }
 
 .case-closing {

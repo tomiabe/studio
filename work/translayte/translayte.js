@@ -8,37 +8,37 @@
     free: {
       position: "Acquisition",
       title: "Make the first task useful",
-      copy: "A free automatic translation reduces the commitment needed to try the product. Language selection, file guidance, and privacy reassurance help customers begin with fewer unanswered questions.",
+      copy: "The free document translation experience lowers the commitment needed to try Translayte. Clear file guidance, language selection, and privacy reassurance help new customers begin with fewer unanswered questions.",
       signal: "Document uploaded",
-      measure: "Upload completion"
+      measure: "Upload completed"
     },
     quote: {
       position: "Activation",
       title: "Show value before asking for an account",
       copy: "The quote confirms the detected language, document type, word count, delivery expectation, and price. Registration follows this useful result, so the customer understands why an account is needed.",
       signal: "Quote reviewed",
-      measure: "Quote to account conversion"
+      measure: "Account created after quote"
     },
     limit: {
       position: "Conversion",
       title: "Turn a limit into a recoverable decision",
-      copy: "When the free allowance ends, the completed translation stays saved. Customers can buy the exact remaining words or compare an annual plan without losing the progress they already made.",
+      copy: "When the included free allowance ends, the completed translation stays saved. Customers can buy the exact remaining words or compare an annual plan without losing the progress they already made.",
       signal: "Free allowance reached",
-      measure: "Paid continuation rate"
+      measure: "Paid continuation"
     },
     review: {
       position: "Expansion",
       title: "Offer confidence when the document creates risk",
       copy: "Human review appears after the automatic result. The product explains the difference between proofreading, professional review, and specialist review using accuracy, context, delivery time, and intended use.",
       signal: "Translation completed",
-      measure: "Review attachment rate"
+      measure: "Review selected"
     },
     return: {
       position: "Retention",
       title: "Give customers a reason to come back",
       copy: "The document workspace makes finished translations, incomplete work, review status, and available credits easy to find. A one-time task becomes a service customers can return to with confidence.",
       signal: "Document saved",
-      measure: "Repeat translation rate"
+      measure: "Returning document opened"
     }
   };
 
