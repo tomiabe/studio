@@ -1,6 +1,5 @@
 :root {
   --translayte-ink: #00303f;
-  --translayte-blue: #277b9c;
   --translayte-coral: #d87860;
   --translayte-gold: #dcae1d;
   --translayte-silver: #d9dede;
@@ -546,7 +545,7 @@
 }
 
 .measurement-grid p {
-  margin: auto 0 0;
+  margin: 0;
   padding-top: 2.5rem;
   color: var(--muted);
   font-size: var(--text-base);
@@ -554,11 +553,19 @@
 }
 
 .measurement-grid article:nth-child(2) .measurement-icon {
-  color: var(--translayte-blue);
+  color: var(--translayte-gold);
+}
+
+.measurement-grid article:nth-child(2) .measurement-icon svg {
+  stroke: var(--translayte-gold);
 }
 
 .measurement-grid article:nth-child(4) .measurement-icon {
   color: var(--translayte-coral);
+}
+
+.measurement-grid article:nth-child(4) .measurement-icon svg {
+  stroke: var(--translayte-coral);
 }
 
 .case-closing {
@@ -655,13 +662,13 @@
   .measurement-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1px;
-    background: rgba(0, 48, 63, 0.25);
+    background: var(--line);
   }
 
   .measurement-grid article,
   .measurement-grid article + article {
     border: 0;
-    background: var(--translayte-paper);
+    background: var(--page);
   }
 
   .measurement-grid article:last-child {
@@ -826,7 +833,7 @@
   }
 
   .measurement-grid p {
-    padding-top: 2rem;
+    padding-top: 2.5rem;
   }
 }
 
