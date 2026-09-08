@@ -1,27 +1,37 @@
 const images = {
-  phone: 'assets/figma-source/smartphones.png',
-  tablet: 'assets/figma-source/tablets.png',
-  laptop: 'https://storage.googleapis.com/ezetradein-gs-cld/Product%20Images/Category%20Logo/Laptop%20and%20Desktop%20category%20Enterprise',
-  watch: 'assets/figma-source/smartwatches.png',
-  accessory: 'assets/figma-source/accessories.png'
+  iphone11Pro: 'https://wallpapers.com/images/hd/iphone-11-pro-midnight-green-png-61-yl7dgfsyqq9vtp46.png',
+  iphoneXr: 'https://www.pngall.com/wp-content/uploads/15/iPhone-Xr-Transparent.png',
+  iphone12ProMax: 'https://thedevicedepot.com/cdn/shop/products/apple-iphone-12-pro-max-graphite.png?v=1712768063&width=1200',
+  iphone11: 'https://pngimg.com/uploads/iphone_11/iphone_11_PNG20.png',
+  galaxyS21: 'https://t-mobile.scene7.com/is/image/Tmusprod/fg-samsung_galaxy_s21-5G-phantom-gray-nologo-5%3A1-to-1-ratio?dpr=off&fmt=png-alpha&ts=1678466226752',
+  ipadPro: 'https://www.vhv.rs/dpng/d/459-4597581_ipad-pro-12-9-hd-png-download.png',
+  ipadAir: 'https://www.pngkey.com/png/full/516-5167430_ipad-air-gold.png',
+  macbookAir: 'https://www.mpstore.ro/media/photos/2022/04/20/123075-80049-13-1.png',
+  appleWatchSeries6: 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6139/6139702_sd.jpg',
+  appleWatchSe: 'https://i5.walmartimages.com/seo/Apple-Watch-SE-GPS-40mm-Silver-Aluminum-Case-with-White-Sport-Band-Regular_0b7a1711-e07a-4a36-9e12-64b2861a1121.aeefe874266e2acfcb1c7af9fe685edf.jpeg',
+  galaxyWatch4: 'https://cdn.mafrservices.com/sys-master-root/h2b/ha1/16780689113118/1825527_main.jpg',
+  airpodsPro: 'https://pngdownload.io/wp-content/uploads/2025/07/AirPods-Pro-2-Wireless-Earbuds-PNG.webp',
+  applePencil: 'https://www.kindpng.com/picc/m/663-6634679_apple-pencil-2-transparent-hd-png-download.png',
+  powercore: 'https://cdn.shopify.com/s/files/1/0595/4034/0926/products/A1263021.jpg?v=1654744958',
+  airpods3: 'https://mdriveasia.com/cdn/shop/products/AirPods_3rd-Gen_Hero_Screen__USEN_1024x1024.png?v=1659006848'
 };
 
 const products = [
-  { id: 1, name: 'iPhone 11 Pro', details: '64GB · Unlocked · Midnight Green', category: 'Mobile Devices', grade: 'A1', carrier: 'Unlocked', storage: '64GB', price: 480, quantity: 71, image: images.phone },
-  { id: 2, name: 'iPhone XR', details: '128GB · Unlocked · Black', category: 'Mobile Devices', grade: 'A2', carrier: 'Unlocked', storage: '128GB', price: 350, quantity: 92, image: images.phone },
-  { id: 3, name: 'iPhone 12 Pro Max', details: '256GB · Unlocked · Graphite', category: 'Mobile Devices', grade: 'A1', carrier: 'Unlocked', storage: '256GB', price: 610, quantity: 34, image: images.phone },
-  { id: 4, name: 'iPhone 11', details: '128GB · Verizon · Purple', category: 'Mobile Devices', grade: 'B1', carrier: 'Verizon', storage: '128GB', price: 295, quantity: 118, image: images.phone },
-  { id: 5, name: 'Samsung Galaxy S21', details: '128GB · Unlocked · Phantom Gray', category: 'Mobile Devices', grade: 'A2', carrier: 'Unlocked', storage: '128GB', price: 395, quantity: 64, image: images.phone },
-  { id: 6, name: 'iPad Pro 12.9 inch', details: '256GB · WiFi · Space Gray', category: 'Tablets', grade: 'A1', carrier: 'WiFi', storage: '256GB', price: 535, quantity: 24, image: images.tablet },
-  { id: 7, name: 'iPad Air', details: '64GB · WiFi · Gold', category: 'Tablets', grade: 'B1', carrier: 'WiFi', storage: '64GB', price: 325, quantity: 41, image: images.tablet },
-  { id: 8, name: 'MacBook Air', details: '256GB · M1 · Space Gray', category: 'Laptops', grade: 'A2', carrier: 'N/A', storage: '256GB', price: 590, quantity: 16, image: images.laptop },
-  { id: 9, name: 'Apple Watch Series 6', details: '44mm · GPS · Space Gray', category: 'Smartwatches', grade: 'A1', carrier: 'N/A', storage: '32GB', price: 235, quantity: 43, image: images.watch },
-  { id: 10, name: 'Apple Watch SE', details: '40mm · GPS · Silver', category: 'Smartwatches', grade: 'A2', carrier: 'N/A', storage: '32GB', price: 180, quantity: 57, image: images.watch },
-  { id: 11, name: 'Samsung Galaxy Watch 4', details: '40mm · GPS · Black', category: 'Smartwatches', grade: 'A2', carrier: 'Unlocked', storage: '16GB', price: 165, quantity: 72, image: images.watch },
-  { id: 12, name: 'AirPods Pro', details: '2nd Generation · White', category: 'Accessories', grade: 'A1', carrier: 'Bluetooth', storage: 'N/A', price: 155, quantity: 86, image: images.accessory },
-  { id: 13, name: 'Apple Pencil', details: '2nd Generation · White', category: 'Accessories', grade: 'A1', carrier: 'Bluetooth', storage: 'N/A', price: 64, quantity: 120, image: images.accessory },
-  { id: 14, name: 'Anker PowerCore 10000', details: '10000mAh · White', category: 'Accessories', grade: 'A1', carrier: 'N/A', storage: 'N/A', price: 42, quantity: 200, image: images.accessory },
-  { id: 15, name: 'AirPods 3rd Generation', details: 'White · Lightning Case', category: 'Accessories', grade: 'A2', carrier: 'Bluetooth', storage: 'N/A', price: 120, quantity: 99, image: images.accessory }
+  { id: 1, name: 'iPhone 11 Pro', details: '64GB · Unlocked · Midnight Green', category: 'Mobile Devices', grade: 'A1', carrier: 'Unlocked', storage: '64GB', price: 480, quantity: 71, image: images.iphone11Pro },
+  { id: 2, name: 'iPhone XR', details: '128GB · Unlocked · Black', category: 'Mobile Devices', grade: 'A2', carrier: 'Unlocked', storage: '128GB', price: 350, quantity: 92, image: images.iphoneXr },
+  { id: 3, name: 'iPhone 12 Pro Max', details: '256GB · Unlocked · Graphite', category: 'Mobile Devices', grade: 'A1', carrier: 'Unlocked', storage: '256GB', price: 610, quantity: 34, image: images.iphone12ProMax },
+  { id: 4, name: 'iPhone 11', details: '128GB · Verizon · Purple', category: 'Mobile Devices', grade: 'B1', carrier: 'Verizon', storage: '128GB', price: 295, quantity: 118, image: images.iphone11 },
+  { id: 5, name: 'Samsung Galaxy S21', details: '128GB · Unlocked · Phantom Gray', category: 'Mobile Devices', grade: 'A2', carrier: 'Unlocked', storage: '128GB', price: 395, quantity: 64, image: images.galaxyS21 },
+  { id: 6, name: 'iPad Pro 12.9 inch', details: '256GB · WiFi · Space Gray', category: 'Tablets', grade: 'A1', carrier: 'WiFi', storage: '256GB', price: 535, quantity: 24, image: images.ipadPro },
+  { id: 7, name: 'iPad Air', details: '64GB · WiFi · Gold', category: 'Tablets', grade: 'B1', carrier: 'WiFi', storage: '64GB', price: 325, quantity: 41, image: images.ipadAir },
+  { id: 8, name: 'MacBook Air', details: '256GB · M1 · Space Gray', category: 'Laptops', grade: 'A2', carrier: 'N/A', storage: '256GB', price: 590, quantity: 16, image: images.macbookAir },
+  { id: 9, name: 'Apple Watch Series 6', details: '44mm · GPS · Space Gray', category: 'Smartwatches', grade: 'A1', carrier: 'N/A', storage: '32GB', price: 235, quantity: 43, image: images.appleWatchSeries6 },
+  { id: 10, name: 'Apple Watch SE', details: '40mm · GPS · Silver', category: 'Smartwatches', grade: 'A2', carrier: 'N/A', storage: '32GB', price: 180, quantity: 57, image: images.appleWatchSe },
+  { id: 11, name: 'Samsung Galaxy Watch 4', details: '40mm · GPS · Black', category: 'Smartwatches', grade: 'A2', carrier: 'Unlocked', storage: '16GB', price: 165, quantity: 72, image: images.galaxyWatch4 },
+  { id: 12, name: 'AirPods Pro', details: '2nd Generation · White', category: 'Accessories', grade: 'A1', carrier: 'Bluetooth', storage: 'N/A', price: 155, quantity: 86, image: images.airpodsPro },
+  { id: 13, name: 'Apple Pencil', details: '2nd Generation · White', category: 'Accessories', grade: 'A1', carrier: 'Bluetooth', storage: 'N/A', price: 64, quantity: 120, image: images.applePencil },
+  { id: 14, name: 'Anker PowerCore 10000', details: '10000mAh · White', category: 'Accessories', grade: 'A1', carrier: 'N/A', storage: 'N/A', price: 42, quantity: 200, image: images.powercore },
+  { id: 15, name: 'AirPods 3rd Generation', details: 'White · Lightning Case', category: 'Accessories', grade: 'A2', carrier: 'Bluetooth', storage: 'N/A', price: 120, quantity: 99, image: images.airpods3 }
 ];
 
 const categories = [
