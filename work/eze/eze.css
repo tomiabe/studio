@@ -478,7 +478,11 @@
 }
 
 .impact-grid article:nth-child(4) {
-  grid-column: 2 / span 2;
+  grid-column: span 3;
+}
+
+.impact-grid article:nth-child(5) {
+  grid-column: span 3;
 }
 
 .impact-grid h3 {
@@ -490,8 +494,8 @@
 }
 
 .impact-grid p {
-  margin: auto 0 0;
-  padding-top: 1.6rem;
+  margin: 1rem 0 0;
+  padding-top: 0;
   color: rgba(255, 255, 255, 0.78);
   font-size: var(--text-sm);
   line-height: 1.56;
@@ -629,7 +633,8 @@
   }
 
   .impact-grid article,
-  .impact-grid article:nth-child(4) {
+  .impact-grid article:nth-child(4),
+  .impact-grid article:nth-child(5) {
     grid-column: auto;
     min-height: 14rem;
   }
@@ -726,6 +731,7 @@
 
   .impact-grid article,
   .impact-grid article:nth-child(4),
+  .impact-grid article:nth-child(5),
   .impact-grid article:last-child {
     min-height: 12rem;
     grid-column: auto;

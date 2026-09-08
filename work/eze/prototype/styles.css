@@ -809,7 +809,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
   .site-search { order: 3; width: 100%; flex-basis: 100%; }
   .plain-action span:not(.account-notification-dot) { display: none; }
   .account-actions { margin-left: auto; }
-  .nav-row { min-height: 42px; justify-content: flex-end; overflow: visible; padding-right: 20px; padding-left: 20px; }
+  .nav-row { position: static; min-height: 0; display: block; border-top: 0; padding: 0; }
   .nav-row nav { position: absolute; z-index: 35; top: 100%; right: 20px; left: 20px; display: none; min-width: 0; padding: 7px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: 0 10px 24px rgba(29, 35, 42, .14); }
   .site-header.is-mobile-nav-open .nav-row nav { display: grid; }
   .nav-row nav button { width: 100%; min-height: 37px; height: auto; padding: 0 10px; font-size: 11px; text-align: left; white-space: normal; }

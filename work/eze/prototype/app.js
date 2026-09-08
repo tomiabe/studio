@@ -577,34 +577,6 @@ function setMobileNav(open) {
   toggle.setAttribute('aria-expanded', String(open));
 }
 
-function forwardEmbeddedScroll() {
-  if (window.parent === window) return;
-  const send = deltaY => window.parent.postMessage({ source: 'eze-prototype', type: 'scroll-parent', deltaY }, '*');
-  let touchY = null;
-
-  document.addEventListener('wheel', event => {
-    if (event.ctrlKey) return;
-    send(event.deltaY);
-    event.preventDefault();
-  }, { passive: false });
-
-  document.addEventListener('touchstart', event => {
-    touchY = event.touches[0]?.clientY ?? null;
-  }, { passive: true });
-
-  document.addEventListener('touchmove', event => {
-    const nextY = event.touches[0]?.clientY;
-    if (touchY === null || nextY === undefined) return;
-    const deltaY = touchY - nextY;
-    if (Math.abs(deltaY) < 1) return;
-    send(deltaY);
-    touchY = nextY;
-    event.preventDefault();
-  }, { passive: false });
-
-  document.addEventListener('touchend', () => { touchY = null; }, { passive: true });
-}
-
 document.addEventListener('click', event => {
   const mobileNavToggle = event.target.closest('[data-mobile-nav-toggle]');
   if (mobileNavToggle) {
@@ -841,4 +813,3 @@ document.addEventListener('keydown', event => {
 initialiseCaseStudyScreen();
 render();
 renderDrawer();
-forwardEmbeddedScroll();

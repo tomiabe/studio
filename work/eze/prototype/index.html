@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
-    <link rel="stylesheet" href="styles.css?v=20260908-case-study-refinements" />
+    <link rel="stylesheet" href="styles.css?v=20260908-menu-and-scroll-refinements" />
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to inventory</a>
@@ -17,13 +17,13 @@
       <div class="main-header">
         <button class="brand" data-go-shop aria-label="Eze shop"><img src="assets/eze-logo.svg" alt="Eze" /></button>
         <label class="site-search"><i class="ph ph-magnifying-glass"></i><input id="site-search" type="search" placeholder="Search devices, brands, storage..." autocomplete="off" /></label>
-        <div class="account-actions"><button class="plain-action" id="watchlist-button"><i class="ph ph-heart"></i><span>Watchlist</span><b id="watchlist-count" hidden>0</b></button><button class="plain-action account-action" id="account-button"><i class="ph ph-user-circle"></i><span>Account</span><span class="account-notification-dot" id="account-notification" aria-label="A matched Buy Request needs payment" hidden></span></button><button class="cart-action" id="cart-button"><i class="ph ph-shopping-cart"></i><span>Cart</span><b id="cart-count">0</b></button></div>
+        <div class="account-actions"><button class="plain-action" id="watchlist-button"><i class="ph ph-heart"></i><span>Watchlist</span><b id="watchlist-count" hidden>0</b></button><button class="plain-action account-action" id="account-button"><i class="ph ph-user-circle"></i><span>Account</span><span class="account-notification-dot" id="account-notification" aria-label="A matched Buy Request needs payment" hidden></span></button><button class="cart-action" id="cart-button"><i class="ph ph-shopping-cart"></i><span>Cart</span><b id="cart-count">0</b></button><button class="mobile-nav-toggle" type="button" data-mobile-nav-toggle aria-expanded="false" aria-controls="global-nav"><i class="ph ph-list" aria-hidden="true"></i><span>Menu</span></button></div>
       </div>
-      <div class="nav-row"><nav id="global-nav" aria-label="Primary"><button class="nav-shop" data-go-shop>Shop</button><button>How it works</button><button>Market data</button><button>Resources</button><button>Grading process</button><button>Help</button><button>Contact us</button><button class="mobile-sell-link" data-sell-interest>Sell on Eze</button></nav><button class="sell-button" data-sell-interest>Sell on Eze</button><button class="mobile-nav-toggle" type="button" data-mobile-nav-toggle aria-expanded="false" aria-controls="global-nav"><i class="ph ph-list" aria-hidden="true"></i><span>Menu</span></button></div>
+      <div class="nav-row"><nav id="global-nav" aria-label="Primary"><button class="nav-shop" data-go-shop>Shop</button><button>How it works</button><button>Market data</button><button>Resources</button><button>Grading process</button><button>Help</button><button>Contact us</button><button class="mobile-sell-link" data-sell-interest>Sell on Eze</button></nav><button class="sell-button" data-sell-interest>Sell on Eze</button></div>
     </header>
     <main id="content"></main>
     <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping cart" aria-hidden="true"></aside>
     <div id="toast" role="status" aria-live="polite"></div>
-    <script src="app.js?v=20260908-case-study-refinements"></script>
+    <script src="app.js?v=20260908-menu-and-scroll-refinements"></script>
   </body>
 </html>
