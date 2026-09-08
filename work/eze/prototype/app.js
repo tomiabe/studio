@@ -4,14 +4,14 @@ const images = {
   iphone12ProMax: 'https://thedevicedepot.com/cdn/shop/products/apple-iphone-12-pro-max-graphite.png?v=1712768063&width=1200',
   iphone11: 'https://pngimg.com/uploads/iphone_11/iphone_11_PNG20.png',
   galaxyS21: 'https://t-mobile.scene7.com/is/image/Tmusprod/fg-samsung_galaxy_s21-5G-phantom-gray-nologo-5%3A1-to-1-ratio?dpr=off&fmt=png-alpha&ts=1678466226752',
-  ipadPro: 'https://www.vhv.rs/dpng/d/459-4597581_ipad-pro-12-9-hd-png-download.png',
+  ipadPro: 'assets/products/ipad-pro-12-9.png',
   ipadAir: 'https://www.pngkey.com/png/full/516-5167430_ipad-air-gold.png',
   macbookAir: 'https://www.mpstore.ro/media/photos/2022/04/20/123075-80049-13-1.png',
   appleWatchSeries6: 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6139/6139702_sd.jpg',
   appleWatchSe: 'https://i5.walmartimages.com/seo/Apple-Watch-SE-GPS-40mm-Silver-Aluminum-Case-with-White-Sport-Band-Regular_0b7a1711-e07a-4a36-9e12-64b2861a1121.aeefe874266e2acfcb1c7af9fe685edf.jpeg',
   galaxyWatch4: 'https://cdn.mafrservices.com/sys-master-root/h2b/ha1/16780689113118/1825527_main.jpg',
-  airpodsPro: 'https://pngdownload.io/wp-content/uploads/2025/07/AirPods-Pro-2-Wireless-Earbuds-PNG.webp',
-  applePencil: 'https://www.kindpng.com/picc/m/663-6634679_apple-pencil-2-transparent-hd-png-download.png',
+  airpodsPro: 'assets/products/airpods-pro.png',
+  applePencil: 'assets/products/apple-pencil.png',
   powercore: 'https://cdn.shopify.com/s/files/1/0595/4034/0926/products/A1263021.jpg?v=1654744958',
   airpods3: 'https://mdriveasia.com/cdn/shop/products/AirPods_3rd-Gen_Hero_Screen__USEN_1024x1024.png?v=1659006848'
 };
