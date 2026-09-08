@@ -612,6 +612,7 @@ a {
 .work-card--translayte .work-icon-stack { top: 16%; right: 9%; }
 .work-card--fairbnb .work-icon-stack { top: 10%; right: 12%; }
 .work-card--eze .work-icon-stack { top: 11%; }
+.work-card--eze-identity .work-icon-stack { top: 11%; right: 11%; }
 .work-card--culerson .work-icon-stack { top: 15%; right: 11%; }
 
 .work-card--wecollect .work-icon:nth-child(2),

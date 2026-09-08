@@ -21,6 +21,7 @@
     translayte: { bg: '#00303f', accent: '#dcae1d', secondary: '#d9dede', icon: '#dcae1d', text: '#ffffff', line: 'rgba(255,255,255,.22)' },
     fairbnb: { bg: '#3aaa35', accent: '#257f25', secondary: '#d6d6d6', icon: '#d6d6d6', text: '#ffffff', line: 'rgba(255,255,255,.24)' },
     eze: { bg: '#1676f3', accent: '#ffeee3', secondary: '#001a3b', icon: '#ffeee3', text: '#ffffff', line: 'rgba(255,255,255,.3)' },
+    'eze-identity': { bg: '#1b7ce3', accent: '#ffffff', secondary: '#15202b', icon: '#ffffff', text: '#ffffff', line: 'rgba(255,255,255,.3)' },
     culerson: { bg: '#000000', accent: '#f2c94c', secondary: '#2b2c28', icon: '#f2c94c', text: '#f7f7f7', line: 'rgba(247,247,247,.22)' }
   };
 
@@ -31,6 +32,7 @@
     translayte: ['languages', 'file-check-2'],
     fairbnb: ['house', 'leaf'],
     eze: ['cpu', 'shopping-bag'],
+    'eze-identity': ['repeat-2', 'badge-check'],
     culerson: ['zap', 'building-2']
   };
 

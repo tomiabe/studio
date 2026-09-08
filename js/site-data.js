@@ -495,6 +495,21 @@ window.STUDIO_DATA = {
       "description": "Building and leading an in-house design function for a YC-backed B2B marketplace, unifying interfaces, journeys, and brand for global electronics trade.",
       "link": "https://ezewholesale.com",
       "page": "/work/eze/"
+    },
+    {
+      "id": "eze-identity",
+      "title": "Eze Visual Identity",
+      "categories": [
+        "Brand"
+      ],
+      "shortDescription": "Visual identity for a global electronics marketplace",
+      "role": "Brand & Product Design Lead",
+      "order": 7,
+      "year": "2020-2021",
+      "image": "/images/work/Eze.jpg",
+      "description": "Creating an identity system around value exchange, trust, and repeatable use across a global B2B electronics marketplace.",
+      "link": "https://ezewholesale.com",
+      "page": "/work/eze-identity/"
     }
   ],
   "projects": [
