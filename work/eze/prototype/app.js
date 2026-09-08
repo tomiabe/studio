@@ -569,7 +569,49 @@ function renderDrawer() {
   drawer.innerHTML = `<header><h2>Your cart</h2><button id="close-cart" aria-label="Close cart"><i class="ph ph-x"></i></button></header><div class="cart-items">${state.cart.length ? state.cart.map(item => `<article class="cart-item"><img src="${item.product.image}" alt="${item.product.name}" /><div><strong>${item.product.name}</strong><span>${item.quantity} unit${item.quantity > 1 ? 's' : ''} · ${money(item.product.price)}</span></div><button data-remove="${item.product.id}" aria-label="Remove ${item.product.name}"><i class="ph ph-trash"></i></button></article>`).join('') : '<p class="empty-cart">Your cart is empty.</p>'}</div>${state.cart.length ? `<div class="cart-summary"><div><span>Subtotal</span><strong>${money(total)}</strong></div><div><span>Shipping</span><span>Calculated at checkout</span></div><button class="checkout-button" data-go-cart>Proceed to checkout</button></div>` : ''}`;
 }
 
+function setMobileNav(open) {
+  const header = document.querySelector('.site-header');
+  const toggle = document.querySelector('[data-mobile-nav-toggle]');
+  if (!header || !toggle) return;
+  header.classList.toggle('is-mobile-nav-open', open);
+  toggle.setAttribute('aria-expanded', String(open));
+}
+
+function forwardEmbeddedScroll() {
+  if (window.parent === window) return;
+  const send = deltaY => window.parent.postMessage({ source: 'eze-prototype', type: 'scroll-parent', deltaY }, '*');
+  let touchY = null;
+
+  document.addEventListener('wheel', event => {
+    if (event.ctrlKey) return;
+    send(event.deltaY);
+    event.preventDefault();
+  }, { passive: false });
+
+  document.addEventListener('touchstart', event => {
+    touchY = event.touches[0]?.clientY ?? null;
+  }, { passive: true });
+
+  document.addEventListener('touchmove', event => {
+    const nextY = event.touches[0]?.clientY;
+    if (touchY === null || nextY === undefined) return;
+    const deltaY = touchY - nextY;
+    if (Math.abs(deltaY) < 1) return;
+    send(deltaY);
+    touchY = nextY;
+    event.preventDefault();
+  }, { passive: false });
+
+  document.addEventListener('touchend', () => { touchY = null; }, { passive: true });
+}
+
 document.addEventListener('click', event => {
+  const mobileNavToggle = event.target.closest('[data-mobile-nav-toggle]');
+  if (mobileNavToggle) {
+    setMobileNav(mobileNavToggle.getAttribute('aria-expanded') !== 'true');
+    return;
+  }
+  if (event.target.closest('#global-nav button')) setMobileNav(false);
   const category = event.target.closest('[data-category]');
   if (category) { state.category = category.dataset.category; state.view = 'shop'; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
   if (event.target.closest('[data-reset-category]')) { state.category = 'All'; state.view = 'shop'; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
@@ -792,6 +834,11 @@ document.addEventListener('input', event => {
   state.bidDraft = { ...state.bidDraft, quantity, maximumPrice };
 });
 
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') setMobileNav(false);
+});
+
 initialiseCaseStudyScreen();
 render();
 renderDrawer();
+forwardEmbeddedScroll();

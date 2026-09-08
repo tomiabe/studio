@@ -51,6 +51,16 @@
     sections.forEach((section) => observer.observe(section));
   }
 
+  function bindPrototypeScrollPassthrough() {
+    window.addEventListener('message', (event) => {
+      const message = event.data;
+      if (!message || message.source !== 'eze-prototype' || message.type !== 'scroll-parent') return;
+      const deltaY = Number(message.deltaY);
+      if (!Number.isFinite(deltaY)) return;
+      window.scrollBy({ top: deltaY, behavior: 'auto' });
+    });
+  }
+
   function drawWorkCardShader(canvas) {
     const context = canvas.getContext('2d');
     const container = canvas.parentElement;
@@ -123,6 +133,7 @@
 
   bindTheme();
   observeNavigation();
+  bindPrototypeScrollPassthrough();
   drawWorkCardShader($('[data-eze-work-card-canvas]'));
   mountIcons();
 })();
