@@ -239,8 +239,7 @@
 }
 
 .mark-story-figure img,
-.palette-figure img,
-.application-tile img {
+.palette-figure img {
   display: block;
   width: 100%;
   height: 100%;
@@ -286,6 +285,48 @@
 .mark-principles dd {
   margin: 0;
   font-size: var(--text-sm);
+}
+
+.identity-evolution-section {
+  background: var(--eze-linen);
+  color: var(--eze-navy);
+  border-top: 0;
+}
+
+.identity-evolution-section .identity-section-heading h2 {
+  color: var(--eze-navy);
+}
+
+.identity-evolution-section .identity-section-heading > p {
+  color: #46515b;
+}
+
+.evolution-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.85rem, 1.5vw, 1.25rem);
+}
+
+.evolution-grid figure {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  background: #ffffff;
+}
+
+.evolution-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.evolution-grid figcaption {
+  padding: 1rem 1.15rem;
+  border-top: 1px solid rgba(21, 32, 43, 0.15);
+  color: var(--eze-navy);
+  font-size: var(--text-sm);
+  font-weight: 700;
 }
 
 .mark-principles dt {
@@ -335,32 +376,63 @@
 
 .application-grid {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(0.85rem, 1.5vw, 1.25rem);
 }
 
 .application-tile {
+  display: grid;
+  place-items: center;
   overflow: hidden;
   background: #e4e9e9;
 }
 
-.application-tile-app { grid-column: span 4; }
-.application-tile-partner { grid-column: span 8; }
-.application-tile-card { grid-column: span 3; }
-.application-tile-product { grid-column: span 6; }
-
-.application-tile-app img,
-.application-tile-partner img {
-  aspect-ratio: 1 / 1;
+.application-tile img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
-.application-tile-card img {
-  aspect-ratio: 1 / 1.75;
+.application-tile-product { grid-column: span 2; }
+
+.implementation-note {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  padding-top: clamp(1.5rem, 3vw, 2.5rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
 }
 
-.application-tile-product img {
-  aspect-ratio: 16 / 9;
+.implementation-note h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: var(--title-sm);
+  line-height: 1;
 }
+
+.implementation-note p {
+  max-width: 42rem;
+  margin: 0.85rem 0 0;
+  color: #c8d1d8;
+  font-size: var(--text-lg);
+  line-height: 1.55;
+}
+
+.implementation-note a {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ffffff;
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.implementation-note a:hover { color: var(--eze-blue); }
+.implementation-note a svg { width: 1rem; height: 1rem; }
 
 .identity-closing {
   padding-bottom: clamp(5rem, 10vw, 10rem);
@@ -428,10 +500,7 @@
   .mark-story-figure { min-height: 18rem; }
   .mark-story-copy > p { margin-top: 4rem; }
   .palette-notes { grid-template-columns: 1fr; gap: 1.6rem; }
-  .application-tile-app { grid-column: span 5; }
-  .application-tile-partner { grid-column: span 7; }
-  .application-tile-card { grid-column: span 4; }
-  .application-tile-product { grid-column: span 8; }
+  .implementation-note { align-items: flex-start; flex-direction: column; }
 }
 
 @media (max-width: 620px) {
@@ -450,17 +519,13 @@
   .identity-icon { margin-bottom: 1.35rem; }
   .mark-story-figure { min-height: 13.5rem; }
   .mark-story-copy { min-height: 26rem; }
+  .evolution-grid { grid-template-columns: 1fr; }
   .palette-figure img { aspect-ratio: 16 / 11; object-fit: cover; }
   .application-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem; }
   .application-tile-app,
   .application-tile-partner,
-  .application-tile-card,
   .application-tile-product { grid-column: span 2; }
   .application-tile-card { grid-column: span 1; }
-  .application-tile-app img,
-  .application-tile-partner img,
-  .application-tile-product img { aspect-ratio: 1 / 1; }
-  .application-tile-product img { object-position: center; }
   .identity-closing h2 { max-width: 10ch; }
   .identity-footer { align-items: flex-start; flex-direction: column; }
 }
