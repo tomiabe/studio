@@ -493,7 +493,8 @@ window.STUDIO_DATA = {
       "year": "2020-2021",
       "image": "/images/work/Eze.jpg",
       "description": "Building and leading an in-house design function for a YC-backed B2B marketplace, unifying interfaces, journeys, and brand for global electronics trade.",
-      "link": "https://ezewholesale.com"
+      "link": "https://ezewholesale.com",
+      "page": "/work/eze/"
     }
   ],
   "projects": [
