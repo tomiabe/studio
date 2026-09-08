@@ -90,6 +90,9 @@
 
 .eze-work-card .work-icon-stack {
   z-index: 3;
+}
+
+.eze-work-card .work-icon {
   color: #ffffff;
 }
 
