@@ -590,3 +590,40 @@
   .mark-construction-grid { grid-template-columns: 1fr; }
   .evolution-grid { grid-template-columns: 1fr; }
 }
+
+/* Icon-only mark comparison */
+.mark-story-figure--mark {
+  display: grid;
+  place-items: center;
+  background: var(--eze-blue);
+}
+
+.mark-story-figure--mark .mark-symbol {
+  width: min(42%, 17rem);
+  height: auto;
+  filter: none;
+}
+
+.mark-story-copy--linen {
+  background: var(--eze-linen);
+}
+
+.mark-story-copy--linen .mark-symbol {
+  filter: none;
+}
+
+.mark-story-copy--linen > p {
+  color: var(--eze-navy);
+}
+
+.mark-story-copy--linen .mark-principles div {
+  border-top-color: rgba(21, 32, 43, 0.22);
+}
+
+.mark-story-copy--linen .mark-principles dt {
+  color: #56616a;
+}
+
+.mark-story-copy--linen .mark-principles dd {
+  color: var(--eze-navy);
+}
