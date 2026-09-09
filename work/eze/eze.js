@@ -121,8 +121,55 @@
     };
   }
 
+  function startEmbeddedDemos() {
+    const frames = $$('.prototype-frame-shell iframe[src*="demo="]');
+    if (!frames.length) return;
+    const readyFrames = new Set();
+    const visibleFrames = new Set();
+    const startedFrames = new Set();
+
+    function start(frame) {
+      if (!readyFrames.has(frame) || !visibleFrames.has(frame) || startedFrames.has(frame)) return;
+      startedFrames.add(frame);
+      frame.contentWindow?.postMessage({ type: 'eze-demo:start' }, '*');
+    }
+
+    window.addEventListener('message', event => {
+      if (event.data?.type !== 'eze-demo:ready') return;
+      const frame = frames.find(item => item.contentWindow === event.source);
+      if (!frame) return;
+      readyFrames.add(frame);
+      start(frame);
+    });
+
+    frames.forEach(frame => {
+      frame.addEventListener('load', () => {
+        readyFrames.add(frame);
+        start(frame);
+      });
+      if (frame.contentDocument?.readyState === 'complete') readyFrames.add(frame);
+    });
+
+    if (!('IntersectionObserver' in window)) {
+      frames.forEach(frame => visibleFrames.add(frame));
+      return;
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        visibleFrames.add(entry.target);
+        start(entry.target);
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.55 });
+
+    frames.forEach(frame => observer.observe(frame));
+  }
+
   bindTheme();
   observeNavigation();
   drawWorkCardShader($('[data-eze-work-card-canvas]'));
+  startEmbeddedDemos();
   mountIcons();
 })();

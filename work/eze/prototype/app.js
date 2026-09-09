@@ -62,6 +62,9 @@ const drawer = document.querySelector('#cart-drawer');
 const cartCount = document.querySelector('#cart-count');
 const watchlistCount = document.querySelector('#watchlist-count');
 const toast = document.querySelector('#toast');
+const demoMode = new URLSearchParams(window.location.search).get('demo');
+const demoControls = document.querySelector('#case-demo-controls');
+const demoStatus = document.querySelector('#case-demo-status');
 
 function initialiseCaseStudyScreen() {
   const screen = new URLSearchParams(window.location.search).get('screen');
@@ -587,6 +590,82 @@ function setMobileNav(open) {
   toggle.setAttribute('aria-expanded', String(open));
 }
 
+const demoScripts = {
+  shop: [
+    { delay: 700, label: 'Browsing mobile devices', action: () => { state.category = 'Mobile Devices'; state.viewMode = 'grid'; state.sort = 'featured'; render(); } },
+    { delay: 2300, label: 'Comparing the current asks', action: () => { state.viewMode = 'list'; state.sort = 'priceLow'; render(); } },
+    { delay: 4300, label: 'Creating a Buy Request', action: () => startBid(2) }
+  ],
+  detail: [
+    { delay: 700, label: 'Saving the device to the watchlist', action: () => { state.watchlist = [...new Set([...state.watchlist, 2])]; render(); showToast('iPhone XR added to watchlist.'); } },
+    { delay: 2300, label: 'Setting a bulk quantity', action: () => { state.detailQuantity = 50; render(); } },
+    { delay: 4300, label: 'Setting a Buy Request', action: () => startBid(2) }
+  ],
+  checkout: [
+    { delay: 700, label: 'Choosing express delivery', action: () => { state.checkoutShipping = 'express'; render(); } },
+    { delay: 2300, label: 'Selecting card payment', action: () => { state.checkoutPayment = 'card'; state.savedCard = { id: 1, brand: 'Visa', last4: '9012' }; render(); } },
+    { delay: 4300, label: 'Submitting the order', action: () => submitOrder() }
+  ],
+  account: [
+    { delay: 700, label: 'Opening Buy Requests', action: () => { state.accountTab = 'bids'; render(); } },
+    { delay: 2600, label: 'A matched request is ready for payment', action: () => showToast('A matched Buy Request is ready for payment.') }
+  ]
+};
+
+let demoTimers = [];
+let demoRunning = false;
+
+function setDemoStatus(label) {
+  if (!demoControls || !demoStatus) return;
+  demoControls.hidden = false;
+  demoStatus.textContent = label;
+}
+
+function stopDemo(interrupted = false) {
+  demoTimers.forEach(timer => window.clearTimeout(timer));
+  demoTimers = [];
+  if (!demoRunning) return;
+  demoRunning = false;
+  setDemoStatus(interrupted ? 'Flow paused' : 'Flow complete');
+}
+
+function startDemo() {
+  if (!demoMode || !demoScripts[demoMode]) return;
+  stopDemo();
+  demoRunning = true;
+  setDemoStatus('Guided flow');
+  const steps = demoScripts[demoMode];
+  steps.forEach(step => {
+    demoTimers.push(window.setTimeout(() => {
+      if (!demoRunning) return;
+      setDemoStatus(step.label);
+      step.action();
+    }, step.delay));
+  });
+  const finishDelay = Math.max(...steps.map(step => step.delay)) + 1600;
+  demoTimers.push(window.setTimeout(() => stopDemo(), finishDelay));
+}
+
+function setupCaseStudyDemo() {
+  if (!demoMode) return;
+  setDemoStatus('Guided flow ready');
+  document.addEventListener('pointerdown', event => {
+    if (demoRunning && !event.target.closest('#case-demo-controls')) stopDemo(true);
+  }, true);
+  document.addEventListener('focusin', event => {
+    if (demoRunning && !event.target.closest('#case-demo-controls')) stopDemo(true);
+  }, true);
+  document.addEventListener('click', event => {
+    if (!event.target.closest('[data-replay-demo]')) return;
+    startDemo();
+  });
+  window.addEventListener('message', event => {
+    if (event.source === window.parent && event.data?.type === 'eze-demo:start') startDemo();
+  });
+  if (window.parent !== window) window.parent.postMessage({ type: 'eze-demo:ready', demo: demoMode }, '*');
+  else window.setTimeout(startDemo, 450);
+}
+
 document.addEventListener('click', event => {
   const mobileNavToggle = event.target.closest('[data-mobile-nav-toggle]');
   if (mobileNavToggle) {
@@ -823,3 +902,4 @@ document.addEventListener('keydown', event => {
 initialiseCaseStudyScreen();
 render();
 renderDrawer();
+setupCaseStudyDemo();

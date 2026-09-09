@@ -231,6 +231,10 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
 #toast { position: fixed; bottom: 20px; left: 50%; z-index: 60; transform: translate(-50%, 70px); padding: 10px 13px; border-radius: var(--radius); background: #20252a; color: #fff; font-size: 11px; opacity: 0; transition: transform .2s ease, opacity .2s ease; }
 #toast.is-visible { transform: translate(-50%, 0); opacity: 1; }
 
+.case-demo-controls { position: fixed; right: 14px; bottom: 14px; z-index: 61; display: flex; align-items: center; gap: 9px; max-width: calc(100vw - 28px); padding: 7px 8px 7px 10px; border: 1px solid rgba(27, 124, 227, .24); border-radius: var(--radius); background: rgba(255, 255, 255, .96); box-shadow: 0 8px 24px rgba(20, 25, 30, .12); color: #59646e; font-size: 10px; }
+.case-demo-controls[hidden] { display: none; }
+.case-demo-controls button { min-height: 27px; border: 0; border-radius: 4px; padding: 0 9px; background: var(--blue); color: #fff; font-size: 10px; font-weight: 700; white-space: nowrap; }
+
 .product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .product-card { display: flex; min-width: 0; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; transition: border-color .15s ease, box-shadow .15s ease; }
 .product-card:hover { border-color: #b9d9f8; box-shadow: 0 5px 14px rgba(26, 81, 135, .08); }
@@ -805,6 +809,8 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
 
 @media (max-width: 700px) {
   .main-header { min-height: 62px; flex-wrap: wrap; gap: 13px; padding-top: 11px; padding-bottom: 11px; }
+
+  .case-demo-controls { right: 10px; bottom: 10px; }
   .brand img { width: 67px; }
   .site-search { order: 3; width: 100%; flex-basis: 100%; }
   .plain-action span:not(.account-notification-dot) { display: none; }
