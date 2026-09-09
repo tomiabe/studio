@@ -611,8 +611,14 @@ const demoScripts = {
 };
 
 let demoTimers = [];
+let demoRepeatTimer;
 let demoRunning = false;
+let demoPausedByUser = false;
 let demoCursor;
+
+function notifyCaseStudy(type) {
+  if (window.parent !== window) window.parent.postMessage({ type, demo: demoMode }, '*');
+}
 
 function createDemoCursor() {
   if (!demoMode || demoCursor) return;
@@ -646,11 +652,26 @@ function moveDemoCursor(selector) {
   });
 }
 
-function stopDemo() {
+function stopDemo(interrupted = false) {
   demoTimers.forEach(timer => window.clearTimeout(timer));
+  demoTimers = [];
+  window.clearTimeout(demoRepeatTimer);
+  demoRepeatTimer = undefined;
+  demoRunning = false;
+  hideDemoCursor();
+  if (interrupted) {
+    demoPausedByUser = true;
+    notifyCaseStudy('eze-demo:paused');
+  }
+}
+
+function endDemoCycle() {
   demoTimers = [];
   demoRunning = false;
   hideDemoCursor();
+  demoRepeatTimer = window.setTimeout(() => {
+    if (!demoPausedByUser) startDemo();
+  }, 2600);
 }
 
 function runDemoStep(step) {
@@ -659,9 +680,41 @@ function runDemoStep(step) {
   });
 }
 
+function resetDemoScreen() {
+  if (demoMode === 'shop') {
+    state.view = 'shop';
+    state.category = 'All';
+    state.viewMode = 'grid';
+    state.sort = 'featured';
+    state.bidDraft = null;
+  }
+  if (demoMode === 'detail') {
+    state.view = 'detail';
+    state.selectedProduct = products[1];
+    state.detailQuantity = 1;
+    state.detailCondition = products[1].grade;
+    state.bidDraft = null;
+  }
+  if (demoMode === 'checkout') {
+    state.view = 'checkout';
+    state.completedOrder = null;
+    state.checkoutShipping = 'standard';
+    state.checkoutPayment = 'wire';
+    state.savedCard = null;
+  }
+  if (demoMode === 'account') {
+    state.view = 'account';
+    state.accountTab = 'overview';
+  }
+  render();
+  window.scrollTo({ top: 0, behavior: 'auto' });
+}
+
 function startDemo() {
   if (!demoMode || !demoScripts[demoMode]) return;
   stopDemo();
+  resetDemoScreen();
+  demoPausedByUser = false;
   demoRunning = true;
   createDemoCursor();
   const steps = demoScripts[demoMode];
@@ -671,7 +724,7 @@ function startDemo() {
     }, step.delay));
   });
   const finishDelay = Math.max(...steps.map(step => step.delay)) + 1800;
-  demoTimers.push(window.setTimeout(stopDemo, finishDelay));
+  demoTimers.push(window.setTimeout(endDemoCycle, finishDelay));
 }
 
 function setupCaseStudyDemo() {
