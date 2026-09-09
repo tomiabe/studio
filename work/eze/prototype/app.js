@@ -68,7 +68,7 @@ function initialiseCaseStudyScreen() {
   const screen = new URLSearchParams(window.location.search).get('screen');
   if (screen === 'detail') {
     state.selectedProduct = products[1];
-    state.detailQuantity = 50;
+    state.detailQuantity = demoMode === 'detail' ? 1 : 50;
     state.detailCondition = state.selectedProduct.grade;
     state.view = 'detail';
   }
@@ -76,7 +76,7 @@ function initialiseCaseStudyScreen() {
     state.cart = [{ product: products[1], quantity: 50 }];
     state.checkoutAddresses = [{ id: 'address-1', contact: 'Receiving team', company: 'Buyer warehouse', street: '1200 Commerce Street', city: 'Dallas', region: 'Texas', postalCode: '75201', country: 'United States' }];
     state.checkoutAllocations = { 'address-1': { [products[1].id]: 50 } };
-    state.view = 'checkout';
+    state.view = demoMode === 'checkout' ? 'cart' : 'checkout';
   }
   if (screen === 'account') state.view = 'account';
 }
@@ -506,7 +506,12 @@ function syncHeader() {
 function showToast(message) { toast.textContent = message; toast.classList.add('is-visible'); window.clearTimeout(showToast.timer); showToast.timer = window.setTimeout(() => toast.classList.remove('is-visible'), 2200); }
 function addToCart(id, quantity = 1) { const product = products.find(item => item.id === Number(id)); const current = state.cart.find(item => item.product.id === product.id); if (current) current.quantity += quantity; else state.cart.push({ product, quantity }); state.checkoutContext = null; updateCartCount(); renderDrawer(); if (state.view === 'cart' || state.view === 'checkout') render(); showToast(`${product.name} added to cart.`); }
 function changeCartQuantity(id, adjustment) { const item = state.cart.find(entry => entry.product.id === Number(id)); if (!item) return; item.quantity += Number(adjustment); if (item.quantity < 1) state.cart = state.cart.filter(entry => entry !== item); updateCartCount(); renderDrawer(); render(); }
-function goTo(view) { state.view = view; drawer.classList.remove('is-open'); drawer.setAttribute('aria-hidden', 'true'); render(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function scrollPrototypeTo(top, behavior = 'auto') {
+  const scrollRoot = document.scrollingElement;
+  if (scrollRoot?.scrollTo) scrollRoot.scrollTo({ top, behavior });
+  else if (scrollRoot) scrollRoot.scrollTop = top;
+}
+function goTo(view) { state.view = view; drawer.classList.remove('is-open'); drawer.setAttribute('aria-hidden', 'true'); render(); scrollPrototypeTo(0, 'smooth'); }
 function submitOrder() {
   ensureCheckoutDeliveryState();
   if (state.checkoutPayment === 'card' && !state.savedCard) {
@@ -590,23 +595,24 @@ function setMobileNav(open) {
 
 const demoScripts = {
   shop: [
-    { delay: 700, target: '[data-category="Mobile Devices"]', action: () => { state.category = 'Mobile Devices'; state.viewMode = 'grid'; state.sort = 'featured'; render(); } },
-    { delay: 2300, target: '[data-view-mode="list"]', action: () => { state.viewMode = 'list'; state.sort = 'priceLow'; render(); } },
-    { delay: 4300, target: '[data-open-bid]', action: () => startBid(2) }
+    { delay: 1800, target: '[data-category="Mobile Devices"]', action: () => { state.category = 'Mobile Devices'; state.viewMode = 'grid'; state.sort = 'featured'; render(); } },
+    { delay: 6100, target: '[data-view-mode="list"]', action: () => { state.viewMode = 'list'; state.sort = 'priceLow'; render(); } },
+    { delay: 10600, target: '[data-open-bid]', action: () => startBid(2) }
   ],
   detail: [
-    { delay: 700, target: '[data-watch="2"]', action: () => { state.watchlist = [...new Set([...state.watchlist, 2])]; render(); showToast('iPhone XR added to watchlist.'); } },
-    { delay: 2300, target: '[data-detail-quantity="1"]', action: () => { state.detailQuantity = 50; render(); } },
-    { delay: 4300, target: '[data-open-bid="2"]', action: () => startBid(2) }
+    { delay: 1800, target: '[data-watch="2"]', action: () => { state.watchlist = [...new Set([...state.watchlist, 2])]; render(); showToast('iPhone XR added to watchlist.'); } },
+    { delay: 6100, target: '[data-detail-quantity="1"]', action: () => { state.detailQuantity = 50; render(); } },
+    { delay: 10600, target: '[data-open-bid="2"]', action: () => startBid(2) }
   ],
   checkout: [
-    { delay: 700, target: '[data-shipping="express"]', action: () => { state.checkoutShipping = 'express'; render(); } },
-    { delay: 2300, target: '[data-payment="card"]', action: () => { state.checkoutPayment = 'card'; state.savedCard = { id: 1, brand: 'Visa', last4: '9012' }; render(); } },
-    { delay: 4300, target: '[data-place-order]', action: () => submitOrder() }
+    { delay: 2000, target: '[data-proceed-checkout]', action: () => goTo('checkout') },
+    { delay: 7200, target: '[data-shipping="express"]', action: () => { state.checkoutShipping = 'express'; render(); } },
+    { delay: 12400, target: '[data-payment="card"]', action: () => { state.checkoutPayment = 'card'; state.savedCard = { id: 1, brand: 'Visa', last4: '9012' }; render(); } },
+    { delay: 17600, target: '[data-place-order]', action: () => submitOrder() }
   ],
   account: [
-    { delay: 700, target: '[data-account-tab="bids"]', action: () => { state.accountTab = 'bids'; render(); } },
-    { delay: 2600, target: '[data-review-bid]', action: () => showToast('A matched Buy Request is ready for payment.') }
+    { delay: 1800, target: '[data-account-tab="bids"]', action: () => { state.accountTab = 'bids'; render(); } },
+    { delay: 7000, target: '[data-review-bid]', action: () => showToast('A matched Buy Request is ready for payment.') }
   ]
 };
 
@@ -636,7 +642,10 @@ function hideDemoCursor() {
 function moveDemoCursor(selector) {
   const target = document.querySelector(selector);
   if (!target || !demoCursor) return Promise.resolve();
-  target.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  const scrollRoot = document.scrollingElement;
+  const initialBounds = target.getBoundingClientRect();
+  const targetTop = Math.max(0, (scrollRoot?.scrollTop || 0) + initialBounds.top - window.innerHeight * .42);
+  if (scrollRoot?.scrollTo) scrollRoot.scrollTo({ top: targetTop, behavior: 'smooth' });
   return new Promise(resolve => {
     window.setTimeout(() => {
       if (!demoRunning) return resolve();
@@ -645,10 +654,10 @@ function moveDemoCursor(selector) {
       demoCursor.classList.add('is-visible');
       window.setTimeout(() => {
         demoCursor?.classList.add('is-pressing');
-        window.setTimeout(() => demoCursor?.classList.remove('is-pressing'), 150);
+        window.setTimeout(() => demoCursor?.classList.remove('is-pressing'), 180);
         resolve();
-      }, 460);
-    }, 320);
+      }, 620);
+    }, 520);
   });
 }
 
@@ -693,21 +702,29 @@ function resetDemoScreen() {
     state.selectedProduct = products[1];
     state.detailQuantity = 1;
     state.detailCondition = products[1].grade;
+    state.watchlist = [];
     state.bidDraft = null;
   }
   if (demoMode === 'checkout') {
-    state.view = 'checkout';
+    state.view = 'cart';
+    state.cart = [{ product: products[1], quantity: 50 }];
+    state.checkoutAddresses = [{ id: 'address-1', contact: 'Receiving team', company: 'Buyer warehouse', street: '1200 Commerce Street', city: 'Dallas', region: 'Texas', postalCode: '75201', country: 'United States' }];
+    state.checkoutAllocations = { 'address-1': { [products[1].id]: 50 } };
+    state.checkoutDeliveryMode = 'single';
+    state.checkoutContext = null;
     state.completedOrder = null;
     state.checkoutShipping = 'standard';
     state.checkoutPayment = 'wire';
     state.savedCard = null;
+    updateCartCount();
+    renderDrawer();
   }
   if (demoMode === 'account') {
     state.view = 'account';
     state.accountTab = 'overview';
   }
   render();
-  window.scrollTo({ top: 0, behavior: 'auto' });
+  scrollPrototypeTo(0);
 }
 
 function startDemo() {
@@ -731,10 +748,10 @@ function setupCaseStudyDemo() {
   if (!demoMode) return;
   createDemoCursor();
   document.addEventListener('pointerdown', event => {
-    if (demoRunning && !event.target.closest('.case-demo-cursor')) stopDemo();
+    if ((demoRunning || demoRepeatTimer) && !event.target.closest('.case-demo-cursor')) stopDemo();
   }, true);
   document.addEventListener('focusin', event => {
-    if (demoRunning && !event.target.closest('.case-demo-cursor')) stopDemo();
+    if ((demoRunning || demoRepeatTimer) && !event.target.closest('.case-demo-cursor')) stopDemo();
   }, true);
   window.addEventListener('message', event => {
     if (event.source === window.parent && event.data?.type === 'eze-demo:start') startDemo();
@@ -977,6 +994,7 @@ document.addEventListener('keydown', event => {
 });
 
 initialiseCaseStudyScreen();
+updateCartCount();
 render();
 renderDrawer();
 setupCaseStudyDemo();
