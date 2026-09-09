@@ -32,7 +32,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
 .utility-inner, .main-header, .nav-row, .shop-page { max-width: 1320px; margin: auto; padding-right: 28px; padding-left: 28px; }
 .utility-inner { height: 100%; display: flex; justify-content: space-between; align-items: center; }
 .utility-inner button { padding: 0 0 0 18px; border: 0; background: transparent; color: inherit; font-size: 10px; }
-.main-header { min-height: 73px; display: flex; align-items: center; gap: 38px; }
+.main-header { min-height: 73px; display: flex; align-items: center; gap: 28px; }
 .brand { flex: 0 0 auto; border: 0; padding: 0; background: transparent; line-height: 0; }
 .brand img { width: 76px; height: auto; }
 .site-search { width: min(470px, 43vw); height: 36px; display: flex; align-items: center; gap: 8px; padding: 0 11px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: #fff; }
@@ -40,19 +40,33 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
 .site-search i { color: #6f7780; font-size: 16px; }
 .site-search input { width: 100%; min-width: 0; border: 0; outline: 0; color: var(--ink); font-size: 12px; }
 .site-search input::placeholder { color: #8b929a; }
-.account-actions { margin-left: auto; display: flex; align-items: center; gap: 24px; }
-.plain-action, .cart-action { display: flex; align-items: center; gap: 5px; border: 0; padding: 0; background: transparent; color: #3b4149; font-size: 11px; }
-.plain-action i, .cart-action i { font-size: 17px; color: #1e242b; }
-.plain-action b, .cart-action b { min-width: 17px; height: 17px; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: white; font-size: 10px; }
-.plain-action b[hidden] { display: none; }
-.account-notification-dot { width: 6px; height: 6px; flex: 0 0 auto; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 2px #eaf4ff; }
+.main-header > .sell-button { margin-left: auto; }
+.account-actions { display: flex; align-items: center; gap: 17px; }
+.cart-action, .notification-action, .account-action { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 5px; border: 0; padding: 0; background: transparent; color: #3b4149; font-size: 11px; }
+.cart-action i, .notification-action i, .account-action i { color: #1e242b; font-size: 18px; }
+.cart-action b { min-width: 17px; height: 17px; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: white; font-size: 10px; }
+.notification-action, .account-action { width: 27px; height: 27px; }
+.notification-action:hover i, .account-action:hover i, .account-action.is-active i { color: var(--blue); }
+.account-notification-dot { position: absolute; top: 1px; right: 1px; width: 6px; height: 6px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 2px #fff; }
 .account-notification-dot[hidden] { display: none; }
+.account-menu-wrap { position: relative; }
+.account-menu { position: absolute; top: calc(100% + 12px); right: 0; z-index: 42; width: 210px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: 0 12px 28px rgba(25, 32, 39, .15); }
+.account-menu[hidden] { display: none; }
+.account-menu-profile { display: grid; gap: 3px; padding: 13px 14px 11px; border-bottom: 1px solid var(--line); }
+.account-menu-profile strong { color: #2b3239; font-size: 11px; }
+.account-menu-profile span { color: #77818a; font-size: 10px; line-height: 1.35; }
+.account-menu button { width: 100%; min-height: 35px; display: flex; align-items: center; gap: 8px; border: 0; padding: 0 13px; background: #fff; color: #454d55; font-size: 11px; text-align: left; }
+.account-menu button:hover, .account-menu button:focus-visible { background: var(--blue-pale); color: var(--blue); }
+.account-menu button:last-child { border-top: 1px solid var(--line); color: #737c85; }
+.account-menu button i { font-size: 15px; }
+.account-menu button b { min-width: 16px; height: 16px; display: grid; place-items: center; margin-left: auto; border-radius: 50%; background: var(--blue); color: #fff; font-size: 9px; }
+.account-menu button b[hidden] { display: none; }
 .nav-row { position: relative; min-height: 42px; display: flex; align-items: center; border-top: 1px solid var(--line); }
 .nav-row nav { min-width: 0; display: flex; flex: 1; gap: 28px; align-items: center; }
 .nav-row nav button { height: 41px; border: 0; padding: 0; background: transparent; color: #3d434a; font-size: 11px; }
 .nav-row nav button:hover, .nav-row .nav-active { color: var(--blue); }
 .nav-row .nav-active { font-weight: 700; box-shadow: inset 0 -2px var(--blue); }
-.sell-button { flex: 0 0 auto; margin-left: auto; height: 27px; padding: 0 14px; border: 0; border-radius: var(--radius); background: var(--blue); color: white; font-size: 11px; font-weight: 600; }
+.sell-button { flex: 0 0 auto; height: 30px; padding: 0 14px; border: 0; border-radius: var(--radius); background: var(--blue); color: white; font-size: 11px; font-weight: 600; }
 .sell-button:hover { background: var(--blue-dark); }
 .mobile-nav-toggle, .mobile-sell-link { display: none; }
 
@@ -675,8 +689,8 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
 .bid-help p { margin: 4px 0 0; color: #717c86; font-size: 10px; line-height: 1.4; }
 .bid-help button { border: 0; padding: 0; background: transparent; color: var(--blue); font-size: 10px; font-weight: 700; white-space: nowrap; }
 
-.plain-action.is-active { color: var(--blue); font-weight: 600; }
-.plain-action.is-active i { color: var(--blue); }
+.account-action.is-active { color: var(--blue); }
+.account-action.is-active i { color: var(--blue); }
 .account-page-heading { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin: 18px 0 24px; }
 .account-page-heading h1 { margin: 0; color: var(--ink); font-size: 25px; letter-spacing: -.035em; }
 .account-page-heading p { margin: 5px 0 0; color: var(--muted); font-size: 12px; }
@@ -770,6 +784,20 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
 .account-bid-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: 14px; }
 .account-bid-stats > button strong { display: flex; align-items: center; color: var(--blue); font-size: 23px; }
 .account-bid-stats > button strong i { font-size: 20px; }
+.account-settings { display: grid; gap: 14px; }
+.settings-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.settings-grid article { min-height: 104px; display: grid; grid-template-columns: 31px minmax(0, 1fr) auto; align-items: start; gap: 10px; border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; }
+.settings-icon { width: 29px; height: 29px; display: grid; place-items: center; border-radius: var(--radius); background: #eef6ff; color: var(--blue); }
+.settings-icon i { font-size: 16px; }
+.settings-grid strong { color: #384149; font-size: 11px; }
+.settings-grid p { margin: 5px 0 0; color: #7b858e; font-size: 9px; line-height: 1.45; }
+.settings-grid button, .settings-notice button { border: 0; padding: 0; background: transparent; color: var(--blue); font-size: 10px; font-weight: 600; }
+.settings-notice { display: flex; align-items: center; gap: 10px; border-radius: var(--radius); padding: 13px; background: #f5faff; }
+.settings-notice > i { color: var(--blue); font-size: 17px; }
+.settings-notice > div { display: grid; gap: 3px; }
+.settings-notice strong { color: #39434c; font-size: 10px; }
+.settings-notice span { color: #71808d; font-size: 9px; line-height: 1.4; }
+.settings-notice button { margin-left: auto; white-space: nowrap; }
 .account-buy-requests { overflow: hidden; padding: 0; }
 .account-buy-requests .account-section-heading { margin: 0; padding: 18px; border-bottom: 1px solid var(--line); }
 .account-buy-requests .bid-row { padding-right: 16px; padding-left: 16px; }
@@ -814,8 +842,9 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
 
   .brand img { width: 67px; }
   .site-search { order: 3; width: 100%; flex-basis: 100%; }
-  .plain-action span:not(.account-notification-dot) { display: none; }
-  .account-actions { margin-left: auto; }
+  .cart-action span { display: none; }
+  .account-actions { margin-left: auto; gap: 13px; }
+  .account-menu { top: calc(100% + 9px); right: -4px; }
   .nav-row { position: static; min-height: 0; display: block; border-top: 0; padding: 0; }
   .nav-row nav { position: absolute; z-index: 35; top: 100%; right: 20px; left: 20px; display: none; min-width: 0; padding: 7px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: 0 10px 24px rgba(29, 35, 42, .14); }
   .site-header.is-mobile-nav-open .nav-row nav { display: grid; }
@@ -884,6 +913,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
   .account-stat-grid > div, .account-stat-grid > button { min-height: 94px; padding: 13px; }
   .account-stat-grid > :last-child { grid-column: 1 / -1; }
   .account-bid-stats > :last-child { grid-column: auto; }
+  .settings-grid { grid-template-columns: 1fr; gap: 9px; }
   .account-overview-grid { grid-template-columns: 1fr; gap: 10px; margin-top: 10px; }
   .account-section { padding: 14px; }
   .account-order-top { padding: 12px 12px 9px; }

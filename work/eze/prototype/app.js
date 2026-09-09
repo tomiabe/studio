@@ -470,10 +470,14 @@ function accountBidsMarkup() {
   return `<div class="account-bids"><div class="account-stat-grid account-bid-stats"><div><span>Active requests</span><strong>${active}</strong><small>Waiting for a seller ask</small></div><div><span>Matched requests</span><strong>${matched}</strong><small>Ready for payment</small></div></div><section class="account-section account-buy-requests"><div class="account-section-heading"><div><h2>Buy Requests</h2><p>Manage your maximum prices and matched offers.</p></div></div><div class="bid-list-labels"><span>Device</span><span>Quantity</span><span>Your maximum</span><span>Status</span><span></span></div>${state.bids.map(bidRowMarkup).join('')}</section></div>`;
 }
 
+function accountSettingsMarkup() {
+  return `<div class="account-settings"><section class="account-section"><div class="account-section-heading"><div><h2>Profile and company</h2><p>Keep buyer and company details ready for orders, delivery, and account communication.</p></div></div><div class="settings-grid"><article><span class="settings-icon"><i class="ph ph-user-circle"></i></span><div><strong>Buyer profile</strong><p>Purchasing team<br />buyer@company.com</p></div><button data-settings-action>Edit</button></article><article><span class="settings-icon"><i class="ph ph-buildings"></i></span><div><strong>Company details</strong><p>Buyer warehouse<br />United States</p></div><button data-settings-action>Edit</button></article></div></section><section class="account-section"><div class="account-section-heading"><div><h2>Notifications</h2><p>Matched Buy Requests and order updates are surfaced through the notification bell.</p></div></div><div class="settings-notice"><i class="ph ph-bell"></i><div><strong>Marketplace activity</strong><span>Notify me when a request is matched or an order needs attention.</span></div><button data-settings-action>Enabled</button></div></section></div>`;
+}
+
 function renderAccount() {
-  const panels = { overview: accountOverviewMarkup, orders: accountOrdersMarkup, addresses: accountAddressesMarkup, bids: accountBidsMarkup };
+  const panels = { overview: accountOverviewMarkup, orders: accountOrdersMarkup, addresses: accountAddressesMarkup, bids: accountBidsMarkup, settings: accountSettingsMarkup };
   document.title = 'Eze | Buyer Account';
-  content.innerHTML = `<section class="shop-page account-page"><div class="breadcrumbs"><button data-back-shop>Shop</button><i class="ph ph-caret-right"></i><span>Account</span></div><div class="account-page-heading"><div><h1>Buyer account</h1><p>Manage orders, delivery addresses, and Buy Requests.</p></div><button class="create-bid" data-open-bid><i class="ph ph-plus"></i>Create Buy Request</button></div><div class="account-layout"><aside class="account-nav" aria-label="Account sections"><button class="${state.accountTab === 'overview' ? 'is-selected' : ''}" data-account-tab="overview"><i class="ph ph-squares-four"></i>Overview</button><button class="${state.accountTab === 'orders' ? 'is-selected' : ''}" data-account-tab="orders"><i class="ph ph-package"></i>Orders<span>${openOrderCount()}</span></button><button class="${state.accountTab === 'addresses' ? 'is-selected' : ''}" data-account-tab="addresses"><i class="ph ph-map-pin"></i>Addresses<span>${state.accountAddresses.length}</span></button><button class="${state.accountTab === 'bids' ? 'is-selected' : ''}" data-account-tab="bids"><i class="ph ph-chart-line-up"></i>Buy Requests<span>${state.bids.filter(bid => bid.status !== 'Completed').length}</span></button></aside><section class="account-content">${panels[state.accountTab]()}</section></div></section>`;
+  content.innerHTML = `<section class="shop-page account-page"><div class="breadcrumbs"><button data-back-shop>Shop</button><i class="ph ph-caret-right"></i><span>Account</span></div><div class="account-page-heading"><div><h1>Buyer account</h1><p>Manage orders, delivery addresses, and Buy Requests.</p></div><button class="create-bid" data-open-bid><i class="ph ph-plus"></i>Create Buy Request</button></div><div class="account-layout"><aside class="account-nav" aria-label="Account sections"><button class="${state.accountTab === 'overview' ? 'is-selected' : ''}" data-account-tab="overview"><i class="ph ph-squares-four"></i>Overview</button><button class="${state.accountTab === 'orders' ? 'is-selected' : ''}" data-account-tab="orders"><i class="ph ph-package"></i>Orders<span>${openOrderCount()}</span></button><button class="${state.accountTab === 'addresses' ? 'is-selected' : ''}" data-account-tab="addresses"><i class="ph ph-map-pin"></i>Addresses<span>${state.accountAddresses.length}</span></button><button class="${state.accountTab === 'bids' ? 'is-selected' : ''}" data-account-tab="bids"><i class="ph ph-chart-line-up"></i>Buy Requests<span>${state.bids.filter(bid => bid.status !== 'Completed').length}</span></button><button class="${state.accountTab === 'settings' ? 'is-selected' : ''}" data-account-tab="settings"><i class="ph ph-gear"></i>Settings</button></aside><section class="account-content">${panels[state.accountTab]()}</section></div></section>`;
 }
 
 function render() {
@@ -497,11 +501,10 @@ function syncHeader() {
   document.querySelector('.nav-bids')?.classList.toggle('nav-active', ['bid', 'bids'].includes(state.view));
   document.querySelector('.account-action')?.classList.toggle('is-active', state.view === 'account');
   const accountNotification = document.querySelector('#account-notification');
+  const notificationButton = document.querySelector('#notification-button');
   const matchedRequestCount = state.bids.filter(bid => bid.status === 'Matched').length;
-  if (accountNotification) {
-    accountNotification.hidden = matchedRequestCount === 0;
-    accountNotification.setAttribute('aria-label', matchedRequestCount === 1 ? 'A matched Buy Request needs payment' : 'Matched Buy Requests need payment');
-  }
+  if (accountNotification) accountNotification.hidden = matchedRequestCount === 0;
+  if (notificationButton) notificationButton.setAttribute('aria-label', matchedRequestCount === 1 ? '1 matched Buy Request needs payment' : matchedRequestCount > 1 ? `${matchedRequestCount} matched Buy Requests need payment` : 'Notifications');
 }
 function showToast(message) { toast.textContent = message; toast.classList.add('is-visible'); window.clearTimeout(showToast.timer); showToast.timer = window.setTimeout(() => toast.classList.remove('is-visible'), 2200); }
 function addToCart(id, quantity = 1) { const product = products.find(item => item.id === Number(id)); const current = state.cart.find(item => item.product.id === product.id); if (current) current.quantity += quantity; else state.cart.push({ product, quantity }); state.checkoutContext = null; updateCartCount(); renderDrawer(); if (state.view === 'cart' || state.view === 'checkout') render(); showToast(`${product.name} added to cart.`); }
@@ -591,6 +594,15 @@ function setMobileNav(open) {
   if (!header || !toggle) return;
   header.classList.toggle('is-mobile-nav-open', open);
   toggle.setAttribute('aria-expanded', String(open));
+}
+
+function setAccountMenu(open) {
+  const menu = document.querySelector('#account-menu');
+  const toggle = document.querySelector('#account-button');
+  if (!menu || !toggle) return;
+  menu.hidden = !open;
+  toggle.setAttribute('aria-expanded', String(open));
+  if (open) setMobileNav(false);
 }
 
 const demoScripts = {
@@ -764,15 +776,22 @@ document.addEventListener('click', event => {
   const mobileNavToggle = event.target.closest('[data-mobile-nav-toggle]');
   if (mobileNavToggle) {
     setMobileNav(mobileNavToggle.getAttribute('aria-expanded') !== 'true');
+    setAccountMenu(false);
     return;
   }
+  const accountMenuToggle = event.target.closest('#account-button');
+  if (accountMenuToggle) {
+    setAccountMenu(accountMenuToggle.getAttribute('aria-expanded') !== 'true');
+    return;
+  }
+  if (!event.target.closest('.account-menu-wrap')) setAccountMenu(false);
   if (event.target.closest('#global-nav button')) setMobileNav(false);
   const category = event.target.closest('[data-category]');
   if (category) { state.category = category.dataset.category; state.view = 'shop'; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
   if (event.target.closest('[data-reset-category]')) { state.category = 'All'; state.view = 'shop'; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
   if (event.target.closest('[data-go-shop]')) { goTo('shop'); return; }
   if (event.target.closest('[data-go-bids]')) { goTo('bids'); return; }
-  if (event.target.closest('#account-button, [data-go-account]')) { goTo('account'); return; }
+  if (event.target.closest('[data-go-account]')) { state.accountTab = 'overview'; goTo('account'); return; }
   const accountTab = event.target.closest('[data-account-tab]');
   if (accountTab) { state.accountTab = accountTab.dataset.accountTab; state.accountAddressFormOpen = false; render(); return; }
   const accountOrder = event.target.closest('[data-account-order]');
@@ -816,6 +835,7 @@ document.addEventListener('click', event => {
   const reviewBid = event.target.closest('[data-review-bid]');
   if (reviewBid) { reviewMatchedBid(reviewBid.dataset.reviewBid); return; }
   if (event.target.closest('[data-sell-interest]')) { showToast('The Sell on Eze flow is the next experience.'); return; }
+  if (event.target.closest('[data-settings-action]')) { showToast('Account settings are ready to update.'); return; }
   const viewMode = event.target.closest('[data-view-mode]');
   if (viewMode) { state.viewMode = viewMode.dataset.viewMode; render(); return; }
   const toggle = event.target.closest('[data-filter-toggle]');
@@ -829,7 +849,10 @@ document.addEventListener('click', event => {
   const product = event.target.closest('[data-product]');
   if (product) { state.selectedProduct = products.find(item => item.id === Number(product.dataset.product)); state.detailQuantity = 1; state.detailCondition = state.selectedProduct.grade; goTo('detail'); return; }
   if (event.target.closest('[data-back-shop]')) { goTo('shop'); return; }
-  if (event.target.closest('#watchlist-button, #watchlist-nav')) { goTo('watchlist'); return; }
+  if (event.target.closest('[data-go-watchlist], #watchlist-nav')) { goTo('watchlist'); return; }
+  if (event.target.closest('[data-go-settings]')) { state.accountTab = 'settings'; goTo('account'); return; }
+  if (event.target.closest('#notification-button')) { state.accountTab = 'bids'; goTo('account'); showToast('A matched Buy Request is ready for payment.'); return; }
+  if (event.target.closest('[data-sign-out]')) { showToast('You are signed in to your buyer account.'); return; }
   const watch = event.target.closest('[data-watch]');
   if (watch) { const id = Number(watch.dataset.watch); const watched = state.watchlist.includes(id); state.watchlist = watched ? state.watchlist.filter(item => item !== id) : [...state.watchlist, id]; updateWatchlistCount(); render(); showToast(watched ? 'Removed from watchlist.' : 'Added to watchlist.'); return; }
   const conditionMenu = event.target.closest('[data-condition-menu]');
