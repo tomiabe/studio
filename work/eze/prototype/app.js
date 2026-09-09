@@ -63,8 +63,6 @@ const cartCount = document.querySelector('#cart-count');
 const watchlistCount = document.querySelector('#watchlist-count');
 const toast = document.querySelector('#toast');
 const demoMode = new URLSearchParams(window.location.search).get('demo');
-const demoControls = document.querySelector('#case-demo-controls');
-const demoStatus = document.querySelector('#case-demo-status');
 
 function initialiseCaseStudyScreen() {
   const screen = new URLSearchParams(window.location.search).get('screen');
@@ -592,73 +590,99 @@ function setMobileNav(open) {
 
 const demoScripts = {
   shop: [
-    { delay: 700, label: 'Browsing mobile devices', action: () => { state.category = 'Mobile Devices'; state.viewMode = 'grid'; state.sort = 'featured'; render(); } },
-    { delay: 2300, label: 'Comparing the current asks', action: () => { state.viewMode = 'list'; state.sort = 'priceLow'; render(); } },
-    { delay: 4300, label: 'Creating a Buy Request', action: () => startBid(2) }
+    { delay: 700, target: '[data-category="Mobile Devices"]', action: () => { state.category = 'Mobile Devices'; state.viewMode = 'grid'; state.sort = 'featured'; render(); } },
+    { delay: 2300, target: '[data-view-mode="list"]', action: () => { state.viewMode = 'list'; state.sort = 'priceLow'; render(); } },
+    { delay: 4300, target: '[data-open-bid]', action: () => startBid(2) }
   ],
   detail: [
-    { delay: 700, label: 'Saving the device to the watchlist', action: () => { state.watchlist = [...new Set([...state.watchlist, 2])]; render(); showToast('iPhone XR added to watchlist.'); } },
-    { delay: 2300, label: 'Setting a bulk quantity', action: () => { state.detailQuantity = 50; render(); } },
-    { delay: 4300, label: 'Setting a Buy Request', action: () => startBid(2) }
+    { delay: 700, target: '[data-watch="2"]', action: () => { state.watchlist = [...new Set([...state.watchlist, 2])]; render(); showToast('iPhone XR added to watchlist.'); } },
+    { delay: 2300, target: '[data-detail-quantity="1"]', action: () => { state.detailQuantity = 50; render(); } },
+    { delay: 4300, target: '[data-open-bid="2"]', action: () => startBid(2) }
   ],
   checkout: [
-    { delay: 700, label: 'Choosing express delivery', action: () => { state.checkoutShipping = 'express'; render(); } },
-    { delay: 2300, label: 'Selecting card payment', action: () => { state.checkoutPayment = 'card'; state.savedCard = { id: 1, brand: 'Visa', last4: '9012' }; render(); } },
-    { delay: 4300, label: 'Submitting the order', action: () => submitOrder() }
+    { delay: 700, target: '[data-shipping="express"]', action: () => { state.checkoutShipping = 'express'; render(); } },
+    { delay: 2300, target: '[data-payment="card"]', action: () => { state.checkoutPayment = 'card'; state.savedCard = { id: 1, brand: 'Visa', last4: '9012' }; render(); } },
+    { delay: 4300, target: '[data-place-order]', action: () => submitOrder() }
   ],
   account: [
-    { delay: 700, label: 'Opening Buy Requests', action: () => { state.accountTab = 'bids'; render(); } },
-    { delay: 2600, label: 'A matched request is ready for payment', action: () => showToast('A matched Buy Request is ready for payment.') }
+    { delay: 700, target: '[data-account-tab="bids"]', action: () => { state.accountTab = 'bids'; render(); } },
+    { delay: 2600, target: '[data-review-bid]', action: () => showToast('A matched Buy Request is ready for payment.') }
   ]
 };
 
 let demoTimers = [];
 let demoRunning = false;
+let demoCursor;
 
-function setDemoStatus(label) {
-  if (!demoControls || !demoStatus) return;
-  demoControls.hidden = false;
-  demoStatus.textContent = label;
+function createDemoCursor() {
+  if (!demoMode || demoCursor) return;
+  demoCursor = document.createElement('div');
+  demoCursor.className = 'case-demo-cursor';
+  demoCursor.setAttribute('aria-hidden', 'true');
+  demoCursor.innerHTML = '<svg viewBox="0 0 26 34" aria-hidden="true"><path d="M3 2.5 21 18l-8.2 1.3L10.4 29z"></path><circle cx="12" cy="18" r="5"></circle></svg>';
+  document.body.append(demoCursor);
 }
 
-function stopDemo(interrupted = false) {
+function hideDemoCursor() {
+  demoCursor?.classList.remove('is-visible', 'is-pressing');
+}
+
+function moveDemoCursor(selector) {
+  const target = document.querySelector(selector);
+  if (!target || !demoCursor) return Promise.resolve();
+  target.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  return new Promise(resolve => {
+    window.setTimeout(() => {
+      if (!demoRunning) return resolve();
+      const bounds = target.getBoundingClientRect();
+      demoCursor.style.transform = `translate(${Math.round(bounds.left + bounds.width / 2 - 8)}px, ${Math.round(bounds.top + bounds.height / 2 - 6)}px)`;
+      demoCursor.classList.add('is-visible');
+      window.setTimeout(() => {
+        demoCursor?.classList.add('is-pressing');
+        window.setTimeout(() => demoCursor?.classList.remove('is-pressing'), 150);
+        resolve();
+      }, 460);
+    }, 320);
+  });
+}
+
+function stopDemo() {
   demoTimers.forEach(timer => window.clearTimeout(timer));
   demoTimers = [];
-  if (!demoRunning) return;
   demoRunning = false;
-  setDemoStatus(interrupted ? 'Flow paused' : 'Flow complete');
+  hideDemoCursor();
+}
+
+function runDemoStep(step) {
+  moveDemoCursor(step.target).then(() => {
+    if (demoRunning) step.action();
+  });
 }
 
 function startDemo() {
   if (!demoMode || !demoScripts[demoMode]) return;
   stopDemo();
   demoRunning = true;
-  setDemoStatus('Guided flow');
+  createDemoCursor();
   const steps = demoScripts[demoMode];
   steps.forEach(step => {
     demoTimers.push(window.setTimeout(() => {
-      if (!demoRunning) return;
-      setDemoStatus(step.label);
-      step.action();
+      if (demoRunning) runDemoStep(step);
     }, step.delay));
   });
-  const finishDelay = Math.max(...steps.map(step => step.delay)) + 1600;
-  demoTimers.push(window.setTimeout(() => stopDemo(), finishDelay));
+  const finishDelay = Math.max(...steps.map(step => step.delay)) + 1800;
+  demoTimers.push(window.setTimeout(stopDemo, finishDelay));
 }
 
 function setupCaseStudyDemo() {
   if (!demoMode) return;
-  setDemoStatus('Guided flow ready');
+  createDemoCursor();
   document.addEventListener('pointerdown', event => {
-    if (demoRunning && !event.target.closest('#case-demo-controls')) stopDemo(true);
+    if (demoRunning && !event.target.closest('.case-demo-cursor')) stopDemo();
   }, true);
   document.addEventListener('focusin', event => {
-    if (demoRunning && !event.target.closest('#case-demo-controls')) stopDemo(true);
+    if (demoRunning && !event.target.closest('.case-demo-cursor')) stopDemo();
   }, true);
-  document.addEventListener('click', event => {
-    if (!event.target.closest('[data-replay-demo]')) return;
-    startDemo();
-  });
   window.addEventListener('message', event => {
     if (event.source === window.parent && event.data?.type === 'eze-demo:start') startDemo();
   });
