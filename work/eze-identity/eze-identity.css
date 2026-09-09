@@ -627,3 +627,41 @@
 .mark-story-copy--linen .mark-principles dd {
   color: var(--eze-navy);
 }
+
+/* Product case shader, inverted for the identity case */
+.identity-work-card {
+  position: relative;
+  min-height: clamp(14rem, 28vw, 23rem);
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(21, 32, 43, 0.16);
+  transition: transform 220ms var(--ease), box-shadow 220ms ease;
+}
+
+.identity-work-card:hover {
+  transform: translateY(-0.35rem);
+  box-shadow: inset 0 0 0 1px rgba(21, 32, 43, 0.28), 0 1.2rem 3rem rgba(0, 26, 59, 0.14);
+}
+
+.identity-work-card canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  opacity: 0.88;
+}
+
+.identity-work-card .work-icon-stack {
+  z-index: 3;
+  top: 11%;
+  right: 10%;
+}
+
+.identity-work-card .work-icon {
+  color: var(--eze-blue);
+}
+
+@media (max-width: 620px) {
+  .identity-work-card { min-height: 12.75rem; }
+}
