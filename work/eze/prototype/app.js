@@ -625,7 +625,7 @@ function createDemoCursor() {
   demoCursor = document.createElement('div');
   demoCursor.className = 'case-demo-cursor';
   demoCursor.setAttribute('aria-hidden', 'true');
-  demoCursor.innerHTML = '<svg viewBox="0 0 26 34" aria-hidden="true"><path d="M3 2.5 21 18l-8.2 1.3L10.4 29z"></path><circle cx="12" cy="18" r="5"></circle></svg>';
+
   document.body.append(demoCursor);
 }
 
@@ -641,7 +641,7 @@ function moveDemoCursor(selector) {
     window.setTimeout(() => {
       if (!demoRunning) return resolve();
       const bounds = target.getBoundingClientRect();
-      demoCursor.style.transform = `translate(${Math.round(bounds.left + bounds.width / 2 - 2)}px, ${Math.round(bounds.top + bounds.height / 2 - 2)}px)`;
+      demoCursor.style.transform = `translate(${Math.round(bounds.left + bounds.width / 2 - 6)}px, ${Math.round(bounds.top + bounds.height / 2 - 6)}px)`;
       demoCursor.classList.add('is-visible');
       window.setTimeout(() => {
         demoCursor?.classList.add('is-pressing');
