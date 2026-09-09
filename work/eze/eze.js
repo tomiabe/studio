@@ -127,6 +127,8 @@
     const readyFrames = new Set();
     const visibleFrames = new Set();
     const startedFrames = new Set();
+    const pausedFrames = new Set();
+    const resumeTimers = new Map();
 
     function start(frame) {
       if (!readyFrames.has(frame) || !visibleFrames.has(frame) || startedFrames.has(frame)) return;
@@ -134,12 +136,29 @@
       frame.contentWindow?.postMessage({ type: 'eze-demo:start' }, '*');
     }
 
+    function resume(frame) {
+      window.clearTimeout(resumeTimers.get(frame));
+      resumeTimers.delete(frame);
+      pausedFrames.delete(frame);
+      frame.contentWindow?.postMessage({ type: 'eze-demo:start' }, '*');
+    }
+
     window.addEventListener('message', event => {
-      if (event.data?.type !== 'eze-demo:ready') return;
       const frame = frames.find(item => item.contentWindow === event.source);
       if (!frame) return;
-      readyFrames.add(frame);
-      start(frame);
+      if (event.data?.type === 'eze-demo:ready') {
+        readyFrames.add(frame);
+        start(frame);
+      }
+      if (event.data?.type === 'eze-demo:paused') pausedFrames.add(frame);
+    });
+
+    document.addEventListener('click', event => {
+      if (event.target.closest('.prototype-frame-shell')) return;
+      pausedFrames.forEach(frame => {
+        window.clearTimeout(resumeTimers.get(frame));
+        resumeTimers.set(frame, window.setTimeout(() => resume(frame), 2500));
+      });
     });
 
     frames.forEach(frame => {
