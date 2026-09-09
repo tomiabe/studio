@@ -635,7 +635,7 @@ function moveDemoCursor(selector) {
     window.setTimeout(() => {
       if (!demoRunning) return resolve();
       const bounds = target.getBoundingClientRect();
-      demoCursor.style.transform = `translate(${Math.round(bounds.left + bounds.width / 2 - 8)}px, ${Math.round(bounds.top + bounds.height / 2 - 6)}px)`;
+      demoCursor.style.transform = `translate(${Math.round(bounds.left + bounds.width / 2 - 2)}px, ${Math.round(bounds.top + bounds.height / 2 - 2)}px)`;
       demoCursor.classList.add('is-visible');
       window.setTimeout(() => {
         demoCursor?.classList.add('is-pressing');
