@@ -514,26 +514,6 @@
   line-height: 1.48;
 }
 
-.impact-context {
-  max-width: 58ch;
-  margin: clamp(1.5rem, 3vw, 2.5rem) 0 0;
-  padding-top: clamp(1rem, 2vw, 1.35rem);
-  border-top: 1px solid rgba(255, 255, 255, 0.42);
-  color: rgba(255, 255, 255, 0.84);
-  font-size: clamp(1rem, 1.35vw, 1.14rem);
-  line-height: 1.55;
-}
-
-.impact-context a {
-  color: #ffffff;
-  text-decoration-color: rgba(255, 255, 255, 0.55);
-  text-underline-offset: 0.17em;
-}
-
-.impact-context a:hover {
-  text-decoration-color: #ffffff;
-}
-
 .case-closing {
   border-top: 0;
 }
