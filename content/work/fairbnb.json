@@ -3,10 +3,11 @@
   "title": "Fairbnb",
   "categories": ["Brand", "Product"],
   "shortDescription": "Cooperative sustainable travel marketplace",
-  "role": "Brand & Product Consultant",
+  "role": "Brand and Product Design Consultant",
   "order": 5,
   "year": "2022-2023",
   "image": "/images/work/Fairbnb.jpg",
-  "description": "Clarifying a cooperative travel marketplace's story so sustainable tourism, local impact, and booking flows feel transparent, intuitive, and trustworthy for all stakeholders.",
-  "link": "https://fairbnb.coop"
+  "description": "Designing one connected guest journey for fair stays, local experiences, and community impact.",
+  "link": "https://fairbnb.coop",
+  "page": "/work/fairbnb/"
 }

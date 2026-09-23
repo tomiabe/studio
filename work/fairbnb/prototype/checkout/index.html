@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Review a Fairbnb stay, local experience and community contribution in one trip.">
+  <title>Review your Barcelona trip | Fairbnb.coop</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../shared-shell.css?v=20260912-3">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to trip review</a>
+  <header class="site-header">
+    <div class="page-shell header-row">
+      <a class="brand" href="../" aria-label="Fairbnb.coop home"><img src="../assets/fairbnb-logo.png" alt="Fairbnb.coop, community powered tourism"></a>
+      <a class="back-link" href="../experience/?city=barcelona&amp;experience=experience-0&amp;checkin=2026-10-16&amp;guests=2"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to your trip</a>
+      <p class="secure-note"><i class="fa-solid fa-lock" aria-hidden="true"></i> Secure checkout</p>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-shell checkout-heading">
+      <h1>Review your Barcelona trip.</h1>
+      <p>Everything is together before you confirm.</p>
+      <ol class="checkout-progress" aria-label="Checkout progress">
+        <li class="active"><span>1</span>Trip review</li>
+        <li><span>2</span>Guest details</li>
+        <li><span>3</span>Payment</li>
+      </ol>
+    </div>
+
+    <div class="page-shell checkout-layout">
+      <div class="checkout-main">
+        <section class="review-section" aria-labelledby="review-title">
+          <div class="section-heading"><div><h2 id="review-title">Your trip</h2><p id="review-copy">5 nights, one local experience and one supported project.</p></div></div>
+
+          <article class="trip-card" id="stay-card">
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=88" alt="Bright living room in Adriana's Gràcia home">
+            <div class="trip-card-copy"><p class="trip-type"><i class="fa-solid fa-house" aria-hidden="true"></i>Stay</p><h3>Light-filled resident home in Gràcia</h3><p>Hosted by Adriana</p><dl><div><dt>Dates</dt><dd id="stay-date-display">14 to 19 October 2026</dd></div><div><dt>Guests</dt><dd id="stay-guest-display">2 guests</dd></div></dl></div>
+            <button class="edit-button" type="button" data-edit="stay-editor" aria-expanded="false">Edit</button>
+          </article>
+          <form class="inline-editor" id="stay-editor" hidden>
+            <h3>Edit your stay</h3>
+            <div class="editor-grid"><label><span>Check in</span><input id="stay-checkin" type="date" value="2026-10-14"></label><label><span>Check out</span><input id="stay-checkout" type="date" value="2026-10-19"></label><label><span>Guests</span><select id="stay-guests"><option value="1">1 guest</option><option value="2" selected>2 guests</option></select></label></div>
+            <p class="availability available" id="stay-availability" role="status" aria-live="polite"><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Available for 5 nights</p>
+            <button class="outline-button" type="button" data-close-editor="stay-editor">Done</button>
+          </form>
+
+          <article class="trip-card" id="experience-card">
+            <img src="../assets/marta-ceramic-host.jpg" alt="Marta in her pottery studio">
+            <div class="trip-card-copy"><p class="trip-type"><i class="fa-solid fa-compass" aria-hidden="true"></i>Experience</p><h3>Shape a piece of Gràcia with Marta</h3><p>2 hours at Marta's neighbourhood studio</p><dl><div><dt>Session</dt><dd id="experience-date-display">16 October at 10:00</dd></div><div><dt>Guests</dt><dd id="experience-guest-display">2 guests</dd></div></dl></div>
+            <button class="edit-button" type="button" data-edit="experience-editor" aria-expanded="false">Edit</button>
+          </article>
+          <form class="inline-editor" id="experience-editor" hidden>
+            <h3>Edit your experience</h3>
+            <div class="editor-grid"><label><span>Date</span><input id="experience-date" type="date" value="2026-10-16"></label><fieldset><legend>Start time</legend><div class="time-options"><label><input type="radio" name="experience-time" value="10:00" checked><span>10:00</span></label><label><input type="radio" name="experience-time" value="15:00"><span>15:00</span></label><label><input type="radio" name="experience-time" value="18:00"><span>18:00</span></label></div></fieldset><label><span>Guests</span><select id="experience-guests"><option value="1">1 guest</option><option value="2" selected>2 guests</option><option value="3">3 guests</option><option value="4">4 guests</option><option value="5">5 guests</option></select></label></div>
+            <p class="availability available" id="experience-availability" role="status" aria-live="polite"><i class="fa-solid fa-circle-check" aria-hidden="true"></i>5 places available at 10:00</p>
+            <button class="outline-button" type="button" data-close-editor="experience-editor">Done</button>
+          </form>
+
+          <article class="project-card">
+            <img src="../assets/gracia-community-space.jpg" alt="Residents working together at Gràcia Community Space">
+            <div><i class="fa-solid fa-seedling" aria-hidden="true"></i><h3>Gràcia Community Space</h3><p>Half of Fairbnb's platform fee supports shared activities and practical help shaped with local residents.</p><p class="project-value"><span>Your trip contributes</span><strong id="project-total">€49.20</strong></p></div>
+          </article>
+        </section>
+
+        <section class="form-section" aria-labelledby="guest-title">
+          <h2 id="guest-title">Who is travelling?</h2>
+          <p>We will use these details for booking updates and arrival information.</p>
+          <div class="form-grid"><label><span>First name</span><input id="first-name" type="text" autocomplete="given-name" required></label><label><span>Last name</span><input id="last-name" type="text" autocomplete="family-name" required></label><label class="full-field"><span>Email address</span><input id="email" type="email" autocomplete="email" required></label><label><span>Phone number</span><input id="phone" type="tel" autocomplete="tel" required></label><label><span>Country or region</span><select id="country"><option value="Nigeria">Nigeria</option><option value="Belgium">Belgium</option><option value="Spain">Spain</option><option value="United Kingdom">United Kingdom</option></select></label></div>
+        </section>
+
+        <section class="form-section" aria-labelledby="payment-title">
+          <h2 id="payment-title">How would you like to pay?</h2>
+          <div class="payment-options"><label><input type="radio" name="payment" value="card" checked><span><i class="fa-regular fa-credit-card" aria-hidden="true"></i><strong>Debit or credit card</strong></span></label><label><input type="radio" name="payment" value="bank"><span><i class="fa-solid fa-building-columns" aria-hidden="true"></i><strong>Bank transfer</strong></span></label></div>
+          <div class="card-fields" id="card-fields"><label class="full-field"><span>Card number</span><input id="card-number" type="text" inputmode="numeric" autocomplete="cc-number" placeholder="1234 5678 9012 3456"></label><label><span>Expiry</span><input id="expiry" type="text" inputmode="numeric" autocomplete="cc-exp" placeholder="MM / YY"></label><label><span>Security code</span><input id="security-code" type="text" inputmode="numeric" autocomplete="cc-csc" placeholder="CVV"></label></div>
+          <p class="bank-note" id="bank-note" hidden>Bank details and a payment reference will appear after you confirm.</p>
+        </section>
+      </div>
+
+      <aside class="price-summary" aria-labelledby="summary-title">
+        <h2 id="summary-title">Price summary</h2>
+        <div class="summary-lines"><p id="stay-price-row"><span id="stay-price-label">€112 × 5 nights</span><strong id="stay-price">€560.00</strong></p><p id="cleaning-row"><span>Cleaning</span><strong>€35.00</strong></p><p id="experience-price-row"><span id="experience-price-label">€48 × 2 guests</span><strong id="experience-price">€96.00</strong></p><p><span>Fairbnb platform fee</span><strong id="platform-fee">€98.40</strong></p><p class="summary-total"><span>Total</span><strong id="total-price">€789.40</strong></p></div>
+        <div class="impact-note"><i class="fa-solid fa-seedling" aria-hidden="true"></i><p><strong id="summary-impact">€49.20 supports Gràcia Community Space</strong><span>This is included in the platform fee.</span></p></div>
+        <label class="terms"><input id="terms" type="checkbox" aria-describedby="terms-error"><span>I agree to the booking conditions and cancellation policies.</span></label>
+        <p class="terms-error" id="terms-error" role="alert" hidden>Please agree to the booking conditions to continue.</p>
+        <button class="primary-button confirm-button" id="confirm-button" type="button">Confirm and pay €789.40</button>
+        <p class="payment-note"><i class="fa-solid fa-lock" aria-hidden="true"></i>Your payment details are protected.</p>
+      </aside>
+    </div>
+
+    <section class="confirmation" id="confirmation" hidden aria-live="polite">
+      <div class="page-shell confirmation-card"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><h1>Your Barcelona trip is confirmed.</h1><p><span id="confirmation-recipient">Adriana and Marta have</span> received your booking. We have sent the details to <strong id="confirmation-email"></strong>.</p><div class="confirmation-reference"><span>Booking reference</span><strong>FB-BCN-261016</strong></div><div class="confirmation-actions"><a class="primary-button" href="../trips/">View your trip</a><button class="outline-button" id="print-button" type="button">Print confirmation</button></div><p id="confirmation-impact">€49.20 from Fairbnb's fee will support Gràcia Community Space.</p></div>
+    </section>
+  </main>
+
+  <footer class="checkout-footer"><div class="page-shell checkout-footer-row"><a class="checkout-footer-brand" href="../" aria-label="Fairbnb.coop home"><img src="../assets/fairbnb-logo.png" alt="Fairbnb.coop, community powered tourism"></a><nav aria-label="Checkout information"><a href="../help/" data-prototype-page="Help centre">Help</a><a href="../privacy/" data-prototype-page="Privacy">Privacy</a><a href="../terms/" data-prototype-page="Terms">Terms</a><a href="../cancellation/" data-prototype-page="Cancellation policy">Cancellation policy</a></nav><span class="checkout-locale"><span class="locale-label">🇬🇧 · ₦</span></span></div></footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script src="../shared-shell.js?v=20260912-3"></script>
+  <script src="app.js"></script>
+  <script src="../case-demo.js?v=4"></script>
+</body>
+</html>

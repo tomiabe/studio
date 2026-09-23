@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore fair stays, local experiences and community projects together with Fairbnb.coop.">
+  <title>Explore Barcelona | Fairbnb.coop</title>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="styles.css?v=20260913-1">
+  <link rel="stylesheet" href="../shared-shell.css?v=20260912-3">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to results</a>
+
+  <header class="site-header global-header">
+    <div class="page-shell header-row">
+      <a class="brand" href="../" aria-label="Fairbnb.coop home"><img src="../assets/fairbnb-logo.png" alt="Fairbnb.coop, community powered tourism"></a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a class="active" href="./">Plan your trip</a>
+        <div class="nav-dropdown"><button type="button" aria-expanded="false">About Fairbnb <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button><div class="nav-dropdown-menu"><a href="../about/" data-prototype-page="About Fairbnb">About the cooperative</a><a href="../how-it-works/" data-prototype-page="How Fairbnb works">How Fairbnb works</a><a href="../manifesto/" data-prototype-page="Our manifesto">Our manifesto</a><a href="../local-groups/" data-prototype-page="Local groups">Local groups</a><a href="../journal/" data-prototype-page="Journal">Journal</a></div></div>
+        <div class="nav-dropdown"><button type="button" aria-expanded="false">Get involved <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button><div class="nav-dropdown-menu"><a href="../?participate=1">Offer a fair stay</a><a href="../?participate=1">Host an experience</a><a href="../?participate=1">Become a local scout</a><a href="../?participate=1">Start a local group</a></div></div>
+      </nav>
+      <div class="header-actions">
+        <button class="utility-button" type="button" data-language-toggle><span class="locale-label">🇬🇧 · ₦</span></button>
+        <a class="header-text-action" href="../?auth=login">Log in</a>
+        <a class="primary-button header-signup" href="../?auth=signup">Sign up</a>
+        <button class="menu-button" id="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden>
+      <div class="mobile-nav-group"><h2>Plan your trip</h2><a href="./">Explore destinations</a><a href="./?view=stays">Stays</a><a href="./?view=experiences">Experiences</a></div><div class="mobile-nav-group"><h2>About Fairbnb</h2><a href="../about/" data-prototype-page="About Fairbnb">About the cooperative</a><a href="../how-it-works/" data-prototype-page="How Fairbnb works">How Fairbnb works</a><a href="../manifesto/" data-prototype-page="Our manifesto">Our manifesto</a><a href="../local-groups/" data-prototype-page="Local groups">Local groups</a><a href="../journal/" data-prototype-page="Journal">Journal</a></div><div class="mobile-nav-group"><h2>Get involved</h2><a href="../?participate=1">Offer a fair stay</a><a href="../?participate=1">Host an experience</a><a href="../?participate=1">Become a local scout</a><a href="../?participate=1">Start a local group</a></div>
+      <button class="mobile-locale" type="button" data-language-toggle><span class="locale-label">🇬🇧 · ₦</span></button>
+      <div class="mobile-account-actions"><a class="outline-button" href="../?auth=login">Log in</a><a class="primary-button" href="../?auth=signup">Sign up</a></div>
+    </nav>
+  </header>
+
+  <section class="search-strip" aria-label="Change your search">
+    <form class="page-shell compact-search" id="compact-search">
+      <label class="search-field destination-field"><span>Where</span><i class="fa-solid fa-location-dot" aria-hidden="true"></i><input id="destination-input" name="destination" list="destination-list" value="Barcelona, Spain" autocomplete="off"></label>
+      <datalist id="destination-list">
+        <option value="Barcelona, Spain"></option><option value="Bologna, Italy"></option><option value="Venice, Italy"></option><option value="Porto, Portugal"></option><option value="Florence, Italy"></option><option value="Rome, Italy"></option><option value="Valencia, Spain"></option><option value="Amsterdam, Netherlands"></option>
+      </datalist>
+      <label class="search-field"><span>Check in</span><input id="checkin" name="checkin" type="date" value="2026-10-14"></label>
+      <label class="search-field"><span>Check out</span><input id="checkout" name="checkout" type="date" value="2026-10-19"></label>
+      <label class="search-field guest-field"><span>Guests</span><select id="guest-count" name="guests"><option value="1">1 guest</option><option value="2" selected>2 guests</option><option value="3">3 guests</option><option value="4">4 guests</option><option value="5">5 guests</option><option value="6">6 guests</option></select></label>
+          <button class="search-button" type="submit"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><span>Search Fairbnb</span></button>
+    </form>
+  </section>
+
+  <main id="main">
+    <section class="results-section">
+      <div class="page-shell">
+        <div class="browse-toolbar">
+        <div class="search-context" id="search-context" role="status" aria-live="polite"></div>
+        <div class="results-controls">
+          <div class="result-tabs" role="tablist" aria-label="Result type">
+            <button class="active" type="button" role="tab" aria-selected="true" data-view="all"><i class="fa-solid fa-layer-group" aria-hidden="true"></i>All</button>
+            <button type="button" role="tab" aria-selected="false" data-view="stays"><i class="fa-solid fa-house" aria-hidden="true"></i>Stays</button>
+            <button type="button" role="tab" aria-selected="false" data-view="experiences"><i class="fa-solid fa-compass" aria-hidden="true"></i>Experiences</button>
+          </div>
+          <div class="view-tools">
+          <button class="filter-toggle" id="filter-toggle" type="button" aria-expanded="false" aria-controls="filter-panel"><i class="fa-solid fa-sliders" aria-hidden="true"></i><span>Filters</span><b id="filter-count" hidden>0</b></button>
+          <label class="sort-control"><span>Sort by</span><select data-sort aria-label="Sort results"><option value="recommended">Best match</option><option value="price">Price: low to high</option><option value="price-high">Price: high to low</option><option value="rating">Highest rated</option><option value="newest">Newest</option></select></label>
+          <div class="layout-switcher" role="group" aria-label="Results layout">
+            <button class="active" type="button" data-layout="grid" aria-label="Grid view" aria-pressed="true"><i class="fa-solid fa-table-cells-large" aria-hidden="true"></i><span>Grid</span></button>
+            <button type="button" data-layout="list" aria-label="List view" aria-pressed="false"><i class="fa-solid fa-list" aria-hidden="true"></i><span>List</span></button>
+            <button type="button" data-layout="map" aria-label="Map view" aria-pressed="false"><i class="fa-solid fa-map" aria-hidden="true"></i><span>Map</span></button>
+          </div>
+          <select class="mobile-view-select" id="mobile-view-select" aria-label="Results view"><option value="grid">Grid view</option><option value="list">List view</option><option value="map">Map view</option></select>
+        </div>
+        </div>
+        </div>
+        <div class="active-filters" id="active-filters" aria-label="Applied filters" hidden></div>
+
+        <button class="trip-launcher" id="trip-launcher" type="button" aria-expanded="false" aria-controls="trip-builder"><span class="trip-launcher-icon"><i class="fa-solid fa-suitcase-rolling" aria-hidden="true"></i><b id="trip-count">0</b></span><span><small>Your trip</small><strong id="trip-launcher-total">€0</strong></span></button>
+        <button class="trip-scrim" id="trip-scrim" type="button" aria-label="Close your trip" hidden></button>
+        <aside class="trip-builder" id="trip-builder" aria-labelledby="trip-builder-title" aria-hidden="true">
+          <button class="trip-close" id="trip-close" type="button" aria-label="Close your trip"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+          <header><p>Your Barcelona trip</p><h2 id="trip-builder-title">Build it in one place</h2><span>Choose a stay, add something local, or book either one on its own.</span></header>
+          <div class="trip-step" id="trip-stay"><span class="step-icon"><i class="fa-solid fa-house" aria-hidden="true"></i></span><div><small>Stay</small><strong>Add a place to stay</strong><span>Choose from the results</span></div><button type="button" data-jump="stays" aria-label="Choose a stay"><i class="fa-solid fa-plus" aria-hidden="true"></i></button></div>
+          <div class="trip-step" id="trip-experience"><span class="step-icon"><i class="fa-solid fa-compass" aria-hidden="true"></i></span><div><small>Experience</small><strong>Add something local</strong><span>Choose from the results</span></div><button type="button" data-jump="experiences" aria-label="Choose an experience"><i class="fa-solid fa-plus" aria-hidden="true"></i></button></div>
+          <div class="trip-step contribution-step"><span class="step-icon"><i class="fa-solid fa-seedling" aria-hidden="true"></i></span><div><small>Community contribution</small><strong id="builder-impact">Calculated as you build</strong><span id="builder-project">For Gràcia Community Space</span></div></div>
+          <div class="trip-actions"><div class="trip-total"><span>Current total</span><strong id="builder-total">€0</strong></div><button class="primary-button trip-continue" id="trip-continue" type="button" disabled>Continue</button><p class="trip-helper" id="trip-helper"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>Choose a stay or experience.</p></div>
+        </aside>
+
+        <div class="browse-layout">
+          <div class="discovery-rail">
+            <aside class="filter-panel" id="filter-panel" aria-label="Filter results">
+              <div class="filter-panel-heading"><div><h2>Filter your search</h2><p id="filter-scope-note">Shared preferences apply to both.</p></div><button class="filter-close" id="filter-close" type="button" aria-label="Close filters"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></div>
+              <div id="filter-sections"></div>
+              <div class="filter-panel-footer"><button class="clear-filters" id="clear-filters" type="button" hidden>Clear all</button><button class="primary-button filter-apply" id="filter-apply" type="button">Show results</button></div>
+            </aside>
+          </div>
+          <button class="filter-scrim" id="filter-scrim" type="button" aria-label="Close filters" hidden></button>
+
+          <div class="results-layout">
+            <div class="results-content">
+            <section class="result-group" id="stay-results" data-section="stays">
+              <header class="group-heading"><div><h1 id="stay-results-title">Places to stay in Barcelona</h1><p id="stay-results-summary"></p></div></header>
+              <section class="fair-standard" aria-label="What makes these stays fair"><strong>Why these stays are fair</strong><span><i class="fa-solid fa-house-user" aria-hidden="true"></i>Resident hosts</span><span><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>Clear conditions</span><span><i class="fa-solid fa-people-group" aria-hidden="true"></i>Local participation</span></section>
+              <div class="listing-grid" id="stay-grid"></div><div class="empty-results" id="stay-empty" hidden><h3>No stays match these preferences</h3><p>Try a higher nightly budget, another neighbourhood or fewer filters.</p><button type="button" data-clear-type="stay">Reset stay filters</button></div>
+              <button class="load-more" type="button" data-load-more="stays">Show 8 more stays</button>
+            </section>
+
+            <section class="result-group" id="experience-results" data-section="experiences">
+              <header class="group-heading"><div><h2 id="experience-results-title">Local experiences in Barcelona</h2><p id="experience-results-summary"></p></div></header>
+              <div class="listing-grid" id="experience-grid"></div><div class="empty-results" id="experience-empty" hidden><h3>No experiences match these preferences</h3><p>Try a different duration, time of day or group size.</p><button type="button" data-clear-type="experience">Reset experience filters</button></div>
+              <button class="load-more" type="button" data-load-more="experiences">Show 8 more experiences</button>
+            </section>
+
+            <section class="local-prompt" id="local-prompt">
+              <div><i class="fa-solid fa-compass" aria-hidden="true"></i><h2>Add one local afternoon.</h2><p>Your dates and guest details carry across, so you do not have to start again.</p></div>
+              <button class="outline-button" type="button" data-show-experiences>See local experiences</button>
+            </section>
+
+            <section class="project-section" id="project-section">
+              <div class="project-copy"><i class="fa-solid fa-seedling" aria-hidden="true"></i><h2>Your trip can support something here.</h2><p id="project-description">Half of Fairbnb's platform fee can support neighbourhood connection through the selected Barcelona project.</p></div>
+              <div class="project-card"><span>Community project</span><h3 id="project-name">Gràcia Community Space</h3><p id="project-purpose">Shared activities and practical support shaped with local residents.</p><button class="project-button" type="button" aria-pressed="true"><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Included in this trip</button></div>
+            </section>
+
+            </div>
+
+            <aside class="map-panel" id="map-panel" aria-label="Map of available results" hidden>
+              <div class="map-canvas" role="img" aria-label="Interactive prototype map showing stays and experiences around Barcelona">
+                <span class="map-road map-road-one"></span><span class="map-road map-road-two"></span><span class="map-road map-road-three"></span><span class="map-road map-road-four"></span>
+                <button class="map-price pin-one" type="button">€112</button><button class="map-price pin-two" type="button">€139</button><button class="map-price pin-three" type="button">€86</button><button class="map-price pin-four" type="button">€124</button><button class="map-experience pin-five" type="button" aria-label="Local experience"><i class="fa-solid fa-compass" aria-hidden="true"></i></button>
+                <div class="map-zoom" aria-label="Map controls"><button type="button" aria-label="Zoom in"><i class="fa-solid fa-plus" aria-hidden="true"></i></button><button type="button" aria-label="Zoom out"><i class="fa-solid fa-minus" aria-hidden="true"></i></button></div>
+                <span class="map-area area-one">Gràcia</span><span class="map-area area-two">Sant Antoni</span><span class="map-area area-three">Poblenou</span>
+              </div>
+              <div class="map-summary"><strong id="map-summary-title">40 places across Barcelona</strong><span>Move the map to update the results</span></div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer global-footer">
+    <div class="page-shell footer-grid"><div class="footer-brand"><a href="../" aria-label="Fairbnb.coop home"><img src="../assets/fairbnb-logo.png" alt="Fairbnb.coop, community powered tourism"></a><p>A cooperative travel platform connecting fair stays, local experiences and community projects.</p><div class="footer-coop-info"><span>Fair Bnb Network Società Cooperativa</span><span>Bologna, Italy</span></div></div><section><h2>Plan your trip</h2><a href="./?view=stays">Stays</a><a href="./?view=experiences">Experiences</a><a href="./">Destinations</a><a href="../community-projects/" data-prototype-page="Community projects">Community projects</a></section><section><h2>About Fairbnb</h2><a href="../about/" data-prototype-page="About Fairbnb">About the cooperative</a><a href="../how-it-works/" data-prototype-page="How Fairbnb works">How Fairbnb works</a><a href="../manifesto/" data-prototype-page="Our manifesto">Our manifesto</a><a href="../local-groups/" data-prototype-page="Local groups">Local groups</a><a href="../journal/" data-prototype-page="Journal">Journal</a></section><section><h2>Get involved</h2><a href="../?participate=1">Offer a fair stay</a><a href="../?participate=1">Host an experience</a><a href="../?participate=1">Start a local group</a><a href="../help/" data-prototype-page="Help centre">Help centre</a></section></div>
+    <div class="page-shell footer-bottom"><div class="footer-legal"><span>© 2026 Fairbnb.coop</span><a href="../privacy/" data-prototype-page="Privacy">Privacy</a><a href="../terms/" data-prototype-page="Terms">Terms</a><a href="../cookies/" data-prototype-page="Cookie settings">Cookies</a></div><div class="footer-utility"><span><span class="locale-label">🇬🇧 · ₦</span></span></div></div>
+  </footer>
+
+  <dialog class="detail-dialog" id="detail-dialog">
+    <button class="dialog-close" type="button" aria-label="Close details"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    <img id="dialog-image" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&amp;fit=crop&amp;w=1100&amp;q=88" alt="Resident home interior">
+    <div><p id="dialog-type"></p><h2 id="dialog-title"></h2><p id="dialog-copy"></p><button class="primary-button" id="dialog-add" type="button"></button></div>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script src="../shared-shell.js?v=20260912-3"></script>
+  <script src="app.js?v=20260912-6"></script>
+  <script src="../case-demo.js?v=4"></script>
+</body>
+</html>

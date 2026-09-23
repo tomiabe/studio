@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Manage your confirmed Fairbnb stay, local experience and community contribution.">
+  <title>Your Barcelona trip | Fairbnb.coop</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../shared-shell.css?v=20260912-3">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header global-header">
+    <div class="page-shell header-row">
+      <a class="brand" href="../" aria-label="Fairbnb.coop home"><img src="../assets/fairbnb-logo.png" alt="Fairbnb.coop, community powered tourism"></a>
+      <nav class="desktop-nav" aria-label="Main navigation"><a data-nav-section="stays" href="../explore/?view=stays">Stays</a><a data-nav-section="experiences" href="../explore/?view=experiences">Experiences</a><a data-nav-section="destinations" href="../explore/">Destinations</a><a href="../?participate=1">Get involved</a><a class="active" href="./">Trips</a><button id="messages-nav" type="button">Messages <span>2</span></button></nav>
+      <div class="account-actions">
+        <button class="utility-button" type="button" data-language-toggle><span class="locale-label">🇬🇧 · ₦</span></button>
+        <div class="account-shell"><button class="account-button" type="button" aria-label="Open account menu" aria-expanded="false" aria-controls="account-menu"><i class="fa-regular fa-user" aria-hidden="true"></i></button><div class="account-menu" id="account-menu" hidden><header><strong>Your account</strong><span>Guest profile</span></header><a href="./"><i class="fa-solid fa-suitcase-rolling" aria-hidden="true"></i>Trips</a><button type="button" data-open-messages><i class="fa-regular fa-message" aria-hidden="true"></i>Messages</button><a href="#saved"><i class="fa-regular fa-heart" aria-hidden="true"></i>Saved</a><button type="button" data-account-settings><i class="fa-regular fa-user" aria-hidden="true"></i>Account settings</button><button type="button" data-sign-out><i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i>Log out</button></div></div>
+        <button class="menu-button" id="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><div class="mobile-nav-group"><a data-nav-section="stays" href="../explore/?view=stays">Stays</a><a data-nav-section="experiences" href="../explore/?view=experiences">Experiences</a><a data-nav-section="destinations" href="../explore/">Destinations</a><a href="../?participate=1">Get involved</a></div><div class="mobile-nav-group"><a class="active" href="./">Trips</a><button type="button" data-open-messages>Messages <span>2</span></button><a href="#saved">Saved</a><button type="button" data-account-settings>Account settings <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button><button type="button" data-sign-out>Log out</button></div><button class="mobile-locale" type="button" data-language-toggle><span class="locale-label">🇬🇧 · ₦</span></button></nav>
+  </header>
+
+  <main id="main">
+    <section class="trip-intro"><div class="page-shell intro-grid"><div><a class="back-link" href="../explore/?city=barcelona"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> All trips</a><h1>Barcelona is coming up.</h1><p>14 to 19 October 2026 · 5 nights · 2 guests</p><div class="status-line"><span><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Confirmed</span><span id="countdown">33 days to go</span><span>FB-BCN-261016</span></div></div><img src="https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=1300&q=88" alt="Barcelona viewed across the city"></div></section>
+
+    <div class="trip-tabs-wrap"><nav class="page-shell trip-tabs" aria-label="Trip sections"><button class="active" type="button" data-tab="overview" aria-selected="true">Overview</button><button type="button" data-tab="messages" aria-selected="false">Messages <span>2</span></button><button type="button" data-tab="booking" aria-selected="false">Booking details</button></nav></div>
+
+    <div class="page-shell dashboard-layout" data-panel="overview">
+      <div class="dashboard-main">
+        <section class="next-section" aria-labelledby="next-title"><div class="section-heading"><div><h2 id="next-title">What happens next</h2><p>Complete these before you travel.</p></div><span id="task-count">1 of 3 complete</span></div><div class="task-list"><article class="task complete"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><div><h3>Booking confirmed</h3><p>Adriana and Marta have your reservation.</p></div><span>Done</span></article><article class="task"><i class="fa-regular fa-clock" aria-hidden="true"></i><div><h3>Tell Adriana when you expect to arrive</h3><p>This helps arrange a smooth handover.</p></div><button type="button" data-task="arrival">Add arrival time</button></article><article class="task"><i class="fa-regular fa-id-card" aria-hidden="true"></i><div><h3>Complete the local guest details</h3><p>Barcelona requires basic registration before check-in.</p></div><button type="button" data-task="guest">Add details</button></article></div></section>
+
+        <section class="itinerary-section" aria-labelledby="itinerary-title"><div class="section-heading"><div><h2 id="itinerary-title">Your itinerary</h2><p>Stay and experience details in one place.</p></div><button class="outline-button" id="calendar-button" type="button"><i class="fa-regular fa-calendar-plus" aria-hidden="true"></i>Add to calendar</button></div><div class="itinerary-list"><article class="itinerary-card"><div class="date-block"><strong>14</strong><span>Oct</span></div><img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=88" alt="Bright living room in Adriana's Gràcia home"><div><p><i class="fa-solid fa-house" aria-hidden="true"></i>Check in from 15:00</p><h3>Light-filled resident home in Gràcia</h3><span>Hosted by Adriana · 5 nights</span><div class="card-actions"><button type="button" data-open-messages="adriana">Message Adriana</button><button type="button" data-manage="stay">Manage stay</button></div></div></article><article class="itinerary-card"><div class="date-block"><strong>16</strong><span>Oct</span></div><img src="../assets/marta-ceramic-host.jpg" alt="Marta in her pottery studio"><div><p><i class="fa-solid fa-compass" aria-hidden="true"></i>10:00 to 12:00</p><h3>Shape a piece of Gràcia with Marta</h3><span>2 guests · Plaça de la Virreina</span><div class="card-actions"><button type="button" data-open-messages="marta">Message Marta</button><button type="button" data-manage="experience">Manage experience</button></div></div></article><article class="departure-card"><div class="date-block"><strong>19</strong><span>Oct</span></div><div><p>Check out by 11:00</p><h3>Leave the keys with Adriana</h3></div></article></div></section>
+
+        <section class="impact-section" aria-labelledby="impact-title"><img src="../assets/gracia-community-space.jpg" alt="Residents working together at Gràcia Community Space"><div><i class="fa-solid fa-seedling" aria-hidden="true"></i><h2 id="impact-title">Your trip supports Gràcia Community Space.</h2><p>€49.20 from Fairbnb's platform fee supports shared activities and practical help shaped with local residents.</p><a href="../community-projects/" data-prototype-page="Community projects">Learn about the project <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div></section>
+      </div>
+
+      <aside class="trip-sidebar"><section class="arrival-card"><h2>Your stay</h2><dl><div><dt>Check in</dt><dd>Wednesday, 14 October</dd></div><div><dt>Check out</dt><dd>Monday, 19 October</dd></div><div><dt>Guests</dt><dd>2 guests</dd></div></dl><div class="address-note"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><p><strong>Gràcia, Barcelona</strong><span>The exact address appears 48 hours before check-in.</span></p></div><button class="primary-button" type="button" data-open-messages="adriana">Message Adriana</button></section><section class="help-card"><i class="fa-regular fa-circle-question" aria-hidden="true"></i><div><h2>Need help?</h2><p>Read the booking conditions or contact Fairbnb support.</p><button type="button" id="support-button">Get support</button></div></section></aside>
+    </div>
+
+    <section class="page-shell panel-view" data-panel="messages" hidden>
+      <div class="panel-heading"><h1>Messages</h1><p>Your conversations about this trip.</p></div>
+      <div class="message-layout">
+        <nav class="conversation-list" aria-label="Trip conversations">
+          <button class="active" type="button" data-conversation="adriana">
+            <span class="contact-avatar"><img src="../assets/adriana-host.jpg" alt="Adriana, your stay host"><span class="contact-badge" aria-label="1 unread message">1</span></span>
+            <span class="contact-copy"><strong>Adriana</strong><small>Stay host · 1 new message</small></span>
+          </button>
+          <button type="button" data-conversation="marta">
+            <span class="contact-avatar"><img src="../assets/marta-ceramic-host.jpg" alt="Marta, your experience host"><span class="contact-badge" aria-label="1 unread message">1</span></span>
+            <span class="contact-copy"><strong>Marta</strong><small>Experience host · 1 new message</small></span>
+          </button>
+          <button type="button" data-conversation="support">
+            <span class="contact-avatar"><i class="fa-solid fa-headset" aria-hidden="true"></i></span>
+            <span class="contact-copy"><strong>Support</strong><small>Usually replies within a day</small></span>
+          </button>
+        </nav>
+        <section class="conversation" aria-labelledby="conversation-title"><header><img id="conversation-avatar" src="../assets/adriana-host.jpg" alt="Adriana"><div><h2 id="conversation-title">Adriana</h2><p id="conversation-context">Your stay in Gràcia</p></div></header><div class="message-thread" id="message-thread" aria-live="polite"></div><form id="message-form"><label for="message-input">Message</label><div><textarea id="message-input" rows="2" placeholder="Write a message" required></textarea><button class="primary-button" type="submit" aria-label="Send message"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i></button></div></form></section>
+      </div>
+    </section>
+
+    <section class="page-shell panel-view" data-panel="booking" hidden><div class="panel-heading"><h1>Booking details</h1><p>Receipts, policies and contact information.</p></div><div class="booking-grid"><section><h2>Payment summary</h2><div class="detail-list"><p><span>Stay and cleaning</span><strong>€595.00</strong></p><p><span>Local experience</span><strong>€96.00</strong></p><p><span>Fairbnb platform fee</span><strong>€98.40</strong></p><p class="detail-total"><span>Total paid</span><strong>€789.40</strong></p></div><button class="outline-button" id="receipt-button" type="button"><i class="fa-solid fa-download" aria-hidden="true"></i>Download receipt</button></section><section><h2>Booking conditions</h2><div class="condition"><i class="fa-solid fa-house" aria-hidden="true"></i><div><h3>Stay cancellation</h3><p>Cancel before 7 October for a full refund of the stay price. The platform fee is returned with it.</p></div></div><div class="condition"><i class="fa-solid fa-compass" aria-hidden="true"></i><div><h3>Experience cancellation</h3><p>Cancel at least 48 hours before the session for a full refund.</p></div></div><button class="outline-button" type="button" data-manage="whole-trip">Change or cancel</button></section></div></section>
+  </main>
+
+  <footer class="site-footer global-footer">
+    <div class="page-shell footer-grid"><div class="footer-brand"><a href="../" aria-label="Fairbnb.coop home"><img src="../assets/fairbnb-logo.png" alt="Fairbnb.coop, community powered tourism"></a><p>A cooperative travel platform connecting fair stays, local experiences and community projects.</p><div class="footer-coop-info"><span>Fair Bnb Network Società Cooperativa</span><span>Bologna, Italy</span></div></div><section><h2>Plan your trip</h2><a href="../explore/?view=stays">Stays</a><a href="../explore/?view=experiences">Experiences</a><a href="../explore/">Destinations</a><a href="../community-projects/" data-prototype-page="Community projects">Community projects</a></section><section><h2>About Fairbnb</h2><a href="../about/" data-prototype-page="About Fairbnb">About the cooperative</a><a href="../how-it-works/" data-prototype-page="How Fairbnb works">How Fairbnb works</a><a href="../manifesto/" data-prototype-page="Our manifesto">Our manifesto</a><a href="../local-groups/" data-prototype-page="Local groups">Local groups</a><a href="../journal/" data-prototype-page="Journal">Journal</a></section><section><h2>Get involved</h2><a href="../?participate=1">Offer a fair stay</a><a href="../?participate=1">Host an experience</a><a href="../?participate=1">Start a local group</a><button type="button" id="footer-support">Help centre</button></section></div>
+    <div class="page-shell footer-bottom"><div class="footer-legal"><span>© 2026 Fairbnb.coop</span><a href="../privacy/" data-prototype-page="Privacy">Privacy</a><a href="../terms/" data-prototype-page="Terms">Terms</a><a href="../cookies/" data-prototype-page="Cookie settings">Cookies</a></div><div class="footer-utility"><span><span class="locale-label">🇬🇧 · ₦</span></span></div></div>
+  </footer>
+
+  <dialog class="action-dialog" id="action-dialog"><button class="dialog-close" type="button" aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button><div id="dialog-content"></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script src="../shared-shell.js?v=20260912-3"></script>
+  <script src="app.js"></script>
+  <script src="../case-demo.js?v=4"></script>
+</body>
+</html>

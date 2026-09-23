@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Fairbnb.coop connects fair places to stay, local experiences and community projects in one trip.">
+  <meta name="google-places-key" content="">
+  <title>Fairbnb.coop | Community powered tourism</title>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="shared-shell.css?v=20260912-3">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header global-header" id="site-header">
+    <div class="page-shell header-row">
+      <a class="brand" href="./" aria-label="Fairbnb.coop home">
+        <img src="assets/fairbnb-logo.png" alt="Fairbnb.coop, community powered tourism">
+      </a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a data-nav-section="stays" href="explore/?view=stays">Stays</a>
+        <a data-nav-section="experiences" href="explore/?view=experiences">Experiences</a>
+        <a data-nav-section="destinations" href="explore/">Destinations</a>
+        <a href="?participate=1">Get involved</a>
+      </nav>
+      <div class="header-actions">
+        <button class="language-button" id="language-button" type="button" data-language-toggle aria-label="Choose language and currency">
+          <span class="locale-label">🇬🇧 · ₦</span>
+        </button>
+        <button class="header-text-action" type="button" data-open-login>Log in</button>
+        <button class="primary-button header-signup" type="button" data-open-login data-auth-mode="signup">Sign up</button>
+        <button class="menu-button" id="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden>
+      <div class="mobile-nav-group"><a data-nav-section="stays" href="explore/?view=stays">Stays</a><a data-nav-section="experiences" href="explore/?view=experiences">Experiences</a><a data-nav-section="destinations" href="explore/">Destinations</a><a href="?participate=1">Get involved</a></div>
+      <div class="mobile-nav-group"><a href="about/" data-prototype-page="About Fairbnb">About the cooperative</a><a href="community-projects/" data-prototype-page="Community projects">Community projects</a><a href="journal/" data-prototype-page="Journal">Journal</a></div>
+      <button class="mobile-locale" type="button" data-language-toggle><span class="locale-label">🇬🇧 · ₦</span></button>
+      <div class="mobile-account-actions"><button class="outline-button" type="button" data-open-login>Log in</button><button class="primary-button" type="button" data-open-login data-auth-mode="signup">Sign up</button></div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="page-shell hero-grid">
+        <div class="hero-copy">
+          <h1>Stay with the city.<br>Experience it with the people who know it.</h1>
+          <p>Find a fair place to stay, meet local hosts and support a community project with the same trip.</p>
+          <div class="search-panel" id="search-panel">
+            <div class="search-mode" role="group" aria-label="What would you like to find?">
+              <button type="button" aria-pressed="false" data-mode="stay">Stays</button>
+              <button type="button" aria-pressed="false" data-mode="experience">Experiences</button>
+              <button class="active" type="button" aria-pressed="true" data-mode="both">Both</button>
+            </div>
+            <form class="search-form" id="search-form">
+              <div class="destination-combobox" id="destination-combobox">
+                <label for="destination-search">Where</label>
+                <div class="destination-input-row">
+                  <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                  <input id="destination-search" type="search" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="destination-results" aria-activedescendant="" autocomplete="off" placeholder="Search a city or destination">
+                </div>
+                <input id="destination-select" type="hidden" value="bologna">
+                <div class="destination-results" id="destination-results" role="listbox" aria-label="Suggested destinations" hidden></div>
+              </div>
+              <div class="date-row">
+                <label class="search-field"><span>Check in</span><input id="checkin" type="date" value="2026-10-14"></label>
+                <label class="search-field"><span>Check out</span><input id="checkout" type="date" value="2026-10-19"></label>
+              </div>
+              <div class="search-action-row">
+                <button class="search-field guests-trigger" id="guests-trigger" type="button" aria-expanded="false" aria-controls="guest-menu"><span>Guests</span><strong id="guest-summary" role="status" aria-live="polite">2 guests</strong></button>
+                <button class="search-button" type="submit"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><span>Search stays and experiences</span></button>
+              </div>
+            </form>
+            <div class="guest-menu" id="guest-menu" hidden>
+              <div>
+                <span><strong>Adults</strong><small>Ages 13 and above</small></span>
+                <span class="stepper"><button type="button" data-count="adults" data-change="-1" aria-label="Remove one adult"><i class="fa-solid fa-minus"></i></button><output id="adult-count">2</output><button type="button" data-count="adults" data-change="1" aria-label="Add one adult"><i class="fa-solid fa-plus"></i></button></span>
+              </div>
+              <div>
+                <span><strong>Children</strong><small>Ages 2 to 12</small></span>
+                <span class="stepper"><button type="button" data-count="children" data-change="-1" aria-label="Remove one child"><i class="fa-solid fa-minus"></i></button><output id="child-count">0</output><button type="button" data-count="children" data-change="1" aria-label="Add one child"><i class="fa-solid fa-plus"></i></button></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <figure class="hero-media">
+          <img class="hero-place-image" id="hero-place-image" src="https://images.unsplash.com/photo-1514890547357-a9ee288728e0?auto=format&fit=crop&w=1800&q=88" alt="A quiet canal running through Venice">
+          <figcaption><strong id="hero-place-name">Venice, seen locally</strong><span id="hero-place-note">Fair stays, resident-led experiences and community projects in one place</span></figcaption>
+        </figure>
+      </div>
+      <div class="page-shell">
+        <div class="booking-principles" aria-label="Fairbnb booking principles">
+          <p><i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i><span><strong>50% of our fee</strong> supports a project where you travel</span></p>
+          <p><i class="fa-solid fa-house-user" aria-hidden="true"></i><span><strong>One host, one home</strong> where local rules require it</span></p>
+          <p><i class="fa-solid fa-people-group" aria-hidden="true"></i><span><strong>Local communities</strong> help shape what appears on Fairbnb</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="journey-section" id="discover">
+      <div class="page-shell">
+        <div class="section-intro">
+          <h2>One place. A whole trip.</h2>
+          <p>Start with a city and see how a home, a local experience and a community project belong together.</p>
+        </div>
+        <div class="city-tabs" role="group" aria-label="Choose a featured city">
+          <button class="active" type="button" aria-pressed="true" data-city="bologna">Bologna</button>
+          <button type="button" aria-pressed="false" data-city="venice">Venice</button>
+          <button type="button" aria-pressed="false" data-city="barcelona">Barcelona</button>
+          <button type="button" aria-pressed="false" data-city="porto">Porto</button>
+          <button type="button" aria-pressed="false" data-city="florence">Florence</button>
+          <button type="button" aria-pressed="false" data-city="rome">Rome</button>
+          <button type="button" aria-pressed="false" data-city="valencia">Valencia</button>
+          <button type="button" aria-pressed="false" data-city="amsterdam">Amsterdam</button>
+        </div>
+        <article class="journey-board" id="journey-board" aria-live="polite">
+          <header class="journey-heading">
+            <div>
+              <p class="location-line"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> <span id="journey-region">Emilia-Romagna, Italy</span></p>
+              <h3 id="journey-title">A slower weekend in Bologna</h3>
+            </div>
+            <button class="outline-button" id="explore-city" type="button">Explore Bologna</button>
+          </header>
+          <div class="journey-content">
+            <button class="selection-card stay-selection" id="stay-selection" type="button">
+              <img id="stay-image" src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1100&q=88" alt="Bright local apartment">
+              <span class="selection-type"><i class="fa-solid fa-house" aria-hidden="true"></i> Your stay</span>
+              <span class="selection-body"><strong id="stay-name">Portico home near Santo Stefano</strong><small id="stay-meta">2 guests · 5 nights · €575</small></span>
+            </button>
+            <div class="journey-connector" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+            <button class="selection-card experience-selection" id="experience-selection" type="button">
+              <img id="experience-image" src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1100&q=88" alt="People preparing food together">
+              <span class="selection-type"><i class="fa-solid fa-compass" aria-hidden="true"></i> Your experience</span>
+              <span class="selection-body"><strong id="experience-name">Fresh pasta with neighbourhood cooks</strong><small id="experience-meta">3 hours · €68 per person</small></span>
+            </button>
+            <div class="journey-connector" aria-hidden="true"><i class="fa-solid fa-equals"></i></div>
+            <div class="impact-selection">
+              <span class="selection-type"><i class="fa-solid fa-seedling" aria-hidden="true"></i> Your local contribution</span>
+              <strong id="impact-amount">€53.33</strong>
+              <p id="impact-project">Supports neighbourhood food access through a Bologna community project.</p>
+              <button class="text-link-button" id="impact-details" type="button">See how the contribution works <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+          <footer class="journey-footer">
+            <p><span id="trip-total">€711 total</span><small>Stay and experience for two people</small></p>
+            <button class="primary-button" id="build-trip" type="button">Build this trip</button>
+          </footer>
+        </article>
+      </div>
+    </section>
+
+    <section class="process-section" id="how-it-works">
+      <div class="page-shell process-layout">
+        <div class="process-copy">
+          <h2>A better trip starts with one simple choice.</h2>
+          <p>Fairbnb brings the useful parts of planning together, then makes the value of your booking visible where it matters.</p>
+        </div>
+        <ol class="process-list">
+          <li>
+            <span class="process-icon"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i></span>
+            <small>01</small>
+            <h3>Choose a place</h3>
+            <p>Explore homes that respect local rules and experiences led by people who live there.</p>
+          </li>
+          <li>
+            <span class="process-icon"><i class="fa-solid fa-suitcase-rolling" aria-hidden="true"></i></span>
+            <small>02</small>
+            <h3>Make it your trip</h3>
+            <p>Book a stay, add something local to do, or keep either part on its own.</p>
+          </li>
+          <li>
+            <span class="process-icon"><i class="fa-solid fa-seedling" aria-hidden="true"></i></span>
+            <small>03</small>
+            <h3>Choose what you support</h3>
+            <p>Half of Fairbnb's platform fee goes to a community project in your destination.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="projects-section" id="community-projects">
+      <div class="page-shell">
+        <div class="projects-heading">
+          <h2>Your booking leaves something useful behind.</h2>
+          <p>Community projects are selected with local groups. You see the contribution before you book and choose where it goes.</p>
+        </div>
+        <div class="impact-story">
+          <div class="impact-photo">
+            <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=1500&q=88" alt="People choosing fresh produce at a neighbourhood market">
+            <p><strong>Porto, Portugal</strong><span>Food rescued locally, shared locally</span></p>
+          </div>
+          <div class="impact-tool">
+            <h3>See where the fee goes</h3>
+            <p>Try a booking value. The stay price does not change.</p>
+            <label for="booking-value"><span>Booking total</span><output id="booking-value-output">€620</output></label>
+            <input id="booking-value" type="range" min="180" max="1800" step="20" value="620">
+            <div class="fee-breakdown">
+              <p><span>Fairbnb platform fee</span><strong id="platform-fee">€93.00</strong></p>
+              <p><span>Runs the cooperative</span><strong id="cooperative-share">€46.50</strong></p>
+              <p class="community-share"><span>Goes to your chosen project</span><strong id="community-share">€46.50</strong></p>
+            </div>
+            <button class="outline-button project-choice-button" id="project-choice-button" type="button">Choose a community project</button>
+          </div>
+        </div>
+        <div class="project-list" id="project-list">
+          <button class="project-row active" type="button" data-project="refood" aria-pressed="true">
+            <span class="project-place">Porto</span><span class="project-name">REFOOD Foz do Douro</span><span class="project-purpose">Fighting food waste and sharing meals</span><i class="fa-solid fa-check" aria-hidden="true"></i>
+          </button>
+          <button class="project-row" type="button" data-project="orriols" aria-pressed="false">
+            <span class="project-place">Valencia</span><span class="project-name">Orriols Convive</span><span class="project-purpose">Building stronger neighbourhood connections</span><i class="fa-solid fa-check" aria-hidden="true"></i>
+          </button>
+          <button class="project-row" type="button" data-project="garden" aria-pressed="false">
+            <span class="project-place">Amsterdam</span><span class="project-name">Community gardening</span><span class="project-purpose">Creating shared green space in Amsterdam North</span><i class="fa-solid fa-check" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="people-section">
+      <div class="page-shell people-layout">
+        <div class="people-copy">
+          <h2>The place makes sense when you meet its people.</h2>
+          <p>Local hosts open more than doors. They share the small rituals, stories and skills that make a neighbourhood feel alive.</p>
+          <a class="inline-link" href="explore/?view=experiences">Explore local experiences <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+        <article class="host-story">
+          <img src="https://images.unsplash.com/photo-1528712306091-ed0763094c98?auto=format&fit=crop&w=1500&q=88" alt="A local cook preparing food in her kitchen">
+          <div><h3>Cook with Lucia in Bologna</h3><p>Learn the family recipe, shop at the market and sit down together when the work is done.</p><a class="text-link-button dark-link" href="experience/?city=bologna&amp;experience=lucia-cooking">Meet Lucia</a></div>
+        </article>
+      </div>
+      <div class="page-shell experience-grid" id="experience-grid">
+        <article class="experience-card">
+          <a class="card-image-button" href="experience/?city=barcelona&amp;experience=marta-ceramics"><img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=1000&q=88" alt="Hands shaping clay on a pottery wheel"></a>
+          <div><p>Barcelona · 3 hours</p><h3><a href="experience/?city=barcelona&amp;experience=marta-ceramics">Shape a piece of Gràcia with Marta</a></h3><span>From €54 per person</span></div>
+        </article>
+        <article class="experience-card">
+          <a class="card-image-button" href="experience/?city=venice&amp;experience=cannaregio-bookbinding"><img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=1000&q=88" alt="A handmade book resting on a work table"></a>
+          <div><p>Venice · 2.5 hours</p><h3><a href="experience/?city=venice&amp;experience=cannaregio-bookbinding">Bind a travel journal in Cannaregio</a></h3><span>From €62 per person</span></div>
+        </article>
+        <article class="experience-card">
+          <a class="card-image-button" href="experience/?city=bologna&amp;experience=lucia-cooking"><img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1000&q=88" alt="A group learning to cook around a kitchen table"></a>
+          <div><p>Bologna · 3 hours</p><h3><a href="experience/?city=bologna&amp;experience=lucia-cooking">Make fresh pasta around the family table</a></h3><span>From €68 per person</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="proof-section" aria-label="Press and partner recognition">
+      <div class="page-shell proof-layout">
+        <p>Fair tourism has travelled further with</p>
+        <div class="wordmarks" aria-label="Forbes, The Guardian, Financial Times, El País, la Repubblica and Business Insider">
+          <img src="assets/press/forbes.svg" alt="Forbes">
+          <img src="assets/press/the-guardian.svg" alt="The Guardian">
+          <img src="assets/press/financial-times.svg" alt="Financial Times">
+          <img src="assets/press/el-pais.svg" alt="El País">
+          <img src="assets/press/la-repubblica.svg" alt="la Repubblica">
+          <img src="assets/press/business-insider.svg" alt="Business Insider">
+        </div>
+      </div>
+    </section>
+
+    <section class="community-story" id="about">
+      <div class="page-shell story-layout">
+        <blockquote>
+          <p>“It feels more authentic, kinder and slower. Where better to make a real difference than with people who have hospitality in their DNA?”</p>
+          <footer><strong>Paul</strong><span>Traveller from Antwerp</span></footer>
+        </blockquote>
+        <img src="https://images.unsplash.com/photo-1538384690625-e2e7bcf9e402?auto=format&fit=crop&w=1200&q=88" alt="A male traveller walking through a neighbourhood in Oslo">
+      </div>
+    </section>
+
+    <section class="join-section" id="take-part">
+      <div class="page-shell join-layout">
+        <div><h2>Make tourism work better where you live.</h2><p>Offer a fair stay, share a local skill, help your neighbourhood discover new hosts or start a local Fairbnb group.</p></div>
+        <button class="primary-button join-button" type="button" data-open-involvement>Find your way to take part</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer global-footer">
+    <div class="page-shell footer-grid">
+      <div class="footer-brand"><a href="./" aria-label="Fairbnb.coop home"><img src="assets/fairbnb-logo.png" alt="Fairbnb.coop, community powered tourism"></a><p>A cooperative travel platform connecting fair stays, local experiences and community projects.</p><div class="footer-coop-info"><span>Fair Bnb Network Società Cooperativa</span><span>Bologna, Italy</span></div></div>
+      <section><h2>Plan your trip</h2><a href="explore/?view=stays">Stays</a><a href="explore/?view=experiences">Experiences</a><a href="explore/">Destinations</a><a href="community-projects/" data-prototype-page="Community projects">Community projects</a></section>
+      <section><h2>About Fairbnb</h2><a href="about/" data-prototype-page="About Fairbnb">About the cooperative</a><a href="how-it-works/" data-prototype-page="How Fairbnb works">How Fairbnb works</a><a href="manifesto/" data-prototype-page="Our manifesto">Our manifesto</a><a href="local-groups/" data-prototype-page="Local groups">Local groups</a><a href="journal/" data-prototype-page="Journal">Journal</a></section>
+      <section><h2>Get involved</h2><button type="button" data-open-involvement>Offer a fair stay</button><button type="button" data-open-involvement>Host an experience</button><button type="button" data-open-involvement>Start a local group</button><a href="help/" data-prototype-page="Help centre">Help centre</a></section>
+    </div>
+    <div class="page-shell footer-bottom"><div class="footer-legal"><span>© 2026 Fairbnb.coop</span><a href="privacy/" data-prototype-page="Privacy">Privacy</a><a href="terms/" data-prototype-page="Terms">Terms</a><a href="cookies/" data-prototype-page="Cookie settings">Cookies</a></div><div class="footer-utility"><span><span class="locale-label">🇬🇧 · ₦</span></span></div></div>
+  </footer>
+
+  <dialog class="site-dialog" id="detail-dialog">
+    <button class="dialog-close" type="button" data-close-dialog aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <img id="dialog-image" src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1200&q=88" alt="Local experience">
+    <div class="dialog-content"><h2 id="dialog-title">A local experience, connected to your stay</h2><p id="dialog-copy">Meet a host who knows the neighbourhood and book with the same dates, guests and community contribution as the rest of your trip.</p><button class="primary-button" type="button" id="dialog-add-button">Add to my trip</button></div>
+  </dialog>
+
+  <dialog class="site-dialog involvement-dialog" id="involvement-dialog">
+    <button class="dialog-close" type="button" data-close-dialog aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="dialog-content"><h2>How would you like to take part?</h2><p>Choose the role closest to you. We will show you what comes next.</p><div class="role-options"><button type="button"><i class="fa-solid fa-house"></i><span><strong>Offer a fair stay</strong><small>Welcome guests while respecting local housing rules.</small></span></button><button type="button"><i class="fa-solid fa-bowl-food"></i><span><strong>Host an experience</strong><small>Share a skill, story or place you know well.</small></span></button><button type="button"><i class="fa-solid fa-people-group"></i><span><strong>Support your local network</strong><small>Help good hosts and projects join Fairbnb.</small></span></button><button type="button"><i class="fa-solid fa-location-dot"></i><span><strong>Start a local group</strong><small>Bring the cooperative model to your destination.</small></span></button></div></div>
+  </dialog>
+  <dialog class="site-dialog login-dialog" id="login-dialog">
+    <button class="dialog-close" type="button" data-close-dialog aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="dialog-content"><h2>Welcome back.</h2><p>Log in to keep your trips, bookings and community contributions together.</p><form id="login-form"><label for="login-email">Email address</label><input id="login-email" type="email" autocomplete="email" placeholder="you@example.com" required><button class="primary-button" type="submit">Continue</button><small id="login-message" role="status" aria-live="polite">This portfolio prototype will not send or store your email.</small></form></div>
+  </dialog>
+  <script src="shared-shell.js?v=20260912-3"></script>
+  <script src="app.js"></script>
+  <script src="case-demo.js?v=4"></script>
+</body>
+</html>

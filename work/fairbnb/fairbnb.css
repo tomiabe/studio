@@ -1,0 +1,132 @@
+:root {
+  --fair-green: #00b351;
+  --fair-green-deep: #007d39;
+  --fair-green-soft: #e6f7ee;
+  --fair-ash: #f5f5f5;
+  --fair-line: #d4d3d3;
+  --case-width: 1180px;
+}
+
+.fairbnb-case { min-width: 320px; }
+.case-header { grid-template-columns: 1fr auto 1fr; }
+.case-navigation, .case-header-actions { display: flex; align-items: center; }
+.case-navigation { justify-content: center; }
+.case-back-link { padding: .45rem .65rem; color: var(--muted); font-size: var(--text-sm); font-weight: 700; }
+.case-back-link:hover { color: var(--text); }
+.case-shell { width: min(100%, var(--case-width)); margin: 0 auto; padding-right: var(--edge); padding-left: var(--edge); }
+
+.case-hero { padding-top: clamp(4.5rem, 9vw, 8.5rem); padding-bottom: clamp(4.5rem, 9vw, 8rem); }
+.case-hero-copy { display: grid; grid-template-columns: minmax(18rem, .78fr) minmax(0, 1.22fr); gap: clamp(2rem, 8vw, 9rem); align-items: end; margin-bottom: clamp(2.5rem, 5vw, 4.5rem); }
+.case-hero h1 { margin: 0; font-size: var(--title-hero); line-height: .92; }
+.case-hero-copy p { max-width: 43rem; margin: 0; color: var(--muted); font-size: clamp(1.12rem, 2vw, 1.42rem); line-height: 1.48; }
+.fairbnb-work-card { position: relative; min-height: clamp(16rem, 25vw, 20rem); overflow: hidden; background: #3aaa35; box-shadow: inset 0 0 0 1px rgb(255 255 255 / 24%); }
+.fairbnb-work-card canvas { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; opacity: .88; }
+.fairbnb-work-card .work-icon-stack { top: 10%; right: 12%; }
+.fairbnb-work-card .work-icon { color: #d6d6d6; }
+.fairbnb-work-card .work-icon:nth-child(2) { transform: translateY(.8rem) rotate(-5deg); }
+.case-facts { display: grid; grid-template-columns: .62fr 1fr 1.35fr; margin: 1.2rem 0 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.case-facts div { min-width: 0; padding: 1.2rem 1.25rem 1.25rem 0; }
+.case-facts div + div { padding-left: 1.25rem; border-left: 1px solid var(--line); }
+.case-facts dt { margin-bottom: .28rem; color: var(--muted); font-size: var(--text-xs); font-weight: 500; }
+.case-facts dd { margin: 0; color: var(--text); font-size: var(--text-sm); font-weight: 700; }
+
+.premise-section { display: grid; grid-template-columns: minmax(0, 1.14fr) minmax(17rem, .86fr); gap: clamp(2rem, 7vw, 8rem); padding-top: clamp(5rem, 10vw, 10rem); padding-bottom: clamp(5rem, 10vw, 10rem); border-top: 1px solid var(--line); }
+.premise-statement h2 { max-width: 48rem; margin: 0; font-size: clamp(2.7rem, 5.8vw, 6rem); line-height: .97; letter-spacing: -.05em; }
+.premise-kicker, .section-marker { margin: 0; color: var(--fair-green); font-size: var(--text-xs); font-weight: 700; letter-spacing: .02em; text-transform: uppercase; }
+.premise-reading { align-self: end; }
+.premise-reading p { margin: 0; color: var(--muted); font-size: var(--text-lg); line-height: 1.62; }
+.premise-reading p + p { margin-top: 1.4rem; }
+.travel-questions { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: clamp(2rem, 4vw, 4rem); border-top: 1px solid var(--line); }
+.travel-questions article { min-height: 14rem; padding: 1.7rem 2rem 1.5rem 0; }
+.travel-questions article + article { padding-left: 2rem; border-left: 1px solid var(--line); }
+.travel-questions svg { width: 1.45rem; height: 1.45rem; color: var(--fair-green); stroke-width: 1.7; }
+.travel-questions h3 { margin: 2.5rem 0 0; font-size: clamp(1.35rem, 2.4vw, 2rem); line-height: 1.05; }
+.travel-questions p { margin: .7rem 0 0; color: var(--muted); line-height: 1.55; }
+
+.destination-section { padding: clamp(4.5rem, 9vw, 9rem) 0; color: #fff; background: var(--fair-green); }
+.destination-layout { display: grid; grid-template-columns: minmax(15rem, .75fr) minmax(0, 1.25fr); gap: clamp(2.25rem, 6vw, 7rem); align-items: center; }
+.destination-copy h2, .composition-intro h2 { max-width: 32rem; margin: 0; font-size: clamp(2.5rem, 4.5vw, 5rem); line-height: .98; letter-spacing: -.04em; }
+.destination-copy > p, .composition-intro > p { max-width: 38rem; margin: 1.55rem 0 0; color: rgb(255 255 255 / 85%); font-size: var(--text-lg); line-height: 1.6; }
+.decision-list { margin: 2.7rem 0 0; border-top: 1px solid rgb(255 255 255 / 40%); }
+.decision-list div { padding: 1rem 0; border-bottom: 1px solid rgb(255 255 255 / 40%); }
+.decision-list dt { font-size: var(--text-sm); font-weight: 700; }
+.decision-list dd { margin: .3rem 0 0; color: rgb(255 255 255 / 78%); font-size: var(--text-sm); line-height: 1.5; }
+
+.prototype-window { overflow: hidden; background: #fff; border: 1px solid var(--fair-line); box-shadow: 0 1.25rem 3rem rgb(0 0 0 / 16%); }
+.window-bar { min-height: 2.75rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0 .9rem; color: #131515; border-bottom: 1px solid var(--fair-line); font-size: .72rem; font-weight: 700; }
+.window-bar span:last-child { color: var(--fair-green-deep); }
+.prototype-window iframe { display: block; width: 100%; border: 0; background: #fff; }
+.prototype-window--search iframe { height: 43rem; }
+
+.choice-section { --text: #131515; --muted: #4f5553; padding: clamp(5rem, 11vw, 11rem) 0; background: var(--fair-ash); color: #131515; }
+.choice-heading { display: grid; grid-template-columns: minmax(13rem, .55fr) minmax(0, 1.45fr); gap: clamp(2rem, 7vw, 8rem); align-items: end; margin-bottom: clamp(2.5rem, 6vw, 5rem); }
+.choice-heading h2, .proof-heading h2, .outcome-layout h2 { max-width: 53rem; margin: 0; font-size: var(--title-section); line-height: .98; }
+.choice-body { display: grid; grid-template-columns: minmax(15rem, .46fr) minmax(0, 1.54fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+.choice-principles { border-top: 1px solid var(--fair-line); }
+.choice-principles article { padding: 1.35rem 0; border-bottom: 1px solid var(--fair-line); }
+.choice-principles span { color: var(--fair-green-deep); font-size: var(--text-sm); font-weight: 700; }
+.choice-principles p { margin: .45rem 0 0; color: #4f5553; font-size: var(--text-sm); line-height: 1.55; }
+.prototype-window--browse iframe { height: 48rem; }
+
+.composition-section { padding: clamp(5rem, 10vw, 10rem) 0; color: #fff; background: var(--fair-green); }
+.composition-intro { display: grid; grid-template-columns: minmax(14rem, .8fr) minmax(0, 1.2fr); gap: clamp(2rem, 7vw, 8rem); align-items: end; }
+.composition-intro h2 { margin-bottom: 0; }
+.trip-thread { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: clamp(3rem, 6vw, 6rem) 0 0; padding: 0; list-style: none; border-top: 1px solid rgb(255 255 255 / 45%); border-bottom: 1px solid rgb(255 255 255 / 45%); }
+.trip-thread li { min-height: 15rem; display: flex; flex-direction: column; padding: 1.55rem; }
+.trip-thread li + li { border-left: 1px solid rgb(255 255 255 / 45%); }
+.trip-thread span { color: rgb(255 255 255 / 76%); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; }
+.trip-thread strong { margin-top: auto; padding-top: 3rem; color: #fff; font-size: clamp(1.25rem, 2vw, 1.8rem); line-height: 1.12; }
+
+.proof-section { padding-top: clamp(5rem, 10vw, 10rem); padding-bottom: clamp(5rem, 10vw, 10rem); }
+.proof-heading { max-width: 58rem; margin-bottom: clamp(2.5rem, 5vw, 5rem); }
+.proof-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.5rem, 4vw, 4rem); }
+.proof-card { min-width: 0; }
+.proof-card-copy { min-height: 14rem; display: flex; flex-direction: column; padding: 0 0 2rem; border-bottom: 1px solid var(--line); }
+.proof-card-copy span { color: var(--fair-green); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; }
+.proof-card-copy h3 { max-width: 21rem; margin: auto 0 0; padding-top: 2rem; color: var(--text); font-size: clamp(1.65rem, 3vw, 2.5rem); line-height: 1.02; }
+.proof-card-copy p { max-width: 30rem; margin: .85rem 0 0; color: var(--muted); line-height: 1.55; }
+.proof-card .prototype-window { margin-top: 1.25rem; }
+.prototype-window--checkout iframe, .prototype-window--trips iframe { height: 43rem; }
+
+.outcome-section { --text: #131515; --muted: #4f5553; padding: clamp(5rem, 10vw, 10rem) 0; background: var(--fair-ash); color: #131515; }
+.outcome-layout { display: grid; grid-template-columns: minmax(15rem, 1fr) minmax(16rem, .8fr); gap: clamp(2rem, 8vw, 9rem); align-items: start; }
+.outcome-copy { padding-top: .7rem; }
+.outcome-copy p { margin: 0; color: #4f5553; font-size: var(--text-lg); line-height: 1.6; }
+.outcome-copy p + p { margin-top: 1.2rem; }
+.case-related-link, .case-return-link { display: inline-flex; align-items: center; gap: .55rem; width: fit-content; color: var(--text); font-size: var(--text-sm); font-weight: 700; text-decoration: underline; text-decoration-color: var(--fair-green); text-decoration-thickness: 1px; text-underline-offset: .28rem; }
+.case-related-link { margin-top: 2.1rem; }
+.case-related-link svg, .case-return-link svg { width: 1rem; height: 1rem; }
+.case-closing { padding-top: 3rem; padding-bottom: clamp(5rem, 8vw, 7rem); }
+.case-footer { width: min(100%, var(--case-width)); display: flex; justify-content: space-between; gap: 1rem; margin: 0 auto; padding-top: 1.5rem; padding-bottom: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: var(--text-sm); }
+.case-footer p { margin: 0; color: var(--text); font-family: var(--font-heading); font-size: var(--text-base); font-weight: 400; letter-spacing: -.025em; }
+.case-footer a { color: var(--text); font-weight: 700; }
+
+@media (max-width: 900px) {
+  .case-hero-copy, .premise-section, .destination-layout, .choice-heading, .choice-body, .composition-intro, .outcome-layout { grid-template-columns: 1fr; }
+  .case-hero-copy, .premise-section, .destination-layout, .choice-heading, .choice-body, .composition-intro, .outcome-layout { gap: 1.5rem; }
+  .premise-reading { max-width: 44rem; }
+  .travel-questions { margin-top: 1.5rem; }
+  .destination-copy h2 { max-width: 43rem; }
+}
+
+@media (max-width: 700px) {
+  .case-header { grid-template-columns: 1fr auto; }
+  .case-navigation, .case-back-link { display: none; }
+  .case-facts, .travel-questions, .trip-thread, .proof-grid { grid-template-columns: 1fr; }
+  .case-facts div, .case-facts div + div { padding: 1rem 0; border-left: 0; }
+  .case-facts div + div { border-top: 1px solid var(--line); }
+  .travel-questions article, .travel-questions article + article { min-height: auto; padding: 1.35rem 0; border-left: 0; }
+  .travel-questions article + article { border-top: 1px solid var(--line); }
+  .travel-questions h3 { margin-top: 1.65rem; }
+  .trip-thread li { min-height: 11rem; padding: 1.35rem 0; }
+  .trip-thread li + li { border-top: 1px solid rgb(255 255 255 / 45%); border-left: 0; }
+  .trip-thread strong { margin-top: 1rem; padding-top: 0; }
+  .prototype-window--search iframe, .prototype-window--browse iframe, .prototype-window--checkout iframe, .prototype-window--trips iframe { height: 42rem; }
+  .case-footer { align-items: flex-start; flex-direction: column; }
+}
+
+@media (max-width: 460px) {
+  .prototype-window--search iframe, .prototype-window--browse iframe, .prototype-window--checkout iframe, .prototype-window--trips iframe { height: 38rem; }
+}
+
+@media (prefers-reduced-motion: reduce) { .fairbnb-work-card canvas { display: none; } }
