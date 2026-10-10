@@ -16,8 +16,10 @@ try {
 } catch {
   // Browsers that block session storage still get one image per page load.
 }
-heroImage.src = heroImages[heroIndex].src;
 heroImage.alt = heroImages[heroIndex].alt;
+heroImage.addEventListener('load', () => heroImage.classList.add('is-ready'), { once: true });
+heroImage.src = heroImages[heroIndex].src;
+if (heroImage.complete && heroImage.naturalWidth > 0) heroImage.classList.add('is-ready');
 
 const themeButton = document.querySelector('[data-theme-toggle]');
 const savedTheme = localStorage.getItem('studio-theme');
