@@ -1,4 +1,14 @@
 const root = document.documentElement;
+const LenisConstructor = globalThis.Lenis;
+if (LenisConstructor) {
+  window.studioLenis = new LenisConstructor({
+    autoRaf: true,
+    anchors: true,
+    stopInertiaOnNavigate: true,
+    prevent: node => Boolean(node.closest?.('.work-drawer'))
+  });
+}
+
 const heroImage = document.querySelector('[data-hero-image]');
 const heroImages = [
   { src: '/assets/media/hero-adrien-olichon.jpg', alt: 'Curving dark architectural structure' },
