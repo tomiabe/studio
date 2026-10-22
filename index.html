@@ -28,10 +28,13 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css">
-  <link rel="stylesheet" href="/css/studio-2026.css?v=4">
+  <link rel="stylesheet" href="/css/studio-2026.css?v=14">
   <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script defer src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
-  <script defer src="/js/studio-2026.js?v=4"></script>
+  <script defer src="/js/drawer-scroll.js?v=2"></script>
+  <script defer src="/js/drawer-motion.js?v=1"></script>
+  <script defer src="/js/drawer-copy-link.js?v=1"></script>
+  <script defer src="/js/studio-2026.js?v=6"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QQNXSYX8TP"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-QQNXSYX8TP');</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Tomi Abe Studio","url":"https://studio.tomiabe.com/","description":"A creative technology practice helping ventures and institutions make clear products, brands, and stories from complex challenges.","founder":{"@type":"Person","name":"Tomi Abe"},"areaServed":"Worldwide","address":{"@type":"PostalAddress","addressLocality":"Sydney","addressRegion":"NSW","addressCountry":"AU"},"email":"studio@tomiabe.com"}</script>
@@ -45,6 +48,7 @@
         <a href="#work">Work</a>
         <a href="#projects">Projects</a>
         <a href="#practice">Practice</a>
+        <a href="/archive/">Archive</a>
         <a href="#contact">Contact</a>
       </nav>
       <div class="header-actions">
@@ -61,7 +65,7 @@
         <p>Tomi Abe Studio helps ventures and institutions turn complex platforms, data, and business challenges into clear products, brands, and stories.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#work">Explore the work <i data-lucide="arrow-right" aria-hidden="true"></i></a>
-          <a class="button button-secondary" href="mailto:studio@tomiabe.com">Start a conversation <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+          <a class="button button-secondary" href="#contact">Start a conversation <i data-lucide="arrow-right" aria-hidden="true"></i></a>
         </div>
       </div>
       <div class="hero-showcase">
@@ -77,39 +81,39 @@
           <p>Engagements with teams building products, platforms, and public-facing systems. Each one called for a different mix of strategy, design, technology, and communication.</p>
         </div>
 
-        <article class="work-feature" id="susinsight" data-work-id="susinsight">
-          <a class="work-visual visual-susinsight" href="https://susinsight.com" target="_blank" rel="noopener noreferrer" aria-label="Visit Susinsight"><img src="/images/work/Susinsight/ask-susinsight.png" alt="Ask Susinsight research interface" loading="lazy"></a>
-          <div class="work-copy"><div class="work-meta"><span class="category-label">Editorial platform</span><span class="work-date">2023 to present</span></div><h3>Susinsight</h3><p>Building a digital home for sustainability reporting across Africa, with editorial systems, data storytelling, and tools for exploring its research.</p><p class="work-scope">Creative direction, platform design, editorial systems</p><a class="inline-link" href="https://susinsight.com" target="_blank" rel="noopener noreferrer">Visit Susinsight <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
+        <article class="work-feature" id="susinsight-work" data-work-id="susinsight">
+          <a class="work-visual visual-susinsight" href="#susinsight" data-work-trigger="susinsight" aria-haspopup="dialog" aria-controls="susinsight-drawer" aria-label="Open Susinsight engagement details"><img src="/images/work/Susinsight.jpg" alt="Susinsight sustainability journalism platform homepage" loading="lazy"></a>
+          <div class="work-copy"><div class="work-meta"><span class="category-label">Sustainability media</span><span class="work-date">2023 to present</span></div><h3>Susinsight</h3><p>Building the creative and digital foundations for sustainability journalism and intelligence across Africa.</p><p class="work-scope">Creative and Platform Lead</p><a class="inline-link" href="#susinsight" data-work-trigger="susinsight" aria-haspopup="dialog" aria-controls="susinsight-drawer">Read engagement details <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
         </article>
 
         <article class="work-feature reverse" id="wecollect" data-work-id="wecollect">
           <a class="work-visual visual-wecollect" href="https://wecollect.tech" target="_blank" rel="noopener noreferrer" aria-label="Visit WeCollect"><img src="/images/work/WeCollect.jpg" alt="WeCollect data platform interface" loading="lazy"></a>
-          <div class="work-copy"><div class="work-meta"><span class="category-label">Data infrastructure</span><span class="work-date">2024 to 2025</span></div><h3>WeCollect</h3><p>Making an offline-first data platform easier to understand through a clearer brand, product story, and digital presence.</p><p class="work-scope">Brand and digital strategy, communication</p><a class="inline-link" href="https://wecollect.tech" target="_blank" rel="noopener noreferrer">Visit WeCollect <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
+          <div class="work-copy"><div class="work-meta"><span class="category-label">Data infrastructure</span><span class="work-date">2024 to 2025</span></div><h3>WeCollect</h3><p>Making an offline-first data platform easier to understand through a clearer brand, product story, and digital presence.</p><p class="work-scope">Brand and Digital Consultant</p><a class="inline-link" href="https://wecollect.tech" target="_blank" rel="noopener noreferrer">Visit WeCollect <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
         </article>
 
         <article class="work-feature" id="culerson" data-work-id="culerson">
           <a class="work-visual visual-culerson" href="https://culerson.susbridge.xyz" target="_blank" rel="noopener noreferrer" aria-label="Visit Culerson"><img src="/images/work/Culerson/culerson-web2.jpg" alt="Culerson energy advisory website" loading="lazy"></a>
-          <div class="work-copy"><div class="work-meta"><span class="category-label">Energy advisory</span><span class="work-date">2024 to 2025</span></div><h3>Culerson</h3><p>Giving a technically complex energy practice a credible identity, a clearer story, and a site the team can keep using.</p><p class="work-scope">Brand and digital strategy, website</p><a class="inline-link" href="https://culerson.susbridge.xyz" target="_blank" rel="noopener noreferrer">Visit Culerson <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
+          <div class="work-copy"><div class="work-meta"><span class="category-label">Energy advisory</span><span class="work-date">2024 to 2025</span></div><h3>Culerson</h3><p>Giving a technically complex energy practice a credible identity, a clearer story, and a site the team can keep using.</p><p class="work-scope">Brand and Digital Consultant</p><a class="inline-link" href="https://culerson.susbridge.xyz" target="_blank" rel="noopener noreferrer">Visit Culerson <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
         </article>
 
         <article class="work-feature reverse" id="zeproc" data-work-id="zeproc">
           <a class="work-visual visual-zeproc" href="https://zeproc.com" target="_blank" rel="noopener noreferrer" aria-label="Visit Zeproc"><img src="/images/work/Zeproc.jpg" alt="Zeproc industrial procurement marketplace screens" loading="lazy"></a>
-          <div class="work-copy"><div class="work-meta"><span class="category-label">Industrial procurement</span><span class="work-date">2023 to 2024</span></div><h3>Zeproc</h3><p>Refining the buying journey for an industrial procurement marketplace, making complex product discovery and high-value orders easier to navigate.</p><p class="work-scope">Product design consulting</p><a class="inline-link" href="https://zeproc.com" target="_blank" rel="noopener noreferrer">Visit Zeproc <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
+          <div class="work-copy"><div class="work-meta"><span class="category-label">Industrial procurement</span><span class="work-date">2023 to 2024</span></div><h3>Zeproc</h3><p>Refining the buying journey for an industrial procurement marketplace, making complex product discovery and high-value orders easier to navigate.</p><p class="work-scope">Product Design Consultant</p><a class="inline-link" href="https://zeproc.com" target="_blank" rel="noopener noreferrer">Visit Zeproc <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
         </article>
 
         <article class="work-feature" id="translayte" data-work-id="translayte">
           <a class="work-visual visual-translayte" href="https://translayte.com" target="_blank" rel="noopener noreferrer" aria-label="Visit Translayte"><img src="/images/work/Translayte.jpg" alt="Translayte translation platform interface" loading="lazy"></a>
-          <div class="work-copy"><div class="work-meta"><span class="category-label">Cross-border services</span><span class="work-date">2023 to 2024</span></div><h3>Translayte</h3><p>Refining a certified translation journey where clarity, conversion, and trust matter at every step.</p><p class="work-scope">Growth and product design</p><a class="inline-link" href="https://translayte.com" target="_blank" rel="noopener noreferrer">Visit Translayte <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
+          <div class="work-copy"><div class="work-meta"><span class="category-label">Document translation</span><span class="work-date">2023 to 2024</span></div><h3>Translayte</h3><p>Refining a certified translation journey where clarity, conversion, and trust matter at every step.</p><p class="work-scope">Growth Design Consultant</p><a class="inline-link" href="https://translayte.com" target="_blank" rel="noopener noreferrer">Visit Translayte <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
         </article>
 
         <article class="work-feature reverse" id="fairbnb" data-work-id="fairbnb" data-extra-work hidden>
           <a class="work-visual visual-fairbnb" href="https://fairbnb.coop" target="_blank" rel="noopener noreferrer" aria-label="Visit Fairbnb"><img src="/images/work/Fairbnb.jpg" alt="Fairbnb cooperative travel marketplace interface" loading="lazy"></a>
-          <div class="work-copy"><div class="work-meta"><span class="category-label">Travel marketplace</span><span class="work-date">2022 to 2023</span></div><h3>Fairbnb</h3><p>Connecting stays, local experiences, and community impact in one guest journey for a cooperative travel platform.</p><p class="work-scope">Brand and product design</p><a class="inline-link" href="https://fairbnb.coop" target="_blank" rel="noopener noreferrer">Visit Fairbnb <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
+          <div class="work-copy"><div class="work-meta"><span class="category-label">Sustainable travel</span><span class="work-date">2022 to 2023</span></div><h3>Fairbnb</h3><p>Connecting stays, local experiences, and community impact in one guest journey for a cooperative travel platform.</p><p class="work-scope">Brand and Product Design Consultant</p><a class="inline-link" href="https://fairbnb.coop" target="_blank" rel="noopener noreferrer">Visit Fairbnb <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
         </article>
 
         <article class="work-feature" id="eze" data-work-id="eze" data-extra-work hidden>
           <a class="work-visual visual-eze" href="https://ezewholesale.com" target="_blank" rel="noopener noreferrer" aria-label="Visit Eze"><img src="/images/work/Eze.jpg" alt="Eze wholesale electronics marketplace interface" loading="lazy"></a>
-          <div class="work-copy"><div class="work-meta"><span class="category-label">Wholesale electronics</span><span class="work-date">2020 to 2021</span></div><h3>Eze</h3><p>Building the design function and a more consistent buying and selling experience for a global B2B electronics marketplace.</p><p class="work-scope">Brand and product design lead</p><a class="inline-link" href="https://ezewholesale.com" target="_blank" rel="noopener noreferrer">Visit Eze <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
+          <div class="work-copy"><div class="work-meta"><span class="category-label">Wholesale electronics</span><span class="work-date">2020 to 2021</span></div><h3>Eze</h3><p>Building the design function and a more consistent buying and selling experience for a global B2B electronics marketplace.</p><p class="work-scope">Brand and Product Design Lead</p><a class="inline-link" href="https://ezewholesale.com" target="_blank" rel="noopener noreferrer">Visit Eze <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
         </article>
 
         <div class="show-more-wrap"><button class="show-more-button" type="button" data-work-toggle aria-expanded="false" aria-controls="fairbnb eze">Show more work</button></div>
@@ -144,10 +148,10 @@
           <a class="project-card" href="https://github.com/tomiabe/substack-direct-subscribe" target="_blank" rel="noopener noreferrer" data-category="tools" data-project-id="substack-direct-subscribe"><div class="card-image code-cover cover-substack" role="img" aria-label="Illustration of a direct newsletter signup form"><div class="code-cover-panel" aria-hidden="true"><i data-lucide="mail"></i><span class="code-cover-line line-wide"></span><span class="code-cover-line line-short"></span><span class="code-cover-field"></span></div></div><div class="card-copy"><span class="category-label">Tool / 2026</span><h3>Substack Direct Subscribe</h3><p>A React package for collecting Substack signups without a server or proxy.</p><span class="card-arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span></div></a>
           <a class="project-card" href="https://github.com/tomiabe/substack-direct-subscribe-wp" target="_blank" rel="noopener noreferrer" data-category="tools" data-project-id="substack-direct-subscribe-wp"><div class="card-image code-cover cover-substack-wp" role="img" aria-label="Illustration of a WordPress newsletter block"><div class="code-cover-panel" aria-hidden="true"><i data-lucide="blocks"></i><span class="code-cover-line line-wide"></span><span class="code-cover-line line-short"></span><span class="code-cover-field"></span></div></div><div class="card-copy"><span class="category-label">Tool / 2026</span><h3>Substack Direct Subscribe for WordPress</h3><p>A WordPress plugin for direct signups with a block, shortcode, and popup.</p><span class="card-arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span></div></a>
           <a class="project-card" href="https://github.com/tomiabe/wp-snippets" target="_blank" rel="noopener noreferrer" data-category="tools" data-project-id="wp-snippets"><div class="card-image code-cover cover-snippets" role="img" aria-label="Illustration of a code snippet library"><div class="code-cover-panel" aria-hidden="true"><i data-lucide="code-xml"></i><span class="code-cover-line line-wide"></span><span class="code-cover-line line-short"></span><span class="code-cover-line line-medium"></span></div></div><div class="card-copy"><span class="category-label">Tool / 2026</span><h3>Production WordPress Snippets Library</h3><p>Practical PHP snippets for WordPress admin, performance, security, and block themes.</p><span class="card-arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span></div></a>
-          <a class="project-card" href="https://tomiabe.github.io/nairawatch/" target="_blank" rel="noopener noreferrer" data-category="data" data-project-id="nairawatch"><div class="card-image"><img src="/images/projects/NairaWatch.jpg" alt="NairaWatch exchange-rate dashboard" loading="lazy"></div><div class="card-copy"><span class="category-label">Data / 2025</span><h3>NairaWatch</h3><p>A clearer view of exchange-rate movement in Nigeria.</p><span class="card-arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span></div></a>
+          <a class="project-card" href="https://tomiabe.github.io/nairawatch/" target="_blank" rel="noopener noreferrer" data-category="data" data-project-id="nairawatch" data-extra-project hidden><div class="card-image"><img src="/images/projects/NairaWatch.jpg" alt="NairaWatch exchange-rate dashboard" loading="lazy"></div><div class="card-copy"><span class="category-label">Data / 2025</span><h3>NairaWatch</h3><p>A clearer view of exchange-rate movement in Nigeria.</p><span class="card-arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span></div></a>
           <a class="project-card" href="https://jtf.persona.co" target="_blank" rel="noopener noreferrer" data-category="experiences" data-project-id="jtf23" data-extra-project hidden><div class="card-image"><img src="/images/projects/JTF.jpg" alt="JTF23 wedding story website" loading="lazy"></div><div class="card-copy"><span class="category-label">Experience / 2023</span><h3>JTF23</h3><p>An interactive wedding story told through photography and motion.</p><span class="card-arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span></div></a>
-          <a class="project-card" href="https://editor.p5js.org/tomiabe/full/0iDmkljF2" target="_blank" rel="noopener noreferrer" data-category="experiences" data-project-id="acquario" data-extra-project hidden><div class="card-image"><img src="/images/projects/Acquario.jpg" alt="Acquario virtual aquarium" loading="lazy"></div><div class="card-copy"><span class="category-label">Experience / 2018</span><h3>Acquario</h3><p>A data-driven virtual aquarium exploring movement and migration.</p><span class="card-arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span></div></a>
-          <a class="project-card" href="https://tomiabe.github.io/webhunt/" target="_blank" rel="noopener noreferrer" data-category="tools" data-project-id="webhunt" data-extra-project hidden><div class="card-image"><img src="/images/projects/WebHunt.jpg" alt="WebHunt curated web gallery" loading="lazy"></div><div class="card-copy"><span class="category-label">Tool / 2016</span><h3>WebHunt</h3><p>A curated gallery of interesting interfaces and web experiences.</p><span class="card-arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span></div></a>
+          <a class="project-card" href="https://editor.p5js.org/tomiabe/full/0iDmkljF2" target="_blank" rel="noopener noreferrer" data-category="experiences" data-project-id="acquario" data-extra-project hidden><div class="card-image"><img src="/images/projects/Acquario.jpg" alt="Acquario virtual aquarium visualization" loading="lazy"></div><div class="card-copy"><span class="category-label">Experience / 2018</span><h3>Acquario</h3><p>A virtual aquarium that makes aquatic movement and migration easier to explore.</p><span class="card-arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span></div></a>
+          <a class="project-card" href="https://tomiabe.github.io/webhunt/" target="_blank" rel="noopener noreferrer" data-category="tools" data-project-id="webhunt" data-extra-project hidden><div class="card-image"><img src="/images/projects/WebHunt.jpg" alt="WebHunt curated gallery of web inspiration" loading="lazy"></div><div class="card-copy"><span class="category-label">Tool / 2016</span><h3>WebHunt</h3><p>A curated gallery of web experiences, interfaces, and ideas worth keeping close.</p><span class="card-arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span></div></a>
         </div>
         <div class="show-more-wrap"><button class="show-more-button" type="button" data-project-toggle aria-expanded="false" aria-controls="project-grid">Show more projects</button></div>
       </div>
@@ -176,56 +180,202 @@
   </main>
 
   <footer class="site-footer" id="contact">
-    <div class="page-width footer-main"><div><p class="section-kicker">Contact</p><h2>Let's make something useful.</h2><p>Projects, collaborations, and thoughtful first conversations are welcome.</p><a class="footer-email" href="mailto:studio@tomiabe.com">studio@tomiabe.com <i data-lucide="arrow-right" aria-hidden="true"></i></a></div><div class="footer-side"><span>Tomi Abe Studio<br>Sydney, Australia</span><a href="https://linkedin.com/in/tomiabe" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/tomiabe" target="_blank" rel="noopener noreferrer">GitHub</a></div></div>
+    <div class="page-width footer-main"><div><p class="section-kicker">Contact</p><h2>Let's make something useful.</h2><p>Projects, collaborations, and thoughtful first conversations are welcome.</p><button class="footer-email" type="button" data-copy-email="studio@tomiabe.com" aria-label="Copy studio email address" aria-describedby="email-copy-status">studio@tomiabe.com <i data-lucide="copy" aria-hidden="true"></i></button><span class="visually-hidden" id="email-copy-status" role="status" aria-live="polite" data-email-status></span></div><div class="footer-side"><span>Tomi Abe Studio<br>Sydney, Australia</span><a href="https://linkedin.com/in/tomiabe" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/tomiabe" target="_blank" rel="noopener noreferrer">GitHub</a></div></div>
     <div class="page-width footer-bottom"><span>© <span data-year>2026</span> Tomi Abe Studio</span><span>Independent creative technology practice</span></div>
   </footer>
 
-  <dialog class="work-drawer" data-work-drawer aria-labelledby="drawer-title" aria-describedby="drawer-lead">
+  <dialog class="work-drawer" id="susinsight-drawer" data-work-drawer aria-labelledby="drawer-title" aria-describedby="drawer-lead">
     <div class="drawer-bar">
-      <span>Selected work</span>
-      <button class="icon-button drawer-close" type="button" data-close-work aria-label="Close Susinsight details" title="Close"><i data-lucide="x" aria-hidden="true"></i></button>
+      <span>Selected work / 2023 to present</span>
+      <div class="drawer-bar-actions">
+        <button class="icon-button" type="button" data-copy-link="#susinsight" aria-label="Copy Susinsight link" title="Copy project link"><i data-lucide="link" aria-hidden="true"></i></button>
+        <button class="icon-button drawer-close" type="button" data-close-work aria-label="Close Susinsight details" title="Close"><i data-lucide="x" aria-hidden="true"></i></button>
+      </div>
     </div>
     <div class="drawer-body">
-      <p class="section-kicker">Editorial platform</p>
+      <p class="section-kicker">Sustainability media</p>
       <h2 id="drawer-title">Susinsight</h2>
-      <p class="drawer-lead" id="drawer-lead">A digital home for sustainability reporting across Africa.</p>
-      <a class="button button-primary drawer-visit" href="https://susinsight.com" target="_blank" rel="noopener noreferrer">Visit Susinsight <i data-lucide="arrow-right" aria-hidden="true"></i></a>
-
-      <dl class="drawer-facts">
-        <div><dt>Role</dt><dd>Creative and platform lead</dd></div>
+      <p class="drawer-lead" id="drawer-lead">Building the creative and digital foundations for sustainability journalism and intelligence across Africa.</p>
+      <dl class="drawer-facts" aria-label="Engagement details">
+        <div><dt>Role</dt><dd>Creative and Platform Lead</dd></div>
         <div><dt>Period</dt><dd>2023 to present</dd></div>
-        <div><dt>Focus</dt><dd>Brand, product, editorial systems</dd></div>
+        <div><dt>Focus</dt><dd>Brand, editorial, product, platform</dd></div>
       </dl>
 
       <figure class="drawer-media drawer-media-first">
-        <img src="/images/work/Susinsight/ask-susinsight.png" alt="Ask Susinsight research assistant interface" loading="lazy">
-        <figcaption>Ask Susinsight helps readers explore the publication's research.</figcaption>
+        <img src="/images/work/Susinsight.jpg" alt="Susinsight homepage showing its editorial platform and latest stories" loading="lazy">
+        <figcaption>Susinsight home</figcaption>
       </figure>
 
       <section class="drawer-section">
-        <p class="drawer-section-index">01 / The challenge</p>
-        <h3>Make complex reporting easier to explore.</h3>
-        <p>Susinsight covers the people, policies, and ideas shaping sustainability across Africa. Its growing editorial work needed a clear identity and a platform that could support stories, data, and new ways of finding information.</p>
+        <h3>A digital window into Africa's development.</h3>
+        <p>Susinsight is a digital media outlet focused on sustainability, journalism, and intelligence. It brings together reporting on the people, practices, and policies shaping development across Africa. My role is to lead the creative and technical work that makes this body of reporting clear, useful, and easier to explore.</p>
       </section>
 
       <section class="drawer-section">
-        <p class="drawer-section-index">02 / The work</p>
-        <h3>One system across brand and platform.</h3>
-        <p>The studio shaped the visual identity and creative direction, then moved the publication from a traditional WordPress setup to a Next.js platform with Markdown content managed in Pages CMS. A shared design system brings consistency to stories, data features, newsletters, and the wider digital presence.</p>
-        <figure class="drawer-media">
-          <img src="/images/work/Susinsight/design-system.png" alt="Susinsight design system showing story card components" loading="lazy">
-          <figcaption>Reusable components connect the editorial experience.</figcaption>
+        <h3>A visual language for serious ideas.</h3>
+        <p>I shaped the visual identity and creative direction, then carried that language through the publication. That work spans the website, editorial layouts, data visualizations, illustrations, photo illustrations, posters, social graphics, reels, and video. Each format has its own job, but it should still feel like it belongs to Susinsight.</p>
+        <div class="susinsight-logo-pair" aria-label="Susinsight logo variants">
+          <figure class="susinsight-logo-tile logo-light">
+            <img src="/assets/media/susinsight/logo-light.png" alt="Susinsight green logo for light backgrounds" loading="lazy">
+          </figure>
+          <figure class="susinsight-logo-tile logo-dark">
+            <img src="/assets/media/susinsight/logo-dark.png" alt="Susinsight white logo for dark backgrounds" loading="lazy">
+          </figure>
+        </div>
+        <ul class="brand-palette" aria-label="Susinsight brand colors">
+          <li><span class="brand-swatch" style="--swatch:#F9FFE3"></span><span>Light<br>#F9FFE3</span></li>
+          <li><span class="brand-swatch" style="--swatch:#3A8B72"></span><span>Primary<br>#3A8B72</span></li>
+          <li><span class="brand-swatch" style="--swatch:#327D66"></span><span>Action<br>#327D66</span></li>
+          <li><span class="brand-swatch" style="--swatch:#2E6F5B"></span><span>Dark<br>#2E6F5B</span></li>
+          <li><span class="brand-swatch" style="--swatch:#91C3B3"></span><span>Soft<br>#91C3B3</span></li>
+          <li><span class="brand-swatch" style="--swatch:#FFFFFF"></span><span>White<br>#FFFFFF</span></li>
+        </ul>
+        <figure class="drawer-media drawer-creative-media">
+          <div class="creative-feed-window" role="img" aria-label="A slowly moving collection of Susinsight editorial and social designs">
+            <div class="creative-feed-track" aria-hidden="true">
+              <div class="creative-feed-grid">
+                <img src="/assets/media/susinsight/creative-01.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-02.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-03.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-04.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-05.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-06.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-07.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-08.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-09.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-10.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-11.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-12.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-13.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-14.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-15.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-16.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-17.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-18.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-19.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-20.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-21.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-22.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-23.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-24.jpg" alt="" loading="lazy">
+              </div>
+              <div class="creative-feed-grid">
+                <img src="/assets/media/susinsight/creative-01.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-02.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-03.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-04.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-05.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-06.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-07.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-08.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-09.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-10.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-11.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-12.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-13.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-14.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-15.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-16.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-17.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-18.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-19.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-20.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-21.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-22.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-23.jpg" alt="" loading="lazy">
+                <img src="/assets/media/susinsight/creative-24.jpg" alt="" loading="lazy">
+              </div>
+            </div>
+          </div>
+          <figcaption>Selected visual work for Susinsight.</figcaption>
         </figure>
+        <div class="drawer-resource-links">
+          <a class="inline-link" href="https://susinsight.com/gallery" target="_blank" rel="noopener noreferrer">Browse the Susinsight gallery <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+          <a class="inline-link" href="https://www.pinterest.com/susinsight/susinsight-instagram/" target="_blank" rel="noopener noreferrer">See more on Pinterest <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+        </div>
       </section>
 
       <section class="drawer-section">
-        <p class="drawer-section-index">03 / For readers and editors</p>
-        <h3>Useful beyond the homepage.</h3>
-        <p>A glossary, data-led stories, events, audio, and Ask Susinsight give readers more ways into the reporting. Behind the scenes, an extensible taxonomy and an editorial workflow help the team publish and maintain it. The collaboration continues as the platform evolves.</p>
+        <h3>A publication built to keep evolving.</h3>
+        <p>The site began on WordPress. As the product grew, I helped move its experience toward a headless setup, with a Next.js front end and a git-based publishing workflow through Pages CMS. The system can also work with WordPress content through GraphQL. I also build the content structures and publishing tools that help editors manage a growing archive and support new editorial features.</p>
+        <figure class="drawer-media">
+          <img src="/assets/media/susinsight/platform-architecture.png" alt="Diagram showing Susinsight content and code moving from GitHub through GitHub Actions and Cloudflare Workers to readers" loading="lazy">
+          <figcaption>The publishing path from source content to the reader.</figcaption>
+        </figure>
+        <a class="inline-link" href="https://medium.com/susinsight/from-wordpress-to-the-edge-6a57301fb7c8" target="_blank" rel="noopener noreferrer">Read about the platform rebuild <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+      </section>
+
+      <section class="drawer-section">
+        <h3>Make a deep archive easier to explore.</h3>
+        <p>Susinsight covers a wide range of sustainability and development subjects. I work on the structures that help readers find their way through it: topics, SDGs, regions, countries, stories, and series. Susdata gives readers another way in, with indicators across Africa's economy, society, and environment. Together, these pathways help someone move from a question to relevant reporting or data without needing to know where to start.</p>
+        <figure class="drawer-media drawer-media-scroll">
+          <div class="drawer-image-window" tabindex="0" aria-label="Full page view of the Susinsight stories archive">
+            <div class="drawer-image-track" aria-hidden="true">
+              <img src="/images/work/Susinsight/all-stories.png" alt="" loading="lazy">
+              <img src="/images/work/Susinsight/all-stories.png" alt="" loading="lazy">
+            </div>
+          </div>
+          <figcaption>Story categories and regional pathways help readers move through the archive.</figcaption>
+        </figure>
+        <a class="inline-link" href="https://susinsight.com/stories" target="_blank" rel="noopener noreferrer">Explore Susinsight stories <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+      </section>
+
+      <section class="drawer-section">
+        <h3>A system behind every new experience.</h3>
+        <p>The design system is becoming the shared source of truth for the platform. I am refining its foundations, naming, components, and guidance so that new pages and features can build on the same decisions. I am also shaping it for code agents, so they can understand the system and use its patterns when helping develop new work.</p>
+        <figure class="drawer-media">
+          <img src="/images/work/Susinsight/design-system.png?v=2" alt="Susinsight Design System components page with navigation, component cards, and usage guidance" loading="lazy">
+          <figcaption>A shared reference for the platform's visual and interface decisions.</figcaption>
+        </figure>
+        <a class="inline-link" href="https://susinsight.com/design-system" target="_blank" rel="noopener noreferrer">Explore the design system <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+      </section>
+
+      <section class="drawer-section">
+        <h3>Ask Susinsight, grounded in our reporting.</h3>
+        <p>Ask Susinsight gives readers a direct way to explore questions about sustainability and development in Africa. It searches Susinsight's published reporting and returns a concise answer with the source material close at hand. I designed and built it as both an on-page assistant and a dedicated destination.</p>
+        <div class="drawer-demo">
+          <h4>On-page assistant</h4>
+          <p>The popup lets a reader ask a question without leaving the page they are exploring.</p>
+          <figure class="drawer-media">
+            <video controls playsinline preload="none" poster="/assets/media/ask-susinsight-popup-poster.jpg" aria-label="Ask Susinsight popup demo">
+              <source src="/assets/media/ask-susinsight-popup.mp4" type="video/mp4">
+              Your browser does not support embedded video.
+            </video>
+            <figcaption>Ask Susinsight as a popup over the publication.</figcaption>
+          </figure>
+        </div>
+        <div class="drawer-demo">
+          <h4>Dedicated research page</h4>
+          <p>The full page gives the assistant more room for a question, suggested prompts, and its response.</p>
+          <figure class="drawer-media">
+            <video controls playsinline preload="none" poster="/assets/media/ask-susinsight-page-poster.jpg" aria-label="Ask Susinsight dedicated page demo">
+              <source src="/assets/media/ask-susinsight-page.mp4" type="video/mp4">
+              Your browser does not support embedded video.
+            </video>
+            <figcaption>Ask Susinsight as a dedicated research experience.</figcaption>
+          </figure>
+        </div>
         <a class="inline-link" href="https://susinsight.com/ask" target="_blank" rel="noopener noreferrer">Explore Ask Susinsight <i data-lucide="arrow-right" aria-hidden="true"></i></a>
       </section>
-      <div class="drawer-end"><a class="inline-link" href="https://susinsight.com" target="_blank" rel="noopener noreferrer">Visit Susinsight <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
+
+      <section class="drawer-section">
+        <h3>Build the paths that bring readers back.</h3>
+        <p>I built integrations that give readers useful moments to subscribe while exploring the publication. Substack sign-up prompts appear alongside stories, with a timed invitation after someone has spent a while on the site. Together, they make subscribing part of the reading experience and give the newsletter more opportunities to grow.</p>
+        <figure class="drawer-media">
+          <img src="/images/work/Susinsight/newsletter-inline.png" alt="Susinsight newsletter signup integrated into an editorial page" loading="lazy">
+          <figcaption>A contextual Substack signup, built into the reading flow.</figcaption>
+        </figure>
+        <a class="inline-link" href="https://susinsight.substack.com" target="_blank" rel="noopener noreferrer">Read the Susinsight newsletter <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+      </section>
+
+      <section class="drawer-section">
+        <h3>Work that continues with the platform.</h3>
+        <p>Susinsight keeps changing, and so does my work on it. I continue to develop the platform, refine its systems, and explore useful ways to apply new technology. The aim is to give the publication a strong digital foundation that can support its next idea, feature, and stage of growth.</p>
+      </section>
+      <div class="drawer-end"><a class="button button-primary drawer-visit" href="https://susinsight.com" target="_blank" rel="noopener noreferrer">Visit Susinsight <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
     </div>
+    <p class="copy-status" role="status" aria-live="polite" data-copy-status></p>
   </dialog>
 </body>
 </html>

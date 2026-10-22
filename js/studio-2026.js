@@ -71,6 +71,61 @@ document.addEventListener('keydown', event => {
   if (event.key === 'Escape') closeMenu();
 });
 
+const workDrawer = document.querySelector('[data-work-drawer]');
+const workDrawerScroll = window.studioDrawerScrolls?.get(workDrawer);
+let workDrawerReturnHash = '';
+
+function workDrawerUrl(hash) {
+  return `${location.pathname}${location.search}${hash}`;
+}
+
+function openWorkDrawer(updateHistory = true) {
+  if (workDrawer.open) return;
+  workDrawerReturnHash = location.hash === '#susinsight' ? '' : location.hash;
+  window.studioDrawerMotion.open(workDrawer);
+  workDrawerScroll?.start();
+  document.body.classList.add('drawer-open');
+  if (updateHistory && location.hash !== '#susinsight') {
+    history.pushState({ workDrawer: 'susinsight' }, '', workDrawerUrl('#susinsight'));
+  }
+}
+
+function restoreWorkDrawerUrl() {
+  if (location.hash === '#susinsight') {
+    history.replaceState(null, '', workDrawerUrl(workDrawerReturnHash));
+  }
+}
+
+function closeWorkDrawer(updateHistory = true) {
+  if (workDrawer.open) window.studioDrawerMotion.close(workDrawer);
+  if (updateHistory) restoreWorkDrawerUrl();
+}
+
+document.querySelectorAll('[data-work-trigger="susinsight"]').forEach(trigger => {
+  trigger.addEventListener('click', event => {
+    event.preventDefault();
+    openWorkDrawer();
+  });
+});
+document.querySelector('[data-close-work]').addEventListener('click', () => closeWorkDrawer());
+workDrawer.addEventListener('click', event => {
+  if (event.target === workDrawer) closeWorkDrawer();
+});
+workDrawer.addEventListener('cancel', event => {
+  event.preventDefault();
+  closeWorkDrawer();
+});
+workDrawer.addEventListener('close', () => {
+  workDrawerScroll?.stop();
+  document.body.classList.remove('drawer-open');
+  restoreWorkDrawerUrl();
+});
+window.addEventListener('popstate', () => {
+  if (location.hash === '#susinsight') openWorkDrawer(false);
+  else if (workDrawer.open) closeWorkDrawer(false);
+});
+if (location.hash === '#susinsight') openWorkDrawer(false);
+
 const workToggle = document.querySelector('[data-work-toggle]');
 const extraWork = document.querySelectorAll('[data-extra-work]');
 workToggle.addEventListener('click', () => {
@@ -106,6 +161,56 @@ filterButtons.forEach(button => button.addEventListener('click', () => {
 projectToggle.addEventListener('click', () => {
   showAllProjects = !showAllProjects;
   updateProjects();
+});
+
+const emailCopyButton = document.querySelector('[data-copy-email]');
+const emailCopyStatus = document.querySelector('[data-email-status]');
+let emailCopyTimer;
+
+function showEmailCopyResult(message, icon) {
+  emailCopyStatus.textContent = message;
+  emailCopyButton.setAttribute('aria-label', message);
+  const oldIcon = emailCopyButton.querySelector('[data-lucide]');
+  const newIcon = document.createElement('i');
+  newIcon.setAttribute('data-lucide', icon);
+  newIcon.setAttribute('aria-hidden', 'true');
+  oldIcon?.replaceWith(newIcon);
+  window.lucide?.createIcons();
+  clearTimeout(emailCopyTimer);
+  if (icon === 'check') {
+    emailCopyTimer = setTimeout(() => {
+      emailCopyStatus.textContent = '';
+      emailCopyButton.setAttribute('aria-label', 'Copy studio email address');
+      const checkIcon = emailCopyButton.querySelector('[data-lucide]');
+      const copyIcon = document.createElement('i');
+      copyIcon.setAttribute('data-lucide', 'copy');
+      copyIcon.setAttribute('aria-hidden', 'true');
+      checkIcon?.replaceWith(copyIcon);
+      window.lucide?.createIcons();
+    }, 2200);
+  }
+}
+
+emailCopyButton.addEventListener('click', async () => {
+  const email = emailCopyButton.dataset.copyEmail;
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(email);
+    } else {
+      const field = document.createElement('textarea');
+      field.value = email;
+      field.style.position = 'fixed';
+      field.style.opacity = '0';
+      document.body.append(field);
+      field.select();
+      const copied = document.execCommand('copy');
+      field.remove();
+      if (!copied) throw new Error('Clipboard unavailable');
+    }
+    showEmailCopyResult('Email copied to clipboard', 'check');
+  } catch {
+    showEmailCopyResult('Could not copy email. Select the address to copy it.', 'copy');
+  }
 });
 
 if (window.lucide) window.lucide.createIcons();
