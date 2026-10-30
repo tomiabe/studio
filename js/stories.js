@@ -17,6 +17,9 @@
   const tabs = $('[data-story-tabs]');
   const strip = $('[data-story-strip]');
   const sheet = document.querySelector('[data-story-sheet]');
+  const panels = new Map([...document.querySelectorAll('[data-story-panel]')].map(panel => [panel.id, panel]));
+  const moreButton = $('[data-story-more]');
+  const endButtons = [...stage.querySelectorAll('[data-story-end]')];
 
   let reels = [];
   let stories = [];
@@ -132,6 +135,8 @@
       requestAnimationFrame(() => caption.classList.remove('is-changing'));
     });
     liveButton.hidden = !item.live;
+    endButtons.forEach(button => { button.hidden = !item.end; });
+    moreButton.hidden = Boolean(item.end);
 
     setPause('user', pauses.has('user'));
     preloadNext();
@@ -152,11 +157,11 @@
     [...tabs.children].forEach(tab => {
       const selected = tab.dataset.reel === current.reel.id;
       tab.setAttribute('aria-selected', String(selected));
-      tab.querySelector('small').textContent = selected ? `${current.reelIndex + 1}/${current.reel.stories.length}` : '';
+      tab.querySelector('small').textContent = selected && !current.end ? `${current.reelIndex + 1}/${current.reel.stories.length}` : '';
     });
     renderStrip();
 
-    if (location.hash.slice(1) !== current.id) history.replaceState(null, '', `#${current.id}`);
+    if (!current.end && location.hash.slice(1) !== current.id) history.replaceState(null, '', `#${current.id}`);
     renderFrame(Math.min(startFrame, current.frames.length - 1));
   }
 
@@ -219,6 +224,7 @@
 
   function openSheet() {
     const current = story();
+    if (current.end) return openPanel('practice');
     sheet.querySelector('[data-sheet-label]').textContent = [current.label, current.reel.label].join('  ·  ');
     sheet.querySelector('[data-sheet-title]').textContent = current.title;
     sheet.querySelector('[data-sheet-summary]').textContent = current.summary || '';
@@ -243,6 +249,82 @@
   sheet.addEventListener('close', () => setPause('sheet', false));
   sheet.addEventListener('click', event => { if (event.target === sheet) sheet.close(); });
   sheet.querySelector('[data-story-sheet-close]').addEventListener('click', () => sheet.close());
+
+  function openPanel(name) {
+    const panel = panels.get(name);
+    if (!panel) return;
+    if (sheet.open) sheet.close();
+    panels.forEach(other => { if (other !== panel && other.open) other.close(); });
+    closeLive(false);
+    if (!panel.open) panel.showModal();
+    setPause('panel', true);
+    if (location.hash.slice(1) !== name) history.replaceState(null, '', `#${name}`);
+    icons();
+  }
+
+  panels.forEach(panel => {
+    panel.addEventListener('close', () => {
+      if ([...panels.values()].some(other => other.open)) return;
+      setPause('panel', false);
+      if (stories.length && panels.has(location.hash.slice(1))) {
+        history.replaceState(null, '', story().end ? location.pathname : `#${story().id}`);
+      }
+    });
+    panel.addEventListener('click', event => { if (event.target === panel) panel.close(); });
+    panel.querySelector('[data-story-panel-close]').addEventListener('click', () => panel.close());
+  });
+
+  document.addEventListener('click', event => {
+    const trigger = event.target.closest('[data-open-panel]');
+    if (!trigger) return;
+    event.preventDefault();
+    openPanel(trigger.dataset.openPanel);
+  });
+
+  const emailButton = document.querySelector('[data-copy-email]');
+  const emailStatus = document.querySelector('[data-email-status]');
+  let emailTimer;
+  const setEmailIcon = icon => {
+    emailButton.innerHTML = `${emailButton.dataset.copyEmail} <i data-lucide="${icon}" aria-hidden="true"></i>`;
+    icons();
+  };
+  emailButton?.addEventListener('click', async () => {
+    const email = emailButton.dataset.copyEmail;
+    try {
+      await navigator.clipboard.writeText(email);
+    } catch {
+      location.href = `mailto:${email}`;
+      return;
+    }
+    emailStatus.textContent = 'Email address copied';
+    emailButton.setAttribute('aria-label', 'Email address copied');
+    setEmailIcon('check');
+    clearTimeout(emailTimer);
+    emailTimer = setTimeout(() => {
+      emailStatus.textContent = '';
+      emailButton.setAttribute('aria-label', 'Copy studio email address');
+      setEmailIcon('copy');
+    }, 2200);
+  });
+
+  function endCard(reel) {
+    const outro = reel.outro || {};
+    return {
+      id: `${reel.id}-end`,
+      end: true,
+      reel,
+      reelIndex: reel.stories.length,
+      title: 'Tomi Abe Studio',
+      label: 'Creative technology practice',
+      frames: [{
+        type: 'statement',
+        end: true,
+        icon: outro.icon || 'sparkles',
+        kicker: outro.kicker || `End of ${reel.label}`,
+        caption: outro.caption || "That's the work. Meet the studio behind it."
+      }]
+    };
+  }
 
   function buildIndex() {
     const container = document.querySelector('[data-story-index]');
@@ -313,7 +395,7 @@
   $('[data-story-more]').addEventListener('click', openSheet);
 
   document.addEventListener('keydown', event => {
-    if (sheet.open || !liveLayer.hidden && event.key !== 'Escape') return;
+    if (document.querySelector('dialog[open]') || !liveLayer.hidden && event.key !== 'Escape') return;
     if (stage.getBoundingClientRect().bottom < innerHeight / 2) return;
     if (event.target.closest('input, textarea, select, iframe')) return;
     const actions = {
@@ -333,7 +415,9 @@
   });
 
   window.addEventListener('hashchange', () => {
-    const target = stories.findIndex(item => item.id === location.hash.slice(1));
+    const hash = location.hash.slice(1);
+    if (panels.has(hash)) return openPanel(hash);
+    const target = stories.findIndex(item => item.id === hash);
     if (target >= 0 && target !== storyIndex) renderStory(target);
   });
 
@@ -346,12 +430,17 @@
     .then(response => response.json())
     .then(data => {
       reels = data.reels;
-      stories = reels.flatMap(reel => reel.stories.map((item, reelIndex) => Object.assign(item, { reel, reelIndex })));
+      stories = reels.flatMap(reel => [
+        ...reel.stories.map((item, reelIndex) => Object.assign(item, { reel, reelIndex })),
+        endCard(reel)
+      ]);
       buildTabs();
       buildIndex();
-      const fromHash = stories.findIndex(item => item.id === location.hash.slice(1));
+      const initialHash = location.hash.slice(1);
+      const fromHash = stories.findIndex(item => item.id === initialHash && !item.end);
       if (reduceMotion) setPause('user', true);
       renderStory(Math.max(fromHash, 0));
+      if (panels.has(initialHash)) openPanel(initialHash);
       if (!reduceMotion) {
         const hint = $('[data-story-hint]');
         hint.hidden = false;

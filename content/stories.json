@@ -3,6 +3,7 @@
     {
       "id": "work",
       "label": "Work",
+      "outro": { "kicker": "End of Work", "caption": "That's the client work. Meet the studio behind it." },
       "stories": [
         {
           "id": "susinsight",
@@ -129,6 +130,7 @@
     {
       "id": "projects",
       "label": "Studio projects",
+      "outro": { "kicker": "End of Studio projects", "caption": "That's the studio's own work. Meet the practice behind it." },
       "stories": [
         {
           "id": "canvas", "title": "Canvas", "label": "Tool", "year": "2026",

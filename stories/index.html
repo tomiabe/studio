@@ -12,10 +12,10 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preload" href="/content/stories.json" as="fetch" crossorigin>
   <link rel="stylesheet" href="/css/studio-2026.css?v=16">
-  <link rel="stylesheet" href="/css/stories.css?v=4">
+  <link rel="stylesheet" href="/css/stories.css?v=5">
   <script>try{const t=localStorage.getItem('studio-theme');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch{}</script>
   <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-  <script defer src="/js/stories.js?v=3"></script>
+  <script defer src="/js/stories.js?v=4"></script>
 </head>
 <body class="stories-page">
   <a class="skip-link" href="#index">Skip to the project index</a>
@@ -31,8 +31,8 @@
           <a class="story-brand" href="/stories/">Tomi Abe Studio <span>Creative technology practice</span></a>
           <nav class="story-nav" aria-label="Site">
             <a href="#index">Index</a>
-            <a href="/#practice">Practice</a>
-            <a href="#contact">Contact</a>
+            <a href="#practice" data-open-panel="practice">Practice</a>
+            <a href="#contact" data-open-panel="contact">Contact</a>
           </nav>
         </div>
         <div class="story-progress" data-story-progress aria-hidden="true"></div>
@@ -59,6 +59,8 @@
           <p class="story-text" data-story-text></p>
           <div class="story-actions">
             <button class="button button-primary" type="button" data-story-live hidden>Try it live <i data-lucide="mouse-pointer-click" aria-hidden="true"></i></button>
+            <button class="button button-primary" type="button" data-open-panel="practice" data-story-end hidden>Meet the studio <i data-lucide="arrow-right" aria-hidden="true"></i></button>
+            <button class="button button-secondary" type="button" data-open-panel="contact" data-story-end hidden>Contact <i data-lucide="mail" aria-hidden="true"></i></button>
             <button class="button button-secondary" type="button" data-story-more>More <i data-lucide="plus" aria-hidden="true"></i></button>
             <a class="button button-secondary" data-story-link target="_blank" rel="noopener noreferrer"><span></span> <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
           </div>
@@ -94,6 +96,52 @@
       </div>
     </dialog>
 
+    <dialog class="story-sheet story-panel" id="practice" data-story-panel aria-labelledby="practice-title">
+      <div class="story-sheet-inner">
+        <button class="story-icon story-sheet-close" type="button" data-story-panel-close aria-label="Close"><i data-lucide="x" aria-hidden="true"></i></button>
+        <p class="section-kicker">The practice</p>
+        <h2 id="practice-title">Different disciplines, one connected practice.</h2>
+        <p class="story-sheet-lead">Tomi Abe Studio helps ventures and institutions turn complex platforms, data, and ambiguous business challenges into clear products, brands, and stories. The work connects strategy, research, design, technology, and communication into systems that can evolve and scale.</p>
+        <div class="story-panel-head"><h3>Ways to work together</h3><p>The shape of the collaboration follows the problem.</p></div>
+        <ul class="story-ways">
+          <li><i data-lucide="compass" aria-hidden="true"></i><div><h4>Advisory</h4><p>Framing decisions, direction, and the structure needed to move forward.</p></div></li>
+          <li><i data-lucide="hammer" aria-hidden="true"></i><div><h4>Independent delivery</h4><p>Taking a product, brand, platform, or experience from concept into use.</p></div></li>
+          <li><i data-lucide="users-round" aria-hidden="true"></i><div><h4>Embedded collaboration</h4><p>Working closely with an internal team as a partner in the work.</p></div></li>
+        </ul>
+        <div class="story-founder">
+          <img src="/assets/media/tomi-profile-1.jpg" alt="Portrait of Tomi Abe" loading="lazy" width="1024" height="1024">
+          <div>
+            <p class="section-kicker">Behind the studio</p>
+            <h3>Tomi Abe</h3>
+            <p>Tomi founded and leads the studio. As a principal creative technologist, he works across strategic direction and hands-on delivery, bringing the right disciplines together for each challenge. He is based in Sydney and collaborates with teams across markets.</p>
+            <a class="inline-link" href="https://linkedin.com/in/tomiabe" target="_blank" rel="noopener noreferrer">Connect on LinkedIn <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div class="story-panel-end">
+          <button class="button button-primary" type="button" data-open-panel="contact">Start a conversation <i data-lucide="arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="story-sheet story-panel" id="contact" data-story-panel aria-labelledby="contact-title">
+      <div class="story-sheet-inner">
+        <button class="story-icon story-sheet-close" type="button" data-story-panel-close aria-label="Close"><i data-lucide="x" aria-hidden="true"></i></button>
+        <p class="section-kicker">Contact</p>
+        <h2 id="contact-title">Let's make something useful.</h2>
+        <p class="story-sheet-lead">Projects, collaborations, and thoughtful first conversations are welcome.</p>
+        <button class="story-email" type="button" data-copy-email="studio@tomiabe.com" aria-label="Copy studio email address" aria-describedby="email-copy-status">studio@tomiabe.com <i data-lucide="copy" aria-hidden="true"></i></button>
+        <span class="visually-hidden" id="email-copy-status" role="status" aria-live="polite" data-email-status></span>
+        <dl class="story-facts">
+          <div><dt>Studio</dt><dd>Tomi Abe Studio<br>Sydney, Australia</dd></div>
+          <div><dt>Elsewhere</dt><dd class="story-panel-links"><a class="inline-link" href="https://linkedin.com/in/tomiabe" target="_blank" rel="noopener noreferrer">LinkedIn <i data-lucide="arrow-up-right" aria-hidden="true"></i></a><a class="inline-link" href="https://github.com/tomiabe" target="_blank" rel="noopener noreferrer">GitHub <i data-lucide="arrow-up-right" aria-hidden="true"></i></a></dd></div>
+        </dl>
+        <div class="story-panel-end">
+          <a class="button button-primary" href="mailto:studio@tomiabe.com">Write an email <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+          <button class="button button-secondary" type="button" data-open-panel="practice">About the practice</button>
+        </div>
+      </div>
+    </dialog>
+
     <section class="story-index page-width" id="index" aria-labelledby="index-title">
       <div class="story-index-head">
         <p class="section-kicker">Index</p>
@@ -104,11 +152,11 @@
     </section>
   </main>
 
-  <footer class="story-footer page-width" id="contact">
+  <footer class="story-footer page-width">
     <div>
       <p class="section-kicker">Contact</p>
       <h2>Let's make something useful.</h2>
-      <a class="inline-link" href="mailto:studio@tomiabe.com">studio@tomiabe.com <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+      <button class="button button-secondary" type="button" data-open-panel="contact">Get in touch <i data-lucide="arrow-right" aria-hidden="true"></i></button>
     </div>
     <div class="story-footer-side">
       <span>Tomi Abe Studio<br>Sydney, Australia</span>
