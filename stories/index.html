@@ -12,10 +12,10 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preload" href="/content/stories.json" as="fetch" crossorigin>
   <link rel="stylesheet" href="/css/studio-2026.css?v=16">
-  <link rel="stylesheet" href="/css/stories.css?v=9">
+  <link rel="stylesheet" href="/css/stories.css?v=10">
   <script>try{const t=localStorage.getItem('studio-theme');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch{}</script>
   <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-  <script defer src="/js/stories.js?v=7"></script>
+  <script defer src="/js/stories.js?v=8"></script>
 </head>
 <body class="stories-page">
   <a class="skip-link" href="#index">Skip to the project index</a>
@@ -33,6 +33,7 @@
             <a href="#index">Index</a>
             <a href="#practice" data-open-panel="practice">Practice</a>
             <a href="#contact" data-open-panel="contact">Contact</a>
+            <button class="story-theme icon-button" type="button" aria-label="Switch theme" title="Switch theme" data-theme-toggle><i data-lucide="sun-moon" aria-hidden="true"></i></button>
           </nav>
         </div>
         <div class="story-progress" data-story-progress aria-hidden="true"></div>
@@ -136,13 +137,10 @@
         <p class="story-sheet-lead">Projects, collaborations, and thoughtful first conversations are welcome.</p>
         <button class="story-email" type="button" data-copy-email="studio@tomiabe.com" aria-label="Copy studio email address" aria-describedby="email-copy-status">studio@tomiabe.com <i data-lucide="copy" aria-hidden="true"></i></button>
         <span class="visually-hidden" id="email-copy-status" role="status" aria-live="polite"></span>
-        <dl class="story-facts">
-          <div><dt>Studio</dt><dd>Tomi Abe Studio<br>Sydney, Australia</dd></div>
-          <div><dt>Elsewhere</dt><dd class="story-panel-links"><a class="inline-link" href="https://linkedin.com/in/tomiabe" target="_blank" rel="noopener noreferrer">LinkedIn <i data-lucide="arrow-up-right" aria-hidden="true"></i></a><a class="inline-link" href="https://github.com/tomiabe" target="_blank" rel="noopener noreferrer">GitHub <i data-lucide="arrow-up-right" aria-hidden="true"></i></a></dd></div>
-        </dl>
-        <div class="story-panel-end">
-          <a class="button button-primary" href="mailto:studio@tomiabe.com">Write an email <i data-lucide="arrow-right" aria-hidden="true"></i></a>
-          <button class="button button-secondary" type="button" data-open-panel="practice">About the practice</button>
+        <div class="story-contact-side">
+          <span>Tomi Abe Studio<br>Sydney, Australia</span>
+          <a href="https://linkedin.com/in/tomiabe" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/tomiabe" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
       </div>
     </dialog>

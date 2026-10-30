@@ -283,6 +283,24 @@
     openPanel(trigger.dataset.openPanel);
   });
 
+  const themeButton = document.querySelector('[data-theme-toggle]');
+  const systemDark = matchMedia('(prefers-color-scheme: dark)');
+  const setTheme = theme => {
+    document.documentElement.dataset.theme = theme;
+    themeButton.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
+  };
+  setTheme(document.documentElement.dataset.theme || (systemDark.matches ? 'dark' : 'light'));
+  themeButton.addEventListener('click', () => {
+    const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem('studio-theme', theme); } catch {}
+    setTheme(theme);
+  });
+  systemDark.addEventListener('change', event => {
+    let saved = null;
+    try { saved = localStorage.getItem('studio-theme'); } catch {}
+    if (!saved) setTheme(event.matches ? 'dark' : 'light');
+  });
+
   document.querySelectorAll('[data-copy-email]').forEach(emailButton => {
     const emailStatus = document.getElementById(emailButton.getAttribute('aria-describedby'));
     let emailTimer;
