@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0f1112">
+  <meta name="robots" content="noindex">
+  <title>Tomi Abe Studio | Creative Technology Practice</title>
+  <meta name="description" content="Tomi Abe Studio is a creative technology practice helping ventures and institutions make clear products, brands, and stories from complex challenges.">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/content/stories.json" as="fetch" crossorigin>
+  <link rel="stylesheet" href="/css/studio-2026.css?v=16">
+  <link rel="stylesheet" href="/css/stories.css?v=1">
+  <script>try{const t=localStorage.getItem('studio-theme');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch{}</script>
+  <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script defer src="/js/stories.js?v=1"></script>
+</head>
+<body class="stories-page">
+  <a class="skip-link" href="#index">Skip to the project index</a>
+
+  <main>
+    <section class="story" data-story aria-roledescription="carousel" aria-label="Studio work, played as stories">
+      <div class="story-media" data-story-media></div>
+      <div class="story-shade" aria-hidden="true"></div>
+      <div class="story-tap" data-story-tap aria-hidden="true"></div>
+
+      <header class="story-top">
+        <div class="story-site">
+          <a class="story-brand" href="/stories/">Tomi Abe Studio <span>Creative technology practice</span></a>
+          <nav class="story-nav" aria-label="Site">
+            <a href="#index">Index</a>
+            <a href="/#practice">Practice</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+        <div class="story-progress" data-story-progress aria-hidden="true"></div>
+        <div class="story-meta">
+          <div class="story-id">
+            <span class="story-avatar"><img data-story-avatar alt=""></span>
+            <div>
+              <p class="story-title" data-story-title></p>
+              <p class="story-sub" data-story-sub></p>
+            </div>
+          </div>
+          <div class="story-controls">
+            <button class="story-icon" type="button" data-story-toggle aria-label="Pause"><i data-lucide="pause" aria-hidden="true"></i></button>
+          </div>
+        </div>
+      </header>
+
+      <button class="story-step story-step-prev" type="button" data-story-prev aria-label="Previous"><i data-lucide="chevron-left" aria-hidden="true"></i></button>
+      <button class="story-step story-step-next" type="button" data-story-next aria-label="Next"><i data-lucide="chevron-right" aria-hidden="true"></i></button>
+
+      <div class="story-bottom">
+        <div class="story-caption" data-story-caption aria-live="polite">
+          <p class="story-kicker" data-story-kicker></p>
+          <p class="story-text" data-story-text></p>
+          <div class="story-actions">
+            <button class="story-pill story-pill-solid" type="button" data-story-live hidden><i data-lucide="mouse-pointer-click" aria-hidden="true"></i> Try it live</button>
+            <button class="story-pill" type="button" data-story-more><i data-lucide="plus" aria-hidden="true"></i> More</button>
+            <a class="story-pill" data-story-link target="_blank" rel="noopener noreferrer"><span></span> <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div class="story-reels">
+          <div class="story-tabs" role="tablist" aria-label="Reels" data-story-tabs></div>
+          <div class="story-strip" data-story-strip></div>
+        </div>
+      </div>
+
+      <div class="story-live" data-story-live-layer hidden>
+        <div class="story-live-bar">
+          <span data-story-live-title></span>
+          <div>
+            <a class="story-pill" data-story-live-open target="_blank" rel="noopener noreferrer">New tab <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+            <button class="story-pill story-pill-solid" type="button" data-story-live-close><i data-lucide="x" aria-hidden="true"></i> Back to stories</button>
+          </div>
+        </div>
+        <iframe data-story-iframe title="Live project" allow="clipboard-write; fullscreen" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+
+      <p class="story-hint" data-story-hint hidden>Tap the sides to move. Hold to pause.</p>
+    </section>
+
+    <dialog class="story-sheet" data-story-sheet aria-labelledby="sheet-title">
+      <div class="story-sheet-inner">
+        <button class="story-icon story-sheet-close" type="button" data-story-sheet-close aria-label="Close"><i data-lucide="x" aria-hidden="true"></i></button>
+        <p class="section-kicker" data-sheet-label></p>
+        <h2 id="sheet-title" data-sheet-title></h2>
+        <p class="story-sheet-lead" data-sheet-summary></p>
+        <dl class="story-facts" data-sheet-facts></dl>
+        <div class="story-sheet-links" data-sheet-links></div>
+      </div>
+    </dialog>
+
+    <section class="story-index page-width" id="index" aria-labelledby="index-title">
+      <div class="story-index-head">
+        <p class="section-kicker">Index</p>
+        <h2 id="index-title">Everything, at a glance.</h2>
+        <p>Tomi Abe Studio helps ventures and institutions turn complex platforms, data, and business challenges into clear products, brands, and stories. Pick anything below to play it.</p>
+      </div>
+      <div data-story-index></div>
+    </section>
+  </main>
+
+  <footer class="story-footer page-width" id="contact">
+    <div>
+      <p class="section-kicker">Contact</p>
+      <h2>Let's make something useful.</h2>
+      <a class="inline-link" href="mailto:studio@tomiabe.com">studio@tomiabe.com <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+    </div>
+    <div class="story-footer-side">
+      <span>Tomi Abe Studio<br>Sydney, Australia</span>
+      <a href="https://linkedin.com/in/tomiabe" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/tomiabe" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="/">Current site</a>
+    </div>
+  </footer>
+</body>
+</html>

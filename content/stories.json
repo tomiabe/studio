@@ -1,0 +1,217 @@
+{
+  "reels": [
+    {
+      "id": "work",
+      "label": "Work",
+      "stories": [
+        {
+          "id": "susinsight",
+          "title": "Susinsight",
+          "label": "Sustainability media",
+          "year": "2023 to present",
+          "role": "Creative and Platform Lead",
+          "focus": "Brand, editorial, product, platform",
+          "summary": "Building the creative and digital foundations for sustainability journalism and intelligence across Africa.",
+          "link": "https://susinsight.com",
+          "linkLabel": "Visit Susinsight",
+          "page": "/#susinsight",
+          "pageLabel": "Read the full story",
+          "frames": [
+            { "type": "image", "src": "/images/work/Susinsight.jpg", "alt": "Susinsight homepage", "kicker": "The brief", "caption": "A digital window into Africa's development: sustainability journalism, made clear and easy to explore." },
+            { "type": "mosaic", "srcs": ["/assets/media/susinsight/creative-01.jpg", "/assets/media/susinsight/creative-02.jpg", "/assets/media/susinsight/creative-03.jpg", "/assets/media/susinsight/creative-04.jpg", "/assets/media/susinsight/creative-05.jpg", "/assets/media/susinsight/creative-06.jpg", "/assets/media/susinsight/creative-07.jpg", "/assets/media/susinsight/creative-08.jpg", "/assets/media/susinsight/creative-09.jpg", "/assets/media/susinsight/creative-10.jpg", "/assets/media/susinsight/creative-11.jpg", "/assets/media/susinsight/creative-12.jpg"], "alt": "Susinsight editorial and social designs", "kicker": "Creative direction", "caption": "One visual language across the site, data visualisation, illustration, social, reels, and video." },
+            { "type": "video", "src": "/assets/media/ask-susinsight-page.mp4", "poster": "/assets/media/ask-susinsight-page-poster.jpg", "alt": "Ask Susinsight answering a research question", "kicker": "Applied AI", "caption": "Ask Susinsight: a research assistant that answers from the publication's own reporting.", "max": 14000 },
+            { "type": "image", "src": "/images/work/Susinsight/design-system.png", "alt": "Susinsight design system documentation", "kicker": "Platform", "caption": "A headless Next.js platform and a token-based design system, so the newsroom keeps shipping." }
+          ]
+        },
+        {
+          "id": "culerson",
+          "title": "Culerson",
+          "label": "Energy advisory",
+          "year": "2024 to 2025",
+          "role": "Brand and Digital Consultant",
+          "focus": "Identity, narrative, website, content",
+          "summary": "Turning advanced energy systems expertise into a clear, decision-ready advisory presence for modern power transitions.",
+          "link": "https://culerson.susbridge.xyz",
+          "linkLabel": "Visit Culerson",
+          "frames": [
+            { "type": "image", "src": "/images/work/Culerson/culerson-web2.jpg", "alt": "Culerson website homepage", "kicker": "The problem", "caption": "Deep technical energy expertise, with no clear way to show it to the people making decisions." },
+            { "type": "image", "src": "/images/work/Culerson.jpg", "alt": "Culerson wind and solar illustration", "kicker": "The move", "caption": "A lean identity and narrative built for the rooms where energy decisions get made." },
+            { "type": "image", "src": "/images/work/Culerson/culerson-post.jpg", "alt": "Culerson social media posts", "kicker": "Content", "caption": "Complex energy concepts turned into visuals that travel beyond the page." },
+            { "type": "image", "src": "/images/work/Culerson/culerson-web3.jpg", "alt": "Culerson services page", "kicker": "What shipped", "caption": "A content-managed site the team can grow without ongoing outside support." }
+          ]
+        },
+        {
+          "id": "wecollect",
+          "title": "WeCollect",
+          "label": "Data infrastructure",
+          "year": "2024 to 2025",
+          "role": "Brand and Digital Consultant",
+          "focus": "Narrative, brand, product story",
+          "summary": "Translating complex data infrastructure into a clear narrative, brand, and product story for offline capture and real-time analytics across African markets.",
+          "link": "https://wecollect.tech",
+          "linkLabel": "Visit WeCollect",
+          "frames": [
+            { "type": "image", "src": "/images/work/WeCollect.jpg", "alt": "WeCollect analytics dashboard", "kicker": "Brand and narrative", "caption": "Offline-first data capture and real-time analytics, told as one clear product story." }
+          ]
+        },
+        {
+          "id": "zeproc",
+          "title": "Zeproc",
+          "label": "Industrial procurement",
+          "year": "2023 to 2024",
+          "role": "Product Design Consultant",
+          "focus": "Buying journey, product discovery",
+          "summary": "Refining the buying journey for an industrial procurement marketplace, making complex product discovery and high-value orders easier to navigate.",
+          "link": "https://zeproc.com",
+          "linkLabel": "Visit Zeproc",
+          "frames": [
+            { "type": "image", "src": "/images/work/Zeproc.jpg", "alt": "Zeproc mobile marketplace screens", "kicker": "Product design", "caption": "Bulk industrial buying, made easier to search, compare, and commit to." }
+          ]
+        },
+        {
+          "id": "translayte",
+          "title": "Translayte",
+          "label": "Document translation",
+          "year": "2023 to 2024",
+          "role": "Growth Design Consultant",
+          "focus": "Growth strategy, product design, prototyping, content",
+          "summary": "A free document translation entry point that creates clearer paths into paid translation, human review, and repeat use, plus a content system that makes certified translation easier to understand.",
+          "link": "https://translayte.com",
+          "linkLabel": "Visit Translayte",
+          "page": "/work/translayte/",
+          "pageLabel": "Growth design story",
+          "frames": [
+            { "type": "image", "src": "/images/work/Translayte.jpg", "alt": "Translayte upgrade options", "kicker": "The opportunity", "caption": "Let people experience value first, then choose more words or human review." },
+            { "type": "image", "src": "/assets/stories/translayte-prototype.jpg", "alt": "Translayte document upload prototype", "kicker": "Working prototype", "caption": "Upload, check the price, translate. This is the live interface, not a recording.", "live": "/work/translayte/prototype/" },
+            { "type": "mosaic", "srcs": ["/assets/work/translayte-creative/round-2/friday-01.jpg", "/assets/work/translayte-creative/round-2/monday-06.jpg", "/assets/work/translayte-creative/round-1/friday-01.jpg", "/assets/work/translayte-creative/round-2/friday-03.jpg", "/assets/work/translayte-creative/round-2/monday-08.jpg", "/assets/work/translayte-creative/round-1/monday-13.jpg", "/assets/work/translayte-creative/round-2/wednesday-13.jpg", "/assets/work/translayte-creative/round-1/friday-05.jpg", "/assets/work/translayte-creative/round-2/monday-10.jpg", "/assets/work/translayte-creative/round-1/monday-17.jpg", "/assets/work/translayte-creative/round-2/friday-05.jpg", "/assets/work/translayte-creative/round-1/friday-09.jpg"], "alt": "Translayte illustrated social posts", "kicker": "Content system", "caption": "Certified translation, turned into a warmer and more human social story." },
+            { "type": "video", "src": "/assets/work/translayte-creative/video/translayte-legalisation-short.mp4", "poster": "/assets/work/translayte-creative/round-2/wednesday-16.jpg", "alt": "Animated explainer about legalisation", "kicker": "Motion", "caption": "The same system in motion: why do you need legalisation?", "max": 15000 }
+          ]
+        },
+        {
+          "id": "fairbnb",
+          "title": "Fairbnb",
+          "label": "Sustainable travel",
+          "year": "2022 to 2023",
+          "role": "Brand and Product Design Consultant",
+          "focus": "Guest journey, platform integration, interaction design, design system",
+          "summary": "Bringing fair stays, local experiences, and community benefit into one trip people can shape for themselves.",
+          "link": "https://fairbnb.coop",
+          "linkLabel": "Visit Fairbnb",
+          "page": "/work/fairbnb/",
+          "pageLabel": "Full story",
+          "frames": [
+            { "type": "image", "src": "/images/work/Fairbnb.jpg", "alt": "Fairbnb search and listings", "kicker": "The question", "caption": "How does a trip feel whole when stays, experiences, and community projects live apart?" },
+            { "type": "image", "src": "/work/fairbnb/prototype/assets/gracia-community-space.jpg", "alt": "People making crafts in a community space", "kicker": "The move", "caption": "Make the destination the organising idea. Everything belongs to one local frame.", "fit": "cover" },
+            { "type": "image", "src": "/assets/stories/fairbnb-prototype.jpg", "alt": "Fairbnb prototype homepage", "kicker": "Working prototype", "caption": "Stay with the city. Build the whole trip in one place. Try it.", "live": "/work/fairbnb/prototype/" }
+          ]
+        },
+        {
+          "id": "eze",
+          "title": "Eze",
+          "label": "Wholesale electronics",
+          "year": "2020 to 2021",
+          "role": "Brand and Product Design Lead",
+          "focus": "Identity, buyer journey, trading tools, design system",
+          "summary": "Building the design function and a more consistent buying and selling experience for a global B2B electronics marketplace.",
+          "link": "https://ezewholesale.com",
+          "linkLabel": "Visit Eze",
+          "page": "/work/eze/",
+          "pageLabel": "Product story",
+          "frames": [
+            { "type": "image", "src": "/images/work/Eze.jpg", "alt": "Eze marketplace homepage", "kicker": "The context", "caption": "High-value wholesale orders. In a marketplace like this, clarity earns trust." },
+            { "type": "image", "src": "/work/eze-identity/assets/eze-logo-after.jpg", "alt": "Eze logo", "kicker": "Identity", "caption": "A new identity built around exchange, clear from app tile to trading screen." },
+            { "type": "image", "src": "/work/eze-identity/assets/eze-product-system.jpg", "alt": "Eze product interface system", "kicker": "System", "caption": "One language across product and brand, shared by a design team of four." },
+            { "type": "image", "src": "/assets/stories/eze-prototype.jpg", "alt": "Eze bulk products prototype", "kicker": "Working prototype", "caption": "Source in bulk, read the market, bid or buy. Try it.", "live": "/work/eze/prototype/" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "projects",
+      "label": "Studio projects",
+      "stories": [
+        {
+          "id": "canvas", "title": "Canvas", "label": "Tool", "year": "2026",
+          "summary": "Create generative art from a prompt, then refine it with simple live controls.",
+          "link": "https://canvas.tomiabe.com", "linkLabel": "Open Canvas",
+          "frames": [{ "type": "image", "src": "/images/projects/Canvas.jpg", "alt": "Canvas generative art editor", "kicker": "Generative art", "caption": "Describe it, generate it, then shape it with live controls.", "live": "https://canvas.tomiabe.com" }]
+        },
+        {
+          "id": "polish", "title": "Polish", "label": "Tool", "year": "2026",
+          "summary": "A self-hosted review tool that checks interface code, writing, and accessibility, then points to the exact issue and a concrete fix.",
+          "link": "https://polish.tomiabe.com/", "linkLabel": "Open Polish",
+          "frames": [{ "type": "image", "src": "/images/projects/Polish.png", "alt": "Polish wordmark", "kicker": "Developer tool", "caption": "Reviews interface code, writing, and accessibility, then points to the exact fix.", "live": "https://polish.tomiabe.com/" }]
+        },
+        {
+          "id": "sound-atlas", "title": "Sound Atlas", "label": "Experience", "year": "2026",
+          "summary": "Explore music scenes through the places and people connected to them.",
+          "link": "https://tomiabe.github.io/soundatlas/", "linkLabel": "Open Sound Atlas",
+          "frames": [{ "type": "image", "src": "/images/projects/SoundAtlas.png", "alt": "Sound Atlas music map", "kicker": "Music discovery", "caption": "Explore music scenes through the places and people connected to them.", "live": "https://tomiabe.github.io/soundatlas/" }]
+        },
+        {
+          "id": "urban-climate-signals", "title": "Urban Climate Signals", "label": "Data", "year": "2026",
+          "summary": "Explore urban heat, air quality, and the conditions shaping city life.",
+          "link": "https://susbridge.github.io/urbanclimate/", "linkLabel": "Open Urban Climate Signals",
+          "frames": [{ "type": "image", "src": "/images/projects/urbanclimate.jpg", "alt": "Urban Climate Signals dashboard", "kicker": "Climate data", "caption": "What is happening in your city right now: heat, air quality, and what it means.", "live": "https://susbridge.github.io/urbanclimate/" }]
+        },
+        {
+          "id": "zonify", "title": "Zonify", "label": "Tool", "year": "2026",
+          "summary": "Make global time differences easier to plan around.",
+          "link": "https://tomiabe.github.io/zonify/", "linkLabel": "Open Zonify",
+          "frames": [{ "type": "image", "src": "/images/projects/zonify.png", "alt": "Zonify time zone planner", "kicker": "Time zones", "caption": "Make global time differences easier to plan around.", "live": "https://tomiabe.github.io/zonify/" }]
+        },
+        {
+          "id": "nigeria-embassy", "title": "Nigeria Embassy Finder", "label": "Tool", "year": "2026",
+          "summary": "A searchable directory for missions and consular information.",
+          "link": "https://tomiabe.github.io/nigeria-embassy/", "linkLabel": "Open the finder",
+          "frames": [{ "type": "image", "src": "/images/projects/NigeriaEmbassy.png", "alt": "Nigeria Embassy Finder search", "kicker": "Public information", "caption": "A searchable directory for Nigerian missions and consular information.", "live": "https://tomiabe.github.io/nigeria-embassy/" }]
+        },
+        {
+          "id": "smart-expense", "title": "Smart Expense Agent", "label": "Data", "year": "2026",
+          "summary": "Turn bank statements into clearer spending patterns and insights.",
+          "link": "https://smart-expense-agent.vercel.app/", "linkLabel": "Open Smart Expense Agent",
+          "frames": [{ "type": "image", "src": "/images/projects/SmartExpense.jpg", "alt": "Smart Expense Agent interface", "kicker": "Applied AI", "caption": "Turn bank statements into clearer spending patterns and insights." }]
+        },
+        {
+          "id": "substack-direct-subscribe", "title": "Substack Direct Subscribe", "label": "Tool", "year": "2026",
+          "summary": "A React package and a WordPress plugin for collecting Substack signups directly, without a server or proxy.",
+          "link": "https://github.com/tomiabe/substack-direct-subscribe", "linkLabel": "View on GitHub",
+          "frames": [
+            { "type": "statement", "icon": "mail", "kicker": "React package", "caption": "Collect Substack signups from your own site. No server, no proxy." },
+            { "type": "statement", "icon": "blocks", "kicker": "WordPress plugin", "caption": "The same direct signup, as a block, a shortcode, and a popup." }
+          ]
+        },
+        {
+          "id": "wp-snippets", "title": "WordPress Snippets Library", "label": "Tool", "year": "2026",
+          "summary": "Practical PHP snippets for WordPress admin, performance, security, and block themes.",
+          "link": "https://github.com/tomiabe/wp-snippets", "linkLabel": "View on GitHub",
+          "frames": [{ "type": "statement", "icon": "code-xml", "kicker": "Open source", "caption": "Production-ready snippets for WordPress admin, performance, security, and block themes." }]
+        },
+        {
+          "id": "nairawatch", "title": "NairaWatch", "label": "Data", "year": "2025",
+          "summary": "A clearer view of exchange-rate movement in Nigeria.",
+          "link": "https://tomiabe.github.io/nairawatch/", "linkLabel": "Open NairaWatch",
+          "frames": [{ "type": "image", "src": "/images/projects/NairaWatch.jpg", "alt": "NairaWatch exchange rate dashboard", "kicker": "Exchange rates", "caption": "A clearer view of exchange-rate movement in Nigeria.", "live": "https://tomiabe.github.io/nairawatch/" }]
+        },
+        {
+          "id": "jtf23", "title": "JTF23", "label": "Experience", "year": "2023",
+          "summary": "An interactive wedding story told through photography and motion.",
+          "link": "https://jtf.persona.co", "linkLabel": "Open JTF23",
+          "frames": [{ "type": "image", "src": "/images/projects/JTF.jpg", "alt": "JTF23 wedding website", "kicker": "Storytelling", "caption": "A wedding story told through photography and motion.", "live": "https://jtf.persona.co" }]
+        },
+        {
+          "id": "acquario", "title": "Acquario", "label": "Experience", "year": "2018",
+          "summary": "A virtual aquarium that makes aquatic movement and migration easier to explore.",
+          "link": "https://editor.p5js.org/tomiabe/full/0iDmkljF2", "linkLabel": "Open Acquario",
+          "frames": [{ "type": "image", "src": "/images/projects/Acquario.jpg", "alt": "Acquario aquarium visualisation", "kicker": "Creative coding", "caption": "A virtual aquarium for exploring aquatic movement and migration.", "live": "https://editor.p5js.org/tomiabe/full/0iDmkljF2" }]
+        },
+        {
+          "id": "webhunt", "title": "WebHunt", "label": "Tool", "year": "2016",
+          "summary": "A curated gallery of web experiences, interfaces, and ideas worth keeping close.",
+          "link": "https://tomiabe.github.io/webhunt/", "linkLabel": "Open WebHunt",
+          "frames": [{ "type": "image", "src": "/images/projects/WebHunt.jpg", "alt": "WebHunt gallery", "kicker": "Curation", "caption": "A curated gallery of web experiences worth keeping close." }]
+        }
+      ]
+    }
+  ]
+}
