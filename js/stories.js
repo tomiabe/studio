@@ -1,4 +1,5 @@
 (() => {
+  const INTRO = -1;
   const DURATION = { image: 7000, mosaic: 9000, statement: 6000, video: 15000 };
   const HOLD_DELAY = 180;
   const SWIPE_DISTANCE = 50;
@@ -23,6 +24,7 @@
 
   let reels = [];
   let stories = [];
+  let introStory = null;
   let storyIndex = 0;
   let frameIndex = 0;
   let elapsed = 0;
@@ -32,7 +34,7 @@
   const pauses = new Set();
 
   const icons = () => window.lucide?.createIcons();
-  const story = () => stories[storyIndex];
+  const story = () => (storyIndex === INTRO ? introStory : stories[storyIndex]);
   const frame = () => story().frames[frameIndex];
   const thumbOf = item => {
     const first = item.frames.find(f => f.src || f.poster);
@@ -108,6 +110,7 @@
     elapsed = 0;
     video = null;
     const item = frame();
+    if (item.choices && !item.src) Object.assign(item, item.choices[Math.floor(Math.random() * item.choices.length)]);
     duration = item.duration || DURATION[item.type] || DURATION.image;
 
     [...progress.children].forEach((segment, i) => {
@@ -132,18 +135,22 @@
     requestAnimationFrame(() => {
       $('[data-story-kicker]').textContent = [story().frames.length > 1 ? `${index + 1} / ${story().frames.length}` : '', item.kicker].filter(Boolean).join('  ·  ');
       $('[data-story-text]').textContent = item.caption || '';
+      $('[data-story-lede]').textContent = item.lede || '';
+      $('[data-story-lede]').hidden = !item.lede;
+      caption.classList.toggle('is-intro', storyIndex === INTRO);
       requestAnimationFrame(() => caption.classList.remove('is-changing'));
     });
     liveButton.hidden = !item.live;
-    endButtons.forEach(button => { button.hidden = !item.end; });
-    moreButton.hidden = Boolean(item.end);
+    const cta = item.end || storyIndex === INTRO;
+    endButtons.forEach(button => { button.hidden = !cta; });
+    moreButton.hidden = cta;
 
     setPause('user', pauses.has('user'));
     preloadNext();
   }
 
   function renderStory(index, startFrame = 0) {
-    storyIndex = (index + stories.length) % stories.length;
+    storyIndex = index === INTRO && introStory ? INTRO : (index + stories.length) % stories.length;
     const current = story();
 
     progress.replaceChildren(...current.frames.map(() => el('span', {}, [el('i')])));
@@ -155,19 +162,19 @@
     linkButton.hidden = !current.link;
 
     [...tabs.children].forEach(tab => {
-      const selected = tab.dataset.reel === current.reel.id;
+      const selected = Boolean(current.reel) && tab.dataset.reel === current.reel.id;
       tab.setAttribute('aria-selected', String(selected));
       tab.querySelector('small').textContent = selected && !current.end ? `${current.reelIndex + 1}/${current.reel.stories.length}` : '';
     });
     renderStrip();
 
-    if (!current.end && location.hash.slice(1) !== current.id) history.replaceState(null, '', `#${current.id}`);
+    if (current.id && !current.end && location.hash.slice(1) !== current.id) history.replaceState(null, '', `#${current.id}`);
     renderFrame(Math.min(startFrame, current.frames.length - 1));
   }
 
   function renderStrip() {
     const current = story();
-    strip.replaceChildren(...current.reel.stories.map(item => {
+    strip.replaceChildren(...(current.reel || reels[0]).stories.map(item => {
       const thumb = thumbOf(item);
       const button = el('button', { type: 'button', title: item.title, ariaLabel: `Play ${item.title}` }, [thumb ? el('img', { src: thumb, alt: '', loading: 'lazy' }) : el('span', { textContent: item.title[0] })]);
       if (item === current) button.setAttribute('aria-current', 'true');
@@ -184,6 +191,7 @@
 
   function prev() {
     if (frameIndex > 0) renderFrame(frameIndex - 1);
+    else if (storyIndex === INTRO) renderFrame(0);
     else renderStory(storyIndex - 1);
   }
 
@@ -224,7 +232,7 @@
 
   function openSheet() {
     const current = story();
-    if (current.end) return openPanel('practice');
+    if (current.end || storyIndex === INTRO) return openPanel('practice');
     sheet.querySelector('[data-sheet-label]').textContent = [current.label, current.reel.label].join('  ·  ');
     sheet.querySelector('[data-sheet-title]').textContent = current.title;
     sheet.querySelector('[data-sheet-summary]').textContent = current.summary || '';
@@ -267,7 +275,7 @@
       if ([...panels.values()].some(other => other.open)) return;
       setPause('panel', false);
       if (stories.length && panels.has(location.hash.slice(1))) {
-        history.replaceState(null, '', story().end ? location.pathname : `#${story().id}`);
+        history.replaceState(null, '', story().id && !story().end ? `#${story().id}` : location.pathname);
       }
     });
     panel.addEventListener('click', event => { if (event.target === panel) panel.close(); });
@@ -430,6 +438,7 @@
     .then(response => response.json())
     .then(data => {
       reels = data.reels;
+      introStory = data.intro || null;
       stories = reels.flatMap(reel => [
         ...reel.stories.map((item, reelIndex) => Object.assign(item, { reel, reelIndex })),
         endCard(reel)
@@ -439,7 +448,7 @@
       const initialHash = location.hash.slice(1);
       const fromHash = stories.findIndex(item => item.id === initialHash && !item.end);
       if (reduceMotion) setPause('user', true);
-      renderStory(Math.max(fromHash, 0));
+      renderStory(fromHash >= 0 ? fromHash : introStory && !initialHash ? INTRO : 0);
       if (panels.has(initialHash)) openPanel(initialHash);
       if (!reduceMotion) {
         const hint = $('[data-story-hint]');

@@ -1,4 +1,23 @@
 {
+  "intro": {
+    "title": "Tomi Abe Studio",
+    "label": "Creative technology practice",
+    "frames": [
+      {
+        "type": "image",
+        "duration": 6500,
+        "kicker": "Tomi Abe Studio",
+        "caption": "Creative technology for ideas that need to work in the world.",
+        "lede": "Tomi Abe Studio helps ventures and institutions turn complex platforms, data, and business challenges into clear products, brands, and stories.",
+        "choices": [
+          { "src": "/assets/media/hero-adrien-olichon.jpg", "alt": "Curving dark architectural structure" },
+          { "src": "/assets/media/hero-ellen-qin.jpg", "alt": "Pattern of overlapping white spheres" },
+          { "src": "/assets/media/hero-pawel-czerwinski.jpg", "alt": "Layers of translucent white paper" },
+          { "src": "/assets/media/hero-visax.jpg", "alt": "Fine diagonal lines on a dark surface" }
+        ]
+      }
+    ]
+  },
   "reels": [
     {
       "id": "work",
