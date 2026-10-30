@@ -12,7 +12,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preload" href="/content/stories.json" as="fetch" crossorigin>
   <link rel="stylesheet" href="/css/studio-2026.css?v=16">
-  <link rel="stylesheet" href="/css/stories.css?v=3">
+  <link rel="stylesheet" href="/css/stories.css?v=4">
   <script>try{const t=localStorage.getItem('studio-theme');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch{}</script>
   <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script defer src="/js/stories.js?v=3"></script>
@@ -58,9 +58,9 @@
           <p class="story-kicker" data-story-kicker></p>
           <p class="story-text" data-story-text></p>
           <div class="story-actions">
-            <button class="story-pill story-pill-solid" type="button" data-story-live hidden><i data-lucide="mouse-pointer-click" aria-hidden="true"></i> Try it live</button>
-            <button class="story-pill" type="button" data-story-more><i data-lucide="plus" aria-hidden="true"></i> More</button>
-            <a class="story-pill" data-story-link target="_blank" rel="noopener noreferrer"><span></span> <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+            <button class="button button-primary" type="button" data-story-live hidden>Try it live <i data-lucide="mouse-pointer-click" aria-hidden="true"></i></button>
+            <button class="button button-secondary" type="button" data-story-more>More <i data-lucide="plus" aria-hidden="true"></i></button>
+            <a class="button button-secondary" data-story-link target="_blank" rel="noopener noreferrer"><span></span> <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
           </div>
         </div>
         <div class="story-reels">
@@ -73,8 +73,8 @@
         <div class="story-live-bar">
           <span data-story-live-title></span>
           <div>
-            <a class="story-pill" data-story-live-open target="_blank" rel="noopener noreferrer">New tab <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
-            <button class="story-pill story-pill-solid" type="button" data-story-live-close><i data-lucide="x" aria-hidden="true"></i> Back to stories</button>
+            <a class="button button-secondary" data-story-live-open target="_blank" rel="noopener noreferrer">New tab <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+            <button class="button button-primary" type="button" data-story-live-close>Back to stories <i data-lucide="x" aria-hidden="true"></i></button>
           </div>
         </div>
         <iframe data-story-iframe title="Live project" allow="clipboard-write; fullscreen" referrerpolicy="no-referrer-when-downgrade"></iframe>
