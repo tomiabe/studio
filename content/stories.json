@@ -1,4 +1,5 @@
 {
+  "outro": { "kicker": "That's the reel", "caption": "Client work and the studio's own projects. Meet the practice behind them." },
   "intro": {
     "title": "Tomi Abe Studio",
     "label": "Creative technology practice",
@@ -22,7 +23,7 @@
     {
       "id": "work",
       "label": "Work",
-      "outro": { "kicker": "End of Work", "caption": "That's the client work. Meet the studio behind it." },
+      "tag": "Client",
       "stories": [
         {
           "id": "susinsight",
@@ -149,7 +150,7 @@
     {
       "id": "projects",
       "label": "Studio projects",
-      "outro": { "kicker": "End of Studio projects", "caption": "That's the studio's own work. Meet the practice behind it." },
+      "tag": "Studio",
       "stories": [
         {
           "id": "canvas", "title": "Canvas", "label": "Tool", "year": "2026",

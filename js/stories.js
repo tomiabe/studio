@@ -15,7 +15,6 @@
   const linkButton = $('[data-story-link]');
   const liveLayer = $('[data-story-live-layer]');
   const iframe = $('[data-story-iframe]');
-  const tabs = $('[data-story-tabs]');
   const strip = $('[data-story-strip]');
   const sheet = document.querySelector('[data-story-sheet]');
   const panels = new Map([...document.querySelectorAll('[data-story-panel]')].map(panel => [panel.id, panel]));
@@ -156,16 +155,11 @@
     progress.replaceChildren(...current.frames.map(() => el('span', {}, [el('i')])));
     $('[data-story-avatar]').src = thumbOf(current) || '/favicon.png';
     $('[data-story-title]').textContent = current.title;
-    $('[data-story-sub]').textContent = [current.label, current.year].filter(Boolean).join('  ·  ');
+    $('[data-story-sub]').textContent = [current.reel?.tag, current.label, current.year].filter(Boolean).join('  ·  ');
     linkButton.href = current.link;
     linkButton.firstElementChild.textContent = current.linkLabel || 'Visit';
     linkButton.hidden = !current.link;
 
-    [...tabs.children].forEach(tab => {
-      const selected = Boolean(current.reel) && tab.dataset.reel === current.reel.id;
-      tab.setAttribute('aria-selected', String(selected));
-      tab.querySelector('small').textContent = selected && !current.end ? `${current.reelIndex + 1}/${current.reel.stories.length}` : '';
-    });
     renderStrip();
 
     if (current.id && !current.end && location.hash.slice(1) !== current.id) history.replaceState(null, '', `#${current.id}`);
@@ -174,7 +168,7 @@
 
   function renderStrip() {
     const current = story();
-    strip.replaceChildren(...(current.reel || reels[0]).stories.map(item => {
+    strip.replaceChildren(...stories.filter(item => !item.end).map(item => {
       const thumb = thumbOf(item);
       const button = el('button', { type: 'button', title: item.title, ariaLabel: `Play ${item.title}` }, [thumb ? el('img', { src: thumb, alt: '', loading: 'lazy' }) : el('span', { textContent: item.title[0] })]);
       if (item === current) button.setAttribute('aria-current', 'true');
@@ -315,20 +309,17 @@
     }, 2200);
   });
 
-  function endCard(reel) {
-    const outro = reel.outro || {};
+  function endCard(outro = {}) {
     return {
-      id: `${reel.id}-end`,
+      id: 'end',
       end: true,
-      reel,
-      reelIndex: reel.stories.length,
       title: 'Tomi Abe Studio',
       label: 'Creative technology practice',
       frames: [{
         type: 'statement',
         end: true,
         icon: outro.icon || 'sparkles',
-        kicker: outro.kicker || `End of ${reel.label}`,
+        kicker: outro.kicker || "That's the reel",
         caption: outro.caption || "That's the work. Meet the studio behind it."
       }]
     };
@@ -357,15 +348,6 @@
         return el('li', {}, [button]);
       }))
     ]));
-  }
-
-  function buildTabs() {
-    tabs.replaceChildren(...reels.map(reel => {
-      const tab = el('button', { type: 'button', role: 'tab' }, [reel.label, el('small')]);
-      tab.dataset.reel = reel.id;
-      tab.addEventListener('click', () => renderStory(stories.indexOf(reel.stories[0])));
-      return tab;
-    }));
   }
 
   // Tap left third to go back, elsewhere to advance; press and hold to pause; swipe between stories.
@@ -439,11 +421,10 @@
     .then(data => {
       reels = data.reels;
       introStory = data.intro || null;
-      stories = reels.flatMap(reel => [
-        ...reel.stories.map((item, reelIndex) => Object.assign(item, { reel, reelIndex })),
-        endCard(reel)
-      ]);
-      buildTabs();
+      const lists = reels.map(reel => reel.stories.map(item => Object.assign(item, { reel })));
+      const rounds = Math.max(...lists.map(list => list.length));
+      stories = Array.from({ length: rounds }, (_, i) => lists.map(list => list[i])).flat().filter(Boolean);
+      stories.push(endCard(data.outro));
       buildIndex();
       const initialHash = location.hash.slice(1);
       const fromHash = stories.findIndex(item => item.id === initialHash && !item.end);
