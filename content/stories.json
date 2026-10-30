@@ -36,7 +36,7 @@
           "frames": [
             { "type": "image", "src": "/images/work/Culerson/culerson-web2.jpg", "alt": "Culerson website homepage", "kicker": "The problem", "caption": "Deep technical energy expertise, with no clear way to show it to the people making decisions." },
             { "type": "image", "src": "/images/work/Culerson.jpg", "alt": "Culerson wind and solar illustration", "kicker": "The move", "caption": "A lean identity and narrative built for the rooms where energy decisions get made." },
-            { "type": "image", "src": "/images/work/Culerson/culerson-post.jpg", "alt": "Culerson social media posts", "kicker": "Content", "caption": "Complex energy concepts turned into visuals that travel beyond the page." },
+            { "type": "image", "src": "/images/work/Culerson/culerson-post.jpg", "alt": "Culerson social media posts", "kicker": "Content", "caption": "Complex energy concepts turned into visuals that travel beyond the page.", "pos": "22% 50%" },
             { "type": "image", "src": "/images/work/Culerson/culerson-web3.jpg", "alt": "Culerson services page", "kicker": "What shipped", "caption": "A content-managed site the team can grow without ongoing outside support." }
           ]
         },
@@ -101,7 +101,7 @@
           "pageLabel": "Full story",
           "frames": [
             { "type": "image", "src": "/images/work/Fairbnb.jpg", "alt": "Fairbnb search and listings", "kicker": "The question", "caption": "How does a trip feel whole when stays, experiences, and community projects live apart?" },
-            { "type": "image", "src": "/work/fairbnb/prototype/assets/gracia-community-space.jpg", "alt": "People making crafts in a community space", "kicker": "The move", "caption": "Make the destination the organising idea. Everything belongs to one local frame.", "fit": "cover" },
+            { "type": "image", "src": "/work/fairbnb/prototype/assets/gracia-community-space.jpg", "alt": "People making crafts in a community space", "kicker": "The move", "caption": "Make the destination the organising idea. Everything belongs to one local frame." },
             { "type": "image", "src": "/assets/stories/fairbnb-prototype.jpg", "alt": "Fairbnb prototype homepage", "kicker": "Working prototype", "caption": "Stay with the city. Build the whole trip in one place. Try it.", "live": "/work/fairbnb/prototype/" }
           ]
         },

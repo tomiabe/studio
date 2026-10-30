@@ -67,23 +67,25 @@
   }
 
   function buildMedia(item) {
-    const node = el('div', { className: `story-frame${item.fit === 'cover' ? ' fit-cover' : ''}` });
+    const node = el('div', { className: `story-frame${item.fit === 'contain' ? ' fit-contain' : ''}` });
     node.style.setProperty('--dur', `${duration}ms`);
+    if (item.pos) node.style.setProperty('--pos', item.pos);
     const backdropSrc = item.type === 'video' ? item.poster : item.src || item.srcs?.[0];
     if (backdropSrc) node.append(el('img', { className: 'story-backdrop', src: backdropSrc, alt: '' }));
     const fg = el('div', { className: 'story-fg' });
 
     if (item.type === 'video') {
-      video = el('video', { src: item.src, poster: item.poster || '', muted: true, playsInline: true, preload: 'auto', ariaLabel: item.alt || '' });
-      video.setAttribute('muted', '');
-      video.setAttribute('playsinline', '');
-      video.addEventListener('loadedmetadata', () => {
-        duration = Math.min(video.duration * 1000, item.max || DURATION.video);
+      const clip = el('video', { src: item.src, poster: item.poster || '', muted: true, playsInline: true, preload: 'auto', ariaLabel: item.alt || '' });
+      clip.setAttribute('muted', '');
+      clip.setAttribute('playsinline', '');
+      clip.addEventListener('loadedmetadata', () => {
+        if (video === clip) duration = Math.min(clip.duration * 1000, item.max || DURATION.video);
       });
-      video.addEventListener('error', () => { video = null; });
-      fg.append(video);
+      clip.addEventListener('error', () => { if (video === clip) video = null; });
+      video = clip;
+      fg.append(clip);
     } else if (item.type === 'mosaic') {
-      const track = el('div', { className: 'story-mosaic-track' }, item.srcs.map(src => el('img', { src, alt: '', decoding: 'async' })));
+      const track = el('div', { className: 'story-mosaic-track' }, item.srcs.concat(item.srcs).map(src => el('img', { src, alt: '', decoding: 'async' })));
       fg.append(el('div', { className: 'story-mosaic', role: 'img', ariaLabel: item.alt || '' }, [track]));
     } else if (item.type === 'statement') {
       const icon = el('i');
