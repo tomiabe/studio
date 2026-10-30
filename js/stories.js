@@ -283,30 +283,31 @@
     openPanel(trigger.dataset.openPanel);
   });
 
-  const emailButton = document.querySelector('[data-copy-email]');
-  const emailStatus = document.querySelector('[data-email-status]');
-  let emailTimer;
-  const setEmailIcon = icon => {
-    emailButton.innerHTML = `${emailButton.dataset.copyEmail} <i data-lucide="${icon}" aria-hidden="true"></i>`;
-    icons();
-  };
-  emailButton?.addEventListener('click', async () => {
-    const email = emailButton.dataset.copyEmail;
-    try {
-      await navigator.clipboard.writeText(email);
-    } catch {
-      location.href = `mailto:${email}`;
-      return;
-    }
-    emailStatus.textContent = 'Email address copied';
-    emailButton.setAttribute('aria-label', 'Email address copied');
-    setEmailIcon('check');
-    clearTimeout(emailTimer);
-    emailTimer = setTimeout(() => {
-      emailStatus.textContent = '';
-      emailButton.setAttribute('aria-label', 'Copy studio email address');
-      setEmailIcon('copy');
-    }, 2200);
+  document.querySelectorAll('[data-copy-email]').forEach(emailButton => {
+    const emailStatus = document.getElementById(emailButton.getAttribute('aria-describedby'));
+    let emailTimer;
+    const setEmailIcon = icon => {
+      emailButton.innerHTML = `${emailButton.dataset.copyEmail} <i data-lucide="${icon}" aria-hidden="true"></i>`;
+      icons();
+    };
+    emailButton.addEventListener('click', async () => {
+      const email = emailButton.dataset.copyEmail;
+      try {
+        await navigator.clipboard.writeText(email);
+      } catch {
+        location.href = `mailto:${email}`;
+        return;
+      }
+      emailStatus.textContent = 'Email address copied';
+      emailButton.setAttribute('aria-label', 'Email address copied');
+      setEmailIcon('check');
+      clearTimeout(emailTimer);
+      emailTimer = setTimeout(() => {
+        emailStatus.textContent = '';
+        emailButton.setAttribute('aria-label', 'Copy studio email address');
+        setEmailIcon('copy');
+      }, 2200);
+    });
   });
 
   function endCard(outro = {}) {
