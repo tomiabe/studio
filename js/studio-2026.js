@@ -74,6 +74,9 @@ document.addEventListener('keydown', event => {
 const workDrawer = document.querySelector('[data-work-drawer]');
 const workDrawerScroll = window.studioDrawerScrolls?.get(workDrawer);
 let workDrawerReturnHash = '';
+const wecollectDrawer = document.querySelector('[data-work-drawer="wecollect"]');
+const wecollectDrawerScroll = window.studioDrawerScrolls?.get(wecollectDrawer);
+let wecollectDrawerReturnHash = '';
 
 function workDrawerUrl(hash) {
   return `${location.pathname}${location.search}${hash}`;
@@ -125,6 +128,53 @@ window.addEventListener('popstate', () => {
   else if (workDrawer.open) closeWorkDrawer(false);
 });
 if (location.hash === '#susinsight') openWorkDrawer(false);
+
+function openWeCollectDrawer(updateHistory = true) {
+  if (wecollectDrawer.open) return;
+  wecollectDrawerReturnHash = location.hash === '#wecollect' ? '' : location.hash;
+  window.studioDrawerMotion.open(wecollectDrawer);
+  wecollectDrawerScroll?.start();
+  document.body.classList.add('drawer-open');
+  if (updateHistory && location.hash !== '#wecollect') {
+    history.pushState({ workDrawer: 'wecollect' }, '', workDrawerUrl('#wecollect'));
+  }
+}
+
+function restoreWeCollectDrawerUrl() {
+  if (location.hash === '#wecollect') {
+    history.replaceState(null, '', workDrawerUrl(wecollectDrawerReturnHash));
+  }
+}
+
+function closeWeCollectDrawer(updateHistory = true) {
+  if (wecollectDrawer.open) window.studioDrawerMotion.close(wecollectDrawer);
+  if (updateHistory) restoreWeCollectDrawerUrl();
+}
+
+document.querySelectorAll('[data-work-trigger="wecollect"]').forEach(trigger => {
+  trigger.addEventListener('click', event => {
+    event.preventDefault();
+    openWeCollectDrawer();
+  });
+});
+document.querySelector('[data-close-wecollect]').addEventListener('click', () => closeWeCollectDrawer());
+wecollectDrawer.addEventListener('click', event => {
+  if (event.target === wecollectDrawer) closeWeCollectDrawer();
+});
+wecollectDrawer.addEventListener('cancel', event => {
+  event.preventDefault();
+  closeWeCollectDrawer();
+});
+wecollectDrawer.addEventListener('close', () => {
+  wecollectDrawerScroll?.stop();
+  document.body.classList.remove('drawer-open');
+  restoreWeCollectDrawerUrl();
+});
+if (location.hash === '#wecollect') openWeCollectDrawer(false);
+window.addEventListener('popstate', () => {
+  if (location.hash === '#wecollect') openWeCollectDrawer(false);
+  else if (wecollectDrawer.open) closeWeCollectDrawer(false);
+});
 
 const workToggle = document.querySelector('[data-work-toggle]');
 const extraWork = document.querySelectorAll('[data-extra-work]');
