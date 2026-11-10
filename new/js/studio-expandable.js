@@ -60,4 +60,20 @@
  menuButton.addEventListener('click',function(){header.classList.remove('is-hidden')});
  updateHeader();
 
+ const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+ const projectVideos=document.querySelectorAll('.reel-figure video');
+ if(projectVideos.length){
+   const observer=new IntersectionObserver(function(entries){
+     entries.forEach(function(entry){
+       const video=entry.target;
+       if(reduceMotion.matches||!entry.isIntersecting){video.pause();return}
+       video.play().catch(function(){});
+     });
+   },{threshold:.2});
+   projectVideos.forEach(function(video){
+     if(reduceMotion.matches){video.autoplay=false;video.pause();video.currentTime=0}
+     observer.observe(video);
+   });
+ }
+
 })();
