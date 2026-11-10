@@ -1,5 +1,7 @@
 (function(){
  const root=document.documentElement;
+ const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+ const lenis=window.Lenis&&!reduceMotion.matches?new window.Lenis({autoRaf:true,anchors:{offset:-68},duration:1.05}):null;
  const themeButton=document.querySelector('[data-theme-toggle]');
  const themeKey='studio-reel-theme-override';
  function automaticTheme(now){const hour=now.getHours();return hour>=19||hour<7?'dark':'light'}
@@ -43,7 +45,7 @@
  const topButton=document.querySelector('[data-back-to-top]');
  if(topButton){
    function updateTop(){const visible=window.scrollY>Math.max(600,window.innerHeight*.8);topButton.classList.toggle('is-visible',visible);topButton.tabIndex=visible?0:-1;topButton.setAttribute('aria-hidden',String(!visible))}
-   topButton.addEventListener('click',function(){window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})});
+   topButton.addEventListener('click',function(){if(lenis)lenis.scrollTo(0);else window.scrollTo({top:0,behavior:reduceMotion.matches?'auto':'smooth'})});
    window.addEventListener('scroll',updateTop,{passive:true});updateTop();
  }
  const header=document.querySelector('.site-header');
@@ -60,9 +62,17 @@
  menuButton.addEventListener('click',function(){header.classList.remove('is-hidden')});
  updateHeader();
 
- const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+ if('IntersectionObserver' in window&&!reduceMotion.matches){
+   const revealTargets=document.querySelectorAll('.intro h1,.intro-copy,.intro-links,.reel-section-intro>*,.reel-item .reel-figure,.reel-item .reel-detail,.section-heading>*,.practice-list article,.about-copy>*,.portrait,.ways-list article,.contact-inner>*,.site-footer>*');
+   revealTargets.forEach(function(target){target.classList.add('scroll-reveal');if(target.matches('.reel-figure,.portrait'))target.classList.add('reveal-visual')});
+   root.classList.add('has-reveal');
+   const revealObserver=new IntersectionObserver(function(entries){
+     entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target)}});
+   },{rootMargin:'0px 0px -8% 0px',threshold:.08});
+   revealTargets.forEach(function(target){revealObserver.observe(target)});
+ }
  const projectVideos=document.querySelectorAll('.reel-figure video');
- if(projectVideos.length){
+ if(projectVideos.length&&'IntersectionObserver' in window){
    const observer=new IntersectionObserver(function(entries){
      entries.forEach(function(entry){
        const video=entry.target;
