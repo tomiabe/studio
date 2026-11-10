@@ -34,6 +34,7 @@ h1,h2,h3{font-family:Cabinet,Arial,sans-serif;font-weight:500;letter-spacing:0;l
 .reel-figure{display:flex;align-items:center;justify-content:center;width:100%;min-height:300px;overflow:hidden;border-radius:5px;background:var(--surface)}
 .reel-figure img,.reel-figure video{display:block;width:auto;max-width:100%;height:auto;max-height:64svh;object-fit:contain}
 #canvas .reel-figure,#polish .reel-figure{background:#171a18}
+#polish .reel-figure video{max-height:70svh}
 .reel-detail{width:100%;text-align:center}
 .reel-detail summary{display:block;list-style:none;padding:29px 5px 0;cursor:pointer}
 .reel-detail summary::-webkit-details-marker{display:none}
