@@ -135,8 +135,8 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
 .grade { display: inline-flex; min-width: 26px; height: 22px; align-items: center; justify-content: center; border-radius: var(--radius); background: #eef5fe; color: #196eca; font-size: 10px; font-weight: 700; }
 .price { color: #252a2f; font-weight: 700; }
 .available { color: var(--success); font-weight: 600; }
-.add-button { width: 28px; height: 28px; display: grid; place-items: center; border: 1px solid var(--blue); border-radius: var(--radius); background: #fff; color: var(--blue); font-size: 16px; }
-.add-button:hover { background: var(--blue); color: #090909; }
+.add-button { width: 28px; height: 28px; display: grid; place-items: center; border: 1px solid var(--blue); border-radius: var(--radius); background: var(--blue); color: #fff; font-size: 16px; }
+.add-button:hover { background: var(--blue-dark); color: #fff; }
 .list-actions { display: flex; justify-content: end; align-items: center; gap: 6px; }
 .list-actions .bid-button { padding-right: 8px; padding-left: 8px; }
 .inventory-footer { min-height: 47px; display: flex; justify-content: space-between; align-items: center; padding: 0 12px; border: 1px solid var(--line); border-top: 0; color: #7c838c; font-size: 10px; }
