@@ -7,11 +7,12 @@ const appState = {
   screen: "start",
   modal: null,
   signedIn: false,
-  credits: 1160,
   file: null,
   sourceLanguage: "Detect language",
   targetLanguage: "French",
   languageSide: "source",
+  languageQuery: "",
+  recentLanguages: ["French", "English"],
   service: "instant",
   reviewLevel: "professional",
   analysisProgress: 0,
@@ -79,14 +80,13 @@ function renderHeader() {
   }
 
   headerActions.innerHTML = `
-    <span class="credit-summary">Credits <strong>${appState.credits.toLocaleString()}</strong></span>
     <button type="button" class="header-link" data-action="open-workspace">Documents</button>
     <button type="button" class="account-button" data-action="account-menu">Tomi ${icon("user-circle")}</button>
   `;
 }
 
 function stepper(activeStep) {
-  const steps = ["Upload", "Check details", "Translate"];
+  const steps = ["Upload", "Check details", "Translate and review"];
   return `
     <div class="stepper" aria-label="Translation progress">
       ${steps.map((label, index) => {
@@ -183,12 +183,13 @@ function quoteScreen() {
   const reviewSelected = appState.service === "review";
   const total = reviewSelected ? "£29.00" : "£0.00";
   return `
-    <section class="screen">
+    <section class="screen quote-screen">
       ${stepper(2)}
       ${pageTitle("Check the details", "We found 1,340 words. Your free allowance covers the full translation.")}
       <div class="quote-layout">
         <section class="surface quote-panel">
           ${fileCard(file, true)}
+          <div class="mobile-details-summary"><strong>English → ${appState.targetLanguage} · Legal agreement</strong><span>1,340 words · About 2 minutes</span></div>
           <div class="details-grid">
             <div class="detail-box"><span>Detected language</span><strong>English</strong></div>
             <div class="detail-box"><span>Translate to</span><strong>${appState.targetLanguage}</strong></div>
@@ -224,6 +225,7 @@ function quoteScreen() {
           <div class="inline-notice">${icon("info")}<span>Create an account at the next step so your document and translation can be recovered safely.</span></div>
         </aside>
       </div>
+      <div class="quote-mobile-bar"><div><span>Total</span><strong>${total}</strong></div><button type="button" class="button button-primary" data-action="continue-quote">Continue</button></div>
     </section>
   `;
 }
@@ -266,7 +268,7 @@ function resultScreen() {
           </div>
           <div class="result-actions">
             <button type="button" class="button button-primary" data-action="download-result">${icon("download-simple")} Download</button>
-            <button type="button" class="button button-secondary" data-action="more-actions" aria-label="More actions">${icon("dots-three")}</button>
+            <button type="button" class="button button-secondary" data-action="more-actions">${icon("dots-three")} <span>More</span></button>
           </div>
         </div>
 
@@ -274,12 +276,11 @@ function resultScreen() {
           <div class="summary-item"><span>Words translated</span><strong>1,340</strong></div>
           <div class="summary-item"><span>Layout</span><strong>Preserved</strong></div>
           <div class="summary-item"><span>File format</span><strong>PDF</strong></div>
-          <div class="summary-item"><span>Credits used</span><strong>0</strong></div>
         </div>
 
         <div class="preview-grid">
-          <article class="preview-panel"><h3>Original document</h3><p>Service Agreement</p><p>This agreement is entered into between the parties named below and sets out the terms of service.</p><p>Payment must be received within fourteen days of the invoice date.</p></article>
-          <article class="preview-panel"><h3>French translation</h3><p>Contrat de service</p><p>Le présent contrat est conclu entre les parties désignées ci-dessous et définit les conditions de service.</p><p>Le paiement doit être reçu dans les quatorze jours suivant la date de facturation.</p></article>
+          <article class="preview-panel"><h3>Original document</h3><div class="document-page-preview" aria-label="Original page layout preview"><strong>Service Agreement</strong><span>Parties to this agreement</span><i></i><i></i><i class="short-line"></i><span>Terms of service</span><i></i><i></i><i></i><i class="short-line"></i><small>Page 1 of 4</small></div><p>This agreement is entered into between the parties named below and sets out the terms of service.</p></article>
+          <article class="preview-panel"><h3>French translation</h3><div class="document-page-preview" aria-label="Translated page layout preview"><strong>Contrat de service</strong><span>Parties au contrat</span><i></i><i></i><i class="short-line"></i><span>Conditions de service</span><i></i><i></i><i></i><i class="short-line"></i><small>Page 1 of 4</small></div><p>Le présent contrat est conclu entre les parties désignées ci-dessous et définit les conditions de service.</p></article>
         </div>
 
         ${appState.reviewPurchased ? `<div class="review-callout">${icon("seal-check")}<div class="review-callout-content"><strong>${reviewOptions[appState.reviewLevel].name} requested</strong><span>A reviewer will return the checked document ${reviewOptions[appState.reviewLevel].delivery.toLowerCase()}.</span></div><button type="button" class="button button-secondary button-small" data-action="open-workspace">View documents</button></div>` : `<div class="review-callout">${icon("scales")}<div class="review-callout-content"><strong>This looks like a legal agreement</strong><span>A legal-language specialist can check terminology, context, and structure before you use it.</span></div><button type="button" class="button button-secondary button-small" data-action="open-review">Explore review</button></div>`}
@@ -292,6 +293,7 @@ function reviewScreen() {
   const selected = reviewOptions[appState.reviewLevel];
   return `
     <section class="screen">
+      ${stepper(3)}
       ${pageTitle("Add a professional review", "Choose the level of review based on how the document will be used.")}
       <div class="review-layout">
         <section class="surface review-options">
@@ -307,7 +309,7 @@ function reviewScreen() {
         </section>
         <aside class="surface price-panel">
           <h2>Review summary</h2>
-          <ul class="price-list"><li><span>Document</span><strong>1,340 words</strong></li><li><span>Review</span><strong>${selected.name}</strong></li><li><span>Delivery</span><strong>${selected.delivery}</strong></li></ul>
+          <ul class="price-list"><li><span>Document</span><strong>${escapeHtml(appState.file?.name || "Tomi Abe Contract.pdf")}</strong></li><li><span>Scope</span><strong>Legal agreement · English to ${appState.targetLanguage}</strong></li><li><span>Estimated delivery</span><strong>${readyByLabel(selected.delivery)}</strong></li></ul>
           <div class="price-total"><span>Total</span><span>£${selected.price.toFixed(2)}</span></div>
           <p class="price-note">VAT is calculated at checkout where applicable.</p>
           <button type="button" class="button button-primary button-full" data-action="continue-review">Continue to payment</button>
@@ -318,6 +320,22 @@ function reviewScreen() {
   `;
 }
 
+function readyByLabel(delivery) {
+  const hoursMatch = delivery.match(/(\d+) hours?/i);
+  const daysMatch = delivery.match(/(\d+) working days?/i);
+  const date = new Date();
+  if (hoursMatch) date.setDate(date.getDate() + Math.max(1, Math.ceil(Number(hoursMatch[1]) / 24)));
+  if (daysMatch) {
+    let remaining = Number(daysMatch[1]);
+    while (remaining > 0) {
+      date.setDate(date.getDate() + 1);
+      if (date.getDay() !== 0 && date.getDay() !== 6) remaining -= 1;
+    }
+  }
+  const formatted = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short" }).format(date).replace(",", "");
+  return `Ready by ${formatted}`;
+}
+
 function workspaceScreen() {
   return `
     <section class="screen">
@@ -326,9 +344,8 @@ function workspaceScreen() {
         <button type="button" class="button button-primary" data-action="new-translation">${icon("plus")} New translation</button>
       </div>
       <div class="workspace-stats">
-        <div class="surface workspace-stat"><span>Available credits</span><strong>${appState.credits.toLocaleString()}</strong></div>
-        <div class="surface workspace-stat"><span>Documents</span><strong>7</strong></div>
-        <div class="surface workspace-stat"><span>Reviews in progress</span><strong>${appState.reviewPurchased ? "1" : "0"}</strong></div>
+        <div class="surface workspace-stat"><span>Documents</span><strong>${workspaceDocuments.length}</strong></div>
+        <div class="surface workspace-stat"><span>Reviews in progress</span><strong>${workspaceDocuments.filter((document) => document.status === "review").length}</strong></div>
       </div>
       <section class="surface documents-panel">
         <div class="documents-toolbar">
@@ -349,10 +366,11 @@ function workspaceScreen() {
 function limitScreen() {
   return `
     <section class="screen">
+      ${stepper(3)}
       ${pageTitle("Complete your translation", "The free allowance covered 2,500 words. There are 845 words left in this document.")}
       <div class="limit-layout">
         <section class="surface limit-panel">
-          ${fileCard({ name: "Passport Application.pdf", size: "6.8 MB", type: "PDF" }, false)}
+          ${fileCard({ name: "Passport Application.pdf", size: "6.8 MB", type: "PDF" }, false, "Paused at 2,500 of 3,345 words")}
           <div class="limit-progress">
             <div class="progress-header"><span>Translation progress</span><strong>75%</strong></div>
             <div class="progress-track"><div class="progress-fill" style="width:75%"></div></div>
@@ -369,11 +387,11 @@ function limitScreen() {
   `;
 }
 
-function fileCard(file, editable) {
+function fileCard(file, editable, status = "Ready to translate") {
   return `
     <div class="file-card">
       <span class="file-type-icon">${file.type || "PDF"}</span>
-      <div class="file-card-content"><strong>${escapeHtml(file.name)}</strong><span>${file.size || "2.4 MB"} · Ready to translate</span></div>
+      <div class="file-card-content"><strong>${escapeHtml(file.name)}</strong><span>${file.size || "2.4 MB"} · ${status}</span></div>
       ${editable ? `<button type="button" class="remove-file" data-action="change-file" aria-label="Change document">${icon("pencil-simple")}</button>` : ""}
     </div>
   `;
@@ -450,16 +468,26 @@ function accountDialog(mode) {
 
 function languageDialog() {
   const languages = [
-    ["English", "🇬🇧"], ["French", "🇫🇷"], ["Spanish", "🇪🇸"], ["German", "🇩🇪"],
-    ["Italian", "🇮🇹"], ["Portuguese", "🇵🇹"], ["Dutch", "🇳🇱"], ["Finnish", "🇫🇮"]
+    ["English", "🇬🇧"], ["French", "🇫🇷"], ["Spanish", "🇪🇸"], ["German", "🇩🇪"], ["Italian", "🇮🇹"],
+    ["Portuguese", "🇵🇹"], ["Dutch", "🇳🇱"], ["Finnish", "🇫🇮"], ["Arabic", "🇸🇦"], ["Chinese", "🇨🇳"],
+    ["Greek", "🇬🇷"], ["Hindi", "🇮🇳"], ["Japanese", "🇯🇵"], ["Korean", "🇰🇷"], ["Polish", "🇵🇱"],
+    ["Romanian", "🇷🇴"], ["Russian", "🇷🇺"], ["Swedish", "🇸🇪"], ["Turkish", "🇹🇷"], ["Ukrainian", "🇺🇦"]
   ];
+  const orderedLanguages = [...appState.recentLanguages, ...languages.map(([language]) => language).filter((language) => !appState.recentLanguages.includes(language))];
+  const languageFlags = Object.fromEntries(languages);
+  const filteredLanguages = orderedLanguages.filter((language) => language.toLowerCase().includes(appState.languageQuery.toLowerCase()));
   return dialog(`
     <button type="button" class="dialog-close" data-action="close-modal" aria-label="Close">${icon("x")}</button>
     <h2>Choose a language</h2>
     <p>Select the ${appState.languageSide === "source" ? "document language" : "language you want"}.</p>
-    <div class="language-list">
-      ${appState.languageSide === "source" ? `<button type="button" class="language-option" data-action="choose-language" data-language="Detect language"><span>🌐</span> Detect language</button>` : ""}
-      ${languages.map(([language, flag]) => `<button type="button" class="language-option" data-action="choose-language" data-language="${language}"><span>${flag}</span> ${language}</button>`).join("")}
+    <div class="language-picker">
+      <label class="language-search-label"><span class="visually-hidden">Search languages</span><input class="text-input" id="language-search" type="search" placeholder="Search languages" value="${escapeHtml(appState.languageQuery)}" /></label>
+      ${appState.recentLanguages.length ? `<h3 class="language-section-label">Recent</h3>` : ""}
+      <div class="language-list">
+        ${appState.languageSide === "source" ? `<button type="button" class="language-option" data-action="choose-language" data-language="Detect language"><span>🌐</span><span>Detect language</span></button>` : ""}
+        ${filteredLanguages.map((language, index) => `<button type="button" class="language-option" data-action="choose-language" data-language="${language}"><span>${languageFlags[language] || "🌐"}</span><span>${language}</span>${appState.recentLanguages.includes(language) ? `<small>Recent</small>` : ""}</button>`).join("")}
+        <p class="language-empty" ${filteredLanguages.length ? "hidden" : ""}>No languages match “${escapeHtml(appState.languageQuery)}”.</p>
+      </div>
     </div>
   `, true);
 }
@@ -593,10 +621,12 @@ function handleSubmit(event) {
 
 function openLanguageDialog(side) {
   appState.languageSide = side;
+  appState.languageQuery = "";
   setModal("language");
 }
 
 function chooseLanguage(language) {
+  if (language !== "Detect language") appState.recentLanguages = [language, ...appState.recentLanguages.filter((recent) => recent !== language)].slice(0, 2);
   if (appState.languageSide === "source") appState.sourceLanguage = language;
   else appState.targetLanguage = language;
   setModal(null);
@@ -667,8 +697,6 @@ function beginPayment(context, origin = "limit") {
 }
 
 function confirmPayment() {
-  if (appState.paymentContext === "remaining") appState.credits += 845;
-  if (appState.paymentContext === "plan") appState.credits += 180000;
   if (appState.paymentContext === "review") appState.reviewPurchased = true;
   setModal("payment-success");
 }
@@ -809,6 +837,16 @@ function translationStatus() {
 }
 
 function bindScreenEvents() {
+  const languageSearch = document.querySelector("#language-search");
+  if (languageSearch) languageSearch.addEventListener("input", (event) => {
+    appState.languageQuery = event.currentTarget.value;
+    const query = appState.languageQuery.toLowerCase();
+    document.querySelectorAll(".language-option[data-language]").forEach((option) => {
+      option.hidden = !option.dataset.language.toLowerCase().includes(query);
+    });
+    const empty = document.querySelector(".language-empty");
+    if (empty) empty.hidden = [...document.querySelectorAll(".language-option[data-language]")].some((option) => !option.hidden);
+  });
   const dropZone = document.querySelector("#drop-zone");
   if (dropZone) {
     dropZone.addEventListener("dragenter", handleDragEnter);
@@ -896,7 +934,7 @@ function formatBytes(bytes) {
 }
 
 function languageFlag(language) {
-  return ({ English: "🇬🇧", French: "🇫🇷", Spanish: "🇪🇸", German: "🇩🇪", Italian: "🇮🇹", Portuguese: "🇵🇹", Dutch: "🇳🇱", Finnish: "🇫🇮" })[language] || "🌐";
+  return ({ English: "🇬🇧", French: "🇫🇷", Spanish: "🇪🇸", German: "🇩🇪", Italian: "🇮🇹", Portuguese: "🇵🇹", Dutch: "🇳🇱", Finnish: "🇫🇮", Arabic: "🇸🇦", Chinese: "🇨🇳", Greek: "🇬🇷", Hindi: "🇮🇳", Japanese: "🇯🇵", Korean: "🇰🇷", Polish: "🇵🇱", Romanian: "🇷🇴", Russian: "🇷🇺", Swedish: "🇸🇪", Turkish: "🇹🇷", Ukrainian: "🇺🇦" })[language] || "🌐";
 }
 
 document.addEventListener("click", handleClick);
