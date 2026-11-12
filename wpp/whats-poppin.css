@@ -7,6 +7,7 @@
 .case-facts div{min-width:0}.case-facts dt{color:var(--muted);font-size:11px}.case-facts dd{margin:5px 0 0;font-size:13px;line-height:1.45}
 .text-link{display:inline-block;margin-top:18px;color:var(--accent);font-size:13px;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
 .case-section{display:block;padding:51px 0 56px;border-top:1px solid var(--line)}
+#work.case-section{border-top:0}
 .section-label{display:flex;align-items:center;gap:9px;margin:0 0 15px;color:var(--accent);font-size:11px;line-height:1.45}.section-label span{display:inline;margin:0;color:var(--muted)}
 .case-copy{min-width:0;max-width:760px}.case-copy h2{max-width:22ch;font-size:clamp(26px,3.2vw,36px);font-weight:500;line-height:1.12;letter-spacing:-.018em}
 .case-copy>p{max-width:680px;margin-top:15px;color:var(--muted);font-size:15px;line-height:1.68}.case-copy>p+p{margin-top:12px}
