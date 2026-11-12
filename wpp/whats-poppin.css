@@ -14,7 +14,7 @@
 .case-copy .eyebrow{margin:0 0 9px;color:var(--accent);font-size:11px;letter-spacing:.04em}
 .work-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:29px;padding-top:17px;border-top:1px solid var(--line)}
 .work-list article{min-width:0}.work-list h3,.flow-steps h3,.technical-notes h3{font-family:Switzer,Arial,sans-serif;font-size:14px;font-weight:600;line-height:1.4}.work-list p{margin-top:7px;color:var(--muted);font-size:12px;line-height:1.55}
-.walkthrough-media,.form-media,.flow-media{margin:27px 0 0}.asset-frame{display:grid;width:100%;aspect-ratio:2652/1474;place-items:center;overflow:hidden}.form-media .asset-frame,.flow-media .asset-frame{background:#fff}.asset-frame img,.asset-frame video{display:block;width:100%;height:100%;object-fit:contain;background:transparent}
+.walkthrough-media,.form-media,.flow-media{margin:27px 0 0}.asset-frame{display:grid;width:100%;aspect-ratio:2652/1474;place-items:center;overflow:hidden}.form-media .asset-frame{background:#fff}.asset-frame img,.asset-frame video{display:block;width:100%;height:100%;object-fit:contain;background:transparent}.flow-media .asset-frame{display:block;aspect-ratio:auto;overflow:visible}.flow-media .asset-frame img{width:100%;height:auto;object-fit:initial}
 .walkthrough-media figcaption,.form-media figcaption,.flow-media figcaption{margin-top:9px;color:var(--muted);font-size:11px;line-height:1.5}
 .site-footer{margin-top:0}
 @media(max-width:900px){.work-list{grid-template-columns:1fr 1fr}}
