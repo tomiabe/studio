@@ -9,7 +9,7 @@
 .case-section{display:block;padding:51px 0 56px;border-top:1px solid var(--line)}
 #work.case-section{border-top:0}
 .section-label{display:flex;align-items:center;gap:9px;margin:0 0 15px;color:var(--accent);font-size:11px;line-height:1.45}.section-label span{display:inline;margin:0;color:var(--muted)}
-.case-copy{min-width:0;max-width:760px}.case-copy h2{max-width:22ch;font-size:clamp(26px,3.2vw,36px);font-weight:500;line-height:1.12;letter-spacing:-.018em}
+.case-copy{min-width:0;max-width:760px}.case-copy h2{max-width:30ch;font-size:clamp(26px,3.2vw,36px);font-weight:500;line-height:1.12;letter-spacing:-.018em}
 .case-copy>p{max-width:680px;margin-top:15px;color:var(--muted);font-size:15px;line-height:1.68}.case-copy>.section-label{margin:0 0 15px}.case-copy>p+p{margin-top:12px}
 .case-copy .eyebrow{margin:0 0 9px;color:var(--accent);font-size:11px;letter-spacing:.04em}
 .work-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:29px;padding-top:17px;border-top:1px solid var(--line)}
