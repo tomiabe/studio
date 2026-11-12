@@ -54,7 +54,9 @@ h1,h2,h3{font-family:Cabinet,Arial,sans-serif;font-weight:500;letter-spacing:0;l
 .reel-expanded p{font-size:16px;line-height:1.66}.reel-expanded p+p{margin-top:16px}
 .reel-role{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;color:var(--ink);font-size:14px!important}.reel-role span{min-width:0;color:var(--muted)}.reel-role+.reel-role{margin-top:6px!important}.reel-role+p:not(.reel-role){margin-top:18px}
 .reel-expanded a{display:inline-block;margin-top:17px;color:var(--accent);font-size:14px;text-decoration:underline;text-underline-offset:4px}
-#whats-poppin .reel-ctas{display:flex;justify-content:center;flex-wrap:wrap;gap:0 24px}
+#whats-poppin .reel-ctas,#susinsight .reel-ctas{display:flex;flex-direction:column;align-items:center;gap:8px}
+#whats-poppin .reel-ctas a,#susinsight .reel-ctas a{margin-top:0}
+#whats-poppin .reel-ctas a:first-child,#susinsight .reel-ctas a:first-child{margin-top:17px}
 @keyframes reveal{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 .practice-section{padding:115px 0 135px;background:var(--surface)}
 .section-heading{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:end}

@@ -11,6 +11,18 @@
     return;
   }
 
+  const preloadObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const video = entry.target;
+      video.preload = 'auto';
+      video.load();
+      preloadObserver.unobserve(video);
+    });
+  }, { rootMargin: '1200px 0px' });
+
+  videos.forEach((video) => preloadObserver.observe(video));
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       const video = entry.target;
