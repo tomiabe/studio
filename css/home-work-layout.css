@@ -1,0 +1,143 @@
+/* The selected work section uses alternating visual and text columns. */
+#work .reel-item,
+#projects .reel-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(28px, 5vw, 76px);
+  min-height: 0;
+  padding: clamp(48px, 7vw, 88px) 0;
+}
+
+#work .reel-item:first-of-type,
+#projects .reel-item:first-of-type {
+  padding-top: 0;
+}
+
+#work .reel-figure,
+#projects .reel-figure {
+  grid-column: 1;
+  grid-row: 1;
+  min-height: 0;
+  height: fit-content;
+  overflow: visible;
+  border-radius: 0;
+  background: transparent;
+}
+
+#work .reel-figure img,
+#work .reel-figure video,
+#projects .reel-figure img,
+#projects .reel-figure video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 70svh;
+  object-fit: contain;
+}
+
+#work .reel-detail,
+#projects .reel-detail {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+  text-align: left;
+}
+
+#work .reel-detail summary,
+#projects .reel-detail summary {
+  padding: 0;
+}
+
+#work .reel-meta,
+#projects .reel-meta {
+  justify-content: flex-start;
+}
+
+#work .reel-caption,
+#projects .reel-caption {
+  max-width: none;
+  margin: 16px 0 0;
+}
+
+#work .reel-action,
+#projects .reel-action {
+  justify-content: flex-start;
+  margin: 14px 0 0;
+}
+
+#work .reel-expanded,
+#projects .reel-expanded {
+  max-width: none;
+  margin: 26px 0 0;
+  text-align: left;
+}
+
+#work .reel-role,
+#projects .reel-role {
+  justify-content: flex-start;
+}
+
+#work .reel-item:nth-child(even) .reel-figure,
+#projects .reel-item:nth-child(even) .reel-figure {
+  grid-column: 2;
+}
+
+#work .reel-item:nth-child(even) .reel-detail,
+#projects .reel-item:nth-child(even) .reel-detail {
+  grid-column: 1;
+}
+
+@media (max-width: 680px) {
+  #work .reel-item,
+  #projects .reel-item {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 52px 0 62px;
+  }
+
+  #work .reel-item:first-of-type,
+  #projects .reel-item:first-of-type {
+    padding-top: 18px;
+  }
+
+  #work .reel-figure,
+  #work .reel-item:nth-child(even) .reel-figure,
+  #projects .reel-figure,
+  #projects .reel-item:nth-child(even) .reel-figure {
+    order: 0;
+    width: 100%;
+  }
+
+  #work .reel-detail,
+  #work .reel-item:nth-child(even) .reel-detail,
+  #projects .reel-detail,
+  #projects .reel-item:nth-child(even) .reel-detail {
+    order: 1;
+    width: 100%;
+  }
+
+  #work .reel-detail summary,
+  #projects .reel-detail summary {
+    padding-top: 19px;
+  }
+
+  #work .reel-caption,
+  #projects .reel-caption {
+    margin-top: 13px;
+    font-size: 18px;
+  }
+
+  #work .reel-action,
+  #projects .reel-action {
+    margin-top: 11px;
+  }
+
+  #work .reel-expanded,
+  #projects .reel-expanded {
+    margin-top: 20px;
+  }
+}
