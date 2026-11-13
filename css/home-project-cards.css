@@ -356,7 +356,7 @@
     width: 100%;
     min-height: 485px;
     margin: 0;
-    padding: 225px 22px 23px;
+    padding: 249px 22px 23px;
   }
   #work .project-title,
   #projects .project-title { margin-top: 15px; font-size: 34px; }
@@ -380,7 +380,7 @@
   #work .project-copy,
   #projects .project-copy,
   #work .reel-item:nth-child(even) .project-copy,
-  #projects .reel-item:nth-child(even) .project-copy { min-height: 520px; padding-top: 236px; }
+  #projects .reel-item:nth-child(even) .project-copy { min-height: 520px; padding-top: 260px; }
   #work .project-meta,
   #projects .project-meta { font-size: 10px; }
   #work .project-summary,
