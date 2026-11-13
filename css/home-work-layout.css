@@ -79,6 +79,15 @@
   justify-content: flex-start;
 }
 
+#susinsight .reel-expanded p a {
+  display: inline;
+  margin: 0;
+  color: var(--accent);
+  font-size: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 #work .reel-item:nth-child(even) .reel-figure,
 #projects .reel-item:nth-child(even) .reel-figure {
   grid-column: 2;
