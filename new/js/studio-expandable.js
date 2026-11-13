@@ -44,9 +44,20 @@
  if(emailButton){emailButton.addEventListener('click',async function(){try{await copyEmail(emailButton.dataset.copyEmail);copyStatus.textContent='Copied';clearTimeout(copyTimer);copyTimer=setTimeout(function(){copyStatus.textContent=''},2500)}catch(e){copyStatus.textContent='Could not copy. Please select the email address.'}})}
  const topButton=document.querySelector('[data-back-to-top]');
  if(topButton){
-   function updateTop(){const visible=window.scrollY>Math.max(600,window.innerHeight*.8);topButton.classList.toggle('is-visible',visible);topButton.tabIndex=visible?0:-1;topButton.setAttribute('aria-hidden',String(!visible))}
+   const footer=document.querySelector('.site-footer');
+   function updateTop(){
+     const visible=window.scrollY>Math.max(600,window.innerHeight*.8);
+     topButton.classList.toggle('is-visible',visible);
+     topButton.tabIndex=visible?0:-1;
+     topButton.setAttribute('aria-hidden',String(!visible));
+     if(footer){
+       const footerTop=footer.getBoundingClientRect().top;
+       topButton.style.bottom=Math.max(22,window.innerHeight-footerTop+16)+'px';
+     }
+   }
    topButton.addEventListener('click',function(){if(lenis)lenis.scrollTo(0);else window.scrollTo({top:0,behavior:reduceMotion.matches?'auto':'smooth'})});
    window.addEventListener('scroll',updateTop,{passive:true});updateTop();
+   window.addEventListener('resize',updateTop);
  }
  const header=document.querySelector('.site-header');
  let lastScroll=window.scrollY;
