@@ -41,7 +41,7 @@
 #projects .reel-detail {
   grid-column: 2;
   grid-row: 1;
-  align-self: center;
+  align-self: start;
   text-align: left;
 }
 
