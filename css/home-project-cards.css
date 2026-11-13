@@ -318,6 +318,8 @@
 }
 
 @media (max-width: 680px) {
+  #work .reel-item:first-of-type,
+  #projects .reel-item:first-of-type { padding-top: 0; }
   #work .reel-item,
   #projects .reel-item { border-radius: 6px; }
   #work .reel-item + .reel-item,
