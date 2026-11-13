@@ -192,3 +192,21 @@
     white-space: nowrap;
   }
 }
+
+/* Keep desktop section headings and their supporting copy on one shared measure. */
+@media (min-width: 901px) {
+  .intro h1,
+  .intro-copy,
+  #work .reel-section-intro h2,
+  #work .reel-section-intro p,
+  #projects .reel-section-intro h2,
+  #projects .reel-section-intro p,
+  #practice .section-heading h2,
+  #practice .section-heading p,
+  .ways-section .section-heading h2,
+  .ways-section .section-heading p,
+  .contact-inner h2,
+  .contact-inner > p {
+    max-width: 680px;
+  }
+}
