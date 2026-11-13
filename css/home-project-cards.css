@@ -293,6 +293,22 @@
   text-underline-offset: 4px;
 }
 
+/* What's Poppin uses its bright yellow brand field, so keep every text layer
+   and interaction cue in a deep blue with enough contrast against it. */
+#work .reel-item#whats-poppin { color: #243b83; }
+#work #whats-poppin .project-meta { color: rgba(36, 59, 131, .78); }
+#work #whats-poppin .project-meta span + span::before { color: rgba(36, 59, 131, .56); }
+#work #whats-poppin .project-summary,
+#work #whats-poppin .project-more p { color: rgba(36, 59, 131, .96); }
+#work #whats-poppin .project-role { color: rgba(36, 59, 131, .78); }
+#work #whats-poppin .project-action,
+#work #whats-poppin .project-links a,
+#work #whats-poppin .project-more p a { color: #243b83; }
+#work #whats-poppin .project-action { border-color: rgba(36, 59, 131, .72); }
+#work #whats-poppin .project-toggle:hover .project-action { border-color: #243b83; }
+#work #whats-poppin .project-toggle:focus-visible { outline-color: rgba(36, 59, 131, .9); }
+#work #whats-poppin.is-open .project-more { border-color: rgba(36, 59, 131, .22); }
+
 #work .reel-item:nth-child(even) .project-visual,
 #projects .reel-item:nth-child(even) .project-visual {
   inset: 0 0 auto auto;

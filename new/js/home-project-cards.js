@@ -1,6 +1,6 @@
 (function(){
   const brandColors={
-    susinsight:'#2e6f5b',wecollect:'#4747d6',zeproc:'#1a37a6',translayte:'#00303f',fairbnb:'#00b351',eze:'#1269da',
+    susinsight:'#2e6f5b','whats-poppin':'#FFFF43',wecollect:'#4747d6',zeproc:'#1a37a6',translayte:'#00303f',fairbnb:'#00b351',eze:'#1269da',
     canvas:'#0B0B0D',polish:'#212529','sound-atlas':'#2d353c','urban-climate':'#46351f',zonify:'#171b22',
     'nigeria-embassy':'#3b4f57','smart-expense':'#4c3d64',nairawatch:'#101529',jtf23:'#701b24',acquario:'#1b283c',webhunt:'#173333'
   };
