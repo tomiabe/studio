@@ -20,7 +20,9 @@ const appState = {
   postAuthAction: null,
   paymentContext: null,
   paymentOrigin: null,
-  reviewPurchased: false
+  reviewPurchased: false,
+  planActive: false,
+  passportComplete: false
 };
 
 const reviewOptions = {
@@ -48,8 +50,8 @@ const reviewOptions = {
 };
 
 const workspaceDocuments = [
-  { name: "Tomi Abe Contract.pdf", status: "complete", language: "English to French", updated: "Today, 10:42", words: "1,340", action: "Open" },
   { name: "Passport Application.pdf", status: "partial", language: "English to French", updated: "Yesterday", words: "3,345", action: "Resume" },
+  { name: "Tomi Abe Contract.pdf", status: "complete", language: "English to French", updated: "Today, 10:42", words: "1,340", action: "Open" },
   { name: "Utility Bill March.pdf", status: "review", language: "Russian to English", updated: "15 Jun 2023", words: "248", action: "View review" },
   { name: "Birth Certificate.pdf", status: "complete", language: "Spanish to German", updated: "6 Feb 2023", words: "895", action: "Open" }
 ];
@@ -180,21 +182,26 @@ function analysingScreen() {
 
 function quoteScreen() {
   const file = appState.file || demoFile();
+  const isPassport = file.name === "Passport Application.pdf";
+  const documentWords = isPassport ? "3,345" : "1,340";
+  const freeWords = isPassport ? "2,500" : "1,340";
+  const documentType = isPassport ? "Passport application" : "Legal agreement";
+  const estimatedTime = isPassport ? "About 4 minutes" : "About 2 minutes";
   const reviewSelected = appState.service === "review";
   const total = reviewSelected ? "£29.00" : "£0.00";
   return `
     <section class="screen quote-screen">
       ${stepper(2)}
-      ${pageTitle("Check the details", "We found 1,340 words. Your free allowance covers the full translation.")}
+      ${pageTitle("Check the details", isPassport ? "We found 3,345 words. Your free allowance covers the first 2,500 words." : "We found 1,340 words. Your free allowance covers the full translation.")}
       <div class="quote-layout">
         <section class="surface quote-panel">
           ${fileCard(file, true)}
-          <div class="mobile-details-summary"><strong>English → ${appState.targetLanguage} · Legal agreement</strong><span>1,340 words · About 2 minutes</span></div>
+          <div class="mobile-details-summary"><strong>English → ${appState.targetLanguage} · ${documentType}</strong><span>${documentWords} words · ${estimatedTime}</span></div>
           <div class="details-grid">
             <div class="detail-box"><span>Detected language</span><strong>English</strong></div>
             <div class="detail-box"><span>Translate to</span><strong>${appState.targetLanguage}</strong></div>
-            <div class="detail-box"><span>Document type</span><strong>Legal agreement</strong></div>
-            <div class="detail-box"><span>Estimated time</span><strong>About 2 minutes</strong></div>
+            <div class="detail-box"><span>Document type</span><strong>${documentType}</strong></div>
+            <div class="detail-box"><span>Estimated time</span><strong>${estimatedTime}</strong></div>
           </div>
 
           <div class="choice-group" aria-label="Choose translation service">
@@ -214,18 +221,20 @@ function quoteScreen() {
         <aside class="surface price-panel">
           <h2>Your translation</h2>
           <ul class="price-list">
-            <li><span>Document words</span><strong>1,340</strong></li>
-            <li><span>Free allowance used</span><strong>1,340</strong></li>
+            <li><span>Document words</span><strong>${documentWords}</strong></li>
+            <li><span>Free allowance used</span><strong>${freeWords}</strong></li>
+            ${isPassport ? `<li><span>Words beyond allowance</span><strong>845</strong></li>` : ""}
             <li><span>Fast translation</span><strong>£0.00</strong></li>
             ${reviewSelected ? `<li><span>Native proofreading</span><strong>£29.00</strong></li>` : ""}
           </ul>
-          <div class="price-total"><span>Total</span><span>${total}</span></div>
+          <div class="price-total"><span>Due now</span><span>${total}</span></div>
           <p class="price-note">VAT is calculated at checkout where applicable.</p>
           <button type="button" class="button button-primary button-full" data-action="continue-quote">Continue</button>
           <div class="inline-notice">${icon("info")}<span>Create an account at the next step so your document and translation can be recovered safely.</span></div>
+          ${isPassport ? `<div class="inline-notice">${icon("info")}<span>When the free allowance is used, you can choose how to finish the remaining 845 words.</span></div>` : ""}
         </aside>
       </div>
-      <div class="quote-mobile-bar"><div><span>Total</span><strong>${total}</strong></div><button type="button" class="button button-primary" data-action="continue-quote">Continue</button></div>
+      <div class="quote-mobile-bar"><div><span>Due now</span><strong>${total}</strong></div><button type="button" class="button button-primary" data-action="continue-quote">Continue</button></div>
     </section>
   `;
 }
@@ -256,6 +265,14 @@ function processingScreen() {
 }
 
 function resultScreen() {
+  const isPassport = appState.file?.name === "Passport Application.pdf";
+  const translatedWords = isPassport ? "3,345" : "1,340";
+  const translatedPreview = isPassport
+    ? `<article class="preview-panel"><div class="preview-heading"><h3>French translation</h3><span>French</span></div><div class="document-page-preview" aria-label="Translated page layout preview"><strong>Demande de passeport</strong><span>Détails de la demande</span><i></i><i></i><i></i><i></i><i></i><small>Page 1 of 4</small></div></article>`
+    : `<article class="preview-panel"><div class="preview-heading"><h3>French translation</h3><span>French</span></div><div class="document-page-preview" aria-label="Translated page layout preview"><strong>Contrat de service</strong><span>Parties au contrat</span><i></i><i></i><i class="short-line"></i><span>Conditions de service</span><i></i><i></i><i></i><i class="short-line"></i><small>Page 1 of 4</small></div></article>`;
+  const originalPreview = isPassport
+    ? `<article class="preview-panel"><div class="preview-heading"><h3>Original document</h3><span>English</span></div><div class="document-page-preview" aria-label="Original page layout preview"><strong>Passport Application</strong><span>Application details</span><i></i><i></i><i></i><i></i><i></i><small>Page 1 of 4</small></div></article>`
+    : `<article class="preview-panel"><div class="preview-heading"><h3>Original document</h3><span>English</span></div><div class="document-page-preview" aria-label="Original page layout preview"><strong>Service Agreement</strong><span>Parties to this agreement</span><i></i><i></i><i class="short-line"></i><span>Terms of service</span><i></i><i></i><i></i><i class="short-line"></i><small>Page 1 of 4</small></div></article>`;
   return `
     <section class="screen">
       ${stepper(3)}
@@ -273,17 +290,17 @@ function resultScreen() {
         </div>
 
         <div class="result-summary">
-          <div class="summary-item"><span>Words translated</span><strong>1,340</strong></div>
+          <div class="summary-item"><span>Words translated</span><strong>${translatedWords}</strong></div>
           <div class="summary-item"><span>Layout</span><strong>Preserved</strong></div>
           <div class="summary-item"><span>File format</span><strong>PDF</strong></div>
         </div>
 
         <div class="preview-grid">
-          <article class="preview-panel"><h3>Original document</h3><div class="document-page-preview" aria-label="Original page layout preview"><strong>Service Agreement</strong><span>Parties to this agreement</span><i></i><i></i><i class="short-line"></i><span>Terms of service</span><i></i><i></i><i></i><i class="short-line"></i><small>Page 1 of 4</small></div><p>This agreement is entered into between the parties named below and sets out the terms of service.</p></article>
-          <article class="preview-panel"><h3>French translation</h3><div class="document-page-preview" aria-label="Translated page layout preview"><strong>Contrat de service</strong><span>Parties au contrat</span><i></i><i></i><i class="short-line"></i><span>Conditions de service</span><i></i><i></i><i></i><i class="short-line"></i><small>Page 1 of 4</small></div><p>Le présent contrat est conclu entre les parties désignées ci-dessous et définit les conditions de service.</p></article>
+          ${translatedPreview}
+          ${originalPreview}
         </div>
 
-        ${appState.reviewPurchased ? `<div class="review-callout">${icon("seal-check")}<div class="review-callout-content"><strong>${reviewOptions[appState.reviewLevel].name} requested</strong><span>A reviewer will return the checked document ${reviewOptions[appState.reviewLevel].delivery.toLowerCase()}.</span></div><button type="button" class="button button-secondary button-small" data-action="open-workspace">View documents</button></div>` : `<div class="review-callout">${icon("scales")}<div class="review-callout-content"><strong>This looks like a legal agreement</strong><span>A legal-language specialist can check terminology, context, and structure before you use it.</span></div><button type="button" class="button button-secondary button-small" data-action="open-review">Explore review</button></div>`}
+        ${appState.reviewPurchased ? `<div class="review-callout">${icon("seal-check")}<div class="review-callout-content"><strong>${reviewOptions[appState.reviewLevel].name} requested</strong><span>A reviewer will return the checked document ${reviewOptions[appState.reviewLevel].delivery.toLowerCase()}.</span></div><button type="button" class="button button-secondary button-small" data-action="open-workspace">View documents</button></div>` : `<div class="review-callout">${icon("scales")}<div class="review-callout-content"><strong>Need a human check?</strong><span>A professional can review terminology, names, and formatting before you use the document.</span></div><button type="button" class="button button-secondary button-small" data-action="open-review">Explore review</button></div>`}
       </section>
     </section>
   `;
@@ -337,25 +354,29 @@ function readyByLabel(delivery) {
 }
 
 function workspaceScreen() {
+  const documents = workspaceDocuments.map((document) => document.name === "Passport Application.pdf" && appState.passportComplete
+    ? { ...document, status: "complete", updated: "Today", action: "Open" }
+    : document);
   return `
     <section class="screen">
       <div class="workspace-header">
         <div><h1>Your documents</h1><p>Open a translation, continue unfinished work, or start something new.</p></div>
         <button type="button" class="button button-primary" data-action="new-translation">${icon("plus")} New translation</button>
       </div>
+      ${appState.planActive ? `<div class="active-plan-banner"><div><span class="eyebrow">Annual plan active</span><h2>Ready for your next document</h2><p>Translate throughout the year with your 180,000-word plan.</p></div><div class="active-plan-allowance"><strong>180,000</strong><span>words for the year</span></div></div>` : ""}
       <div class="workspace-stats">
-        <div class="surface workspace-stat"><span>Documents</span><strong>${workspaceDocuments.length}</strong></div>
-        <div class="surface workspace-stat"><span>Reviews in progress</span><strong>${workspaceDocuments.filter((document) => document.status === "review").length}</strong></div>
+        <div class="surface workspace-stat"><span>Documents</span><strong>${documents.length}</strong></div>
+        <div class="surface workspace-stat"><span>Reviews in progress</span><strong>${documents.filter((document) => document.status === "review").length}</strong></div>
       </div>
       <section class="surface documents-panel">
         <div class="documents-toolbar">
           <div class="search-wrap">${icon("magnifying-glass")}<input id="document-search" class="search-input" type="search" placeholder="Search documents" aria-label="Search documents" /></div>
-          <select id="status-filter" class="filter-select" aria-label="Filter documents"><option value="all">All statuses</option><option value="complete">Completed</option><option value="partial">Partial</option><option value="review">In review</option></select>
+          <div class="filter-wrap"><select id="status-filter" class="filter-select" aria-label="Filter documents"><option value="all">All statuses</option><option value="complete">Completed</option><option value="partial">Partial</option><option value="review">In review</option></select>${icon("caret-down")}</div>
         </div>
         <div class="table-scroll">
           <table class="document-table">
             <thead><tr><th>Document</th><th>Status</th><th>Languages</th><th>Updated</th><th>Words</th><th></th></tr></thead>
-            <tbody id="document-table-body">${documentRows(workspaceDocuments)}</tbody>
+            <tbody id="document-table-body">${documentRows(documents)}</tbody>
           </table>
         </div>
       </section>
@@ -365,23 +386,42 @@ function workspaceScreen() {
 
 function limitScreen() {
   return `
-    <section class="screen">
+    <section class="screen limit-screen">
       ${stepper(3)}
-      ${pageTitle("Complete your translation", "The free allowance covered 2,500 words. There are 845 words left in this document.")}
+      ${pageTitle("Finish your translation", "Choose how to continue with the remaining words in your document.")}
       <div class="limit-layout">
         <section class="surface limit-panel">
-          ${fileCard({ name: "Passport Application.pdf", size: "6.8 MB", type: "PDF" }, false, "Paused at 2,500 of 3,345 words")}
+          <div class="limit-intro"><span class="eyebrow">Free allowance reached</span><h2>845 words left to translate</h2><p>Your completed pages are saved. Choose how to finish this document.</p></div>
+          <div class="file-card"><span class="file-type-icon">PDF</span><div class="file-card-content"><strong>Passport Application.pdf</strong><span>2,500 of 3,345 words translated</span></div></div>
           <div class="limit-progress">
             <div class="progress-header"><span>Translation progress</span><strong>75%</strong></div>
             <div class="progress-track"><div class="progress-fill" style="width:75%"></div></div>
             <div class="limit-numbers"><span>2,500 words translated</span><span>845 words remaining</span></div>
           </div>
-          <div class="inline-notice">${icon("info")}<span>Your translated pages are saved. Payment resumes the document from where it stopped.</span></div>
+          <div class="inline-notice">${icon("info")}<span>The translated pages will stay in your workspace while you decide.</span></div>
         </section>
         <aside class="option-stack">
-          <article class="surface purchase-card is-recommended"><h3>Finish this document</h3><p>Buy exactly the words needed. There is no subscription.</p><div class="purchase-price">£3.38 <span>one-time payment</span></div><button type="button" class="button button-primary button-full" data-action="buy-remaining">Buy 845 words</button></article>
-          <article class="surface purchase-card"><h3>Translate regularly?</h3><p>Get 180,000 words for the year, plus professional review benefits.</p><div class="purchase-price">£95.88 <span>billed annually</span></div><button type="button" class="button button-secondary button-full" data-action="buy-plan">See annual plan</button></article>
+          <article class="surface purchase-card"><h3>One-time payment</h3><p>Finish this document with exactly the 845 words you need.</p><div class="purchase-price">£3.38 <span>pay once</span></div><button type="button" class="button button-primary button-full" data-action="buy-remaining">Pay £3.38 and continue</button></article>
+          <article class="surface purchase-card purchase-card-plan"><h3>Annual plan</h3><p>Finish this document and keep translating throughout the year. Includes 180,000 words.</p><div class="purchase-price">£95.88 <span>billed once a year</span></div><button type="button" class="button button-secondary button-full" data-action="buy-plan">View annual plan details</button></article>
         </aside>
+      </div>
+    </section>
+  `;
+}
+
+function planScreen() {
+  return `
+    <section class="screen plan-screen">
+      ${stepper(3)}
+      ${pageTitle("Translate beyond this document", "See how the annual plan covers your remaining words and future translations.")}
+      <div class="plan-layout">
+        <section class="surface plan-details">
+          <div class="plan-intro"><span class="eyebrow">For ongoing translation</span><h2>What your plan covers</h2><p>Finish this document now, then use the plan for translations throughout the year.</p></div>
+          <div class="plan-allowance"><strong>180,000</strong><span>words for the year</span></div>
+          <div class="plan-coverage"><div><strong>Current document</strong><span>The remaining 845 words in Passport Application.pdf</span></div><div><strong>Future translations</strong><span>Continue translating other documents during the year</span></div><div><strong>Saved work</strong><span>Return to your documents and translation history</span></div></div>
+          <div class="plan-file"><span class="file-type-icon">PDF</span><div><strong>Passport Application.pdf</strong><span>2,500 translated, 845 remaining</span></div></div>
+        </section>
+        <aside class="surface plan-summary"><h2>Annual plan</h2><div class="plan-summary-lines"><div><span>Annual allowance</span><strong>180,000 words</strong></div><div><span>Billing</span><strong>Annually</strong></div></div><div class="plan-summary-total"><strong>Total today</strong><strong>£95.88</strong></div><p>VAT calculated at checkout where applicable.</p><button type="button" class="button button-primary button-full" data-action="continue-plan">Continue to payment</button><button type="button" class="text-button button-full" data-action="buy-remaining">Pay only for this document</button></aside>
       </div>
     </section>
   `;
@@ -430,6 +470,7 @@ function modalMarkup() {
   if (appState.modal === "signup") return accountDialog("signup");
   if (appState.modal === "signin") return accountDialog("signin");
   if (appState.modal === "language") return languageDialog();
+  if (appState.modal === "plan-confirm") return planConfirmDialog();
   if (appState.modal === "payment") return paymentDialog();
   if (appState.modal === "payment-success") return paymentSuccessDialog();
   if (appState.modal === "file-error") return fileErrorDialog();
@@ -492,6 +533,17 @@ function languageDialog() {
   `, true);
 }
 
+function planConfirmDialog() {
+  return dialog(`
+    <button type="button" class="dialog-close" data-action="close-modal" aria-label="Close">${icon("x")}</button>
+    <h2>Start the annual plan</h2>
+    <p>Review the amount due before continuing to payment.</p>
+    <div class="plan-confirm-summary"><div><span>Plan</span><strong>180,000 words for the year</strong></div><div><span>Current document</span><strong>845 words included</strong></div><div><span>Billing</span><strong>Annually</strong></div><div class="plan-confirm-total"><strong>Total today</strong><strong>£95.88</strong></div></div>
+    <button type="button" class="button button-primary button-full" data-action="confirm-plan">Continue to payment</button>
+    <button type="button" class="text-button button-full" data-action="close-modal">Back to plan details</button>
+  `);
+}
+
 function paymentDialog() {
   let title = "Confirm professional review";
   let item = reviewOptions[appState.reviewLevel].name;
@@ -525,10 +577,11 @@ function paymentDialog() {
 function paymentSuccessDialog() {
   const reviewPayment = appState.paymentContext === "review";
   const reviewBeforeTranslation = reviewPayment && appState.paymentOrigin === "quote";
+  const planPayment = appState.paymentContext === "plan";
   return dialog(`
     <span class="success-dialog-icon">${icon("check")}</span>
-    <h2>${reviewBeforeTranslation ? "Review added" : reviewPayment ? "Review requested" : "Payment confirmed"}</h2>
-    <p>${reviewBeforeTranslation ? "The review is included. We can now translate your document." : reviewPayment ? "The translated document has been sent to the selected reviewer." : "Your words have been added and the document is ready to continue."}</p>
+    <h2>${reviewBeforeTranslation ? "Review added" : reviewPayment ? "Review requested" : planPayment ? "Annual plan active" : "Payment confirmed"}</h2>
+    <p>${reviewBeforeTranslation ? "The review is included. We can now translate your document." : reviewPayment ? "The translated document has been sent to the selected reviewer." : planPayment ? "Your plan covers the remaining 845 words. Continue to finish this document." : "Your words have been added and the document is ready to continue."}</p>
     <button type="button" class="button button-primary button-full" data-action="finish-payment">${reviewBeforeTranslation ? "Start translation" : reviewPayment ? "Return to translation" : "Continue translation"}</button>
   `, true);
 }
@@ -561,6 +614,7 @@ function render() {
   if (appState.screen === "review") screenMarkup = reviewScreen();
   if (appState.screen === "workspace") screenMarkup = workspaceScreen();
   if (appState.screen === "limit") screenMarkup = limitScreen();
+  if (appState.screen === "plan") screenMarkup = planScreen();
   app.innerHTML = `${screenMarkup}${modalMarkup()}`;
   bindScreenEvents();
 }
@@ -574,7 +628,11 @@ function handleClick(event) {
   if (action === "close-modal" && target.classList.contains("modal-layer") && event.target !== target) return;
 
   if (action === "choose-file") return fileInput.click();
-  if (action === "use-sample") return startAnalysis(demoFile());
+  if (action === "use-sample") {
+    appState.sourceLanguage = "English";
+    appState.targetLanguage = "French";
+    return startAnalysis({ name: "Passport Application.pdf", size: "6.8 MB", type: "PDF" });
+  }
   if (action === "select-source") return openLanguageDialog("source");
   if (action === "select-target") return openLanguageDialog("target");
   if (action === "choose-language") return chooseLanguage(target.dataset.language);
@@ -603,7 +661,9 @@ function handleClick(event) {
   if (action === "document-action") return openDocument(Number(target.dataset.index));
   if (action === "document-menu") return showToast("Document actions would open here.");
   if (action === "buy-remaining") return beginPayment("remaining");
-  if (action === "buy-plan") return beginPayment("plan");
+  if (action === "buy-plan") return setScreen("plan");
+  if (action === "continue-plan") return setModal("plan-confirm");
+  if (action === "confirm-plan") return beginPayment("plan");
   if (action === "account-menu") return setModal("account");
   if (action === "sign-out") return signOut();
   if (action === "nav-services") return showToast("Document translation and professional review are available in this prototype.");
@@ -698,6 +758,7 @@ function beginPayment(context, origin = "limit") {
 
 function confirmPayment() {
   if (appState.paymentContext === "review") appState.reviewPurchased = true;
+  if (appState.paymentContext === "plan") appState.planActive = true;
   setModal("payment-success");
 }
 
@@ -706,7 +767,10 @@ function finishPayment() {
   appState.modal = null;
   if (reviewPayment && appState.paymentOrigin === "quote") startTranslation();
   else if (reviewPayment) setScreen("result");
-  else startTranslation();
+  else {
+    appState.passportComplete = true;
+    startTranslation();
+  }
 }
 
 function openWorkspace() {
@@ -716,6 +780,11 @@ function openWorkspace() {
 
 function openDocument(index) {
   const document = workspaceDocuments[index];
+  if (!document) return;
+  if (document.name === "Passport Application.pdf" && appState.passportComplete) {
+    appState.file = { name: document.name, size: "6.8 MB", type: "PDF" };
+    return setScreen("result");
+  }
   if (document.status === "partial") {
     appState.file = { name: document.name, size: "6.8 MB", type: "PDF" };
     return setScreen("limit");
@@ -790,11 +859,13 @@ function startTranslation() {
   render();
   clearProgressTimer();
   progressTimer = window.setInterval(() => {
-    appState.translationProgress = Math.min(100, appState.translationProgress + 8);
+    const allowanceReached = appState.file?.name === "Passport Application.pdf" && !appState.passportComplete;
+    const endProgress = allowanceReached ? 75 : 100;
+    appState.translationProgress = Math.min(endProgress, appState.translationProgress + 8);
     updateTranslationProgress();
-    if (appState.translationProgress >= 100) {
+    if (appState.translationProgress >= endProgress) {
       clearProgressTimer();
-      window.setTimeout(() => setScreen("result"), 350);
+      window.setTimeout(() => setScreen(allowanceReached ? "limit" : "result"), 350);
     }
   }, 300);
 }
@@ -951,15 +1022,18 @@ fileInput.addEventListener("change", (event) => {
 const previewParams = new URLSearchParams(window.location.search);
 const previewScreen = previewParams.get("screen");
 const previewModal = previewParams.get("modal");
-const previewScreens = ["start", "analysing", "quote", "processing", "result", "review", "workspace", "limit"];
-const previewModals = ["signup", "signin", "language", "payment", "payment-success", "file-error", "account"];
+const previewScreens = ["start", "analysing", "quote", "processing", "result", "review", "workspace", "limit", "plan"];
+const previewModals = ["signup", "signin", "language", "plan-confirm", "payment", "payment-success", "file-error", "account"];
 
 if (previewScreens.includes(previewScreen)) {
   appState.screen = previewScreen;
   appState.file = demoFile();
   appState.analysisProgress = 58;
   appState.translationProgress = 68;
-  appState.signedIn = ["processing", "result", "review", "workspace", "limit"].includes(previewScreen);
+  appState.signedIn = ["processing", "result", "review", "workspace", "limit", "plan"].includes(previewScreen);
+  if (["limit", "plan", "result", "workspace"].includes(previewScreen)) appState.file = { name: "Passport Application.pdf", size: "6.8 MB", type: "PDF" };
+  if (["result", "workspace"].includes(previewScreen)) appState.passportComplete = true;
+  if (previewScreen === "workspace") appState.planActive = true;
 }
 
 if (previewModals.includes(previewModal)) {
