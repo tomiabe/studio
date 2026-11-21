@@ -523,9 +523,18 @@ select:focus-visible {
   place-items: center;
   border-radius: 4px;
   background: var(--ink);
-  color: #fff;
+  color: var(--surface);
   font-size: 10px;
   font-weight: 700;
+}
+
+.file-card > .file-type-icon,
+.plan-file > .file-type-icon {
+  display: grid;
+  place-items: center;
+  margin: 0;
+  color: var(--surface);
+  line-height: 1;
 }
 
 .file-card-content {
@@ -2025,8 +2034,9 @@ select:focus-visible {
 .dialog-close { top: 22px; right: 22px; color: var(--text-soft); }
 .dialog > p { color: var(--text-soft); font-size: 13px; line-height: 1.55; }
 .dialog .button-primary { height: 44px; }
-.social-button { height: 44px; border-color: var(--border-strong); background: var(--surface); color: var(--ink); font-size: 12px; }
+.social-button { height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; border-color: var(--border-strong); background: var(--surface); color: var(--ink); font-size: 12px; }
 .social-button:hover { border-color: var(--ink-80); }
+.social-button i { flex: none; font-size: 16px; line-height: 1; }
 .form-divider { color: var(--text-soft); font-size: 12px; }
 .form-field label,
 .check-label,

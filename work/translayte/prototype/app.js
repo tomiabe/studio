@@ -514,9 +514,9 @@ function accountDialog(mode) {
     <h2>${contextualTitle}</h2>
     <p>${contextualCopy}</p>
     <div class="social-buttons">
-      <button type="button" class="button social-button" data-action="social-auth">Google</button>
-      <button type="button" class="button social-button" data-action="social-auth">Apple</button>
-      <button type="button" class="button social-button" data-action="social-auth">Facebook</button>
+      <button type="button" class="button social-button" data-action="social-auth">${icon("google-logo")}<span>Google</span></button>
+      <button type="button" class="button social-button" data-action="social-auth">${icon("apple-logo")}<span>Apple</span></button>
+      <button type="button" class="button social-button" data-action="social-auth">${icon("facebook-logo")}<span>Facebook</span></button>
     </div>
     <div class="form-divider">or use email</div>
     <form class="form-stack" data-form="${mode}">
