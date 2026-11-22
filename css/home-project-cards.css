@@ -293,6 +293,15 @@
   text-underline-offset: 4px;
 }
 
+/* Translayte's two short links share one row, including on small screens. */
+#work #translayte .project-links {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 24px;
+  row-gap: 8px;
+}
+
 /* What's Poppin uses its bright yellow brand field, so keep every text layer
    and interaction cue in a deep blue with enough contrast against it. */
 #work .reel-item#whats-poppin { color: #243b83; }
