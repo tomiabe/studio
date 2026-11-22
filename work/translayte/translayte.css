@@ -33,7 +33,7 @@ h1,h2,h3,h4{font-family:Cabinet,Arial,sans-serif;font-weight:500;letter-spacing:
 .case-intro .lead{color:var(--ink);font-size:20px;line-height:1.5}
 
 /* Hero: name and title, summary, metadata, then a full-width visual. */
-.hero{padding-top:78px;padding-bottom:88px}
+.hero{padding-top:78px;padding-bottom:64px}
 .hero-name{display:block;margin-bottom:12px;color:var(--accent);font-size:clamp(22px,2.2vw,28px)}
 .hero-title{display:block;font-size:clamp(37px,3.6vw,53px)}
 .hero-summary{max-width:78ch;margin-top:24px;color:var(--muted);font-size:18px;line-height:1.58}
@@ -41,7 +41,7 @@ h1,h2,h3,h4{font-family:Cabinet,Arial,sans-serif;font-weight:500;letter-spacing:
 .hero-meta dt{color:var(--muted);font-size:12px;letter-spacing:.1em;text-transform:uppercase}.hero-meta dd{margin-top:5px;font-size:16px}
 
 /* Media fills the page width instead of a single column. */
-.case-figure{margin-top:52px}
+.case-figure{margin-top:28px}
 .stage{display:flex;align-items:center;justify-content:center;padding:42px;background:var(--surface);border-radius:5px;overflow:hidden}
 .browser-frame{width:100%;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:9px;box-shadow:0 18px 42px rgba(10,28,20,.09)}
 .browser-chrome{height:29px;display:flex;align-items:center;gap:6px;padding:0 13px;background:var(--surface);border-bottom:1px solid var(--line)}
@@ -49,11 +49,11 @@ h1,h2,h3,h4{font-family:Cabinet,Arial,sans-serif;font-weight:500;letter-spacing:
 .browser-frame img,.browser-frame video{width:100%;height:auto;aspect-ratio:16/10;object-fit:contain;object-position:top}
 .workspace-stage img{aspect-ratio:auto}
 
-.case-section{padding-top:88px;padding-bottom:88px}
+.case-section{padding-top:70px;padding-bottom:70px}
 .question-line{margin-top:24px;padding-top:18px;border-top:1px solid var(--line)}
 .question-line span{display:block;margin-bottom:6px;color:var(--accent);font-size:12px;letter-spacing:.1em;text-transform:uppercase}.question-line p{color:var(--ink);font-size:17px}
 .design-principle{max-width:70ch;padding-left:17px;border-left:3px solid var(--accent);font-size:15px;line-height:1.6}
-.media-caption{color:var(--muted);font-size:13px}
+.media-caption{margin-top:12px;color:var(--muted);font-size:13px;line-height:1.5}
 
 /* Dark bands and flat cards use the homepage colour system, without gradients. */
 .band{padding:96px 0;background:var(--case-dark);color:#fffafb}
@@ -72,7 +72,7 @@ h1,h2,h3,h4{font-family:Cabinet,Arial,sans-serif;font-weight:500;letter-spacing:
 .demo-tabs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:27px}
 .demo-tabs button{min-height:90px;padding:17px;text-align:left;border:1px solid #cbd3d6;border-radius:8px;background:#fff;color:#00303f;font-weight:700;font-size:14px}
 .demo-tabs button[aria-selected="true"]{border:2px solid #00303f;background:#e6ecee}
-.choice-detail{min-height:195px;margin-top:20px;padding-top:20px;border-top:1px solid #dce4de}
+.choice-detail{margin-top:20px;padding-top:20px;border-top:1px solid #dce4de}
 .choice-detail h4{font:700 18px/1.3 "Open Sans",Switzer,sans-serif}.choice-detail p{max-width:520px;margin-top:8px;color:#5f6964;font-size:14px}
 .choice-detail strong{display:block;margin-top:16px;font-size:23px}.choice-detail strong span{font-size:13px;font-weight:400}
 
@@ -101,10 +101,10 @@ h1,h2,h3,h4{font-family:Cabinet,Arial,sans-serif;font-weight:500;letter-spacing:
   .site-header nav{display:none;position:absolute;top:42px;left:0;right:0;z-index:20;margin:0;padding:12px 0 17px;background:var(--bg);box-shadow:0 16px 20px rgba(0,0,0,.08);flex-direction:column;align-items:stretch;gap:0}
   .site-header nav.is-open{display:flex;position:static;flex-basis:100%;order:3;margin:0;padding:18px 0 6px;box-shadow:none}.site-header nav a{padding:11px 2px;color:var(--ink);font-size:15px}
   .theme-button{margin-left:auto}.menu-button{display:block}
-  .hero{padding-top:55px;padding-bottom:62px}.hero-title{max-width:15ch;font-size:clamp(36px,9vw,47px)}
+  .hero{padding-top:55px;padding-bottom:48px}.hero-title{max-width:15ch;font-size:clamp(36px,9vw,47px)}
   .case-intro h2{font-size:clamp(35px,9vw,47px)}
-  .case-section{padding-top:66px;padding-bottom:66px}.band{padding:70px 0}
-  .case-figure{margin-top:34px}.stage{padding:16px}.workspace-stage{padding:12px}
+  .case-section{padding-top:58px;padding-bottom:58px}.band{padding:70px 0}
+  .case-figure{margin-top:24px}.stage{padding:16px}.workspace-stage{padding:12px}
   .model-steps,.outcome-points{grid-template-columns:1fr;gap:14px;margin-top:36px}.model-steps li{padding:21px}.model-steps h3{margin-top:12px}
   .decision-demo{margin-top:34px;padding:19px}.demo-tabs button{min-height:84px;padding:12px;font-size:12px}
   .phone-stage{padding:26px 18px}.question-line{grid-template-columns:1fr}
