@@ -117,4 +117,50 @@
   }
   motionPreference.addEventListener("change", syncVideos);
   document.addEventListener("visibilitychange", syncVideos);
+
+  const menuButton = document.querySelector("[data-menu-toggle]");
+  const nav = document.getElementById("site-navigation");
+  function closeMenu() {
+    nav.classList.remove("is-open");
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.textContent = "Menu";
+  }
+  menuButton.addEventListener("click", () => {
+    const open = nav.classList.toggle("is-open");
+    menuButton.setAttribute("aria-expanded", String(open));
+    menuButton.textContent = open ? "Close" : "Menu";
+  });
+  nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+  document.addEventListener("keydown", (event) => { if (event.key === "Escape") closeMenu(); });
+
+  const topButton = document.querySelector("[data-back-to-top]");
+  const footer = document.querySelector(".site-footer");
+  function updateTop() {
+    const visible = window.scrollY > Math.max(600, window.innerHeight * 0.8);
+    topButton.classList.toggle("is-visible", visible);
+    topButton.tabIndex = visible ? 0 : -1;
+    topButton.setAttribute("aria-hidden", String(!visible));
+    if (footer) {
+      const footerTop = footer.getBoundingClientRect().top;
+      topButton.style.bottom = Math.max(22, window.innerHeight - footerTop + 16) + "px";
+    }
+  }
+  topButton.addEventListener("click", () => window.scrollTo({ top: 0, behavior: motionPreference.matches ? "auto" : "smooth" }));
+  window.addEventListener("scroll", updateTop, { passive: true });
+  window.addEventListener("resize", updateTop);
+  updateTop();
+
+  const header = document.querySelector(".site-header");
+  let lastScroll = window.scrollY;
+  function updateHeader() {
+    const y = window.scrollY;
+    header.classList.toggle("is-scrolled", y > 140);
+    if (y < 30 || nav.classList.contains("is-open") || header.contains(document.activeElement)) header.classList.remove("is-hidden");
+    else if (y > lastScroll) header.classList.add("is-hidden");
+    else if (y < lastScroll) header.classList.remove("is-hidden");
+    lastScroll = y;
+  }
+  window.addEventListener("scroll", updateHeader, { passive: true });
+  menuButton.addEventListener("click", () => header.classList.remove("is-hidden"));
+  updateHeader();
 })();
