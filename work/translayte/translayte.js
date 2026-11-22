@@ -53,15 +53,13 @@
       title: "One-time payment",
       copy: "Pay only for the 845 remaining words and finish this document.",
       price: "£3.38",
-      billing: "pay once",
-      url: "prototype/?screen=limit"
+      billing: "pay once"
     },
     plan: {
       title: "Annual plan",
       copy: "Finish this document, then use the 180,000-word allowance for translations throughout the year.",
       price: "£95.88",
-      billing: "billed once a year",
-      url: "prototype/?screen=plan"
+      billing: "billed once a year"
     }
   };
   const tabs = [...document.querySelectorAll("[data-choice]")];
@@ -79,7 +77,6 @@
     panel.querySelector("[data-choice-title]").textContent = choice.title;
     panel.querySelector("[data-choice-copy]").textContent = choice.copy;
     panel.querySelector("[data-choice-price]").innerHTML = choice.price + " <span>" + choice.billing + "</span>";
-    panel.querySelector("[data-choice-link]").href = choice.url;
   }
   tabs.forEach((tab, index) => {
     tab.addEventListener("click", () => selectChoice(tab.dataset.choice));
