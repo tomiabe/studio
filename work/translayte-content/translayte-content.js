@@ -122,6 +122,49 @@
   window.addEventListener("resize", updateTop);
   updateTop();
 
+  const heroImg = document.querySelector(".hero-image-frame img");
+  const heroSources = [
+    "../../assets/work/translayte-creative/round-1/monday-13.jpg",
+    "../../assets/work/translayte-creative/round-2/monday-06.jpg",
+    "../../assets/work/translayte-creative/round-2/wednesday-16.jpg"
+  ];
+  if (heroImg && heroSources.length > 1) {
+    const heroOverlay = document.createElement("img");
+    heroOverlay.className = "hero-rotate-image";
+    heroOverlay.alt = "";
+    heroOverlay.setAttribute("aria-hidden", "true");
+    heroImg.parentElement.appendChild(heroOverlay);
+
+    let heroIndex = 0;
+    let heroSwapping = false;
+    const heroBlocked = () => motionPreference.matches || document.hidden;
+
+    function heroAdvance() {
+      if (heroSwapping || heroBlocked()) return;
+      heroSwapping = true;
+      const nextIndex = (heroIndex + 1) % heroSources.length;
+      const nextSrc = heroSources[nextIndex];
+      const preload = new Image();
+      preload.onload = () => {
+        if (heroBlocked()) { heroSwapping = false; return; }
+        heroOverlay.src = nextSrc;
+        heroOverlay.style.opacity = "1";
+        heroImg.style.opacity = "0";
+        window.setTimeout(() => {
+          heroImg.src = nextSrc;
+          heroImg.style.opacity = "1";
+          heroOverlay.style.opacity = "0";
+          heroIndex = nextIndex;
+          heroSwapping = false;
+        }, 500);
+      };
+      preload.onerror = () => { heroSwapping = false; };
+      preload.src = nextSrc;
+    }
+
+    window.setInterval(() => { if (!heroBlocked()) heroAdvance(); }, 5000);
+  }
+
   const videos = [...document.querySelectorAll(".motion-grid video")];
   const visibleVideos = new Set();
   function syncVideos() {
@@ -202,6 +245,75 @@
   function assetPath(asset) {
     return `../../assets/work/translayte-creative/${asset.round}/${asset.file}`;
   }
+
+  const ROTATION_INTERVAL = 4000;
+  const ROTATION_FADE = 500;
+  const storyImages = [...document.querySelectorAll(".story-visual img[data-story-set]")];
+
+  storyImages.forEach((img, cardIndex) => {
+    const story = storySets.find((set) => set.number === img.dataset.storySet);
+    if (!story || story.media.length < 2) return;
+    const sources = story.media.map(assetPath);
+    const overlay = document.createElement("img");
+    overlay.className = "story-rotate-image";
+    overlay.alt = "";
+    overlay.setAttribute("aria-hidden", "true");
+    img.parentElement.appendChild(overlay);
+
+    const state = {
+      index: Math.max(0, sources.indexOf(img.getAttribute("src"))),
+      inView: true,
+      interacting: false,
+      swapping: false
+    };
+
+    const rotationBlocked = () => motionPreference.matches || document.hidden || !lightbox.hidden || !state.inView || state.interacting;
+    const rotationPaused = () => rotationBlocked() || state.swapping;
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        state.inView = entries[0].isIntersecting;
+      }, { threshold: 0.3 });
+      observer.observe(img);
+    }
+
+    const card = img.closest("article");
+    card.addEventListener("mouseenter", () => { state.interacting = true; });
+    card.addEventListener("mouseleave", () => { state.interacting = false; });
+    card.addEventListener("focusin", () => { state.interacting = true; });
+    card.addEventListener("focusout", () => { state.interacting = false; });
+
+    function advance() {
+      if (rotationPaused()) return;
+      state.swapping = true;
+      const nextIndex = (state.index + 1) % sources.length;
+      const nextSrc = sources[nextIndex];
+      const preload = new Image();
+      preload.onload = () => {
+        if (rotationBlocked()) {
+          state.swapping = false;
+          return;
+        }
+        overlay.src = nextSrc;
+        overlay.style.opacity = "1";
+        img.style.opacity = "0";
+        window.setTimeout(() => {
+          img.src = nextSrc;
+          img.style.opacity = "1";
+          overlay.style.opacity = "0";
+          state.index = nextIndex;
+          state.swapping = false;
+        }, ROTATION_FADE);
+      };
+      preload.onerror = () => { state.swapping = false; };
+      preload.src = nextSrc;
+    }
+
+    window.setTimeout(() => {
+      advance();
+      window.setInterval(advance, ROTATION_INTERVAL);
+    }, 1200 * cardIndex);
+  });
 
   function renderGallery(filter = "all") {
     visibleAssets = assets.filter((asset) => filter === "all" || asset.set === filter);
