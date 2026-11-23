@@ -128,6 +128,11 @@
     "../../assets/work/translayte-creative/round-2/monday-06.jpg",
     "../../assets/work/translayte-creative/round-2/wednesday-16.jpg"
   ];
+  const heroCaptions = [
+    "A post from the travel preparation story set",
+    "A post from the educational story set",
+    "A post from the legalisation story set"
+  ];
   if (heroImg && heroSources.length > 1) {
     const heroOverlay = document.createElement("img");
     heroOverlay.className = "hero-rotate-image";
@@ -155,6 +160,8 @@
           heroImg.style.opacity = "1";
           heroOverlay.style.opacity = "0";
           heroIndex = nextIndex;
+          const heroCaption = document.querySelector(".media-caption");
+          if (heroCaption) heroCaption.textContent = heroCaptions[heroIndex];
           heroSwapping = false;
         }, 500);
       };
@@ -214,25 +221,19 @@
     {
       number: "3",
       media: [
-        ...imageSequence("round-2", ["wednesday-13.jpg", "wednesday-14.jpg", "wednesday-15.jpg", "wednesday-16.jpg"]),
-        ...imageSequence("round-1", ["friday-01.jpg", "friday-02.jpg", "friday-03.jpg", "friday-04.jpg", "friday-05.jpg", "friday-06.jpg", "friday-07.jpg", "friday-08.jpg", "friday-09.jpg", "friday-10.jpg", "friday-11.jpg", "friday-12.jpg"]),
-        ...imageSequence("round-2", ["friday-01.jpg", "friday-02.jpg", "friday-03.jpg", "friday-04.jpg", "friday-05.jpg"])
+        ...imageSequence("round-2", ["wednesday-16.jpg", "wednesday-15.jpg", "wednesday-13.jpg", "wednesday-14.jpg"]),
+        ...imageSequence("round-2", ["friday-04.jpg", "friday-05.jpg", "friday-01.jpg", "friday-02.jpg", "friday-03.jpg"]),
+        ...imageSequence("round-1", ["friday-01.jpg", "friday-05.jpg", "friday-02.jpg", "friday-06.jpg", "friday-07.jpg", "friday-08.jpg", "friday-09.jpg", "friday-10.jpg", "friday-11.jpg", "friday-12.jpg", "friday-03.jpg", "friday-04.jpg"])
       ]
     }
   ];
 
   const dayOrder = { monday: 1, wednesday: 2, friday: 3 };
-  const assets = storySets.flatMap((story) => story.media.map((media) => ({ ...media, set: `set-${story.number}` })))
+  const assets = storySets.flatMap((story) => story.media.map((media, index) => ({ ...media, set: `set-${story.number}`, order: index })))
     .sort((a, b) => {
       const setDifference = Number(a.set.slice(4)) - Number(b.set.slice(4));
       if (setDifference) return setDifference;
-      const aDay = a.file.split("-")[0];
-      const bDay = b.file.split("-")[0];
-      const dayDifference = (dayOrder[aDay] || 99) - (dayOrder[bDay] || 99);
-      if (dayDifference) return dayDifference;
-      const aNumber = Number(a.file.match(/(\d+)\.jpg$/)?.[1] || 0);
-      const bNumber = Number(b.file.match(/(\d+)\.jpg$/)?.[1] || 0);
-      return aNumber - bNumber;
+      return a.order - b.order;
     });
 
   const gallery = document.querySelector("[data-asset-gallery]");
