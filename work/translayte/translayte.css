@@ -112,3 +112,11 @@ h1,h2,h3,h4{font-family:Cabinet,Arial,sans-serif;font-weight:500;letter-spacing:
 }
 @media(max-width:400px){.hero-meta{grid-template-columns:1fr}.hero-title{font-size:35px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.site-header{transition:none}}
+
+/* Full-width plan states use the same theme-aware media treatment. */
+.plan-journey{margin-top:52px}
+.plan-journey h3,.present-reflection h3{margin-bottom:16px;font-size:clamp(28px,2.5vw,34px)}
+.plan-stage{background:var(--bg)}
+.present-reflection{max-width:78ch;margin-top:56px;padding-top:32px;border-top:1px solid #66756c}
+.present-reflection p:not(.eyebrow){color:var(--case-dark-muted);line-height:1.62}
+.present-reflection a{color:inherit;text-decoration-color:#9be4d5;text-underline-offset:4px}
